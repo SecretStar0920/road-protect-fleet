@@ -1,0 +1,7 @@
+<rp-general-table [table]="table"></rp-general-table>
+<nz-alert
+    *ngIf="getOwnershipContractsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getOwnershipContractsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

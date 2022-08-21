@@ -1,0 +1,11 @@
+<nz-row (click)="checkRestored()">
+    <canvas #signatureBlock id="signature-block" width="300px" height="150px" style="background-color: white"></canvas>
+</nz-row>
+<nz-row class="actions">
+    <button nz-button nzType="default" (click)="onClear()">Clear</button>
+    <button nz-button nzType="default" (click)="fileInput.click()">
+        <i nz-icon nzType="camera" nzTheme="outline"></i> Upload Signature
+    </button>
+    <input type="file" (change)="onFileChanged()" accept="image/*" style="display: none" #fileInput />
+    <!--    <button nz-button nzType="default" (click)="onSave()">Save</button>-->
+</nz-row>

@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es6",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true,
+        "preserveWatchOutput": true,
+        "paths": {
+            "@config/*": ["./src/config/*"],
+            "@logger": ["./src/modules/shared/services/logger.service"],
+            "@seeder/*": ["./src/modules/shared/modules/seeder/*"],
+            "@cli/*": ["./src/modules/cli/*"],
+            "@modules/*": ["./src/modules/*"],
+            "@integrations/*": ["./src/integrations/*"],
+            "@entities": ["./src/modules/shared/entities/entities"],
+            "@middleware/*": ["./src/middleware/*"]
+        }
+    },
+    "include": ["src", "test"],
+    "exclude": ["node_modules", "dist", "storage", "**/*.pdf", "**/storage/*", "**/*.storage", "gulpfile.ts"]
+}

@@ -1,0 +1,25 @@
+<nz-row nzGutter="24">
+    <nz-col nzSpan="24">
+        <rp-general-file-upload
+            [limit]="1"
+            [mimeTypes]="[mimeTypes.xlsx, mimeTypes.xls, mimeTypes.csv]"
+            (files)="onFilesChanged($event)"
+            [spreadSheet]="sheetHeadings ? true : null"
+            (fileUploadedOnQueue)="checkIfFileUploadedOnQueue($event)"
+            #generalFileUpload
+        >
+        </rp-general-file-upload>
+    </nz-col>
+    <!--    <nz-col nzSpan="8">-->
+    <!--        <button nz-button>Reset</button>-->
+    <!--    </nz-col>-->
+    <nz-col nzSpan="24" *ngIf="spreadsheet && spreadsheet.SheetNames?.length > 1">
+        <h4>{{ 'general-spreadsheet-upload.select' | i18next }}</h4>
+        <nz-select [(ngModel)]="selectedSheetName" (ngModelChange)="onChangeSheet()">
+            <nz-option *ngFor="let sheet of spreadsheet.SheetNames" [nzLabel]="sheet" [nzValue]="sheet"></nz-option>
+        </nz-select>
+    </nz-col>
+    <nz-col nzSpan="24" *ngIf="entityUpload && sheetHeadings">
+        <rp-excel-column-mapper [entityUpload]="entityUpload" [sheetHeadings]="sheetHeadings" #excelColumnMapper> </rp-excel-column-mapper>
+    </nz-col>
+</nz-row>

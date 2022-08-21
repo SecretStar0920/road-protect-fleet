@@ -1,0 +1,27 @@
+@import 'variables';
+
+:host {
+    display: block;
+    min-height: 150px;
+    position: relative;
+    direction: ltr;
+
+    &:hover {
+        .export-button {
+            opacity: 1;
+        }
+    }
+}
+
+.export-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0;
+
+    transition: opacity 0.4s;
+
+    i[nz-icon] {
+        color: @ant-green;
+    }
+}

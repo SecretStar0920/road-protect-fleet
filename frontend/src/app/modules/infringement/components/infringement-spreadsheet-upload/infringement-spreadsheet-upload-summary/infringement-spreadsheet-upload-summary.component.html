@@ -1,0 +1,21 @@
+<h3>{{ 'infringement-spreadsheet-upload.redirection_process_complete' | i18next }}</h3>
+<nz-list>
+    <nz-list-item>
+        {{ 'infringement-spreadsheet-upload.total_created' | i18next }}: {{ (infringementUpload$ | async)?.uploadResponse.createCount }}
+    </nz-list-item>
+    <nz-list-item>
+        {{ 'infringement-spreadsheet-upload.total_updated' | i18next }}: {{ (infringementUpload$ | async)?.uploadResponse.updateCount }}
+    </nz-list-item>
+    <nz-list-item>
+        {{ 'infringement-spreadsheet-upload.total_uploaded' | i18next }}: {{ (infringementUpload$ | async)?.uploadResponse.createCount + (infringementUpload$ | async)?.uploadResponse.updateCount }}
+    </nz-list-item>
+    <nz-list-item>
+        {{ 'infringement-spreadsheet-upload.total_missing_from_spreadsheet' | i18next }}: {{ (infringementUpload$ | async)?.uploadResponse.missingInfringements.length }}
+    </nz-list-item>
+</nz-list>
+
+<div nz-row nzJustify="end">
+    <div nz-col>
+        <button nz-button nzType="primary" (click)="onDone()">{{'generic-text.done' | i18next}}</button>
+    </div>
+</div>

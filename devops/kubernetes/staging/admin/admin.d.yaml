@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: admin
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: admin
+            env: staging
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: admin
+                env: staging
+        spec:
+            containers:
+                - image: eu.gcr.io/fleet-260107/backend:beta
+                  name: admin
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 8080
+                        name: entry
+                        protocol: TCP
+                  resources:
+                      requests:
+                          cpu: 50m
+                  livenessProbe:
+                      httpGet:
+                          path: api/v1/health
+                          port: 8080
+                      initialDelaySeconds: 30
+                      periodSeconds: 60
+                      timeoutSeconds: 45
+                  readinessProbe:
+                      httpGet:
+                          path: api/v1/health
+                          port: 8080
+                      initialDelaySeconds: 30
+                      periodSeconds: 60
+                      timeoutSeconds: 45
+                  envFrom:
+                      - secretRef:
+                            name: backend
+                  volumeMounts:
+                      - name: storage
+                        mountPath: /app/storage
+                        subPath: storage
+                  env:
+                      - name: DEFAULT_CONCURRENT_JOBS
+                        value: '5'
+            volumes:
+                - name: storage
+                  persistentVolumeClaim:
+                      claimName: backend-storage-pvc

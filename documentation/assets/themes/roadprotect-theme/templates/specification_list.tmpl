@@ -1,0 +1,32 @@
+[: overlay "banner" . :]
+
+[: template "fragments/specification_list_title" . :]
+
+[: overlay "description" . :]
+
+[: $c := counter_set -1 :]
+<div style="padding-top: 20px;">
+[: range $id, $spec := .APISuite :]
+    [: $c := counter_add 1 :]
+    [: if eq (mod $c 2) 0 :]
+    <div class="row">
+    [: end :]
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <a href="/[: $spec.ID :]/">
+        <div class="fa-stack fa-lg my-fa-icon-group pull-left" style="font-size: 28px;">
+            <img src="/images/logo/sml_icon.png" alt="" class="logo" height="65px" />
+        </div></a>
+        <div style="margin-left: 70px;">
+           <h3 class="bottommargin" style="margin-top: 5px;">
+             <a href="/[: $spec.ID :]/reference">[:$spec.APIInfo.Title:]</a>
+           </h3>
+           [: safehtml $spec.APIInfo.Description :]
+        </div>
+      </div>
+    [: if eq (mod $c 2) 1 :]
+    </div>
+    [: end :]
+[: end :]
+</div>
+
+[: overlay "additional" . :]

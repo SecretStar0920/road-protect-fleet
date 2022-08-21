@@ -1,0 +1,22 @@
+<table class="rp-basic-data-table">
+    <thead *ngIf="title">
+        <tr>
+            <th colspan="2">{{ title }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data | keyvalue">
+            <td>
+                <span nz-text nzType="secondary">{{ item.key | sentenceCase }}</span>
+            </td>
+            <td *ngIf="!isObject(item.value); else object">
+                <span nz-text>{{ item.value }}</span>
+            </td>
+            <ng-template #object>
+                <td>
+                    <rp-general-object-display [data]="item.value"></rp-general-object-display>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>

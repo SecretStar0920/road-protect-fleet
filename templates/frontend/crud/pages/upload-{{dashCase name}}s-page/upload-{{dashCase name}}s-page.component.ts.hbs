@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { Create{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/services/create-{{dashCase name}}.dto';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { {{pascalCase name}}SpreadsheetService } from '@modules/{{dashCase name}}/services/{{dashCase name}}-spreadsheet.service';
+import { EntitySpreadsheetUpload, UploadOption } from '@modules/shared/models/entity-spreadsheet.upload';
+
+@Component({
+    selector: 'rp-upload-{{dashCase name}}s-page',
+    templateUrl: './upload-{{dashCase name}}s-page.component.html',
+    styleUrls: ['./upload-{{dashCase name}}s-page.component.less'],
+})
+export class Upload{{pascalCase name}}sPageComponent implements OnInit {
+    entitySpreadsheetUpload: EntitySpreadsheetUpload<{{pascalCase name}}>;
+
+    constructor(private {{camelCase name}}SpreadsheetService: {{pascalCase name}}SpreadsheetService) {
+        this.entitySpreadsheetUpload = new EntitySpreadsheetUpload<{{pascalCase name}}>(
+            '{{camelCase name}}',
+            {
+                create: new UploadOption({
+                    dto: Create{{pascalCase name}}Dto,
+                    service: this.{{camelCase name}}SpreadsheetService,
+                }),
+                // update: {
+                //     dto: Update{{pascalCase name}}Dto,
+                //     service: this.{{camelCase name}}SpreadsheetService
+                // }
+            },
+            [
+                'create',
+                // 'update',
+            ],
+        );
+    }
+
+    ngOnInit() {}
+}

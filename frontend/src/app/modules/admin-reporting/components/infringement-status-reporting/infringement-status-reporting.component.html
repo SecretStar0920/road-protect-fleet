@@ -1,0 +1,35 @@
+<h3 class="rp-primary-color"><i nz-icon nzType="exception" nzTheme="outline"></i> {{ 'infringement-status-reporting.title' | i18next }}</h3>
+
+<nz-row nzGutter="24">
+    <nz-col nzSpan="24">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="8">{{ 'infringement-status-reporting.created_between' | i18next }}:</nz-col>
+            <nz-col nzSpan="16">
+                <nz-date-picker [(ngModel)]="createdDates.startDate" (ngModelChange)="refresh()" [nzAllowClear]="false"></nz-date-picker>
+                <nz-date-picker [(ngModel)]="createdDates.endDate" (ngModelChange)="refresh()" [nzAllowClear]="false"></nz-date-picker>
+            </nz-col>
+        </nz-row>
+    </nz-col>
+</nz-row>
+<br />
+<nz-row nzGutter="24">
+    <nz-col nzSpan="24">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="8">{{ 'infringement-status-reporting.latest_payment_between' | i18next }}:</nz-col>
+            <nz-col nzSpan="16">
+                <nz-date-picker [(ngModel)]="paymentDates.startDate" (ngModelChange)="refresh()" [nzAllowClear]="false"></nz-date-picker>
+                <nz-date-picker [(ngModel)]="paymentDates.endDate" (ngModelChange)="refresh()" [nzAllowClear]="false"></nz-date-picker>
+            </nz-col>
+        </nz-row>
+    </nz-col>
+</nz-row>
+
+<rp-general-chart-container *ngIf="infringementStatusData.length > 0; else noResult">
+    <ngx-charts-advanced-pie-chart [results]="infringementStatusData" [scheme]="colors"></ngx-charts-advanced-pie-chart>
+</rp-general-chart-container>
+
+<ng-template #noResult>
+    <br />
+    <br />
+    <nz-alert nzType="info" [nzMessage]="'infringement-status-reporting.no_result' | i18next"></nz-alert>
+</ng-template>

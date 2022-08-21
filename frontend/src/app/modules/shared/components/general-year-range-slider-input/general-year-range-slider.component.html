@@ -1,0 +1,24 @@
+<table class="rp-basic-data-table">
+    <thead>
+        <tr>
+            <th colspan="2">{{ 'general-year-range-slider.compare_to_previous_years' | i18next }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {{ 'general-year-range-slider.year_range' | i18next }}
+                {{ '[' + [yearRange] + ']' }}
+            </td>
+            <td>
+                <nz-slider
+                    nzRange
+                    [(ngModel)]="yearRange"
+                    [nzMin]="yearsComparisonSliderRange.min"
+                    [nzMax]="yearsComparisonSliderRange.max"
+                    (ngModelChange)="onChangeYears()"
+                ></nz-slider>
+            </td>
+        </tr>
+    </tbody>
+</table>

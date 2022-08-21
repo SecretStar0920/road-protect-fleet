@@ -1,0 +1,44 @@
+<ng-container *ngFor="let status of grouped | keyvalue">
+    <ng-container [ngSwitch]="status.key">
+        <ng-container *ngSwitchCase="infringementStatuses.Paid">
+            <nz-badge
+                [nzCount]="status.value.length"
+                nzShowZero
+                [nzStyle]="{ backgroundColor: '#3dbd7d' }"
+                nz-popover
+                [nzPopoverContent]="'infringement-status.' + (status.key | sentenceCase) | i18next"
+            >
+            </nz-badge>
+        </ng-container>
+        <ng-container *ngSwitchCase="infringementStatuses.Due">
+            <nz-badge
+                [nzCount]="status.value.length"
+                nzShowZero
+                [nzStyle]="{ backgroundColor: '#f78e3d' }"
+                nz-popover
+                [nzPopoverContent]="'infringement-status.' + (status.key | sentenceCase) | i18next"
+            >
+            </nz-badge>
+        </ng-container>
+        <ng-container *ngSwitchCase="infringementStatuses.Closed">
+            <nz-badge
+                [nzCount]="status.value.length"
+                nzShowZero
+                [nzStyle]="{ backgroundColor: '#f78e3d' }"
+                nz-popover
+                [nzPopoverContent]="'infringement-status.' + (status.key | sentenceCase) | i18next"
+            >
+            </nz-badge>
+        </ng-container>
+        <ng-container *ngSwitchCase="infringementStatuses.Outstanding">
+            <nz-badge
+                [nzCount]="status.value.length"
+                nzShowZero
+                [nzStyle]="{ backgroundColor: '#f46e65' }"
+                nz-popover
+                [nzPopoverContent]="'infringement-status.' + (status.key | sentenceCase) | i18next"
+            >
+            </nz-badge>
+        </ng-container>
+    </ng-container>
+</ng-container>

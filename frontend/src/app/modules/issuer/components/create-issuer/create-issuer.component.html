@@ -1,0 +1,155 @@
+<form nz-form [formGroup]="createIssuerForm" nzLayout="vertical" (ngSubmit)="onCreateIssuer()">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="name">{{ 'issuer.name' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="name" id="name" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('name')?.dirty && createIssuerForm.get('name')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="name"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="code">{{ 'issuer.code' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="code" id="code" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('code')?.dirty && createIssuerForm.get('code')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="code"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="type">{{ 'issuer.type' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <nz-radio-group [nzButtonStyle]="'solid'" formControlName="type">
+                        <label *ngFor="let type of issuerTypes" nz-radio-button [nzValue]="type">{{ type }}</label>
+                    </nz-radio-group>
+                    <nz-form-explain *ngIf="createIssuerForm.get('type')?.dirty && createIssuerForm.get('type')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="type"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzFor="address">{{ 'issuer.address' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="address" id="address" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('address')?.dirty && createIssuerForm.get('address')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="address"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="email">{{ 'issuer.email' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="email" id="email" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('email')?.dirty && createIssuerForm.get('email')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="email"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="fax">{{ 'issuer.fax' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="fax" id="fax" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('fax')?.dirty && createIssuerForm.get('fax')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="fax"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="telephone">{{ 'issuer.telephone' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="telephone" id="telephone" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('telephone')?.dirty && createIssuerForm.get('telephone')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="telephone"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="contactPerson">{{ 'issuer.contact_person' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="contactPerson" id="contactPerson" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('contactPerson')?.dirty && createIssuerForm.get('contactPerson')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="contactPerson"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="provider">{{ 'issuer.provider' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="provider" id="provider" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('provider')?.dirty && createIssuerForm.get('provider')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="provider"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="provider">{{ 'issuer.authority' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="authority" id="authority" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('authority')?.dirty && createIssuerForm.get('authority')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="authority"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="redirectionEmail">{{ 'issuer.redirectionEmail' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="redirectionEmail" id="redirectionEmail" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('redirectionEmail')?.dirty && createIssuerForm.get('redirectionEmail')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="redirectionEmail"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="externalPaymentLink">{{ 'issuer.externalPaymentLink' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="externalPaymentLink" id="externalPaymentLink" />
+                    <nz-form-explain *ngIf="createIssuerForm.get('externalPaymentLink')?.dirty && createIssuerForm.get('externalPaymentLink')?.errors">
+                        <rp-general-form-error-display [form]="createIssuerForm" key="externalPaymentLink"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button
+                nz-button
+                nzType="primary"
+                [disabled]="!createIssuerForm.valid"
+                nzSize="large"
+                [nzLoading]="createIssuerState.isLoading()"
+            >
+                <i nz-icon nzType="save" nzTheme="outline"></i>
+                {{ 'issuer.save' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="createIssuerForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>

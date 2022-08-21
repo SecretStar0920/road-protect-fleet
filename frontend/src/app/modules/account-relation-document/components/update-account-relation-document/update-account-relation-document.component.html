@@ -1,0 +1,26 @@
+<form nz-form [formGroup]="updateAccountRelationDocumentForm" nzLayout="vertical" (ngSubmit)="onUpdateAccountRelationDocument()">
+    <!--    TODO: CREATE FORM-->
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-label nzRequired nzFor="name">Name</nz-form-label>-->
+    <!--        <nz-form-control>-->
+    <!--            <input nz-input formControlName="name" id="name">-->
+    <!--            <nz-form-explain *ngIf="updateAccountRelationDocumentForm.get('name')?.dirty && updateAccountRelationDocumentForm.get('name')?.errors">-->
+    <!--                {{ 'input_required' | i18next }}-->
+    <!--            </nz-form-explain>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateAccountRelationDocumentState?.hasSucceeded()"
+    [nzMessage]="updateAccountRelationDocumentState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateAccountRelationDocumentState?.hasFailed()"
+    [nzMessage]="updateAccountRelationDocumentState?.failedResult().message"
+    [nzDescription]="updateAccountRelationDocumentState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

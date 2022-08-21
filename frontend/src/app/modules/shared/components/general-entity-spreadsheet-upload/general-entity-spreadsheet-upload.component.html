@@ -1,0 +1,132 @@
+<rp-general-stepper [stepper]="stepper" *ngIf="entitySpreadsheetUpload">
+    <!--            Select Mode-->
+    <div [rpShow]="stepper.isStep(1)">
+        <p>{{ 'general-entity-spreadsheet-upload.select' | i18next }}</p>
+        <nz-radio-group [(ngModel)]="entitySpreadsheetUpload.currentMethod" nzSize="large">
+            <label nz-radio [nzValue]="option.key" *ngFor="let option of entitySpreadsheetUpload.options | keyvalue">{{
+                'upload-action.' + option.key | i18next | sentenceCase
+            }}</label>
+        </nz-radio-group>
+    </div>
+
+    <!--            Select Spreadsheet-->
+    <div [rpShow]="stepper.isStep(2)">
+        <h3>
+            {{ 'general-entity-spreadsheet-upload.template' | i18next }}:
+            <a (click)="onDownloadTemplate()">{{ 'general-entity-spreadsheet-upload.download' | i18next }}</a>
+        </h3>
+        <rp-general-spreadsheet-upload
+            [entityUpload]="entitySpreadsheetUpload"
+            (onUploadChange)="checkContentsOfUploadedFile($event)"
+            (filesOnQueue)="checkIfFileIsOnQueue($event)"
+            #generalSpreadsheetUpload
+        ></rp-general-spreadsheet-upload>
+    </div>
+
+    <!--            Verification-->
+    <div [rpShow]="stepper.isStep(3)">
+        <div style="text-align: center">
+            <button nz-button nzType="primary" (click)="onVerify()" nzSize="large" [nzLoading]="verifyState.isLoading()">
+                <i nz-icon nzType="upload"></i> {{ 'general-entity-spreadsheet-upload.verify' | i18next }}
+            </button>
+            <br /><br />
+            <p>
+                <i>{{ 'general-entity-spreadsheet-upload.note' | i18next }}</i>
+                {{ 'general-entity-spreadsheet-upload.verify_note' | i18next }}
+            </p>
+        </div>
+        <ng-container *ngIf="verifyState.hasSucceeded()">
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="12">
+                    <h3 class="rp-primary-color">
+                        {{ 'general-entity-spreadsheet-upload.valid_for_upload' | i18next }} ({{ verifyResult.validCount }}
+                        {{ 'general-entity-spreadsheet-upload.out_of' | i18next }}
+                        {{ verifyResult.invalidCount + verifyResult.validCount }})
+                    </h3>
+
+                    <rp-view-document [documentId]="verifyResult.validDocumentId" *ngIf="verifyResult.validCount > 0"></rp-view-document>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <h3 class="rp-warn-color">
+                        {{ 'general-entity-spreadsheet-upload.invalid_for_upload' | i18next }} ({{ verifyResult.invalidCount }}
+                        {{ 'general-entity-spreadsheet-upload.out_of' | i18next }}
+                        {{ verifyResult.invalidCount + verifyResult.validCount }})
+                    </h3>
+
+                    <rp-view-document
+                        [documentId]="verifyResult.invalidDocumentId"
+                        *ngIf="verifyResult.invalidCount > 0"
+                    ></rp-view-document>
+                </nz-col>
+            </nz-row>
+        </ng-container>
+    </div>
+
+    <!--            Upload-->
+    <div [rpShow]="stepper.isStep(4)">
+        <div style="text-align: center">
+            <button nz-button nzType="primary" (click)="onUpload()" nzSize="large" [nzLoading]="uploadState.isLoading()">
+                <i nz-icon nzType="upload"></i> {{ 'general-entity-spreadsheet-upload.upload' | i18next }}
+            </button>
+            <br /><br />
+            <p>
+                <i>{{ 'general-entity-spreadsheet-upload.note' | i18next }}</i>
+                {{ 'general-entity-spreadsheet-upload.upload_note_1' | i18next }}
+                <br />
+
+                <i>{{ 'general-entity-spreadsheet-upload.note' | i18next }}</i>
+                {{ 'general-entity-spreadsheet-upload.upload_note_2' | i18next }}
+            </p>
+        </div>
+
+        <nz-row *ngIf="hasStarted || uploadState.hasSucceeded()">
+            <nz-divider></nz-divider>
+            <nz-col nzSpan="24" style="text-align: center">
+                <nz-progress [nzPercent]="getProgressPercentage()" [nzSuccessPercent]="getSuccessPercentage()"></nz-progress>
+            </nz-col>
+        </nz-row>
+
+        <ng-container *ngIf="hasStarted">
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="12">
+                    <h3 class="rp-primary-color">
+                        {{ 'general-entity-spreadsheet-upload.successful' | i18next }} ({{ uploadProgress.valid }}
+                        {{ 'general-entity-spreadsheet-upload.out_of' | i18next }} {{ uploadProgress.total }})
+                    </h3>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <h3 class="rp-warn-color">
+                        {{ 'general-entity-spreadsheet-upload.failed' | i18next }} ({{ uploadProgress.invalid }}
+                        {{ 'general-entity-spreadsheet-upload.out_of' | i18next }} {{ uploadProgress.total }})
+                    </h3>
+                </nz-col>
+            </nz-row>
+        </ng-container>
+
+        <ng-container *ngIf="uploadState.hasSucceeded()">
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="12">
+                    <h3 class="rp-primary-color">
+                        {{ 'general-entity-spreadsheet-upload.successful' | i18next }} ({{ uploadResult.validCount }}
+                        {{ 'general-entity-spreadsheet-upload.out_of' | i18next }}
+                        {{ uploadResult.invalidCount + uploadResult.validCount }})
+                    </h3>
+
+                    <rp-view-document [documentId]="uploadResult.validDocumentId" *ngIf="uploadResult.validCount > 0"></rp-view-document>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <h3 class="rp-warn-color">
+                        {{ 'general-entity-spreadsheet-upload.failed' | i18next }} ({{ uploadResult.invalidCount }}
+                        {{ 'general-entity-spreadsheet-upload.out_of' | i18next }}
+                        {{ uploadResult.invalidCount + uploadResult.validCount }})
+                    </h3>
+
+                    <rp-view-document
+                        [documentId]="uploadResult.invalidDocumentId"
+                        *ngIf="uploadResult.invalidCount > 0"
+                    ></rp-view-document>
+                </nz-col>
+            </nz-row>
+        </ng-container>
+    </div>
+</rp-general-stepper>

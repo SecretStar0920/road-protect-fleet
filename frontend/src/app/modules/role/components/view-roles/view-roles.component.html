@@ -1,0 +1,2 @@
+<rp-general-table [table]="table"></rp-general-table>
+<nz-alert *ngIf="getRolesState.hasFailed()" nzType="error" [nzMessage]="getRolesState.failedResult().context.message" nzShowIcon></nz-alert>

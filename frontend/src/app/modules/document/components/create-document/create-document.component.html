@@ -1,0 +1,35 @@
+<form nz-form [formGroup]="createDocumentForm" nzLayout="vertical" (ngSubmit)="onCreateDocument()">
+    <nz-row nzGutter="24"  nzAlign="middle">
+        <nz-col nzSpan="16">
+            <rp-general-file-upload (files)="onFileSelected($event)" [mimeTypes]="mimeTypes" #fileUpload></rp-general-file-upload>
+        </nz-col>
+        <nz-col nzSpan="8">
+            <nz-form-item *ngIf="!createDocumentState.hasSucceeded()">
+                <nz-form-control>
+                    <button
+                        nz-button
+                        nzType="primary"
+                        [disabled]="!createDocumentForm.valid"
+                        [nzSize]="'large'"
+                        [nzLoading]="createDocumentState.isLoading()"
+                    >
+                        <i nz-icon nzType="upload" nzTheme="outline"></i>
+                        {{ 'create-document.upload' | i18next }}
+                    </button>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-alert
+                nzType="success"
+                [nzShowIcon]="true"
+                [nzMessage]="'create-document.success' | i18next"
+                *ngIf="showSuccess && createDocumentState.hasSucceeded()"
+            ></nz-alert>
+            <nz-alert
+                nzType="error"
+                [nzShowIcon]="true"
+                [nzMessage]="'create-document.error' | i18next"
+                *ngIf="createDocumentState.hasFailed()"
+            ></nz-alert>
+        </nz-col>
+    </nz-row>
+</form>

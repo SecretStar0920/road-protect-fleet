@@ -1,0 +1,11 @@
+<p>Send infringement report to {{ account.name }}</p>
+
+<button
+    nz-button
+    [nzType]="'primary'"
+    class="rp-space"
+    (click)="onSendInfringementReport()"
+    [nzLoading]="sendInfringementReportState.isLoading()"
+>
+    <i nz-icon nzType="mail" nzTheme="outline"></i> Send Infringement Report
+</button>

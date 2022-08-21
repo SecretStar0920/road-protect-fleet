@@ -1,0 +1,15 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+
+@Component({
+    selector: 'rp-{{dashCase name}}-tag',
+    templateUrl: './{{dashCase name}}-tag.component.html',
+    styleUrls: ['./{{dashCase name}}-tag.component.less'],
+})
+export class {{pascalCase name}}TagComponent implements OnInit {
+    @Input() {{camelCase name}}: {{pascalCase name}};
+
+    constructor() {}
+
+    ngOnInit() {}
+}

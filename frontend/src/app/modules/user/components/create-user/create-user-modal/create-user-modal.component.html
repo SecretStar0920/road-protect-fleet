@@ -1,0 +1,8 @@
+<rp-create-user (complete)="onComplete($event)"></rp-create-user>
+<nz-alert
+    nzType="error"
+    *ngIf="createUserState?.hasFailed()"
+    [nzMessage]="createUserState?.failedResult().message"
+    [nzDescription]="createUserState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

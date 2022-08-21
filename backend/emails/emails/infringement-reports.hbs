@@ -1,0 +1,18 @@
+<!--<p>Dear {{name}},</p>-->
+<!--<br>-->
+
+<br>
+<div>
+    {{#if emailBody}}
+        <div style="direction: rtl !important; text-align: right" dir="rtl">
+            {{{emailBody}}}
+        </div>
+    {{else}}
+        <p> As a loyal customer please find attached all the outstanding infringements issued against the fleet that is currently in your use. </p>
+        <br>
+        <p>
+            We are pleased to offer you a weekly notification of all the outstanding infringements that require your attention and payment.
+        </p>
+    {{/if}}
+</div>
+<br>

@@ -1,0 +1,12 @@
+<ng-container *rpHasPermission="[permissions.ApproveInfringement]">
+    <button
+        nz-button
+        nzType="primary"
+        (click)="batchApproveInfringements()"
+        [nzLoading]="isLoading$ | async"
+        [disabled]="approvableInfringements.length <= 0"
+    >
+        <i nz-icon nzType="check" nzTheme="outline"></i> {{ 'batch-approve-for-payment.approve' | i18next }}
+        {{ approvableInfringements.length }} {{ 'batch-approve-for-payment.infringements_for_payment' | i18next }}
+    </button>
+</ng-container>

@@ -1,0 +1,9 @@
+<rp-general-page [icon]="'exception'" [title]="'current-account-infringements-page.title' | i18next" [enableBreadcrumb]="true">
+    <rp-page-section>
+        <rp-view-infringements-advanced [useCustomFilters]="true">
+            <router-outlet ngProjectAs=".batch-actions">
+                <rp-view-infringement-batch-actions></rp-view-infringement-batch-actions>
+            </router-outlet>
+        </rp-view-infringements-advanced>
+    </rp-page-section>
+</rp-general-page>

@@ -1,0 +1,49 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <ng-container *ngIf="user">
+        <rp-view-logs [userId]="user.userId"></rp-view-logs>
+
+        <h1 id="name">{{ user?.name }} {{ user?.surname }}</h1>
+        <p>
+            {{ 'create-user.email' | i18next }}: <strong>{{ user?.email }}</strong>
+        </p>
+        <p>
+            {{ 'create-user.number' | i18next }}: <strong>{{ user?.cellphoneNumber }}</strong>
+        </p>
+        <p>
+            {{ 'create-user.type' | i18next }}: <strong>{{ user?.type }}</strong>
+        </p>
+
+        <p>
+            {{ 'view-user.accounts' | i18next }}:
+            <ng-container *ngTemplateOutlet="accountsTemplate"></ng-container>
+        </p>
+
+        <ng-template #accountsTemplate>
+            <ng-container *ngIf="(user?.accounts?.length || 0) > 3; else showTags">
+                <a nz-popover [nzPopoverTitle]="'view-user.accounts' | i18next" [nzPopoverContent]="showTags"
+                    >{{ user?.accounts?.length }} {{ 'view-user.accounts' | i18next }}</a
+                >
+            </ng-container>
+            <ng-template #showTags>
+                <ng-container *ngFor="let userAccount of user?.accounts">
+                    <nz-tag nzColor="blue">
+                        <a [routerLink]="['/home', 'accounts', 'view', userAccount.account.accountId]">{{ userAccount.account.name }}</a>
+                    </nz-tag>
+                </ng-container>
+            </ng-template>
+        </ng-template>
+    </ng-container>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-user [user]="user" (complete)="onUpdateComplete($event)"></rp-update-user>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<div nz-row  nzAlign="middle" nzJustify="space-between">
+    <button nz-button [nzType]="!isUpdating ? 'primary' : 'default'" nz-col class="rp-space" (click)="onUpdate()">
+        {{ isUpdating ? ('view-user.cancel' | i18next) : ('view-user.edit' | i18next) }}
+    </button>
+    <rp-delete-user [userId]="userId" (delete)="onDelete($event)" nz-col></rp-delete-user>
+</div>

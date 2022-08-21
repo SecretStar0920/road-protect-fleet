@@ -1,0 +1,29 @@
+<form nz-form (ngSubmit)="onAddDocument()" [formGroup]="form">
+    <nz-form-item>
+        <nz-form-label nzRequired nzFor="documentId">{{ 'add-contract-document.label' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <rp-create-document-form-control
+                [mimeTypes]="[mimeTypes.pdf]"
+                formControlName="documentId"
+                (uploaded)="onAddDocument()"
+                [showSuccess]="showSuccess"
+            >
+            </rp-create-document-form-control>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-row class="ocr-fail">
+        <button *ngIf="ocrFail" nz-button nzType="primary" (click)="onAddDocument()">
+            <i nz-icon nzType="exclamation-circle" nzTheme="outline"></i> {{ 'add-contract-document.ocr-error.force_upload' | i18next }}
+        </button>
+    </nz-row>
+
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-control>-->
+    <!--            <button nz-button nzType="primary" [disabled]="!form.valid" nzSize="large"-->
+    <!--                    [nzLoading]="state.isLoading()"><i nz-icon nzType="plus-circle"-->
+    <!--                                                       nzTheme="outline"></i>-->
+    <!--                Create-->
+    <!--            </button>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+</form>

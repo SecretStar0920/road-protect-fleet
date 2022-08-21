@@ -1,0 +1,141 @@
+<ng-container *rpHasPermission="[permissions.PayInfringement]">
+    <button
+        (click)="onStartBatchPayment()"
+        nz-button
+        nzType="primary"
+        [nzLoading]="isLoading$ | async"
+        [disabled]="payableInfringements.length <= 0"
+    >
+        <i nz-icon nzType="credit-card" nzTheme="outline"></i> {{ 'batch-pay-nominations.pay' | i18next }} {{ payableInfringements.length }}
+        {{ 'batch-pay-nominations.infringements' | i18next }}
+    </button>
+</ng-container>
+
+<nz-modal
+    [(nzVisible)]="showPaymentDetailsModal"
+    [nzContent]="details"
+    (nzOnCancel)="showPaymentDetailsModal = false"
+    [nzFooter]="null"
+    [nzWidth]="700"
+>
+    <ng-template #details>
+        <nz-row nzGutter="24" class="payable">
+            <nz-col nzSpan="24"
+                ><h2 class="rp-primary-color">{{ 'batch-pay-nominations.payable_title' | i18next }}</h2>
+                <p>
+                    {{ 'batch-pay-nominations.total_payable' | i18next }}:
+                    <rp-general-currency-display [value]="batchDetails.amountPayable"></rp-general-currency-display>
+                </p>
+            </nz-col>
+
+            <nz-col nzSpan="24" [formGroup]="cvvForm">
+                <nz-row nzGutter="24" *ngFor="let method of batchDetails.paymentMethodsToBeUsed" style="margin: 8px">
+                    <nz-col nzSpan="12">
+                        <div>
+                            <p>{{ 'batch-pay-nominations.enter_cvv_prompt' | i18next }}</p>
+                            <div>
+                                <span nz-text nzType="secondary">{{ 'batch-pay-nominations.for_card' | i18next }}: </span
+                                ><strong>{{ method.cardMask }}</strong>
+                            </div>
+                            <div>
+                                <span nz-text nzType="secondary">{{ 'batch-pay-nominations.with_method' | i18next }}: </span
+                                ><strong>{{ method.method }}</strong>
+                            </div>
+                        </div>
+                    </nz-col>
+                    <nz-col nzSpan="12" style="text-align: center">
+                        <nz-input-group nzPrefixIcon="credit-card" nzSize="large" style="width: 150px !important">
+                            <input
+                                formControlName="{{ method.method }}"
+                                type="text"
+                                nz-input
+                                placeholder="{{ 'batch-pay-nominations.cvv_placeholder' | i18next }}"
+                            />
+                        </nz-input-group>
+                    </nz-col>
+                </nz-row>
+            </nz-col>
+
+            <nz-col nzSpan="12">
+                <p>
+                    <span nz-text nzType="secondary">
+                        {{ 'batch-pay-nominations.batch_transactions_warning' | i18next }}
+                    </span>
+                </p>
+            </nz-col>
+            <nz-col nzSpan="12" style="text-align: center">
+                <button
+                    nz-button
+                    nzSize="large"
+                    nzType="primary"
+                    (click)="onPayAll()"
+                    [disabled]="batchDetails.payableIds.length <= 0 || !cvvForm.valid"
+                    style="width: 150px !important"
+                >
+                    <i nz-icon nzType="credit-card" nzTheme="outline"></i> {{ 'pay-nomination.pay_all_now' | i18next }}
+                </button>
+            </nz-col>
+        </nz-row>
+        <nz-row nzGutter="24">
+            <nz-divider></nz-divider>
+            <nz-col nzSpan="24"
+                ><h2 class="rp-warn-color">{{ 'batch-pay-nominations.not_payable_title' | i18next }}</h2>
+                <p>
+                    {{ 'batch-pay-nominations.total_not_payable' | i18next }}:
+                    <rp-general-currency-display [value]="batchDetails.amountNotPayable"></rp-general-currency-display>
+                </p>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <div *ngFor="let details of batchDetails.notPayable | keyvalue" style="margin-bottom: 10px">
+                    <p>
+                        <strong>{{ details.value.length }}</strong> {{ 'batch-pay-nominations.not_payable_reason' | i18next }}: <br />
+                        <span nz-text nzType="warning">{{ details.key }}</span>
+                    </p>
+                </div>
+            </nz-col>
+        </nz-row>
+    </ng-template>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="showPaymentResultModel" [nzContent]="result" (nzOnCancel)="showPaymentResultModel = false" [nzFooter]="null">
+    <ng-template #result>
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <h2 class="rp-primary-color">
+                    {{ 'batch-pay-nominations.success_title' | i18next }}: {{ batchPaymentResult.successful?.length }}
+                </h2>
+                <ul>
+                    <li *ngFor="let nomination of batchPaymentResult.successful">
+                        <div class="infringement-tag">
+                            <rp-infringement-tag [infringement]="nomination.infringement"></rp-infringement-tag>
+                        </div>
+                        <div class="details">
+                            {{ 'batch-pay-nominations.amount' | i18next }}:
+                            <rp-general-currency-display [value]="nomination.infringement.amountDue"></rp-general-currency-display>
+                        </div>
+                    </li>
+                </ul>
+            </nz-col>
+            <nz-col nzSpan="24" *ngIf="batchPaymentResult.failed?.length > 0">
+                <nz-divider></nz-divider>
+                <h2 class="rp-warn-color">
+                    {{ 'batch-pay-nominations.failure_title' | i18next }}: {{ batchPaymentResult.failed?.length }}
+                </h2>
+                <ul>
+                    <li *ngFor="let failed of batchPaymentResult.failed">
+                        <div class="infringement-tag">
+                            <rp-infringement-tag [infringement]="failed.nomination.infringement"></rp-infringement-tag>
+                        </div>
+                        <div class="details">
+                            {{ 'batch-pay-nominations.amount' | i18next }}:
+                            <rp-general-currency-display [value]="failed.nomination.infringement.amountDue"></rp-general-currency-display>
+                        </div>
+                        <p>
+                            {{ failed.error.message || 'Unknown error occurred' }}
+                        </p>
+                    </li>
+                </ul>
+            </nz-col>
+        </nz-row>
+    </ng-template>
+</nz-modal>

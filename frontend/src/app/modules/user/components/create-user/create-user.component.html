@@ -1,0 +1,78 @@
+<form nz-form [formGroup]="createUserForm" nzLayout="vertical" (ngSubmit)="onCreateUser()">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="email">{{ 'create-user.email' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="email" id="email" />
+                    <nz-form-explain *ngIf="createUserForm.get('email')?.dirty && createUserForm.get('email')?.errors">
+                        <rp-general-form-error-display key="email" [form]="createUserForm"> </rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="name">{{ 'create-user.name' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="name" id="name" />
+                    <nz-form-explain *ngIf="createUserForm.get('name')?.dirty && createUserForm.get('name')?.errors">
+                        <rp-general-form-error-display key="name" [form]="createUserForm"> </rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="surname">{{ 'create-user.surname' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="surname" id="surname" />
+                    <nz-form-explain *ngIf="createUserForm.get('surname')?.dirty && createUserForm.get('surname')?.errors">
+                        <rp-general-form-error-display key="surname" [form]="createUserForm"> </rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="cellphoneNumber">{{ 'create-user.number' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="cellphoneNumber" id="cellphoneNumber" />
+                    <nz-form-explain *ngIf="createUserForm.get('cellphoneNumber')?.dirty && createUserForm.get('cellphoneNumber')?.errors">
+                        <rp-general-form-error-display key="cellphoneNumber" [form]="createUserForm"> </rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="type">{{ 'create-user.type' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <nz-radio-group [nzButtonStyle]="'solid'" formControlName="type">
+                        <label *ngFor="let type of userTypes" nz-radio-button [nzValue]="type">{{ type }}</label>
+                    </nz-radio-group>
+                    <nz-form-explain *ngIf="createUserForm.get('type')?.dirty && createUserForm.get('type')?.errors">
+                        <rp-general-form-error-display key="type" [form]="createUserForm"> </rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button
+                nz-button
+                nzType="primary"
+                [disabled]="!createUserForm.valid"
+                [nzSize]="'large'"
+                [nzLoading]="createUserState.isLoading()"
+            >
+                <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                {{ 'create-user.create' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="createUserForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>

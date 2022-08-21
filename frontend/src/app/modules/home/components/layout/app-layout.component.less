@@ -1,0 +1,31 @@
+@import 'less/variables';
+
+:host {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+#header {
+    flex-basis: @header-height;
+    min-height: @header-height;
+    max-height: @header-height;
+    flex-grow: 0;
+    width: 100%;
+}
+
+#page {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-grow: 1;
+
+    rp-page {
+        flex-grow: 1;
+    }
+}

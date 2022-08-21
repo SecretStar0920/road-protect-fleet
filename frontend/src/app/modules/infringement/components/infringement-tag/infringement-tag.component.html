@@ -1,0 +1,5 @@
+<nz-tag nzColor="blue" *ngIf="infringement">
+    <a [routerLink]="['/home', 'infringements', 'view', infringement.infringementId]">
+        <span><i nz-icon nzType="profile" nzTheme="outline"></i> {{ infringement.noticeNumber | truncate: false:15 }}</span>
+    </a>
+</nz-tag>

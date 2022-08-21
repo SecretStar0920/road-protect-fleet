@@ -1,0 +1,22 @@
+<!--<rp-general-table [table]="table"></rp-general-table>-->
+<nz-alert
+    *ngIf="getContractsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getContractsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+
+<div style="margin: 12px">
+    <button nz-button (click)="onCreateLeaseContract()" nzType="primary" style="margin-right: 12px">
+        <i nz-icon nzType="plus" nzTheme="outline"></i> {{ 'view-contracts.add_lease_contract' | i18next }}
+    </button>
+    <button nz-button (click)="onCreateOwnershipContract()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i> {{ 'view-contracts.add_ownership_contract' | i18next }}
+    </button>
+</div>
+
+<div class="contracts">
+    <div class="contract" *ngFor="let contract of contracts">
+        <rp-view-contract [contractId]="contract.contractId"></rp-view-contract>
+    </div>
+</div>

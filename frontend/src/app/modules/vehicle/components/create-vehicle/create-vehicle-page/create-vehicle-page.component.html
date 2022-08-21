@@ -1,0 +1,21 @@
+<rp-general-page [title]="'create-vehicle-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-vehicle (complete)="onComplete($event)"></rp-create-vehicle>
+        <div style="margin-top: 10px" *ngIf="createVehicleState.hasSucceeded() || createVehicleState.hasFailed()">
+            <nz-alert
+                nzType="success"
+                *ngIf="createVehicleState?.hasSucceeded()"
+                [nzMessage]="createVehicleState?.successResult().message"
+                nzShowIcon
+            >
+            </nz-alert>
+            <nz-alert
+                nzType="error"
+                *ngIf="createVehicleState?.hasFailed()"
+                [nzMessage]="createVehicleState?.failedResult().message"
+                [nzDescription]="createVehicleState?.failedResult().context.message"
+                nzShowIcon
+            ></nz-alert>
+        </div>
+    </div>
+</rp-general-page>

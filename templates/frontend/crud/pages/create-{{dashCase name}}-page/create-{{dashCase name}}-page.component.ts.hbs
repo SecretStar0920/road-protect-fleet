@@ -1,0 +1,27 @@
+import { Component, OnInit } from '@angular/core';
+import { ElementStateModel } from '@modules/shared/models/element-state.model';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
+@Component({
+    selector: 'rp-create-{{dashCase name}}-page',
+    templateUrl: './create-{{dashCase name}}-page.component.html',
+    styleUrls: ['./create-{{dashCase name}}-page.component.less'],
+})
+export class Create{{pascalCase name}}PageComponent implements OnInit {
+    create{{pascalCase name}}State: ElementStateModel<{{pascalCase name}}> = new ElementStateModel();
+
+    constructor(private message: NzMessageService) {}
+
+    ngOnInit() {}
+
+    onComplete(state: ElementStateModel<{{pascalCase name}}>) {
+        this.create{{pascalCase name}}State = state;
+
+        if (this.create{{pascalCase name}}State.hasSucceeded()) {
+            this.message.success(this.create{{pascalCase name}}State.successResult().message);
+        } else if (this.create{{pascalCase name}}State.hasFailed()) {
+            this.message.error(this.create{{pascalCase name}}State.failedResult().message);
+        }
+    }
+}

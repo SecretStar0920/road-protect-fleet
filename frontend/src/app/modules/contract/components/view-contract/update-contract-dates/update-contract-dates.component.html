@@ -1,0 +1,21 @@
+<form nz-form [formGroup]="form">
+    <nz-form-item>
+        <nz-form-label>{{ 'update-contract-dates.start_date' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <nz-date-picker formControlName="startDate"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label>{{ 'update-contract-dates.end_date' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <nz-date-picker formControlName="endDate"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary" (click)="onUpdate()" [nzLoading]="state.isLoading()">
+                {{ 'update-contract-dates.update' | i18next }}
+            </button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

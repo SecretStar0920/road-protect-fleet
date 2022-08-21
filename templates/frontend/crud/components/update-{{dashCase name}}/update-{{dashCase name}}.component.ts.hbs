@@ -1,0 +1,58 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ElementStateModel } from '@modules/shared/models/element-state.model';
+import { {{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/{{dashCase name}}.service';
+import { NGXLogger } from 'ngx-logger';
+import i18next from 'i18next';
+
+@Component({
+    selector: 'rp-update-{{dashCase name}}',
+    templateUrl: './update-{{dashCase name}}.component.html',
+    styleUrls: ['./update-{{dashCase name}}.component.less'],
+})
+export class Update{{pascalCase name}}Component implements OnInit {
+    @Input() {{camelCase name}}: {{pascalCase name}};
+
+    update{{pascalCase name}}Form: FormGroup;
+    update{{pascalCase name}}State: ElementStateModel<{{pascalCase name}}> = new ElementStateModel();
+    @Output() complete: EventEmitter<ElementStateModel<{{pascalCase name}}>> = new EventEmitter();
+
+    get f() {
+        return this.update{{pascalCase name}}Form.controls;
+    }
+
+    constructor(private {{camelCase name}}Service: {{pascalCase name}}Service, private fb: FormBuilder, private logger: NGXLogger) {}
+
+    ngOnInit() {
+        this.update{{pascalCase name}}Form = this.fb.group({
+            name: new FormControl(this.{{camelCase name}}.name),
+            address: new FormControl(this.{{camelCase name}}.address),
+            email: new FormControl(this.{{camelCase name}}.email, [Validators.email]),
+            fax: new FormControl(this.{{camelCase name}}.fax),
+            telephone: new FormControl(this.{{camelCase name}}.telephone),
+            contactPerson: new FormControl(this.{{camelCase name}}.contactPerson),
+            redirectionEmail: new FormControl(this.{{camelCase name}}.redirectionEmail),
+            externalPaymentLink: new FormControl(this.{{camelCase name}}.externalPaymentLink),
+            provider: new FormControl(this.{{camelCase name}}.provider),
+            latestInfoDate: new FormControl(this.{{camelCase name}}.latestInfoDate ? this.{{camelCase name}}.latestInfoDate.toDate() : null),
+        });
+    }
+
+
+    onUpdate{{pascalCase name}}() {
+        this.update{{pascalCase name}}State.submit();
+        this.{{camelCase name}}Service.update{{pascalCase name}}(this.{{camelCase name}}.{{camelCase name}}Id, this.update{{pascalCase name}}Form.value).subscribe(
+            result => {
+                this.logger.info('Successfully updated {{pascalCase name}}', result);
+                this.update{{pascalCase name}}State.onSuccess(i18next.t('update-{{dashCase name}}.success'), result);
+                this.complete.emit(this.update{{pascalCase name}}State);
+            },
+            error => {
+                this.logger.error('Failed to update {{pascalCase name}}', error);
+                this.update{{pascalCase name}}State.onFailure(i18next.t('update-{{dashCase name}}.fail'), error.error);
+                this.complete.emit(this.update{{pascalCase name}}State);
+            },
+        );
+    }
+}

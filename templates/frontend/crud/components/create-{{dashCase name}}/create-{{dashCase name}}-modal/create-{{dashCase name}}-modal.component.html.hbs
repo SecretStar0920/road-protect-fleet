@@ -1,0 +1,8 @@
+<rp-create-{{dashCase name}} (complete)="onComplete($event)"></rp-create-{{dashCase name}}>
+<nz-alert
+    nzType="error"
+    *ngIf="create{{pascalCase name}}State?.hasFailed()"
+    [nzMessage]="create{{pascalCase name}}State?.failedResult().message"
+    [nzDescription]="create{{pascalCase name}}State?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

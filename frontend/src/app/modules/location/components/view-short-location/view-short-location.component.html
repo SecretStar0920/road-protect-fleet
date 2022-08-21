@@ -1,0 +1,13 @@
+<ng-container *ngIf="truncate; else more">
+    <span *ngIf="location" nz-text [nzEllipsis]="true" style="max-width: 100px">
+        <a class="non-linkable" nz-popover nzPopoverTrigger="hover" [nzPopoverContent]="more">{{ location?.address }}</a>
+    </span>
+</ng-container>
+<ng-template #more>
+    <span> {{ 'view-infringement-advanced.location' | i18next }}: {{ location?.address }}</span>
+    <ng-container *ngIf="reason">
+        <br />
+        <br />
+        <span> {{ 'infringement.reason' | i18next }}: {{ reason }}</span>
+    </ng-container>
+</ng-template>

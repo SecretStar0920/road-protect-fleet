@@ -1,0 +1,37 @@
+<form nz-form [formGroup]="updateRequestInformationLogForm" nzLayout="vertical" (ngSubmit)="onUpdateRequestInformationLog()">
+    <nz-form-item>
+        <nz-form-control>
+            <label nz-checkbox formControlName="responseReceived" id="responseReceived">
+                {{ 'request_information_log.response_received' | i18next }}
+            </label>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label>{{ 'request_information_log.response_received_date' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <nz-date-picker formControlName="responseReceivedDate"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary" [nzLoading]="updateRequestInformationLogState.isLoading()">
+                {{ 'update-contract-dates.update' | i18next }}
+            </button>
+        </nz-form-control>
+    </nz-form-item>
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateRequestInformationLogState?.hasSucceeded()"
+    [nzMessage]="updateRequestInformationLogState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateRequestInformationLogState?.hasFailed()"
+    [nzMessage]="updateRequestInformationLogState?.failedResult().message"
+    [nzDescription]="updateRequestInformationLogState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

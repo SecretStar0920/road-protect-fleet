@@ -1,0 +1,53 @@
+<ng-container *ngIf="integrationRequestLog">
+    <table class="rp-basic-data-table">
+        <tbody>
+            <tr>
+                <td>{{ 'log.log_id' | i18next }}:</td>
+                <td>{{ integrationRequestLog.integrationRequestLogId }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'log.timestamp' | i18next }}:</td>
+                <td>
+                    <rp-general-time-display [time]="integrationRequestLog.createdAt"></rp-general-time-display>
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'log.source' | i18next }}:</td>
+                <td>{{ integrationRequestLog.type | lowercase | sentenceCase }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'log.successful' | i18next }}:</td>
+                <td>
+                    <i
+                        nz-icon
+                        nzType="check-circle"
+                        nzTheme="twotone"
+                        nzTwotoneColor="green"
+                        *ngIf="integrationRequestLog.success; else notSuccessful"
+                    ></i>
+                    <ng-template #notSuccessful>
+                        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+                    </ng-template>
+                </td>
+            </tr>
+            <nz-divider></nz-divider>
+            <tr>
+                <td>{{ 'log.request' | i18next }}:</td>
+            </tr>
+            <tr>
+                <td>
+                    <rp-json [data]="integrationRequestLog.request"></rp-json>
+                </td>
+            </tr>
+            <nz-divider></nz-divider>
+            <tr>
+                <td>{{ 'log.response' | i18next }}:</td>
+            </tr>
+            <tr>
+                <td>
+                    <rp-json [data]="integrationRequestLog.response"></rp-json>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

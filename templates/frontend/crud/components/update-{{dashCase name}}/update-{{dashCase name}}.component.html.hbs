@@ -1,0 +1,12 @@
+<form nz-form [formGroup]="update{{pascalCase name}}Form" nzLayout="vertical" (ngSubmit)="onUpdate{{pascalCase name}}()">
+<!--    Create form-->
+</form>
+<nz-alert nzType="success" *ngIf="update{{pascalCase name}}State?.hasSucceeded()" [nzMessage]="update{{pascalCase name}}State?.successResult().message" nzShowIcon>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="update{{pascalCase name}}State?.hasFailed()"
+    [nzMessage]="update{{pascalCase name}}State?.failedResult().message"
+    [nzDescription]="update{{pascalCase name}}State?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

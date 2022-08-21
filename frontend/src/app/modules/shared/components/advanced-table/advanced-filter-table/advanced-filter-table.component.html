@@ -1,0 +1,218 @@
+<div id="table" *ngIf="table">
+    <nz-row nzGutter="24" id="head" *ngIf="table.options.enableStandardFilters">
+        <nz-col nzSpan="24" id="filter">
+            <!--        <rp-simple-query-builder class="simple-query-builder"> </rp-simple-query-builder>-->
+            <rp-basic-query-builder [visibility]="filterVisibility"> </rp-basic-query-builder>
+        </nz-col>
+        <!--        <nz-col nzSpan="6" id="table-actions">-->
+
+        <!--        </nz-col>-->
+    </nz-row>
+
+    <nz-divider></nz-divider>
+
+    <div id="table-container">
+        <div class="loading" [ngClass]="{ visible: query.dataLoadingState.isLoading() }">
+            <nz-spin nzSimple></nz-spin>
+        </div>
+        <table *ngIf="table.pageData.length > 0; else noResult">
+            <thead>
+                <tr>
+                    <th *ngIf="table.rowActionsTemplate"></th>
+                    <th *ngIf="table.options.enableRowSelect">
+                        <label
+                            nz-checkbox
+                            (nzCheckedChange)="table.onSelectAllVisibleRows($event)"
+                            [nzChecked]="table.isCurrentPageSelected"
+                        ></label>
+                    </th>
+                    <ng-container *ngFor="let column of table.columns">
+                        <ng-container *ngIf="column.isDisplaying !== false">
+                            <th>
+                                <span class="title">{{ column.title }}</span>
+                                <ng-container *ngIf="query.canSort(column.key)">
+                                    <rp-general-sort (orderChange)="query.onSortByTableHeading(column.key, $event)"></rp-general-sort>
+                                </ng-container>
+                            </th>
+                        </ng-container>
+                    </ng-container>
+                    <th *ngIf="table.rowDeleteTemplate"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of table.pageData">
+                    <!--                ROW ACTIONS-->
+                    <td *ngIf="table.rowActionsTemplate">
+                        <div class="action">
+                            <!--                            <i nz-icon nzType="ellipsis" nzTheme="outline" nz-popover [nzPopoverContent]="popoverContent" class="action-icon" [nzPopoverTrigger]="'click'"></i>-->
+                            <!--                            <ng-template #popoverContent>-->
+                            <!--                                <ng-container *ngTemplateOutlet="table.rowActionsTemplate; context: { $implicit: data }"> </ng-container>-->
+                            <!--                            </ng-template>-->
+                            <ng-container *ngTemplateOutlet="table.rowActionsTemplate; context: { $implicit: data }"> </ng-container>
+                        </div>
+                    </td>
+                    <!--                SELECT-->
+                    <td *ngIf="table.options.enableRowSelect">
+                        <label
+                            nz-checkbox
+                            (nzCheckedChange)="table.onSelectRow(data, $event)"
+                            [nzChecked]="table.isSelectedRow(data)"
+                        ></label>
+                    </td>
+                    <!--                DATA COLUMNS-->
+                    <ng-container *ngFor="let column of table.columns">
+                        <ng-container *ngIf="column.isDisplaying !== false">
+                            <td>
+                                <ng-container *ngIf="table.templateColumns[column.key]; else standardColumn">
+                                    <ng-container
+                                        *ngTemplateOutlet="table.templateColumns[column.key]; context: { $implicit: data }"
+                                    ></ng-container>
+                                </ng-container>
+                                <!--                Basic Data Column -->
+                                <ng-template #standardColumn>
+                                    {{ table.getCellValue(column.key, data) || '' }}
+                                </ng-template>
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                    <!--Delete button column-->
+                    <td *ngIf="table.rowDeleteTemplate" nzRight>
+                        <div>
+                            <ng-container *ngTemplateOutlet="table.rowDeleteTemplate; context: { $implicit: data }"> </ng-container>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <nz-row nzGutter="0" class="footer" nzAlign="middle" nzJustify="space-between">
+        <nz-col>
+            <button
+                nz-button
+                nzType="default"
+                nzSize="default"
+                (click)="table.openFilters()"
+                style="margin-left: 8px"
+                slot="extra"
+                *ngIf="table.options.enableAdvancedFilters">
+                <i nz-icon nzType="filter" nzTheme="outline"></i> {{ 'advanced-filter-table.filters' | i18next }}
+            </button>
+            <button
+                nz-button
+                nzType="default"
+                nzSize="default"
+                (click)="table.openColumns()"
+                style="margin-left: 8px"
+                slot="extra"
+                *ngIf="table.options.enableColumnFilter">
+                <i nz-icon nzType="table" nzTheme="outline"></i> {{ 'advanced-filter-table.columns' | i18next }}
+            </button>
+            <button
+                nz-button
+                (click)="query.exportToExcel()"
+                [nzLoading]="query.spreadsheetLoadingState.isLoading()"
+                style="margin-left: 8px"
+                *ngIf="table.options.enableExport"
+                slot="extra"
+            >
+                <img src="assets/additional-icons/microsoft_excel_logo.svg" height="16px" style="vertical-align: middle" alt="" />
+            </button>
+        </nz-col>
+        <nz-col>
+            <div *ngIf="table.options.enableRowSelect">
+                <span nz-text nzType="secondary">{{ 'advanced-filter-table.selected' | i18next }}: </span>
+                <nz-badge
+                    [nzStyle]="{ backgroundColor: '#0f529f' }"
+                    [nzCount]="table.selectedRowCount"
+                    [nzOverflowCount]="500000"
+                    [nzShowZero]="true"
+                    nz-popover
+                    nzStandalone
+                    [nzPopoverTitle]="null"
+                    [nzPopoverContent]="clearSelections"
+                    style="cursor: pointer"
+                ></nz-badge>
+                <ng-template #clearSelections>
+                    <button nz-button nzType="primary" nzSize="small" (click)="table.clearRowSelections()">
+                        <i nz-icon nzType="clear" nzTheme="outline"></i>
+                    </button>
+                </ng-template>
+            </div>
+        </nz-col>
+        <nz-col>
+            <nz-pagination
+                [nzTotal]="query.total"
+                [(nzPageIndex)]="query.page"
+                [(nzPageSize)]="query.limit"
+                [nzPageSizeOptions]="pageSizeOptions"
+                [nzShowTotal]="totalTemplate"
+                [nzShowSizeChanger]="true"
+            ></nz-pagination>
+        </nz-col>
+    </nz-row>
+
+    <nz-divider></nz-divider>
+
+    <div class="extra">
+        <ng-content></ng-content>
+    </div>
+    <!--</div>-->
+
+    <ng-template #noResult>
+        <nz-empty [nzNotFoundContent]="'advanced-filter-table.no_result' | i18next"></nz-empty>
+    </ng-template>
+
+    <nz-drawer
+        [nzClosable]="true"
+        [nzVisible]="table.viewFilters"
+        nzPlacement="right"
+        (nzOnClose)="table.closeFiltersSider()"
+        [nzWidth]="500"
+    >
+        <div class="drawer">
+            <div class="drawer-section">
+                <rp-general-query-builder> </rp-general-query-builder>
+            </div>
+        </div>
+    </nz-drawer>
+
+    <nz-drawer
+        [nzClosable]="true"
+        [nzVisible]="table.viewColumns"
+        nzPlacement="right"
+        [nzTitle]="'advanced-filter-table.column_settings' | i18next"
+        (nzOnClose)="table.closeColumnsSider()"
+        [nzWidth]="500"
+    >
+        <div class="drawer">
+            <div id="column-filter" class="drawer-section" *ngIf="table.options.enableColumnFilter">
+                <div class="checkboxes">
+                    <ng-container *ngFor="let column of table.columns">
+                        <label nz-checkbox [(ngModel)]="column.isDisplaying" style="display: block; margin: 0 !important">
+                            {{ column.title }}
+                        </label>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </nz-drawer>
+
+    <ng-template let-data #totalTemplate>
+        <nz-row nzGutter="32">
+            <nz-col>
+                <span nz-text nzType="secondary">{{ 'advanced-filter-table.total' | i18next }} </span>
+                <nz-badge
+                    nzStandalone
+                    [nzStyle]="{ backgroundColor: '#0f529f' }"
+                    [nzCount]="data"
+                    [nzOverflowCount]="500000"
+                    [nzShowZero]="true"
+                ></nz-badge>
+            </nz-col>
+        </nz-row>
+    </ng-template>
+
+    <!--    <nz-modal [nzWrapClassName]="'vertical-center-modal'" [(nzVisible)]="actionModalVisible" [nzTitle]="null" [nzFooter]="null" (nzOnCancel)="cancelActionModal()" [nzClosable]="true">-->
+    <!--        <ng-container *ngTemplateOutlet="table.rowActionsTemplate; context: { $implicit: selectedData }"> </ng-container>-->
+    <!--    </nz-modal>-->
+</div>

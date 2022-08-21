@@ -1,0 +1,28 @@
+<nz-row nzGutter="24">
+    <nz-col nzSpan="22">
+        <h2 class="rp-primary-color"><i nz-icon nzType="fund" nzTheme="outline"></i> {{ 'view-admin-reports.title' | i18next }}</h2>
+    </nz-col>
+    <nz-col nzSpan="2">
+        <button nz-button (click)="onRefresh()" nzType="primary">
+            <i nz-icon nzType="reload" nzTheme="outline"></i> {{ 'view-admin-reports.refresh' | i18next }}
+        </button>
+    </nz-col>
+</nz-row>
+<nz-divider></nz-divider>
+<nz-row nzGutter="48" class="reports">
+    <nz-col [nzMd]="24" [nzLg]="12" class="report-item">
+        <rp-summary-reporting></rp-summary-reporting>
+    </nz-col>
+    <nz-col [nzMd]="24" [nzLg]="12" class="report-item">
+        <rp-vehicle-reporting></rp-vehicle-reporting>
+    </nz-col>
+    <!--    <nz-col [nzMd]="24" class="report-item">-->
+    <!--        <rp-infringement-due-reporting #infringementDue></rp-infringement-due-reporting>-->
+    <!--    </nz-col>-->
+    <nz-col [nzMd]="24" [nzLg]="24" class="report-item">
+        <rp-infringement-status-reporting #infringementStatus></rp-infringement-status-reporting>
+    </nz-col>
+    <nz-col [nzMd]="24" [nzLg]="24" class="report-item">
+        <rp-issuer-infringement-reporting></rp-issuer-infringement-reporting>
+    </nz-col>
+</nz-row>

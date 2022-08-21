@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: default
+spec:
+  containers:
+  - image: busybox
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+    name: busybox
+    volumeMounts:
+      - name: redis-storage-pvc
+        mountPath: /data
+        subPath: data
+  volumes:
+      - name: redis-storage-pvc
+        hostPath:
+            path: /home/fleet/redis
+            type: DirectoryOrCreate

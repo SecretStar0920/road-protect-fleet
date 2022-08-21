@@ -1,0 +1,45 @@
+<button
+    class="logs-btn"
+    nz-button
+    nzType="default"
+    nzShape="circle"
+    (click)="isVisible = true"
+    nz-tooltip
+    [nzTooltipTitle]="'view-logs.history' | i18next"
+    nzTooltipPlacement="bottom"
+>
+    <i nz-icon nzType="audit"></i>
+</button>
+
+<nz-drawer
+    [nzVisible]="isVisible"
+    [nzClosable]="false"
+    (nzOnClose)="isVisible = false"
+    [nzTitle]="'view-logs.title' | i18next"
+    nzWidth="40%"
+>
+    <nz-row class="view-log-heading">
+        <strong> {{'view-logs.show_all' | i18next}} </strong>
+        <nz-switch class="view-log-switch" [(ngModel)]="showAll" nzSize="small" (ngModelChange)='getLogs()'> </nz-switch>
+    </nz-row>
+    <nz-row *ngIf='(loaded$ | async) && logs?.length >= 1 && getLogsState.hasSucceeded()'>
+        <rp-log-timeline [isVisible]="isVisible" [logs]="logs"></rp-log-timeline>
+    </nz-row>
+    <nz-row *ngIf='logs?.length < 1 && (loaded$ | async) && !showAll'>
+        <p> {{'view-logs.no_high_priority_logs_found' | i18next}} </p>
+    </nz-row>
+    <nz-row *ngIf='logs?.length < 1 && (loaded$ | async) && showAll'>
+        <p> {{'view-logs.no_logs_found' | i18next}} </p>
+    </nz-row>
+    <nz-row *ngIf='!(loaded$ | async)'>
+        <nz-spin class="view-log-spinner" [nzSpinning]="true"></nz-spin>
+    </nz-row>
+
+    <nz-alert
+        *ngIf="getLogsState.hasFailed()"
+        nzType="error"
+        [nzMessage]="getLogsState.failedResult().context?.message"
+        nzShowIcon
+    ></nz-alert>
+</nz-drawer>
+

@@ -1,0 +1,14 @@
+<button
+    nz-button
+    nzType="dashed"
+    nzSize="small"
+    nz-popconfirm
+    [nzPopconfirmTitle]="'deactivate-account.confirm_title' | i18next"
+    [nzIcon]="deleteConfirm"
+    (nzOnConfirm)="onDeactivate()"
+>
+    <i nz-icon nzType="check-circle" nzTheme="outline"></i>
+</button>
+<ng-template #deleteConfirm>
+    <i nz-icon nzType="question-circle-o" style="color: #f5222d"></i>
+</ng-template>

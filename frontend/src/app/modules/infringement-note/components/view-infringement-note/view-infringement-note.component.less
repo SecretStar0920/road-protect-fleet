@@ -1,0 +1,39 @@
+@import 'mixins';
+
+:host {
+    display: block;
+    //.rp-card;
+    margin: 5px;
+    padding: 14px;
+    //min-width: 300px;
+    //max-width: 450px;
+    min-height: 100px;
+    position: relative;
+    border-radius: 2px;
+    border: 1px solid rgb(200, 200, 200);
+    p {
+        word-wrap: break-word;
+        width: 100%;
+        margin-right: 8px;
+        white-space: normal;
+        margin-bottom: 15px;
+    }
+}
+
+.value {
+}
+
+.createdBy {
+    font-size: 12px;
+    text-align: right;
+
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.delete {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+}

@@ -1,0 +1,56 @@
+<ng-container *ngIf="partialInfringement">
+    <table class="rp-basic-data-table">
+        <tbody>
+            <tr>
+                <td>{{ 'partial-infringement.id' | i18next }}:</td>
+                <td>{{ partialInfringement.partialInfringementId }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'partial-infringement.created_at' | i18next }}:</td>
+                <td>
+                    <rp-general-time-display [time]="partialInfringement.createdAt"></rp-general-time-display>
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'partial-infringement.notice_number' | i18next }}:</td>
+                <td>
+                    <ng-container *ngIf="partialInfringement.noticeNumber; else empty">
+                        {{ partialInfringement.noticeNumber }}
+                    </ng-container>
+                </td>
+            </tr>
+            <nz-divider></nz-divider>
+            <tr>
+                <td>{{ 'partial-infringement.status' | i18next }}</td>
+                <td>
+
+                    <rp-view-partial-infringement-status [currentStatus]='partialInfringement.status'></rp-view-partial-infringement-status>
+                </td>
+            </tr>
+            <tr *ngIf="processedStatus(partialInfringement.status); else empty">
+                <td>{{ 'partial-infringement.processed_date' | i18next }}:</td>
+                <td>
+                    <rp-general-time-display [time]="partialInfringement.processedDate"></rp-general-time-display>
+                </td>
+            </tr>
+            <nz-divider></nz-divider>
+            <tr>
+                <td>{{ 'partial-infringement.details' | i18next }}:</td>
+                <td>
+                    <rp-json [data]="partialInfringement.details" maxHeight="200px"></rp-json>
+                </td>
+            </tr>
+            <nz-divider></nz-divider>
+            <tr *ngIf="partialInfringement.response">
+                <td>{{ 'partial-infringement.response' | i18next }}:</td>
+                <td>
+                    <rp-json [data]="partialInfringement.response" maxHeight="200px"></rp-json>
+                </td>
+            </tr>
+            <ng-template #empty> </ng-template>
+        </tbody>
+    </table>
+</ng-container>
+<div nz-row nzType="flex" nzAlign="middle" nzJustify="space-between" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+    <rp-delete-partial-infringement [partialInfringementId]="partialInfringementId" (delete)="onDelete($event)" nz-col></rp-delete-partial-infringement>
+</div>

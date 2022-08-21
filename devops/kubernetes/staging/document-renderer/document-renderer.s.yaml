@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: document-renderer
+    labels:
+        app: fleet
+        type: document-renderer
+        env: staging
+spec:
+    ports:
+        - port: 4300
+          name: entry
+          protocol: TCP
+    selector:
+        app: fleet
+        type: document-renderer
+        env: staging

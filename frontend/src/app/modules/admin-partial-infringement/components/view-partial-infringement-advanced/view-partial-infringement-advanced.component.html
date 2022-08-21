@@ -1,0 +1,45 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+<ng-template #createdAt let-data>
+    <rp-general-time-display [time]="data.createdAt"></rp-general-time-display>
+</ng-template>
+
+<ng-template #processedDate let-data >
+    <ng-container *ngIf="processedStatus(data.status); else notProcessed">
+        <rp-general-time-display [time]="data.processedDate"></rp-general-time-display>
+    </ng-container>
+    <ng-template #notProcessed> </ng-template>
+</ng-template>
+
+<ng-template #noticeNumber let-data >
+    {{data.noticeNumber}}
+</ng-template>
+
+
+<ng-template #status let-data>
+    <rp-view-partial-infringement-status [currentStatus]='data.status'></rp-view-partial-infringement-status>
+</ng-template>
+
+<ng-template #formattedDetails let-data>
+    <rp-json [data]="data.details" maxHeight="100px"></rp-json>
+</ng-template>
+
+<ng-template #formattedResponse let-data>
+    <ng-container *ngIf="data.response; else notProcessed">
+        <rp-json [data]="data.response" maxHeight="100px"></rp-json>
+    </ng-container>
+    <ng-template #notProcessed> </ng-template>
+</ng-template>
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewPartialInfringement(data.partialInfringementId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+</ng-template>
+
+<ng-template let-data #delete>
+    <rp-delete-partial-infringement *ngIf="data" [partialInfringementId]="data.partialInfringementId" class="rp-space"></rp-delete-partial-infringement>
+</ng-template>
+
+
+<ng-template #empty>
+</ng-template>

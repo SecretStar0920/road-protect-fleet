@@ -1,0 +1,27 @@
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { GeneralEntityNGRX, GeneralEntityState } from '@modules/shared/models/ngrx/general-entity-ngrx.helper';
+import { Create{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/services/create-{{dashCase name}}.dto';
+import { Update{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/services/update-{{dashCase name}}.dto';
+import { createReducer } from '@ngrx/store';
+
+export interface {{pascalCase name}}State extends GeneralEntityState<{{pascalCase name}}> {}
+
+export const {{camelCase name}}EntityAdapter: EntityAdapter<{{pascalCase name}}> = createEntityAdapter<{{pascalCase name}}>({ selectId: ({{camelCase name}}) => {{camelCase name}}.{{camelCase name}}Id });
+
+export const initial{{pascalCase name}}State: {{pascalCase name}}State = {{camelCase name}}EntityAdapter.getInitialState({
+    // additional entity state properties
+    queryParams: {},
+    currentPageIds: [],
+    selectedRowIds: [],
+    selectedId: null,
+});
+
+export const select{{pascalCase name}}FeatureState = (state) => state.{{camelCase name}};
+export const {{camelCase name}}NgrxHelper = new GeneralEntityNGRX<{{pascalCase name}}, Create{{pascalCase name}}Dto, Update{{pascalCase name}}Dto, {{pascalCase name}}State>('{{pascalCase name}}', select{{pascalCase name}}FeatureState, {{camelCase name}}EntityAdapter);
+
+export const {{camelCase name}}Reducer = createReducer(initial{{pascalCase name}}State, ...{{camelCase name}}NgrxHelper.reducerOns);
+
+export function reducer(state = initial{{pascalCase name}}State, action): {{pascalCase name}}State {
+    return {{camelCase name}}Reducer(state, action);
+}

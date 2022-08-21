@@ -1,0 +1,30 @@
+<table class="rp-basic-data-table">
+    <tbody>
+        <tr>
+            <td>{{ 'view-driver-contract.start_date' | i18next }}</td>
+            <td>
+                <rp-general-time-display
+                    *ngIf="driverContract.startDate"
+                    [time]="driverContract.startDate"
+                    [short]="true"
+                ></rp-general-time-display>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-driver-contract.end_date' | i18next }}</td>
+            <td>
+                <rp-general-time-display
+                    *ngIf="driverContract.endDate"
+                    [time]="driverContract.endDate"
+                    [short]="true"
+                ></rp-general-time-display>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-driver-contract.driver' | i18next }}</td>
+            <td>
+                <rp-driver-tag [driver]="driverContract.driver"></rp-driver-tag>
+            </td>
+        </tr>
+    </tbody>
+</table>

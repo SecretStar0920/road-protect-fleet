@@ -1,0 +1,29 @@
+<h3 class="rp-primary-color"><i nz-icon nzType="gold" nzTheme="outline"></i> {{ 'issuer-infringement-reporting.title' | i18next }}</h3>
+
+<div class="horizontal-scroll">
+    <rp-graphing
+        [graphingType]="comparisonGraphing"
+        [dataSeries]="issuerInfringements"
+        [translateLabels]="false"
+        [customTooltipTemplate]="multiGraphTooltips"
+        [translateXAxis]="false"
+        [view]="view"
+        [barPadding]="barPadding"
+        [groupPadding]="groupPadding"
+        [legendTitle]="'issuer-infringement-reporting.legend_title' | i18next"
+    ></rp-graphing>
+</div>
+
+<ng-template #multiGraphTooltips let-data>
+    <ng-container *ngIf="data.series">
+        <ng-row>
+            <strong> {{ data.series }} </strong>
+        </ng-row>
+    </ng-container>
+    <ng-row>
+        <i> {{ data.name }} </i>
+    </ng-row>
+    <nz-row>
+        <rp-general-currency-display [value]="data.value"></rp-general-currency-display>
+    </nz-row>
+</ng-template>

@@ -1,0 +1,47 @@
+<form nz-form [formGroup]="createAccountRelationDocumentForm" nzLayout="vertical">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="documentId">{{ 'account-relation-document.document' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-create-document-form-control formControlName="documentId"></rp-create-document-form-control>
+                    <nz-form-explain
+                        *ngIf="
+                            createAccountRelationDocumentForm.get('documentId')?.dirty &&
+                            createAccountRelationDocumentForm.get('documentId')?.errors
+                        "
+                    >
+                        {{ 'input_required' | i18next }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item></nz-col
+        >
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="type">{{ 'account-relation-document.type' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <nz-select formControlName="type">
+                        <nz-option *ngFor="let type of types" [nzLabel]="type" [nzValue]="type"></nz-option>
+                    </nz-select>
+                    <nz-form-explain
+                        *ngIf="
+                            createAccountRelationDocumentForm.get('type')?.dirty && createAccountRelationDocumentForm.get('type')?.errors
+                        "
+                    >
+                        {{ 'input_required' | i18next }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item></nz-col
+        >
+        <nz-col nzSpan="24">
+            <button
+                nz-button
+                nzType="primary"
+                (click)="onCreateAccountRelationDocument()"
+                [disabled]="!createAccountRelationDocumentForm.valid"
+            >
+                {{ 'action.create' | i18next }}
+            </button>
+        </nz-col>
+    </nz-row>
+</form>

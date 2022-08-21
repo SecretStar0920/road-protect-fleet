@@ -1,0 +1,63 @@
+<ng-container>
+    <span *ngIf="detailsObject" nz-text>
+        <a
+            [ngClass]="{ 'non-linkable': !isPreviousYear, 'previous-year': isPreviousYear }"
+            nz-popover
+            nzPopoverTrigger="click"
+            [nzPopoverContent]="more"
+        >
+            <div>
+                <nz-row>
+                    {{ cellText }}
+                </nz-row>
+            </div></a
+        >
+    </span>
+    <span *ngIf="!detailsObject" nz-text>
+        <nz-row [ngClass]="{ 'non-linkable': !isPreviousYear, 'previous-year': isPreviousYear }">
+            {{ cellText }}
+        </nz-row>
+    </span>
+
+    <br/>
+
+    <div *ngIf="extraTemplate">
+        <ng-container  *ngTemplateOutlet="
+            extraTemplate;
+            context: { $implicit: { extraData: extraData } }"></ng-container>
+    </div>
+
+</ng-container>
+<ng-template #more>
+    <b>{{ 'graphing-by.table_details' | i18next }}</b>
+    <br />
+
+    <table class="graphing-table-cell">
+        <tbody>
+            <ng-container *ngFor="let detail of detailsArray">
+                <tr>
+                    <td>{{ detail.status }}</td>
+                    <td>{{ detail.value }}</td>
+                    <td>
+                        <button nz-button nzSize="small" nzType="primary" (click)="viewInfringements(detail.status)" class="rp-space">
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+            <tr>
+                <td>
+                    <b> {{ 'graphing-by.total_amount' | i18next }}</b>
+                </td>
+                <td>
+                    <b> {{ total }} </b>
+                </td>
+                <td>
+                    <button nz-button nzSize="small" nzType="primary" (click)="viewInfringements()" class="rp-space">
+                        <i nz-icon nzType="eye" nzTheme="outline"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>

@@ -1,0 +1,19 @@
+<rp-general-page [title]="'create-location-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-location (complete)="onComplete($event)"></rp-create-location>
+        <nz-alert
+            nzType="success"
+            *ngIf="createLocationState?.hasSucceeded()"
+            [nzMessage]="createLocationState?.successResult().message"
+            nzShowIcon
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="createLocationState?.hasFailed()"
+            [nzMessage]="createLocationState?.failedResult().message"
+            [nzDescription]="createLocationState?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </div>
+</rp-general-page>

@@ -1,0 +1,127 @@
+<form nz-form [formGroup]="updateUserForm" nzLayout="vertical" (ngSubmit)="onUpdateUser()">
+    <nz-form-item>
+        <nz-form-label nzRequired nzFor="name">{{ 'create-user.name' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="name" id="name" />
+            <nz-form-explain *ngIf="updateUserForm.get('name')?.dirty && updateUserForm.get('name')?.errors">
+                <rp-general-form-error-display key="name" [form]="updateUserForm"> </rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzRequired nzFor="surname">{{ 'create-user.surname' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="surname" id="surname" />
+            <nz-form-explain *ngIf="updateUserForm.get('surname')?.dirty && updateUserForm.get('surname')?.errors">
+                <rp-general-form-error-display key="surname" [form]="updateUserForm"> </rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item
+        *ngIf="
+            (currentUser$ | async) &&
+            ((currentUser$ | async)?.type === userTypeEnum.Admin || (currentUser$ | async)?.type === userTypeEnum.Developer)
+        "
+    >
+        <nz-form-label nzRequired nzFor="type">{{ 'create-user.type' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <nz-radio-group [nzButtonStyle]="'solid'" formControlName="type">
+                <label *ngFor="let type of userTypes" nz-radio-button [nzValue]="type">{{ type }}</label>
+            </nz-radio-group>
+            <nz-form-explain *ngIf="updateUserForm.get('type')?.dirty && updateUserForm.get('type')?.errors">
+                <rp-general-form-error-display key="type" [form]="updateUserForm"> </rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary" [disabled]="!updateUserForm.valid" [nzLoading]="updateUserState.isLoading()">
+                <i nz-icon nzType="save" nzTheme="outline"></i>
+                {{ 'update-user.save' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="updateUserForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>
+
+<nz-divider></nz-divider>
+<!--    Reset login information-->
+<nz-row class="password-row">
+    <button nz-button nzType="default" class="rp-space" (click)="onResetLoginAttempts()" [nzLoading]="resetLoginAttemptState.isLoading()">
+        <i nz-icon nzType="unlock" nzTheme="outline"></i>
+        {{ 'update-user.reset_login_attempts' | i18next }}
+    </button>
+    <button nz-button nzType="default" class="rp-space" (click)="onChangePassword()" [nzLoading]="changePasswordState.isLoading()">
+        <i nz-icon nzType="safety" nzTheme="outline"></i>
+        {{ 'update-user.change_password' | i18next }}
+    </button>
+</nz-row>
+<nz-row class="password-row">
+    <button
+        nz-button
+        nzType="default"
+        class="rp-space"
+        (click)="onSendForgotPassword()"
+        [nzLoading]="forgotPasswordRequestState.isLoading()"
+    >
+        <i nz-icon nzType="security-scan" nzTheme="outline"></i>
+        {{ 'update-user.send_forgot_password_email' | i18next }}
+    </button>
+</nz-row>
+
+<!--Success Alerts -->
+<nz-alert nzType="success" *ngIf="updateUserState?.hasSucceeded()" [nzMessage]="updateUserState?.successResult().message" nzShowIcon>
+</nz-alert>
+<nz-alert
+    nzType="success"
+    *ngIf="resetLoginAttemptState?.hasSucceeded()"
+    [nzMessage]="resetLoginAttemptState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="success"
+    *ngIf="forgotPasswordRequestState?.hasSucceeded()"
+    [nzMessage]="forgotPasswordRequestState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="success"
+    *ngIf="changePasswordState?.hasSucceeded()"
+    [nzMessage]="changePasswordState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+
+<!--Failure Alerts-->
+<nz-alert
+    nzType="error"
+    *ngIf="updateUserState?.hasFailed()"
+    [nzMessage]="updateUserState?.failedResult().message"
+    [nzDescription]="updateUserState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="resetLoginAttemptState?.hasFailed()"
+    [nzMessage]="resetLoginAttemptState?.failedResult().message"
+    [nzDescription]="resetLoginAttemptState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="forgotPasswordRequestState?.hasFailed()"
+    [nzMessage]="forgotPasswordRequestState?.failedResult().message"
+    [nzDescription]="forgotPasswordRequestState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="changePasswordState?.hasFailed()"
+    [nzMessage]="changePasswordState?.failedResult().message"
+    [nzDescription]="changePasswordState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

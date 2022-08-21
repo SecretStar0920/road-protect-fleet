@@ -1,0 +1,5 @@
+<rp-general-page [title]="'view-{{dashCase name}}-page.title' | i18next" [icon]="'database'">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-{{dashCase name}} [{{camelCase name}}Id]="{{camelCase name}}Id" (delete)="onDelete()"></rp-view-{{dashCase name}}>
+    </div>
+</rp-general-page>

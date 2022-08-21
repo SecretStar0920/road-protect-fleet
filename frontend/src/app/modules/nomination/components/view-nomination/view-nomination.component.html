@@ -1,0 +1,107 @@
+<ng-container *ngIf="nomination">
+    <nz-row>
+        <table class="rp-basic-data-table">
+            <tbody>
+                <tr>
+                    <td>{{ 'view-nomination.account' | i18next }}</td>
+                    <td>
+                        <rp-account-tag *ngIf="nomination.account?.accountId" [account]="nomination.account"></rp-account-tag>
+                        <span
+                            *ngIf="!nomination.account && nomination.rawRedirectionIdentifier"
+                            nz-text
+                            nzType="danger"
+                            nz-tooltip
+                            [nzTooltipTitle]="'view-nomination.account_not_on_system' | i18next"
+                        >
+                            {{ nomination.rawRedirectionIdentifier }}
+                        </span>
+                        <span
+                            *ngIf="!nomination.account && !nomination.rawRedirectionIdentifier"
+                            nz-text
+                            nzType="danger"
+                            nz-tooltip
+                            [nzTooltipTitle]="'view-nomination.missing_account_tooltip' | i18next"
+                        >
+                            {{ 'view-nomination.missing_account' | i18next }}
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'view-nomination.current_status' | i18next }}</td>
+                    <td>
+                        <rp-nomination-status-tag [status]="nomination.status"></rp-nomination-status-tag>
+                    </td>
+                </tr>
+                <tr *ngIf="nomination.details.redirectionReason">
+                    <td>{{ 'view-nomination.redirection' | i18next }}</td>
+                    <td>{{ nomination.details.redirectionReason }}</td>
+                </tr>
+
+                <ng-container *ngIf="isInRedirectionProcess()">
+                    <tr *ngIf="nomination.redirectionTarget">
+                        <td>{{ 'view-nomination.redirection_target' | i18next }}</td>
+                        <td>
+                            <rp-account-tag [account]="nomination.redirectionTarget"></rp-account-tag>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <ng-container *ngIf="isClosed()">
+                    <tr *ngIf="nomination.paidDate">
+                        <td>{{ 'view-nomination.paid_date' | i18next }}</td>
+                        <td>
+                            <rp-general-time-display [time]="nomination.paidDate"></rp-general-time-display>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <tr *ngIf="nomination.rawRedirectionIdentifier">
+                    <td>{{ 'view-nomination.redirection_identifier' | i18next }}</td>
+                    <td>
+                        {{ nomination.rawRedirectionIdentifier }}
+                    </td>
+                </tr>
+
+                <tr *ngIf="nomination.externalRedirectionReference">
+                    <td>{{ 'view-nomination.external_redirection_reference' | i18next }}</td>
+                    <td>
+                        {{ nomination.externalRedirectionReference }}
+                    </td>
+                </tr>
+
+                <tr *ngIf="nomination.redirectionLetterSendDate">
+                    <td>{{ 'view-nomination.date_letter_sent' | i18next }}</td>
+                    <td>
+                        <rp-general-time-display [time]="nomination.redirectionLetterSendDate"></rp-general-time-display>
+                    </td>
+                </tr>
+
+                <tr *ngIf="nomination.redirectedDate">
+                    <td>{{ 'view-nomination.redirection_completion_date' | i18next }}</td>
+                    <td>
+                        <rp-general-time-display [time]="nomination.redirectedDate"></rp-general-time-display>
+                    </td>
+                </tr>
+                <tr *ngIf="nomination.mergedDocument">
+                    <td>{{ 'view-nomination.document' | i18next }}</td>
+                    <td>
+                        <rp-view-document [document]="nomination.mergedDocument"></rp-view-document>
+                    </td>
+                </tr>
+                <tr *ngIf="nomination.mergedDocumentUpdatedDate">
+                    <td>{{ 'view-nomination.redirection_document_update_date' | i18next }}</td>
+                    <td>
+                        <rp-general-time-display [time]="nomination.mergedDocumentUpdatedDate"></rp-general-time-display>
+                    </td>
+                </tr>
+                <tr *ngIf="nomination.redirectionError">
+                    <td>{{ 'view-nomination.redirection_error_description' | i18next }}</td>
+                    <td>
+                        {{ nomination.redirectionError }}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </nz-row>
+</ng-container>

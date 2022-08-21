@@ -1,0 +1,56 @@
+@import 'mixins';
+@import 'variables';
+
+#table {
+    .table-search {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+
+    .settings {
+        margin-top: 10px;
+        text-align: right;
+    }
+}
+
+::ng-deep {
+    .drawer {
+        .drawer-section {
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .ant-table-thead {
+        th {
+            width: 180px;
+        }
+    }
+
+    .ant-table-tbody > tr > td {
+        border-bottom: 1px solid hsv(0, 0, 95%);
+    }
+
+    .ant-table-thead > tr > th {
+        border-width: 1px;
+    }
+}
+
+.column-filter {
+    .checkboxes {
+        display: flex;
+    }
+}
+
+.select-box {
+    width: 250px;
+    padding: 8px;
+}

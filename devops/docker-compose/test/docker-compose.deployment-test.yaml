@@ -1,0 +1,104 @@
+version: '3.6'
+services:
+    backend:
+        build:
+            context: $PWD/../../../backend
+            dockerfile: $PWD/backend/Dockerfile.test-backend
+        command: ['/app/test-deployment-entrypoint.sh']
+        ports:
+            - 8080
+        depends_on:
+            - database
+            - redis
+        env_file:
+            - ./backend/.secrets
+            - ./backend/.env
+        environment:
+            - FORCE_COLOR=1
+
+    jest-tests:
+        build:
+            context: $PWD/../../../backend
+            dockerfile: $PWD/backend/Dockerfile.test-backend
+        command: ['cd /app && npm run test']
+        ports:
+            - 8080
+        depends_on:
+            - database
+            - redis
+        env_file:
+            - ./backend/.secrets
+            - ./backend/.env
+        environment:
+            - FORCE_COLOR=1
+            - WAIT_HOSTS=backend:8080
+            - WAIT_HOSTS_TIMEOUT=500
+            - WAIT_BEFORE_HOSTS=20
+            - WAIT_SLEEP_INTERVAL=5
+
+    document-renderer:
+        image: kerren/road-protect-document-renderer
+        ports:
+            - 4300
+
+    document-api:
+        image: kerren/road-protect-document-api
+        ports:
+            - 8080
+        env_file:
+            - ./document-api/.env
+        environment:
+            - FORCE_COLOR=1
+        volumes:
+            - document-api-storage:/app/storage/merge/
+
+    smtp-auth:
+        image: beevelop/nginx-basic-auth
+        ports:
+            - 80
+        environment:
+            - FORWARD_PORT=8025
+            - FORWARD_HOST=smtp
+        env_file:
+            - ./smtp/env
+
+    smtp:
+        image: mailhog/mailhog
+        ports:
+            - 1025
+            - 8025
+
+    redis:
+        image: redis
+        ports:
+            - 6379
+        command: ['redis-server', '--appendonly', 'yes']
+
+    database:
+        image: postgres:11.5
+        ports:
+            - 5432
+        env_file:
+            - ./database/.env
+            - ./database/.secrets
+
+    crawler-api:
+        build:
+            context: $PWD/../../../crawler-api
+            dockerfile: $PWD/crawler-api/Dockerfile
+        ports:
+            - '3001:3000'
+        environment:
+            - FORCE_COLOR=1
+
+    ocr:
+        build:
+            context: $PWD/../../../crawler-api
+            dockerfile: $PWD/crawler-api/Dockerfile
+        ports:
+            - '3002:3000'
+        environment:
+            - FORCE_COLOR=1
+
+volumes:
+    document-api-storage:

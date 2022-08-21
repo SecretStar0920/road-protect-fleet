@@ -1,0 +1,6 @@
+<ng-content></ng-content>
+<div class="export-button" *ngIf="this.data">
+    <button nz-button nzShape="circle" [nzSize]="'large'" (click)="exportDataAsSpreadsheet()">
+        <i nz-icon nzType="file-excel" nzTheme="outline"></i>
+    </button>
+</div>

@@ -1,0 +1,2 @@
+<input nz-input [(ngModel)]="selectedOption" (ngModelChange)="onSearch($event)" [placeholder]="placeholder" [nzAutocomplete]="auto" />
+<nz-autocomplete nzBackfill [nzDataSource]="options" #auto></nz-autocomplete>

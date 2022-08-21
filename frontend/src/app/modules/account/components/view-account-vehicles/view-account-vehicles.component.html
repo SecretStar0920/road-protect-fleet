@@ -1,0 +1,32 @@
+<nz-tabset [nzAnimated]="false" nzNoAnimation nzLinkRouter (nzSelectChange)="onChangeTabs()">
+    <nz-tab>
+        <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'all' }" queryParamsHandling="merge">
+            {{ 'view-account-vehicles.all' | i18next }}
+        </a>
+    </nz-tab>
+    <nz-tab>
+        <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'fleet' }" queryParamsHandling="merge">
+            {{ 'view-account-vehicles.fleet' | i18next }}
+        </a>
+    </nz-tab>
+    <nz-tab>
+        <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'owned' }" queryParamsHandling="merge">
+            {{ 'view-account-vehicles.owned' | i18next }}
+        </a>
+    </nz-tab>
+    <!--    <nz-tab nzTitle="Driving" *ngIf="show.driving">-->
+    <!--        <ng-template nz-tab>-->
+    <!--            <rp-view-vehicles-advanced [driverId]="accountId"></rp-view-vehicles-advanced>-->
+    <!--        </ng-template>-->
+    <!--    </nz-tab>-->
+</nz-tabset>
+<rp-view-vehicles-advanced [accountId]="accountId"></rp-view-vehicles-advanced>
+
+<!--<ng-template #extraTemplate>-->
+<!--    <button nz-button (click)="onShowAll()" nzType="primary" nzSize="small">-->
+<!--        {{ 'view-account-vehicles.show' | i18next }}-->
+<!--        {{ showAll ? ('view-account-vehicles.less' | i18next) : ('view-account-vehicles.more' | i18next) }}-->
+<!--    </button>-->
+<!--</ng-template>-->
+
+<br />

@@ -1,0 +1,12 @@
+<nz-alert nzType="warning" *ngIf="(issuers$ | async).length == 0" nzMessage="{{ 'infringement-spreadsheet-upload.no_issuer_selected_for_redirection' | i18next }}"></nz-alert>
+
+<p *ngIf="(issuers$ | async).length > 0">{{'infringement-spreadsheet-upload.missing_infringements_description' | i18next}}</p>
+<rp-general-table *ngIf="(issuers$ | async).length > 0" [table]="table"></rp-general-table>
+<div *ngIf="(issuers$ | async).length > 0" class="button-group">
+    <button class="button" [disabled]="!missingInfringements?.length" nz-button nzType="danger" (click)="onRedirectList()" nzSize="large" [nzLoading]="loading$ | async">
+        <i nz-icon nzType="upload"></i> {{ 'infringement-spreadsheet-upload.redirect_missing_infringements' | i18next }}
+    </button>
+    <button class="button" nz-button nzType="primary" (click)="onSkipRedirections()" nzSize="large">
+        <i nz-icon nzType="stop"></i> {{ 'infringement-spreadsheet-upload.skip_redirections' | i18next }}
+    </button>
+</div>

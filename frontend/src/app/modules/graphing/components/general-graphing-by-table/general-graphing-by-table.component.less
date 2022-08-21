@@ -1,0 +1,106 @@
+@import 'mixins';
+@import 'variables';
+
+#table {
+    .table-search {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+    .settings {
+        margin-top: 10px;
+        text-align: right;
+    }
+
+    tr:nth-child(2n) td {
+        background-color: #f8f8f8;
+    }
+}
+
+.total-amount-cell {
+    z-index: 10 !important;
+}
+
+.total-row {
+    top: 0px;
+    z-index: 5;
+    position: sticky;
+    font-weight: bold;
+    border-block-width: 2px;
+    border-bottom-color: darkgray;
+}
+
+::ng-deep {
+    table {
+        font-size: 12px;
+    }
+
+    .drawer {
+        .drawer-section {
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .ant-table-column-sorters {
+        padding: 7px 5px;
+    }
+
+    .ant-table-tbody > tr > td {
+        width: 120px;
+        padding: 7px 5px;
+        border-bottom: 1px solid hsv(0, 0, 95%);
+        background: white;
+        white-space: nowrap;
+    }
+
+    .ant-table-tbody > tr > td:first-child {
+        width: 135px;
+    }
+
+    .ant-table-thead > tr > th {
+        width: 120px;
+        border-width: 1px;
+        background: white;
+        padding: 7px 5px;
+        white-space: nowrap;
+    }
+}
+
+.column-filter {
+    .checkboxes {
+        display: flex;
+    }
+}
+
+.select-box {
+    width: 250px;
+    padding: 8px;
+}
+
+.multi-column {
+    width: 240px !important;
+}
+
+.sticky-column-0 {
+    left: 124px !important;
+    right: 124px !important;
+}
+
+.sticky-column {
+    width: 135px !important;
+    position: sticky;
+    border-right: 1px solid lightgrey !important;
+    border-left: 1px solid lightgrey;
+    z-index: 5;
+    left: 0;
+    right: 0;
+}

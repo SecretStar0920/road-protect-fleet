@@ -1,0 +1,15 @@
+<button
+    nz-button
+    nzType="danger"
+    nzSize="small"
+    nz-col
+    nz-popconfirm
+    [nzPopconfirmTitle]="'delete-user.confirm' | i18next"
+    [nzIcon]="deleteConfirm"
+    (nzOnConfirm)="onDelete()"
+>
+    <i nz-icon nzType="delete" nzTheme="outline"></i>
+</button>
+<ng-template #deleteConfirm>
+    <i nz-icon nzType="question-circle-o" style="color: #f5222d"></i>
+</ng-template>

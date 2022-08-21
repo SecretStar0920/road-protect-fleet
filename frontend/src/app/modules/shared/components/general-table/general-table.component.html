@@ -1,0 +1,148 @@
+<div id="table">
+    <div class="table-search" *ngIf="table.options.enableGlobalSearch" nz-row nzJustify="end">
+        <nz-input-group nz-col nzSpan="4" nzSize="default" style="max-width: 300px" class="rp-space">
+            <input type="text" nz-input [placeholder]="'general-table.search' | i18next" (keyup)="table.onSearch($event)" />
+        </nz-input-group>
+        <button nz-button nzType="default" nzSize="default" (click)="table.onOpenConfiguration()" class="rp-space">
+            <i nz-icon nzType="setting" nzTheme="outline"></i>
+        </button>
+    </div>
+
+    <nz-table #generalTable [nzData]="table.filteredData" [nzScroll]="scroll" [nzNoResult]="noResult">
+        <thead (nzSortOrderChange)="table.onSort($event)" nzSingleSort>
+            <tr>
+                <th *ngIf="table.columnActionTemplate" nzWidth="80px" nzRight="0px">
+                    <div style="width: 80px"></div>
+                </th>
+                <th *ngIf="table.options.enableRowSelect" nzShowCheckbox (nzCheckedChange)="table.onSelectAllRows($event)"></th>
+                <ng-container *ngFor="let column of table.filteredColumns">
+                    <ng-container *ngIf="table.filterColumns[column.key]; else standardColumn">
+                        <th nzCustomFilter nzShowSort [nzColumnKey]="column.key">
+                            {{ column.title }}
+                            <i
+                                nz-icon
+                                nz-dropdown
+                                nzTableFilter
+                                #dropdown="nzDropdown"
+                                nzType="filter"
+                                class="ant-table-filter-icon"
+                                [class.ant-table-filter-open]="dropdown.nzVisible"
+                                [nzDropdownMenu]="menu"
+                                nzTrigger="click"
+                                nzPlacement="bottomRight"
+                                [nzClickHide]="false"
+                                style="position: absolute"
+                            ></i>
+                        </th>
+                        <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <div class="select-box" *ngIf="dropdown.nzVisible">
+                                <nz-select
+                                    style="display: block"
+                                    nzShowSearch
+                                    nzMode="multiple"
+                                    nzPlaceHolder="Please select"
+                                    [(ngModel)]="table.filterColumns[column.key].value"
+                                    (ngModelChange)="table.onFilter()"
+                                >
+                                    <nz-option
+                                        *ngFor="let option of table.filterColumns[column.key].options"
+                                        [nzLabel]="option"
+                                        [nzValue]="option"
+                                    ></nz-option>
+                                </nz-select>
+                                <br />
+                                <button nz-button nzType="default" (click)="table.filterColumns[column.key].value = []; table.onFilter()">
+                                    {{ 'general-table.reset' | i18next }}
+                                </button>
+                            </div>
+                        </nz-dropdown-menu>
+                    </ng-container>
+                    <ng-template #standardColumn>
+                        <th nzShowSort [nzColumnKey]="column.key">
+                            {{ column.title }}
+                        </th>
+                    </ng-template>
+                </ng-container>
+
+                <th *ngIf="table.rowDeleteTemplate" nzWidth="80px" nzRight="0px">
+                    <div style="width: 80px"></div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of generalTable.data">
+                <td *ngIf="table.columnActionTemplate" style="text-align: center" nzRight="0px">
+                    <div style="width: 80px; line-height: 22pt">
+                        <ng-container *ngTemplateOutlet="table.columnActionTemplate; context: { $implicit: data }"> </ng-container>
+                    </div>
+                </td>
+                <td
+                    nzShowCheckbox
+                    (nzCheckedChange)="table.onSelectRow(data, $event)"
+                    [nzChecked]="table.isSelectedRow(data)"
+                    *ngIf="table.options.enableRowSelect"
+                ></td>
+                <td *ngFor="let column of table.filteredColumns">
+                    <!--                Template Override-->
+                    <ng-container *ngIf="table.templateColumns[column.key]; else standardColumn">
+                        <ng-container
+                            *ngTemplateOutlet="
+                                table.templateColumns[column.key];
+                                context: { $implicit: { data: data, column: column.key } }
+                            "
+                        >
+                        </ng-container>
+                    </ng-container>
+                    <!--                Basic Data-->
+                    <ng-template #standardColumn>
+                        {{ table.getCellValue(column.key, data) || '' }}
+                    </ng-template>
+                </td>
+                <td *ngIf="table.rowDeleteTemplate" style="text-align: center" nzRight="0px">
+                    <div style="width: 80px; line-height: 22pt">
+                        <ng-container *ngTemplateOutlet="table.rowDeleteTemplate; context: { $implicit: data }"> </ng-container>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <div class="extra">
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<ng-template #noResult>
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-template>
+
+<nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="table.viewMore"
+    nzPlacement="right"
+    [nzTitle]="'general-table.additional' | i18next"
+    (nzOnClose)="table.onCloseConfiguration()"
+    [nzWidth]="500"
+>
+    <div class="drawer">
+        <div id="column-filter" class="drawer-section" *ngIf="table.options.enableColumnFilter">
+            <nz-divider [nzText]="'general-table.enabled_columns' | i18next"></nz-divider>
+            <div class="checkboxes">
+                <label
+                    nz-checkbox
+                    [nzChecked]="true"
+                    (nzCheckedChange)="table.toggleColumn(column.title, $event)"
+                    *ngFor="let column of table.columns"
+                    style="display: block; margin: 0 !important"
+                >
+                    {{ column.title }}
+                </label>
+            </div>
+        </div>
+        <div class="actions drawer-section" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+            <div class="export" *ngIf="table.options.export.enabled">
+                <nz-divider [nzText]="'general-table.export' | i18next"></nz-divider>
+                <rp-general-table-export [entity]="table.options.export.entity"></rp-general-table-export>
+            </div>
+        </div>
+    </div>
+</nz-drawer>

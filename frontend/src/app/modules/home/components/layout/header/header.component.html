@@ -1,0 +1,72 @@
+<div class="left">
+    <div id="logo" routerLinkActive="ant-menu-item-selected" [routerLink]="['/home']">
+        <img src="assets/logo/cropped-blue_logo.png" alt="" class="logo" />
+    </div>
+</div>
+<div class="middle"></div>
+<div class="right">
+    <div class="profile item">
+        <button nz-button nz-popover nzPopoverTrigger="click" [nzPopoverContent]="notifications" nzPopoverPlacement="bottom" class="normal">
+            <nz-badge nzDot [nzShowDot]="currentAccount?.notifications?.length > 0">
+                <i nz-icon nzType="notification"></i>
+            </nz-badge>
+        </button>
+        <ng-template #notifications>
+            <span nz-text nzType="secondary">{{ 'header.notifications' | i18next }}</span> <br />
+            <nz-list [nzDataSource]="currentAccount?.notifications | slice: 0:10" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+                <ng-template #item let-item>
+                    <nz-list-item>
+                        <nz-list-item-meta [nzTitle]="nzTitle">
+                            <ng-template #nzTitle>
+                                <rp-general-time-display [time]="item.createdAt"></rp-general-time-display>
+                                <br />
+                                <i nz-icon nzType="warning" nzTheme="outline" style="color: orange"></i>
+                                {{ item.message }}
+                                -
+                                <a
+                                    nz-col
+                                    [routerLink]="['/home', 'infringements', 'view', item.infringement?.infringementId]"
+                                    *ngIf="item.infringement"
+                                    >{{ 'header.show_infringement' | i18next }}</a
+                                >
+                            </ng-template>
+                        </nz-list-item-meta>
+                    </nz-list-item>
+                </ng-template>
+            </nz-list>
+        </ng-template>
+    </div>
+    <ng-container *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+        <div class="profile item" *ngIf="selectedCountry">
+            <!--        Country and Timezone and Currency-->
+            <nz-select
+                nzPlaceHolder="Select Country"
+                [(ngModel)]="selectedCountry"
+                style="min-width: 100px"
+                [nzCustomTemplate]="countryTemplate"
+            >
+                <nz-option *ngFor="let country of countries" nzCustomContent [nzLabel]="country.name" [nzValue]="country.id"
+                    ><span class="flag-icon flag-icon-{{ country.id | lowercase }}"></span> {{ country.name }}</nz-option
+                >
+            </nz-select>
+            <ng-template #countryTemplate let-selected>
+                <span class="flag-icon flag-icon-{{ selected.nzValue | lowercase }}"></span> {{ selected.nzLabel }}
+            </ng-template>
+        </div>
+    </ng-container>
+    <div class="profile item">
+        <!--        Language-->
+        <nz-select [(ngModel)]="selectedLanguage" nzPlaceHolder="Select a language" style="min-width: 100px">
+            <nz-option nzValue="he" nzLabel="עברית"></nz-option>
+            <nz-option nzValue="en" nzLabel="English"></nz-option>
+        </nz-select>
+    </div>
+    <div class="profile item" *ngIf="user">
+        <a [routerLink]="['/home', 'users', 'view', user.userId]">
+            {{ user.email || '... loading' }}
+        </a>
+    </div>
+    <div class="profile item">
+        <button nz-button (click)="onSignOut()" class="normal"><i nz-icon nzType="logout" nzTheme="outline"></i></button>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<ng-container *rpHasPermission="[permissions.RedirectInfringement]">
+    <button
+        nz-button
+        nzType="primary"
+        (click)="batchRedirect()"
+        [nzLoading]="isLoading$ | async"
+        [disabled]="redirectableNominations.length <= 0"
+    >
+        <i nz-icon nzType="retweet" nzTheme="outline"></i> {{ 'batch-digitally-redirect-nominations.redirect' | i18next }}
+        {{ redirectableNominations.length }}
+        {{ 'batch-digitally-redirect-nominations.infringements' | i18next }}
+    </button>
+</ng-container>
+
+<nz-modal
+    [(nzVisible)]="isVisible"
+    (nzOnCancel)="onCancel()"
+    [nzTitle]="'batch-digitally-redirect-nominations.title' | i18next"
+    [nzFooter]="null"
+>
+    <form nz-form [formGroup]="form" nzLayout="vertical" (ngSubmit)="batchRedirectConfirm()" *ngIf="!batchRedirectionResult">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="to">{{ 'batch-digitally-redirect-nominations.label' | i18next }} </nz-form-label>
+                    <nz-form-control>
+                        <nz-radio-group formControlName="to">
+                            <label nz-radio [nzValue]="nominationTarget.Owner">{{
+                                'batch-digitally-redirect-nominations.owner' | i18next
+                            }}</label>
+                            <br />
+                            <label nz-radio [nzValue]="nominationTarget.User">{{
+                                'batch-digitally-redirect-nominations.user' | i18next
+                            }}</label>
+                        </nz-radio-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="24" style="text-align: center">
+                <button
+                    nz-button
+                    nzType="primary"
+                    class="rp-space"
+                    [nzLoading]="batchDigitalRedirectLoadingState.isLoading()"
+                    [disabled]="!form.valid"
+                >
+                    {{ 'batch-digitally-redirect-nominations.confirm' | i18next }}
+                </button>
+            </nz-col>
+        </nz-row>
+    </form>
+
+    <div *ngIf="batchRedirectionResult">
+        <nz-col nzSpan="24">
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="24"
+                    ><h2 class="rp-primary-color">
+                        {{ 'batch-digitally-redirect-nominations.successful_redirections_heading' | i18next }}
+                    </h2>
+                </nz-col>
+                <nz-col nzSpan="24">
+                    <p>
+                        {{ 'batch-digitally-redirect-nominations.successful_redirections_count' | i18next }}
+                        {{ batchRedirectionResult?.successfulRedirections.length }}
+                    </p>
+                    <li *ngFor="let failed of batchRedirectionResult.successfulRedirections">
+                        <div class="infringement-tag">
+                            <rp-infringement-tag [infringement]="failed.infringement"></rp-infringement-tag>
+                        </div>
+                        <br />
+                    </li>
+                </nz-col>
+            </nz-row>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-row nzGutter="24">
+                <nz-divider></nz-divider>
+                <nz-col nzSpan="24"
+                    ><h2 class="rp-warn-color">{{ 'batch-digitally-redirect-nominations.failed_redirections_heading' | i18next }}</h2>
+                    <p>
+                        {{ 'batch-digitally-redirect-nominations.failed_redirections_count' | i18next }}
+                        {{ batchRedirectionResult?.failedRedirections.length }}
+                    </p>
+                    <li *ngFor="let failed of batchRedirectionResult.failedRedirections">
+                        <div class="infringement-tag">
+                            <rp-infringement-tag [infringement]="failed.infringement"></rp-infringement-tag>
+                        </div>
+                        <br />
+                    </li>
+                </nz-col>
+
+                <nz-divider></nz-divider>
+                <nz-col nzSpan="24">
+                    <button nz-button (click)="onCancel()" nzType="primary" class="rp-space">
+                        {{ 'batch-digitally-redirect-nominations.close' | i18next }}
+                    </button>
+                </nz-col>
+            </nz-row>
+        </nz-col>
+    </div>
+</nz-modal>

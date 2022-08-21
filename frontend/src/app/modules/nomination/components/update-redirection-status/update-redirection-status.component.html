@@ -1,0 +1,19 @@
+<nz-row nzGutter="24" style="text-align: center" *ngIf="nomination">
+    <nz-col nzSpan="12">
+        <button nz-button nzType="primary" nzSize="large" (click)="onApprove()" [disabled]="!hasTarget()">
+            {{ 'update-redirection-status.approved' | i18next }}
+        </button>
+    </nz-col>
+    <nz-col nzSpan="12">
+        <button nz-button nzType="danger" nzSize="large" (click)="onDeny()" [disabled]="!hasTarget()">
+            {{ 'update-redirection-status.denied' | i18next }}
+        </button>
+    </nz-col>
+    <nz-col nzSpan="24" *ngIf="!hasTarget()">
+        <p>
+            <span nz-text nzType="warning"
+                >This redirection was not performed on this system and can not be manually approved or denied.</span
+            >
+        </p>
+    </nz-col>
+</nz-row>

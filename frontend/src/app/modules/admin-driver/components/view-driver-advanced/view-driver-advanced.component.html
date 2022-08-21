@@ -1,0 +1,21 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+<ng-template #physicalLocation let-data>
+    <rp-view-short-location [location]="data.physicalLocation"></rp-view-short-location>
+</ng-template>
+
+<ng-template #postalLocation let-data>
+    <rp-view-short-location [location]="data.postalLocation"></rp-view-short-location>
+</ng-template>
+
+<ng-template let-data #delete>
+    <rp-delete-driver *ngIf="data" [driverId]="data.driverId" class="rp-space"></rp-delete-driver>
+</ng-template>
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewDriver(data.driverId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    <button nz-button nzType="primary" nzSize="small" (click)="onEditDriver(data)">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+    </button>
+</ng-template>

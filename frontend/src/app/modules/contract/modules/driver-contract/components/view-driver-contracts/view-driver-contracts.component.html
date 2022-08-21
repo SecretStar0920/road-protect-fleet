@@ -1,0 +1,7 @@
+<rp-general-table [table]="table"></rp-general-table>
+<nz-alert
+    *ngIf="getDriverContractsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getDriverContractsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

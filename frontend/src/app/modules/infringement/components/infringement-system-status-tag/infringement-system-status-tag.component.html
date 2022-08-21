@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="status">
+    <ng-container *ngSwitchCase="statuses.Valid">
+        <nz-badge nzStatus="success"></nz-badge>
+    </ng-container>
+    <ng-container *ngSwitchCase="statuses.MissingContract">
+        <nz-badge nzStatus="warning" nz-popover [nzPopoverContent]="'infringement-system-status-tag.missing_contract' | i18next"></nz-badge>
+    </ng-container>
+    <ng-container *ngSwitchCase="statuses.MissingVehicle">
+        <nz-badge nzStatus="error" nz-popover [nzPopoverContent]="'infringement-system-status-tag.missing_vehicle' | i18next"></nz-badge>
+    </ng-container>
+</ng-container>

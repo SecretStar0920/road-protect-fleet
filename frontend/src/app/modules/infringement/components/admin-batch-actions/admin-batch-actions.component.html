@@ -1,0 +1,19 @@
+<div class="batch-actions">
+    <button
+        class="rp-space"
+        nz-button
+        nzType="primary"
+        nz-popover
+        (click)="onVerify()"
+        [nzLoading]="isLoading$ | async"
+        [disabled]="selectedInfringements.length <= 0"
+        *rpIsUserType="[userTypes.Developer, userTypes.Admin]"
+    >
+        <i nz-icon nzType="redo" nzTheme="outline"></i>{{ 'view-nomination.verify_text' | i18next }}
+    </button>
+    <rp-batch-digitally-redirect-nominations [nominations]="selectedNominations" class="rp-space"></rp-batch-digitally-redirect-nominations>
+    <rp-batch-municipally-redirect-nominations
+        [infringements]="selectedInfringements"
+        class="rp-space"
+    ></rp-batch-municipally-redirect-nominations>
+</div>

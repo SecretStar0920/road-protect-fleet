@@ -1,0 +1,53 @@
+<ng-container *ngIf="payment">
+    <table class="rp-basic-data-table">
+        <tr>
+            <td>{{ 'view-payment.type' | i18next }}</td>
+            <td>{{ payment.type }}</td>
+        </tr>
+        <tr>
+            <td>Payment date</td>
+            <td>{{ payment.paymentDate || payment.createdAt | date }}</td>
+        </tr>
+        <tr>
+            <td>Amount Paid</td>
+            <td>
+                <rp-general-currency-display [value]="payment.amountPaid"></rp-general-currency-display>
+            </td>
+        </tr>
+        <ng-container [ngSwitch]="payment.type">
+            <ng-container *ngSwitchCase="paymentType.Manual">
+                <ng-container *rpLet="asManualPayment() as manualPayment">
+                    <tr>
+                        <td>{{ 'view-payment.reference' | i18next }}</td>
+                        <td>{{ manualPayment.referenceNumber }}</td>
+                    </tr>
+
+                    <tr *ngIf="manualPayment.document">
+                        <td>{{ 'view-payment.document' | i18next }}</td>
+                        <td>
+                            <rp-view-document [documentId]="manualPayment.document.documentId"></rp-view-document>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="paymentType.Municipal">
+                <ng-container *rpLet="asMunicipalPayment() as municipalPayment"> </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchDefault>{{ 'view-payment.payment_type_not_supported' | i18next }}</ng-container>
+        </ng-container>
+    </table>
+</ng-container>
+
+<!--<ng-template #edit>-->
+<!--    <rp-update-payment [payment]="payment" (complete)="onUpdateComplete($event)"></rp-update-payment>-->
+<!--</ng-template>-->
+
+<!--<nz-divider></nz-divider>-->
+
+<!--<div nz-row  nzAlign="middle" nzJustify="space-between">-->
+<!--    <button nz-button [nzType]="!isUpdating ? 'primary' : 'default'" nz-col class="rp-space"-->
+<!--            (click)="onUpdate()">-->
+<!--        {{isUpdating ? 'Cancel' : 'Edit'}}-->
+<!--    </button>-->
+<!--    <rp-delete-payment [paymentId]="paymentId" (delete)="onDelete($event)" nz-col></rp-delete-payment>-->
+<!--</div>-->

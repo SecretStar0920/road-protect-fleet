@@ -1,0 +1,18 @@
+<ng-container [ngSwitch]="contract?.ocrStatus">
+    <span *ngSwitchCase="ocrStatus.Modified">
+        <i nz-icon nzType="clock-circle" nzTheme="twotone"></i>
+        {{ 'contract-ocr-status.' + ocrStatus.Modified | i18next }}
+    </span>
+    <span *ngSwitchCase="ocrStatus.Success" nz-tooltip>
+        <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green"></i>
+        {{ 'contract-ocr-status.' + ocrStatus.Success | i18next }}
+    </span>
+    <span *ngSwitchCase="ocrStatus.Incomplete" nz-tooltip>
+        <i nz-icon nzType="warning" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'contract-ocr-status.' + ocrStatus.Incomplete | i18next }}
+    </span>
+    <span *ngSwitchCase="ocrStatus.Failed" nz-tooltip>
+        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+        {{ 'contract-ocr-status.' + ocrStatus.Failed | i18next }}
+    </span>
+</ng-container>

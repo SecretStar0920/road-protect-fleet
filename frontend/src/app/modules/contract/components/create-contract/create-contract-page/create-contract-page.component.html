@@ -1,0 +1,19 @@
+<rp-general-page [title]="'create-contract-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-contract (complete)="onComplete($event)"></rp-create-contract>
+        <nz-alert
+            nzType="success"
+            *ngIf="createContractState?.hasSucceeded()"
+            [nzMessage]="createContractState?.successResult().message"
+            nzShowIcon
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="createContractState?.hasFailed()"
+            [nzMessage]="createContractState?.failedResult().message"
+            [nzDescription]="createContractState?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </div>
+</rp-general-page>

@@ -1,0 +1,33 @@
+<ng-container [ngSwitch]="status">
+    <span *ngSwitchCase="infringementStatus.Due" nz-tooltip [nzTooltipTitle]="'infringement-status-tag.due' | i18next"
+        ><i nz-icon nzType="plus-circle" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'infringement-status.' + infringementStatus.Due | i18next }}</span
+    >
+    <span *ngSwitchCase="infringementStatus.Paid" nz-tooltip [nzTooltipTitle]="'infringement-status-tag.paid' | i18next"
+        ><i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green"></i>
+        {{ 'infringement-status.' + infringementStatus.Paid | i18next }}</span
+    >
+    <span *ngSwitchCase="infringementStatus.Closed" nz-tooltip [nzTooltipTitle]="'infringement-status-tag.closed' | i18next"
+        ><i nz-icon nzType="stop" nzTheme="twotone" nzTwotoneColor="green"></i>
+        {{ 'infringement-status.' + infringementStatus.Closed | i18next }}</span
+    >
+    <span *ngSwitchCase="infringementStatus.Outstanding" nz-tooltip [nzTooltipTitle]="'infringement-status-tag.outstanding' | i18next"
+        ><i nz-icon nzType="exclamation-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+        {{ 'infringement-status.' + infringementStatus.Outstanding | i18next }}</span
+    >
+    <span *ngSwitchCase="infringementStatus.Unmanaged" nz-tooltip [nzTooltipTitle]="'infringement-status-tag.unmanaged' | i18next"
+    ><i nz-icon nzType="exclamation-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+    {{ 'infringement-status.' + infringementStatus.Unmanaged | i18next }}</span
+    >
+    <span *ngSwitchCase="infringementStatus.Collection" nz-tooltip [nzTooltipTitle]="'infringement-status-tag.collection' | i18next"
+    ><i nz-icon nzType="exclamation-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+    {{ 'infringement-status.' + infringementStatus.Collection | i18next }}</span
+    >
+    <span
+        *ngSwitchCase="infringementStatus.ApprovedForPayment"
+        nz-tooltip
+        [nzTooltipTitle]="'infringement-status-tag.approved_for_payment' | i18next"
+        ><i nz-icon nzType="check-circle" nzTheme="twotone"></i>
+        {{ 'infringement-status.' + infringementStatus.ApprovedForPayment | i18next }}</span
+    >
+</ng-container>

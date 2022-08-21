@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: document-api
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: document-api
+            env: prod
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: document-api
+                env: prod
+        spec:
+            containers:
+                - image: eu.gcr.io/fleet-260107/document-api:stable
+                  name: document-api
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 20m
+                  ports:
+                      - containerPort: 8080
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      httpGet:
+                          path: health
+                          port: 8080
+                      initialDelaySeconds: 30
+                      periodSeconds: 15
+                  readinessProbe:
+                      httpGet:
+                          path: health
+                          port: 8080
+                      initialDelaySeconds: 30
+                      periodSeconds: 15
+                  envFrom:
+                      - secretRef:
+                            name: document-api
+            volumes:
+                - name: storage
+                  persistentVolumeClaim:
+                      claimName: document-api-storage-pvc

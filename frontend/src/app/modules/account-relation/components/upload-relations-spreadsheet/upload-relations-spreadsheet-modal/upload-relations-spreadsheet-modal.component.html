@@ -1,0 +1,10 @@
+<rp-upload-relations-spreadsheet (complete)="onComplete($event)"></rp-upload-relations-spreadsheet>
+<br/>
+<br/>
+<nz-alert
+    nzType="error"
+    *ngIf="uploadState?.hasFailed()"
+    [nzMessage]="uploadState?.failedResult().message"
+    [nzDescription]="uploadState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

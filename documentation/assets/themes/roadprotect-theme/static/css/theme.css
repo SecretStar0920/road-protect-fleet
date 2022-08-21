@@ -1,0 +1,72 @@
+/*
+General page body
+ */
+body {
+	padding-top: 106px;
+}
+
+/*
+Top navigation bar
+ */
+.navbar {
+    background-color: white;
+    height: 65px;
+}
+.navbar-section  {
+    background-color: #3d464d;
+    height: 33px;
+}
+.nav-sidebar {
+    background-color: white;
+}
+.navbar a.navbar-brand, .nav-pills > li > a {
+    text-shadow: none;
+}
+
+/*
+All API text in header
+ */
+.navbar-nav > li > a, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+    text-shadow: none;
+    color: #0f529f;
+}
+
+/*
+Side navigation text
+ */
+.nav-toggle.open {
+    color: #0f529f;
+}
+
+/*
+Footer
+ */
+.footer, .footer-debug {
+    background-color: white;
+    text-shadow: none;
+}
+
+/*
+Styling:
+ */
+
+.shadow {
+    -webkit-box-shadow: none;
+    -moz-box-shadow:    none;
+    box-shadow:         none;
+}
+
+/*
+ Hyperlinks
+ */
+pre, code, pre code, .attribute, td.resource {
+    color: #0f529f;
+}
+
+/*
+ Try it button
+*/
+.btn-success, .btn-success.active.focus, .btn-success:hover, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
+    background-color: #0f529f;
+    border-color: #0f529f;
+}

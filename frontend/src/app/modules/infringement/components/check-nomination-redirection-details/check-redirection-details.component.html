@@ -1,0 +1,15 @@
+<button nz-button nzSize="small" nz-popover [nzPopoverContent]="popoverContent" (click)="onCheck()" class="action-button">
+    <i nz-icon nzType="file-search" nzTheme="outline" class="action-button-icon"></i>
+</button>
+
+<ng-template #popoverContent>
+    <span>{{ 'infringement-redirection-details.popover' | i18next }}</span>
+</ng-template>
+
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="null" [nzFooter]="null" (nzOnCancel)="isVisible = false" nzWidth="60%">
+    <ng-container [ngTemplateOutlet]="detailsViewComponent"></ng-container>
+</nz-modal>
+
+<ng-template #detailsViewComponent>
+    <rp-view-redirection-details *ngIf="isVisible" [infringementId]="infringementId"></rp-view-redirection-details>
+</ng-template>

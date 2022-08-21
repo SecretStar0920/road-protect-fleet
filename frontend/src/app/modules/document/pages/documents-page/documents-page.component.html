@@ -1,0 +1,17 @@
+<rp-general-page [icon]="'profile'" [title]="'documents-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-documents class="rp-round-card" [action]="tableAction"></rp-view-documents>
+        <ng-template let-data #tableAction>
+            <a (click)="onViewDocument(data.documentId)" class="rp-space"><i nz-icon nzType="eye" nzTheme="outline"></i></a>
+            <rp-delete-document [documentId]="data.documentId"></rp-delete-document>
+        </ng-template>
+    </div>
+    <div class="rp-round-card rp-page-section">
+        <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateDocument()">
+            <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'documents-page.create' | i18next }}
+        </button>
+        <button nz-button [nzType]="'default'">
+            <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'documents-page.import' | i18next }}
+        </button>
+    </div>
+</rp-general-page>

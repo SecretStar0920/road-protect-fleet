@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="flex-chart horizontal-scroll">
+        <ngx-charts-bar-vertical-stacked
+            class="vehicle-chart"
+            [scheme]="colors"
+            [results]="stackedBar"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [legendTitle]="'graphing-by-status.infringement_status' | i18next"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [animations]="animations"
+            [tooltipDisabled]="tooltipDisabled"
+            [trimXAxisTicks]="false"
+            (select)="onSelect($event)"
+            [xAxisTickFormatting]="transformXTick"
+            [view]="view"
+        >
+        </ngx-charts-bar-vertical-stacked>
+    </div>
+</div>

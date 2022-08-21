@@ -1,0 +1,34 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+
+<ng-template #issuer let-data>
+    <rp-issuer-tag [issuer]="data.issuer"></rp-issuer-tag>
+</ng-template>
+
+<ng-template #senderAccount let-data>
+    <ng-container *ngIf="data.senderAccount; else missing">
+        <rp-account-tag [account]="data.senderAccount"></rp-account-tag>
+    </ng-container>
+    <ng-template #missing> -- </ng-template>
+</ng-template>
+
+<ng-template #requestSendDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.requestSendDate" [short]="true"></rp-general-time-display>
+</ng-template>
+
+<ng-template #responseReceivedDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.responseReceivedDate" [short]="true"></rp-general-time-display>
+</ng-template>
+
+<ng-template #responseReceived let-data>
+    <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green" *ngIf="data.responseReceived; else responseNotReceived"></i>
+    <ng-template #responseNotReceived>
+        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+    </ng-template>
+</ng-template>
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewRequestInformationLog(data.requestInformationLogId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+</ng-template>
+

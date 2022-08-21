@@ -1,0 +1,34 @@
+<nz-row nzJustify="space-between" nzAlign="middle">
+    <nz-col nzSpan="24">
+        <h2 class="rp-primary-color">
+            <i nz-icon [nzType]="(isLoading | async) ? 'loading' : 'area-chart'" nzTheme="outline"></i>
+            {{ 'view-account-reports.overview' | i18next }}
+        </h2>
+        <nz-anchor [nzAffix]="false" nzContainer="#scroll-target">
+            <nz-link nzHref="#infringement-counts" nzTitle="Infringement Counts"></nz-link>
+            <nz-link nzHref="#infringement-amounts" nzTitle="Infringement Amounts"></nz-link>
+            <nz-link nzHref="#vehicle-counts" nzTitle="Vehicle Counts"></nz-link>
+            <nz-link nzHref="#leading-vehicles" nzTitle="Leading Vehicles"></nz-link>
+        </nz-anchor>
+    </nz-col>
+    <nz-col nzSpan="8" style="text-align: right">
+        <button nz-button (click)="onRefresh()" nzSize="large" nzType="primary" [nzLoading]="isLoading | async">
+            <i nz-icon nzType="reload" nzTheme="outline"></i> {{ 'view-account-reports.refresh' | i18next }}
+        </button>
+    </nz-col>
+</nz-row>
+<nz-divider></nz-divider>
+<nz-row nzGutter="48" class="reports">
+    <nz-col [nzMd]="24" [nzLg]="24" class="report-item" *rpHasPermission="[permissions.InfringementReporting]">
+        <rp-account-infringement-counts></rp-account-infringement-counts>
+    </nz-col>
+    <nz-col [nzMd]="24" [nzLg]="24" class="report-item" *rpHasPermission="[permissions.VehicleReporting]">
+        <rp-account-infringement-amounts></rp-account-infringement-amounts>
+    </nz-col>
+    <nz-col [nzMd]="24" [nzLg]="24" class="report-item" *rpHasPermission="[permissions.VehicleReporting]">
+        <rp-account-vehicle-counts></rp-account-vehicle-counts>
+    </nz-col>
+    <nz-col [nzMd]="24" [nzLg]="24" class="report-item" *rpHasPermission="[permissions.VehicleReporting]">
+        <rp-account-leading-vehicles></rp-account-leading-vehicles>
+    </nz-col>
+</nz-row>

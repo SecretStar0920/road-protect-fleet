@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: document-api-storage-pvc
+spec:
+    storageClassName: std-storage
+    resources:
+        requests:
+            storage: 5Gi
+    accessModes:
+        - ReadWriteOnce

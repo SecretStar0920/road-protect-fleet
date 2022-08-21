@@ -1,0 +1,96 @@
+@import 'less/variables';
+@import 'less/mixins';
+
+#menu {
+    //height: calc(100% - @header-height);
+    //max-height: calc(100% - @header-height);
+    overflow-y: auto;
+    position: relative;
+    height: calc(100vh - @header-height);
+    border-right: none !important;
+    border-left: none !important;
+    overflow-x: hidden;
+
+    //.rp-top-gradient-colored;
+
+    ::ng-deep {
+        .ant-menu-item,
+        .ant-menu-submenu-title {
+            transition-duration: 0.1s, 0.1s, 0.1s, 0.15s;
+        }
+    }
+
+    li {
+        position: relative;
+        i {
+            color: @color1;
+        }
+
+        .hover-help {
+            opacity: 0;
+            transition: opacity 0.3s;
+            position: absolute;
+            right: 0px;
+            font-size: 19px;
+            transform: translateY(50%);
+        }
+
+        &:hover {
+            & > .hover-help {
+                opacity: 1;
+            }
+        }
+
+        .counts {
+            position: absolute;
+            right: 34px;
+            top: 10px;
+            line-height: 10px;
+            text-align: center;
+            .count {
+                font-size: 10px;
+                display: inline-block;
+                margin-left: 5px;
+                margin-top: -3px;
+                margin-bottom: 5px;
+                border-radius: 50%;
+                color: white;
+                line-height: 25px;
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+
+    .menu-section {
+        margin-top: 25px;
+
+        &:first-of-type {
+            margin-top: 0px;
+        }
+    }
+}
+
+.template-sub-menu {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.toggle-button {
+    margin: 20px;
+}
+
+::ng-deep {
+    .ant-menu-inline-collapsed {
+        .ant-menu-item-group-title {
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+        }
+        width: 35px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .ant-menu-item-group-title {
+        font-size: 15px;
+    }
+}

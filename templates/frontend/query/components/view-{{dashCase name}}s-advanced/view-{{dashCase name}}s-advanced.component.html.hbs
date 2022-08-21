@@ -1,0 +1,20 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+
+<!--TODO TEMPLATES-->
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onView{{pascalCase name}}(data.{{camelCase name}}Id)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+</ng-template>
+
+
+<ng-template let-data #delete>
+    <rp-delete-{{dashCase name}} [{{camelCase name}}Id]="data.{{camelCase name}}Id"></rp-delete-{{dashCase name}}>
+</ng-template>
+
+<button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreate{{pascalCase name}}()"><i nz-icon nzType="plus-circle" nzTheme="outline"></i> \{{ 'action.create' | i18next }}</button>
+<button nz-button [nzType]="'default'" [routerLink]="['/home', '{{dashCase name}}', 'upload']" class="rp-space">
+    <i nz-icon nzType="upload" nzTheme="outline"></i>
+    \{{ 'action.import' | i18next }}
+</button>

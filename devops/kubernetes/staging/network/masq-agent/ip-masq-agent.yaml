@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+    name: ip-masq-agent
+    namespace: kube-system
+spec:
+    template:
+        metadata:
+            labels:
+                k8s-app: ip-masq-agent
+        spec:
+            hostNetwork: true
+            containers:
+                - name: ip-masq-agent
+                  image: gcr.io/google-containers/ip-masq-agent-amd64:v2.4.1
+                  args:
+                      - --masq-chain=IP-MASQ
+                      # To non-masquerade reserved IP ranges by default, uncomment the line below.
+                      # - --nomasq-all-reserved-ranges
+                  securityContext:
+                      privileged: true
+                  volumeMounts:
+                      - name: config
+                        mountPath: /etc/config
+            volumes:
+                - name: config
+                  configMap:
+                      # Note this ConfigMap must be created in the same namespace as the daemon pods - this spec uses kube-system
+                      name: ip-masq-agent
+                      optional: true
+                      items:
+                          # The daemon looks for its config in a YAML file at /etc/config/ip-masq-agent
+                          - key: config
+                            path: ip-masq-agent
+            tolerations:
+                - effect: NoSchedule
+                  operator: Exists
+                - effect: NoExecute
+                  operator: Exists
+                - key: 'CriticalAddonsOnly'
+                  operator: 'Exists'

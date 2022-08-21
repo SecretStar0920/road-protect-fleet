@@ -1,0 +1,79 @@
+<ng-container *ngIf="isVisible">
+    <nz-collapse nzGhost>
+        <nz-collapse-panel *ngFor="let log of logs" [nzHeader]=logTitle [nzExpandedIcon]=logTypeIcon>
+            <ng-template class='log-timeline-heading' #logTitle>
+                <strong>{{ log.type }}</strong> - {{ log.message }}
+            </ng-template>
+            <rp-general-time-display [time]="log.createdAt"></rp-general-time-display>
+            <table class='log-timeline-table'>
+                <tbody>
+                <tr *ngIf="log.user">
+                    <td>{{ 'view-logs.by_user' | i18next }}</td>
+                    <td>
+                        <strong>{{ log.user.name }}</strong>
+                    </td>
+                </tr>
+                <tr *ngIf="log.account">
+                    <td>{{ 'view-logs.relating_to_account' | i18next }}</td>
+                    <td>
+                        <strong>{{ log.account.name }}</strong>
+                    </td>
+                </tr>
+                <tr *ngIf="log.vehicle">
+                    <td>{{ 'view-logs.for_vehicle' | i18next }}</td>
+                    <td>
+                        <strong>{{ log.vehicle.registration }}</strong>
+                    </td>
+                </tr>
+                <tr *ngIf="log.infringement">
+                    <td>{{ 'view-logs.relating_to_infringement' | i18next }}</td>
+                    <td>
+                        <strong>{{ log.infringement.noticeNumber }}</strong>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <nz-row class="log-timeline-differences" *ngIf="log.differences && !isDifferencesEmpty(log.differences)">
+                <table class='log-timeline-table'>
+                    <tbody>
+                    <tr class="table-heading">
+                        <td>{{ 'view-logs.changes_made' | i18next }}</td>
+                        <td>{{'view-logs.before' | i18next}}</td>
+                        <td>{{'view-logs.after' | i18next}}</td>
+                    </tr>
+                    <ng-container *ngFor="let difference of printKey(log.differences)">
+                        <ng-container [ngSwitch]="keyType(difference)">
+                            <tr *ngSwitchCase="'date'">
+                                <td>{{printKeyName(difference)}}</td>
+                                <td> <rp-general-time-display *ngIf="log.differences[difference].old; else none" [time]="log.differences[difference].old"> </rp-general-time-display> </td>
+                                <td> <rp-general-time-display  [time]="log.differences[difference].new"> </rp-general-time-display></td>
+                            </tr>
+                            <tr *ngSwitchCase="'currency'">
+                                <td>{{printKeyName(difference)}}</td>
+                                <td> <rp-general-currency-display *ngIf="log.differences[difference].old; else none" [value]="log.differences[difference].old"> </rp-general-currency-display> </td>
+                                <td> <rp-general-currency-display  [value]="log.differences[difference].new"> </rp-general-currency-display> </td>
+                            </tr>
+                            <tr *ngSwitchDefault>
+                                <td>{{printKeyName(difference)}}</td>
+                                <td>{{log.differences[difference].old || ('view-logs.none' | i18next)}}</td>
+                                <td>{{log.differences[difference].new}}</td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                    </tbody>
+                </table>
+            </nz-row>
+            <ng-template #none>
+                {{'view-logs.none' | i18next}}
+            </ng-template>
+            <ng-template [ngSwitch]="log.type" #logTypeIcon>
+                <i *ngSwitchCase="logType.Created" nz-icon nzType="plus-circle" nzTheme="twotone" nzTwotoneColor="green"> </i>
+                <i *ngSwitchCase="logType.Error" nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"> </i>
+                <i *ngSwitchCase="logType.Success" nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green"> </i>
+                <i *ngSwitchCase="logType.Updated" nz-icon nzType="check-circle" nzTheme="twotone"> </i>
+                <i *ngSwitchCase="logType.Warning" nz-icon nzType="warning" nzTheme="twotone" nzTwotoneColor="orange"> </i>
+            </ng-template>
+        </nz-collapse-panel>
+    </nz-collapse>
+</ng-container>
+

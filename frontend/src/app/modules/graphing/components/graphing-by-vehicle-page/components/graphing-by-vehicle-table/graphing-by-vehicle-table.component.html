@@ -1,0 +1,33 @@
+<rp-general-graphing-by-table [table]="table"></rp-general-graphing-by-table>
+
+<!--                Basic Data-->
+<ng-template let-raw #generalVehicleCell>
+    <!--                                    This year's data -->
+    <rp-graphing-by-table-cell-template
+        [cellText]="table.getCell(raw.column, raw.data) || ''"
+        [detailsObject]="table.getCellDetails(raw.column, raw.data)"
+    ></rp-graphing-by-table-cell-template>
+    <div *ngIf="comparisonShowing">
+        <rp-graphing-by-table-cell-template
+            *ngFor="let year of yearsPrevious"
+            [isPreviousYear]="true"
+            [cellText]="table.getCellPreviousYear(raw.column, raw.data, year)"
+            [detailsObject]="table.getCellPreviousYearDetails(raw.column, raw.data, year)"
+        ></rp-graphing-by-table-cell-template>
+    </div>
+</ng-template>
+
+<ng-template let-raw #dateColumn>
+    <rp-graphing-by-table-cell-template
+        [cellText]="table.getCellDate(raw.data) || ''"
+        [detailsObject]="table.getCellDetails(raw.column, raw.data)"
+        [extraTemplate]="extraTemplate"
+        [extraData]="raw"
+    ></rp-graphing-by-table-cell-template>
+</ng-template>
+
+<ng-template let-context #extraTemplate>
+    <span>{{ table.getCountTotalByMonth(context.extraData.data) || '' }}</span>
+    <br>
+    <span>{{ table.getSumTotalByMonth(context.extraData.data) || '' }}</span>
+</ng-template>

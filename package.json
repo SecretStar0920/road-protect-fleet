@@ -1,0 +1,35 @@
+{
+    "name": "road-protect-fleet",
+    "version": "3.76.1",
+    "description": "The Road Protect Fleets system.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "release": "standard-version --sign",
+        "release:no-sign": "standard-version",
+        "release:dry-run": "standard-version --dry-run"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com/roadprotect/road-protect-fleet.git"
+    },
+    "keywords": [
+        "road",
+        "protect",
+        "fleet",
+        "platform",
+        "management",
+        "payment",
+        "infringement",
+        "nomination"
+    ],
+    "author": "roadprotect (Pty)",
+    "license": "UNLICENSED",
+    "bugs": {
+        "url": "https://github.com/roadprotect/road-protect-fleet/issues"
+    },
+    "homepage": "https://github.com/roadprotect/road-protect-fleet#readme",
+    "devDependencies": {
+        "prettier": "^2.1.1",
+        "standard-version": "^9.0.0"
+    }
+}

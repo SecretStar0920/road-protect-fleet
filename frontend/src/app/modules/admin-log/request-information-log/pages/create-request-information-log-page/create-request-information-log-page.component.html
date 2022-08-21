@@ -1,0 +1,18 @@
+<rp-general-page [title]="'create-request-information-log-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <nz-alert
+            nzType="success"
+            *ngIf="createRequestInformationLogState?.hasSucceeded()"
+            [nzMessage]="createRequestInformationLogState?.successResult().message"
+            nzShowIcon
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="createRequestInformationLogState?.hasFailed()"
+            [nzMessage]="createRequestInformationLogState?.failedResult().message"
+            [nzDescription]="createRequestInformationLogState?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </div>
+</rp-general-page>

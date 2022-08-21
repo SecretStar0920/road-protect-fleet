@@ -1,0 +1,33 @@
+@import 'less/variables';
+
+.main-filter-container {
+    flex-direction: column;
+
+    i[nz-icon] {
+        color: @color1;
+    }
+}
+
+::ng-deep {
+    .main-filter-container {
+        //* {
+        //    border-radius: 0px !important;
+        //    border-top: none !important;
+        //    border-right: none !important;
+        //    border-left: none !important;
+        //}
+        .ant-input-group-addon:first-child {
+            //border-right: 0;
+            //border: none;
+            min-width: 170px;
+            //text-align: left;
+            //background: none;
+        }
+    }
+}
+
+.preset-dropdown {
+    min-width: 230px;
+    margin-right: 8px;
+    margin-left: 8px;
+}

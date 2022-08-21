@@ -1,0 +1,75 @@
+import { Injectable } from '@angular/core';
+import { HttpService } from '@modules/shared/services/http/http.service';
+import { map, tap } from 'rxjs/operators';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { {{camelCase name}}NgrxHelper, {{pascalCase name}}State } from '@modules/{{dashCase name}}/ngrx/{{dashCase name}}.reducer';
+import { plainToClass } from 'class-transformer';
+import { Create{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/services/create-{{dashCase name}}.dto';
+import { Update{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/services/update-{{dashCase name}}.dto';
+
+@Injectable({
+    providedIn: 'root',
+})
+export class {{pascalCase name}}Service {
+    constructor(private http: HttpService, private store: Store<{{pascalCase name}}State>) {}
+
+    getAll{{pascalCase name}}s() {
+        return this.http.getSecure('{{camelCase name}}').pipe(
+            map((response) => {
+                if (response.length && response.length >= 0) {
+                    return response.map((item) => plainToClass({{pascalCase name}}, item));
+                }
+                return [];
+            }),
+            tap(({{camelCase name}}s) => {
+                this.store.dispatch({{camelCase name}}NgrxHelper.load({ items: {{camelCase name}}s }));
+            }),
+        );
+    }
+
+    get{{pascalCase name}}({{camelCase name}}Id: number) {
+        return this.http.getSecure(`{{dashCase name}}/${ {{camelCase name}}Id}`).pipe(
+            map((response: object) => {
+                return plainToClass({{pascalCase name}}, response);
+            }),
+            tap(({{camelCase name}}) => {
+                this.store.dispatch({{camelCase name}}NgrxHelper.upsertOne({ item: {{camelCase name}} }));
+            }),
+        );
+    }
+
+    create{{pascalCase name}}(dto: Create{{pascalCase name}}Dto): Observable<{{pascalCase name}}> {
+        return this.http.postSecure('{{camelCase name}}', dto).pipe(
+            map((response: object) => {
+                return plainToClass({{pascalCase name}}, response);
+            }),
+            tap((result) => {
+                this.store.dispatch({{camelCase name}}NgrxHelper.addOne({ item: result }));
+            }),
+        );
+    }
+
+    update{{pascalCase name}}(id: number, dto: Update{{pascalCase name}}Dto): Observable<{{pascalCase name}}> {
+        return this.http.postSecure(`{{dashCase name}}/${id}`, dto).pipe(
+            map((response: object) => {
+                return plainToClass({{pascalCase name}}, response);
+            }),
+            tap((result) => {
+                this.store.dispatch({{camelCase name}}NgrxHelper.updateOne({ item: { id: result.{{camelCase name}}Id, changes: result } }));
+            }),
+        );
+    }
+
+    delete{{pascalCase name}}({{camelCase name}}Id: number) {
+        return this.http.deleteSecure(`{{dashCase name}}/${ {{camelCase name}}Id}`).pipe(
+            map((response: object) => {
+                return plainToClass({{pascalCase name}}, response);
+            }),
+            tap(({{camelCase name}}) => {
+                this.store.dispatch({{camelCase name}}NgrxHelper.deleteOne({ id: `${ {{camelCase name}}.{{camelCase name}}Id}` }));
+            }),
+        );
+    }
+}

@@ -1,0 +1,18 @@
+@import 'variables';
+
+:host {
+    position: absolute;
+    bottom: 10px;
+    left: @sidebar-width + 15px;
+    width: 40px;
+    height: 40px;
+}
+
+nz-spin {
+    opacity: 0;
+    transition: opacity 100ms linear;
+
+    &.active {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,5 @@
+<div>
+    <nz-select class="standard-dropdown" [(ngModel)]="selectedIssuer" nzAllowClear [nzPlaceHolder]="'issuer-dropdown.placeholder' | i18next" nzShowSearch="true" [disabled]="disable">
+        <nz-option *ngFor="let issuer of issuers" [nzValue]="issuer.code" [nzLabel]="issuer.name"></nz-option>
+    </nz-select>
+</div>

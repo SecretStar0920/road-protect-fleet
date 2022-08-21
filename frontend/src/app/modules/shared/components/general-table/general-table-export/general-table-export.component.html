@@ -1,0 +1,15 @@
+<form nz-form [formGroup]="exportForm">
+    <nz-form-item>
+        <nz-form-control>
+            <nz-radio-group formControlName="dataSelection">
+                <label nz-radio-button nzValue="0">{{ 'general-table-export.all' | i18next }}</label>
+                <label nz-radio-button nzValue="1" nzDisabled>{{ 'general-table-export.current_filters' | i18next }}</label>
+            </nz-radio-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button (click)="onExport()">{{ 'general-table-export.export' | i18next }}</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

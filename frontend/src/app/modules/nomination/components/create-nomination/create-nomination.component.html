@@ -1,0 +1,43 @@
+<form nz-form [formGroup]="createNominationForm" nzLayout="vertical" (ngSubmit)="onCreateNomination()">
+    <nz-row nzGutter="24">
+        <nz-col>
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="account">{{ 'create-nomination.account' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="account" id="account" />
+                    <nz-form-explain *ngIf="createNominationForm.get('account')?.dirty && createNominationForm.get('account')?.errors">
+                        <rp-general-form-error-display [form]="createNominationForm" [key]="'account'"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col>
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="infringement">{{ 'create-nomination.infringement' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="infringement" id="infringement" />
+                    <nz-form-explain
+                        *ngIf="createNominationForm.get('infringement')?.dirty && createNominationForm.get('infringement')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="createNominationForm" [key]="'infringement'"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-control>
+                    <button
+                        nz-button
+                        nzType="primary"
+                        [disabled]="!createNominationForm.valid"
+                        [nzLoading]="createNominationState.isLoading()"
+                    >
+                        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                        {{ 'create-nomination.create' | i18next }}
+                    </button>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+</form>

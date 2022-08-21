@@ -1,0 +1,72 @@
+<form nz-form [formGroup]="query.form" nzLayout="horizontal">
+    <nz-select
+        formControlName="key"
+        [nzPlaceHolder]="'general-query-builder.filter_by_placeholder' | i18next"
+        nzShowSearch
+        style="width: 150px"
+    >
+        <nz-option *ngFor="let key of visibleFilters" [nzValue]="key" nzLabel="{{ key.display || key.key | sentenceCase }}"></nz-option>
+    </nz-select>
+    <ng-container [ngSwitch]="query.form.value.key?.type">
+        <!--                    Date inputs-->
+        <ng-container *ngSwitchCase="filterTypes.Date">
+            <ng-container [ngSwitch]="query.form.value.operator">
+                <ng-container *ngSwitchDefault>
+                    <span nz-text nzType="secondary">Date only supported in advanced filter</span>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="filterTypes.Dropdown">
+            <ng-container [ngSwitch]="query.form.value.operator">
+                <ng-container *ngSwitchDefault>
+                    <nz-select formControlName="value" style="width: 250px" [nzPlaceHolder]="'general-table.search' | i18next">
+                        <nz-option
+                            *ngFor="let option of query.form.value.key.options"
+                            [nzValue]="option"
+                            [nzLabel]="'filter-label.' + option | i18next"
+                        ></nz-option>
+                    </nz-select>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+
+        <!--                    Assuming String input-->
+        <ng-container *ngSwitchDefault>
+            <ng-container [ngSwitch]="query.form.value.operator">
+                <ng-container *ngSwitchDefault>
+                    <input
+                        type="text"
+                        nz-input
+                        formControlName="value"
+                        [placeholder]="'general-table.search' | i18next"
+                        style="width: 250px"
+                    />
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <!--    <input nz-input formControlName="value"  [placeholder]="'general-table.search' | i18next" style="width: 250px" />-->
+    <button
+        [disabled]="!query.form.valid || query.form.value.key?.type === 'date'"
+        nz-button
+        nzType="primary"
+        nzSize="default"
+        (click)="onAddFilter()"
+        style="margin-left: 8px"
+        class="normal"
+    >
+        <i nz-icon nzType="search" nzTheme="outline"></i>
+    </button>
+    <button
+        [disabled]="!query.form.valid"
+        nz-button
+        nzType="primary"
+        nzSize="default"
+        (click)="query.onClear({ clearForm: true })"
+        style="margin-left: 8px"
+        class="normal"
+    >
+        <i nz-icon nzType="close" nzTheme="outline"></i>
+    </button>
+</form>

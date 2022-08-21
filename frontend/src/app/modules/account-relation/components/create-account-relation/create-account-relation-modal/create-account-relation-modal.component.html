@@ -1,0 +1,8 @@
+<rp-create-account-relation (complete)="onComplete($event)"></rp-create-account-relation>
+<nz-alert
+    nzType="error"
+    *ngIf="createAccountRelationState?.hasFailed()"
+    [nzMessage]="createAccountRelationState?.failedResult().message"
+    [nzDescription]="createAccountRelationState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

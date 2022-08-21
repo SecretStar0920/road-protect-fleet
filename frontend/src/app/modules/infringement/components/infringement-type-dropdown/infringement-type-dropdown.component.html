@@ -1,0 +1,3 @@
+<nz-select [(ngModel)]="selectedType" nzAllowClear nzPlaceHolder="Select an infringement type" [disabled]="isDisabled">
+    <nz-option *ngFor="let type of infringementTypes" [nzValue]="type" [nzLabel]="type"></nz-option>
+</nz-select>

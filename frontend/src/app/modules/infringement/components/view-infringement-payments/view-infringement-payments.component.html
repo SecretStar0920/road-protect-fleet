@@ -1,0 +1,27 @@
+<nz-row nzGutter="24" nzAlign="middle">
+    <nz-col nzSpan="24">
+        <table class="rp-infringement-payments-data-table">
+            <thead>
+                <tr>
+                    <th>{{ 'view-infringement-payment.payment_type' | i18next }}</th>
+                    <th>{{ 'view-infringement-payment.payment_date' | i18next }}</th>
+                    <th>{{ 'view-infringement-payment.amount_paid' | i18next }}</th>
+                    <th>{{ 'view-infringement-payment.reference_number' | i18next }}</th>
+                    <th>{{ 'view-infringement-payment.external_reference' | i18next }}</th>
+                    <th>{{ 'view-infringement-payment.payment_provider' | i18next }}</th>
+                    <th>{{ 'view-infringement-payment.payment_status' | i18next }}</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let payment of infringement.payments">
+                <td>{{ payment.type | i18next }}</td>
+                <td><rp-general-time-display *ngIf="payment.paymentDate" [time]="payment.paymentDate"></rp-general-time-display></td>
+                <td><rp-general-currency-display [value]="payment.amountPaid"></rp-general-currency-display></td>
+                <td>{{ asManualPayment(payment).referenceNumber }}</td>
+                <td>{{ payment.externalReference | i18next }}</td>
+                <td>{{ payment.provider | i18next }}</td>
+                <td>{{ asMunicipalPayment(payment).status }}</td>
+            </tr>
+        </table>
+        <!--        </ng-container>-->
+    </nz-col>
+</nz-row>

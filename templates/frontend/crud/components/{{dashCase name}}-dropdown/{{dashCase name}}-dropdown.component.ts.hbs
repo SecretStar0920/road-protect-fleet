@@ -1,0 +1,81 @@
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { {{camelCase name}}NgrxHelper, {{pascalCase name}}State } from '@modules/{{dashCase name}}/ngrx/{{dashCase name}}.reducer';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { mergeMap } from 'rxjs/operators';
+import { {{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/{{dashCase name}}.service';
+import { of } from 'rxjs';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { isEmpty } from 'lodash';
+
+@Component({
+    selector: 'rp-{{dashCase name}}-dropdown',
+    templateUrl: './{{dashCase name}}-dropdown.component.html',
+    styleUrls: ['./{{dashCase name}}-dropdown.component.less'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => {{pascalCase name}}DropdownComponent),
+            multi: true,
+        },
+    ],
+})
+export class {{pascalCase name}}DropdownComponent implements OnInit, ControlValueAccessor {
+    // Both onChange and onTouched are functions
+    onChange: any;
+    onTouched: any;
+
+    @Input()
+    {{camelCase name}}s: {{pascalCase name}}[] = [];
+    private _selected{{pascalCase name}}: number;
+    get selected{{pascalCase name}}(): number {
+        return this._selected{{pascalCase name}};
+    }
+
+    @Input()
+    set selected{{pascalCase name}}(value: number) {
+        this._selected{{pascalCase name}} = value;
+        if (this.onChange) {
+            this.onChange(value);
+            this.onTouched();
+        }
+    }
+
+    constructor(private store: Store<{{pascalCase name}}State>, private {{camelCase name}}Service: {{pascalCase name}}Service) {}
+
+    ngOnInit() {
+        this.get{{pascalCase name}}s();
+    }
+
+    get{{pascalCase name}}s() {
+        this.store
+            .pipe(
+                select({{camelCase name}}NgrxHelper.entitySelectors.selectAll),
+                mergeMap(({{camelCase name}}s) => {
+                    if (isEmpty({{camelCase name}}s)) {
+                        return this.{{camelCase name}}Service.getAll{{pascalCase name}}s();
+                    }
+                    return of({{camelCase name}}s);
+                }),
+            )
+            .subscribe(({{camelCase name}}s) => {
+                this.{{camelCase name}}s = {{camelCase name}}s;
+            });
+    }
+
+    registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
+    }
+
+    setDisabledState(isDisabled: boolean): void {}
+
+    writeValue(value: number): void {
+        if (value) {
+            this.selected{{pascalCase name}} = value;
+        }
+    }
+}

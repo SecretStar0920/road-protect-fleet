@@ -1,0 +1,106 @@
+import { AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { {{pascalCase name}}Type } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { select, Store } from '@ngrx/store';
+import { {{camelCase name}}NgrxHelper, {{pascalCase name}}State } from '@modules/{{dashCase name}}/ngrx/{{dashCase name}}.reducer';
+import { Subject } from 'rxjs';
+import { Create{{pascalCase name}}ModalComponent } from '@modules/{{dashCase name}}/components/create-{{dashCase name}}/create-{{dashCase name}}-modal/create-{{dashCase name}}-modal.component';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { NGXLogger } from 'ngx-logger';
+import { Router } from '@angular/router';
+import { environment } from '@environment/environment';
+import { AdvancedFilterTableService } from '@modules/shared/components/advanced-table/advanced-filter-table/service/advanced-filter-table.service';
+import { {{pascalCase name}}QueryService } from '@modules/{{dashCase name}}/services/{{dashCase name}}-query.service';
+import { FilterKeyType, FilterKeyVisibility } from '@modules/shared/models/filter-key.model';
+import i18next from 'i18next';
+import { takeUntil } from 'rxjs/operators';
+import { Account } from '@modules/shared/models/entities/account.model';
+import { getSelectedAccount } from '@modules/account/ngrx/account.selectors';
+import { AdvancedQueryFilterService } from '@modules/shared/services/query-builder/advanced-query-filter.service';
+import { ApiQueryService } from '@modules/shared/services/query-service/ApiQueryService';
+
+@Component({
+    selector: 'rp-view-{{dashCase name}}s-advanced',
+    templateUrl: './view-{{dashCase name}}s-advanced.component.html',
+    providers: [AdvancedFilterTableService, AdvancedQueryFilterService, { provide: ApiQueryService, useClass: {{pascalCase name}}QueryService }],
+    styleUrls: ['./view-{{dashCase name}}s-advanced.component.less'],
+})
+export class View{{pascalCase name}}sAdvancedComponent implements OnInit, OnDestroy, AfterViewInit {
+    @ViewChild('action', { static: true }) action: TemplateRef<any>;
+    @ViewChild('delete', { static: true }) delete: TemplateRef<any>;
+
+    create{{pascalCase name}}Modal: NzModalRef<any>;
+    currency = environment.currency;
+    private destroy$ = new Subject();
+
+    account: Account;
+
+    constructor(
+        protected table: AdvancedFilterTableService,
+        protected query: AdvancedQueryFilterService,
+        private store: Store<{{pascalCase name}}State>,
+        private modalService: NzModalService,
+        private logger: NGXLogger,
+        private router: Router,
+    ) {
+        this.configureTable();
+
+        this.store.pipe(select(getSelectedAccount), takeUntil(this.destroy$)).subscribe((result) => {
+            this.account = result.account;
+        });
+    }
+
+    private configureTable() {
+        // this.table.pageDataSelector = {{camelCase name}}Selectors.selectAll;
+        this.table.ngrxHelper = {{camelCase name}}NgrxHelper;
+        this.table.options.primaryColumnKey = '{{camelCase name}}Id';
+        // this.table.options.enableRowSelect = true;
+        this.table.columns = [
+//            {
+//                key: 'name',
+//                title: i18next.t('{{camelCase name}}.name'),
+//            },
+            // INSERT COLUMNS
+        ];
+
+        this.query.filterKeys = [
+            // { key: 'name', display: i18next.t('{{camelCase name}}.name'), visibility: FilterKeyVisibility.Simple },
+            // Insert filters
+        ];
+    }
+
+    ngOnInit() {
+        this.table.templateColumns = {
+            // systemStatus: this.systemStatus,
+        };
+        if (this.action) {
+            this.table.rowActionsTemplate = this.action;
+        }
+        if (this.delete) {
+        this.table.rowDeleteTemplate = this.delete;
+        }
+        this.table.selectDataFromStore();
+    }
+
+    ngAfterViewInit(): void {}
+
+    onCreate{{pascalCase name}}() {
+        this.create{{pascalCase name}}Modal = this.modalService.create({
+            nzTitle: i18next.t('view-{{dashCase name}}-advanced.create_{{camelCase name}}'),
+            nzContent: Create{{pascalCase name}}ModalComponent,
+            nzFooter: null,
+            nzComponentParams: {},
+        });
+    }
+
+    onView{{pascalCase name}}({{camelCase name}}Id: number) {
+        if (!{{camelCase name}}Id) {
+            this.logger.warn('Tried to view an {{pascalCase name}} without an {{camelCase name}} id');
+            return;
+        }
+        this.router.navigate(['/home', '{{dashCase name}}', 'view', {{camelCase name}}Id]);
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+    }
+}

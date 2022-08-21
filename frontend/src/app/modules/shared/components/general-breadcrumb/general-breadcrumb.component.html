@@ -1,0 +1,5 @@
+<nz-breadcrumb>
+    <nz-breadcrumb-item *ngFor="let route of routes">
+        <a [routerLink]="route.url">{{ route.label }}</a>
+    </nz-breadcrumb-item>
+</nz-breadcrumb>

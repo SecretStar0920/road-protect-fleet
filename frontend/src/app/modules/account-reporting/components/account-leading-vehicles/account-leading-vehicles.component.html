@@ -1,0 +1,43 @@
+<div id="leading-vehicles">
+    <h3 class="rp-primary-color"><i nz-icon nzType="car" nzTheme="outline"></i> {{ 'account-leading-vehicles.title' | i18next }}</h3>
+    <rp-general-chart-container *ngIf="leadingVehicleData.length > 0; else noData" [data]="leadingVehicleData" [title]="'leading-vehicles'">
+        <ngx-charts-bar-horizontal
+            [results]="leadingVehicleData"
+            [scheme]="colors"
+            [showDataLabel]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [yAxisLabel]="'account-leading-vehicles.chart-y' | i18next"
+            [xAxisLabel]="'account-leading-vehicles.chart-x' | i18next"
+            [dataLabelFormatting]="formatDataLabel"
+            [xAxisTickFormatting]="formatXAxis"
+            (select)="onSelect($event)"
+        >
+            <ng-template #tooltipTemplate let-model="model">
+                <div style="padding: 15px">
+                    <p>
+                        <rp-vehicle-tag [vehicle]="model.extra?.vehicle"></rp-vehicle-tag>
+                    </p>
+                    <p>{{ 'account-leading-vehicles.number_of_infringements' | i18next }}: {{ model.extra?.count }}</p>
+                    <p>{{ 'account-leading-vehicles.total_infringements_value' | i18next }}: {{ currency }} {{ model.value }}</p>
+                </div>
+            </ng-template>
+        </ngx-charts-bar-horizontal>
+    </rp-general-chart-container>
+</div>
+
+<ng-template #noData>
+    <span nz-text nzType="secondary">{{ 'account.no_data' | i18next }}</span>
+</ng-template>
+
+<nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="drawerVisible && selectedData"
+    nzPlacement="bottom"
+    nzTitle="{{ selectedData.label }}"
+    (nzOnClose)="onCloseDrawer()"
+>
+    <rp-vehicle-tag *ngFor="let vehicle of selectedData.extra?.vehicles" [vehicle]="vehicle"></rp-vehicle-tag>
+</nz-drawer>

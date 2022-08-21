@@ -1,0 +1,60 @@
+import { Injectable } from '@angular/core';
+import { HttpService } from '@modules/shared/services/http/http.service';
+import { map, switchMap, take, tap } from 'rxjs/operators';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { {{camelCase name}}NgrxHelper, {{pascalCase name}}State } from '@modules/{{dashCase name}}/ngrx/{{dashCase name}}.reducer';
+import { plainToClass } from 'class-transformer';
+import { isEmpty } from 'lodash';
+import { PaginationResponseInterface } from '@modules/shared/models/pagination-response.interface';
+import { HttpParams } from '@angular/common/http';
+import { ApiQueryService } from '@modules/shared/services/query-service/ApiQueryService';
+import { AdvancedTableColumn } from '@modules/shared/components/advanced-table/advanced-filter-table/service/advanced-filter-table.service';
+
+@Injectable({
+    providedIn: 'root',
+})
+export class {{pascalCase name}}QueryService extends ApiQueryService<{{pascalCase name}}> {
+    constructor(http: HttpService, private store: Store<{{pascalCase name}}State>) {
+        super(http);
+    }
+
+    query(query: string): Observable<PaginationResponseInterface<{{pascalCase name}}>> {
+        return this.store.pipe(
+            select({{camelCase name}}NgrxHelper.selectQueryParams()),
+            take(1),
+            switchMap((params) => {
+                const httpParams = new HttpParams({
+                    fromObject: params,
+                });
+                query += `&${httpParams.toString()}`;
+                return this.http.getSecure(`query/{{dashCase name}}?${query}`).pipe(
+                    map((response: PaginationResponseInterface<any>) => {
+                        if (!isEmpty(response.data)) {
+                            response.data = response.data.map((item) => plainToClass({{pascalCase name}}, item));
+                        }
+                        return response;
+                    }),
+                    tap(({{camelCase name}}Paginated) => {
+                        this.store.dispatch({{camelCase name}}NgrxHelper.loadPage({ items: {{camelCase name}}Paginated.data }));
+                    }),
+                );
+            }),
+        );
+    }
+
+    queryAsSpreadsheet(query: string, columns: AdvancedTableColumn[]): Observable<{ file: Blob; filename: string }> {
+        return this.store.pipe(
+            select({{camelCase name}}NgrxHelper.selectQueryParams()),
+            take(1),
+            switchMap((params) => {
+                const httpParams = new HttpParams({
+                    fromObject: params,
+                });
+                query += `&${httpParams.toString()}`;
+                return this.http.downloadFileWithBody(`query/{{dashCase name}}/spreadsheet?${query}`, columns);
+            }),
+        );
+    }
+}

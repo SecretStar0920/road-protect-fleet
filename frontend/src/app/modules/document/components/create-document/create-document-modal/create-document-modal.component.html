@@ -1,0 +1,8 @@
+<rp-create-document (complete)="onComplete($event)"></rp-create-document>
+<nz-alert
+    nzType="error"
+    *ngIf="createDocumentState?.hasFailed()"
+    [nzMessage]="createDocumentState?.failedResult().message"
+    [nzDescription]="createDocumentState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

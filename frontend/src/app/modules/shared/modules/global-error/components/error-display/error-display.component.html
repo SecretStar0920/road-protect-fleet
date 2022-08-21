@@ -1,0 +1,20 @@
+<ng-template #errorDisplayContent let-content="data">
+    <nz-row nzGutter="24">
+        <!--        <nz-col nzSpan="4" style="font-size: 20pt">-->
+        <!--        </nz-col>-->
+        <nz-col nzSpan="24">
+            <h3>
+                <i
+                    nz-icon
+                    nzType="close-circle"
+                    nzTheme="twotone"
+                    [nzTwotoneColor]="content.severity === 'error' ? '#f5222d' : '#f5b050'"
+                ></i>
+                {{ content.title }}
+            </h3>
+            <p *ngFor="let message of content.messages">
+                {{ message }}
+            </p>
+        </nz-col>
+    </nz-row>
+</ng-template>

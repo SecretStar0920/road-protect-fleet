@@ -1,0 +1,28 @@
+<div id="vehicle-counts">
+    <h3 class="rp-primary-color"><i nz-icon nzType="car" nzTheme="outline"></i> {{ 'account-vehicle-counts.title' | i18next }}</h3>
+    <rp-general-chart-container
+        *ngIf="vehicleCountData.length >= 0; else noData"
+        [data]="vehicleCountData"
+        [title]="'vehicle-count-summary'"
+    >
+        <ngx-charts-number-card
+            [results]="vehicleCountData"
+            cardColor="#FAFAFA"
+            [scheme]="colors"
+            (select)="onSelect($event)"
+        ></ngx-charts-number-card>
+    </rp-general-chart-container>
+    <ng-template #noData>
+        <span nz-text nzType="secondary">{{ 'account.no_data' | i18next }}</span>
+    </ng-template>
+</div>
+
+<nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="drawerVisible && selectedData"
+    nzPlacement="bottom"
+    nzTitle="{{ selectedData.label }}"
+    (nzOnClose)="onCloseDrawer()"
+>
+    <rp-vehicle-tag *ngFor="let vehicle of selectedData.extra?.vehicles" [vehicle]="vehicle"></rp-vehicle-tag>
+</nz-drawer>

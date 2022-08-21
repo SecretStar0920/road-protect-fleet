@@ -1,0 +1,33 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+
+<!--TODO TEMPLATES-->
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewIssuer(data.issuerId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    <button nz-button nzType="primary" nzSize="small" (click)="onEditIssuer(data)" class="rp-space">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+    </button>
+</ng-template>
+
+<ng-template let-data #delete>
+    <rp-delete-issuer [issuerId]="data.issuerId"></rp-delete-issuer>
+</ng-template>
+
+<nz-row nzType="flex" nzGutter="24" nzJustify="start">
+    <nz-col>
+        <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateIssuer()">
+            <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'action.create' | i18next }}
+        </button>
+        <button nz-button [nzType]="'default'" [routerLink]="['/home', 'issuers', 'upload']" class="rp-space">
+            <i nz-icon nzType="upload" nzTheme="outline"></i>
+            {{ 'action.import' | i18next }}
+        </button>
+    </nz-col>
+    <nz-col>
+        <button nz-button [nzType]="'primary'" class="rp-space" (click)="batchRequestInformation()" [disabled]="!canSendRequest()">
+            <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'issuer.batch_request_information' | i18next }}
+        </button>
+    </nz-col>
+</nz-row>

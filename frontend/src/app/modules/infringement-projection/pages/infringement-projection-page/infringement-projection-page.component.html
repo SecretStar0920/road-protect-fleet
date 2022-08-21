@@ -1,0 +1,81 @@
+<rp-general-page [icon]="'bar-chart'" [title]="'infringement-projection.title' | i18next" [enableBreadcrumb]="false">
+    <div class="rp-round-card rp-page-section">
+        <rp-general-year-range-slider (updatedDateRange)="onChangeYears($event)"></rp-general-year-range-slider>
+        <nz-divider></nz-divider>
+        <rp-infringement-projection-table
+            (viewInfringements)="onViewInfringements($event)"
+            (viewVehicles)="onViewVehicles($event)"
+        ></rp-infringement-projection-table>
+        <ng-container *ngIf="viewInfringements">
+            <nz-divider></nz-divider>
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="22">
+                    <h2>{{ 'infringement-projection.view_infringement_data' | i18next }}</h2>
+                </nz-col>
+                <nz-col nzSpan="2">
+                    <button nz-button nzType="default" (click)="toggleInfringementsCollapsed()" class="rp-space">
+                        <i nz-icon [nzType]="'up'"></i>{{ 'infringement-projection.hide' | i18next }}
+                    </button>
+                </nz-col>
+            </nz-row>
+            <nz-row nzGutter="24">
+                <table class="rp-basic-data-table">
+                    <tbody>
+                        <tr>
+                            <td>{{ 'infringement-projection.start_date' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display
+                                    [time]="infringementQueryParams.startDate"
+                                    [short]="true"
+                                ></rp-general-time-display>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'infringement-projection.end_date' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display [time]="infringementQueryParams.endDate" [short]="true"></rp-general-time-display>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </nz-row>
+            <rp-view-infringements-advanced [filterVisibility]="filterKeyVisibility.None"></rp-view-infringements-advanced>
+        </ng-container>
+        <ng-container *ngIf="viewVehicles">
+            <nz-divider></nz-divider>
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="22">
+                    <h2>{{ 'infringement-projection.view_vehicle_data' | i18next }}</h2>
+                </nz-col>
+                <nz-col nzSpan="2">
+                    <button nz-button nzType="default" (click)="toggleVehicleCollapsed()" class="rp-space">
+                        <i nz-icon [nzType]="'up'"></i>{{ 'infringement-projection.hide' | i18next }}
+                    </button>
+                </nz-col>
+            </nz-row>
+            <nz-row nzGutter="24">
+                <table class="rp-basic-data-table">
+                    <tbody>
+                        <tr>
+                            <td>{{ 'infringement-projection.start_date' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display [time]="vehicleQueryParams.startDate" [short]="true"></rp-general-time-display>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'infringement-projection.end_date' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display [time]="vehicleQueryParams.endDate" [short]="true"></rp-general-time-display>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'infringement-projection.vehicle_via' | i18next }}</td>
+                            <td>{{ 'infringement-projection.vehicle-via.' + vehicleQueryParams.via | i18next }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </nz-row>
+            <rp-view-vehicles-advanced [filterVisibility]="filterKeyVisibility.None"></rp-view-vehicles-advanced>
+        </ng-container>
+    </div>
+</rp-general-page>

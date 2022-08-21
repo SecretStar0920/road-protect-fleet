@@ -1,0 +1,138 @@
+<form nz-form [formGroup]="updateIssuerForm" nzLayout="vertical" (ngSubmit)="onUpdateIssuer()">
+    <nz-form-item>
+        <nz-form-label nzFor="name">{{ 'issuer.name' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="name" id="name" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('name')?.dirty && updateIssuerForm.get('name')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="name"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="address">{{ 'issuer.address' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="address" id="address" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('address')?.dirty && updateIssuerForm.get('address')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="address"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="email">{{ 'issuer.email' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="email" id="email" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('email')?.dirty && updateIssuerForm.get('email')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="email"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="fax">{{ 'issuer.fax' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="fax" id="fax" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('fax')?.dirty && updateIssuerForm.get('fax')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="fax"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="telephone">{{ 'issuer.telephone' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="telephone" id="telephone" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('telephone')?.dirty && updateIssuerForm.get('telephone')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="telephone"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="contactPerson">{{ 'issuer.contact_person' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="contactPerson" id="contactPerson" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('contactPerson')?.dirty && updateIssuerForm.get('contactPerson')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="contactPerson"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="provider">{{ 'issuer.provider' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <rp-issuer-providers-dropdown formControlName="provider" id="provider"></rp-issuer-providers-dropdown>
+            <nz-form-explain *ngIf="updateIssuerForm.get('provider')?.dirty && updateIssuerForm.get('provider')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="provider"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="provider">{{ 'issuer.code' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="code" id="code" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('code')?.dirty && updateIssuerForm.get('code')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="code"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="provider">{{ 'issuer.externalCode' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="externalCode" id="externalCode" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('externalCode')?.dirty && updateIssuerForm.get('externalCode')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="externalCode"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="redirectionEmail">{{ 'issuer.redirectionEmail' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="redirectionEmail" id="redirectionEmail" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('redirectionEmail')?.dirty && updateIssuerForm.get('redirectionEmail')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="redirectionEmail"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="externalPaymentLink">{{ 'issuer.externalPaymentLink' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="externalPaymentLink" id="externalPaymentLink" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('externalPaymentLink')?.dirty && updateIssuerForm.get('externalPaymentLink')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="externalPaymentLink"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="latestInfoDate">{{ 'issuer.latest_info_date' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <nz-date-picker [nzShowTime]="true" formControlName="latestInfoDate" id="latestInfoDate" disabled></nz-date-picker>
+            <nz-form-explain *ngIf="updateIssuerForm.get('latestInfoDate')?.dirty && updateIssuerForm.get('latestInfoDate')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="latestInfoDate"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *rpIsUserType="[ userTypes.Developer]">
+        <nz-form-label nzFor="integrationDetails">{{ 'issuer.integrationDetails' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="integrationDetails" id="integrationDetails" />
+            <nz-form-explain *ngIf="updateIssuerForm.get('integrationDetails')?.dirty && updateIssuerForm.get('integrationDetails')?.errors">
+                <rp-general-form-error-display [form]="updateIssuerForm" key="integrationDetails"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary" [disabled]="!updateIssuerForm.valid" [nzLoading]="updateIssuerState.isLoading()">
+                <i nz-icon nzType="save" nzTheme="outline"></i>
+                {{ 'issuer.save' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="updateIssuerForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>
+<nz-alert nzType="success" *ngIf="updateIssuerState?.hasSucceeded()" [nzMessage]="updateIssuerState?.successResult().message" nzShowIcon>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateIssuerState?.hasFailed()"
+    [nzMessage]="updateIssuerState?.failedResult().message"
+    [nzDescription]="updateIssuerState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

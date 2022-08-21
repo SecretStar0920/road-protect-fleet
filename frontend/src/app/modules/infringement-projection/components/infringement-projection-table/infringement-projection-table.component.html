@@ -1,0 +1,226 @@
+<nz-alert nzType="warning" *ngIf="warningMessage" nzMessage="{{ 'infringement-projection.' + warningMessage | i18next }}"></nz-alert>
+
+<div class="infringement-projection-table">
+    <nz-table nzBordered #generalTable [nzFrontPagination]="false" [nzData]="tableData" [nzNoResult]="noResult" [nzScroll]="scroll">
+        <thead>
+            <tr>
+                <ng-container *ngFor="let column of columnData">
+                    <ng-container *ngIf="!column.subColumns; else multiColumn">
+                        <th [nzColumnKey]="column.key" [rowSpan]="rowSpan" class="sticky-column">
+                            {{ column.title }}
+                        </th>
+                    </ng-container>
+                    <ng-template #multiColumn>
+                        <th [nzColumnKey]="column.key" [colSpan]="column.subColumns.length" class="multicolumn">
+                            {{ column.title }}
+                        </th>
+                    </ng-template>
+                </ng-container>
+            </tr>
+            <!-- Grouped Subheadings -->
+            <tr>
+                <ng-container *ngFor="let column of columnData">
+                    <ng-container *ngIf="column.subColumns">
+                        <ng-container *ngFor="let subColumn of column.subColumns">
+                            <th [nzColumnKey]="subColumn.key">
+                                {{ subColumn.title }}
+                            </th>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of generalTable.data">
+                <ng-container *ngFor="let column of columnData">
+                    <!-- Sub-Column -->
+                    <ng-container *ngIf="column.subColumns; else singleColumnEntry">
+                        <td *ngFor="let subColumn of column.subColumns">
+                            <ng-container *ngIf="templateColumns[subColumn.key]; else standardColumn">
+                                <!--                Template Override-->
+                                <ng-container
+                                    *ngTemplateOutlet="
+                                        templateColumns[subColumn.key];
+                                        context: { $implicit: { data: data, column: subColumn.key } }
+                                    "
+                                >
+                                </ng-container>
+                            </ng-container>
+                            <!--                Basic Data-->
+                            <ng-template #standardColumn>
+                                {{ getCellValue(subColumn.key, data) || '' }}
+                            </ng-template>
+                        </td>
+                    </ng-container>
+                    <!-- Single Column -->
+                    <ng-template #singleColumnEntry>
+                        <!--                Template Override-->
+                        <td *ngIf="templateColumns[column.key]; else standardColumn" class="sticky-column">
+                            <ng-container
+                                *ngTemplateOutlet="templateColumns[column.key]; context: { $implicit: { data: data, column: column.key } }"
+                            >
+                            </ng-container>
+                        </td>
+                        <!--                Basic Data-->
+                        <ng-template #standardColumn>
+                            {{ getCellValue(column.key, data) || '' }}
+                        </ng-template>
+                    </ng-template>
+                </ng-container>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+<ng-template #noResult>
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-template>
+
+<ng-template #monthColumnTemplate let-rawData>
+    {{ rawData.data?.offenceMonth }}
+</ng-template>
+
+<ng-template #infringementCountTemplate let-rawData>
+    <ng-container *ngIf="!isPredictedData(rawData); else predictedData">
+        <a
+            class="non-linkable"
+            nz-popover
+            nzPopoverTrigger="hover"
+            (nzPopoverVisibleChange)="setSelectedCell($event, rawData)"
+            [nzPopoverContent]="viewInfringementsTemplate"
+        >
+            {{ getData(rawData, 'infringementCount') }}
+        </a>
+    </ng-container>
+    <ng-template #predictedData>
+        <i class="future-date">{{ getData(rawData, 'infringementCount') }}</i>
+    </ng-template>
+</ng-template>
+
+<ng-template #vehicleCountTemplate let-rawData>
+    <ng-container *ngIf="!isPredictedData(rawData); else predictedData">
+        <a
+            class="non-linkable"
+            nz-popover
+            nzPopoverTrigger="hover"
+            (nzPopoverVisibleChange)="setSelectedCell($event, rawData)"
+            [nzPopoverContent]="vehiclePopover"
+        >
+            {{ getData(rawData, 'vehicleCount') }} /
+            {{ getData(rawData, 'vehicleCountTotal') || '0' }}
+            <ng-container *ngIf="!vehiclesHaveNoContracts(rawData)">
+                <i class="vehicles-without-contracts"> [{{ getData(rawData, 'noContractCount') }}]</i>
+            </ng-container>
+        </a>
+    </ng-container>
+    <ng-template #predictedData>
+        <i class="future-date"> {{ getData(rawData, 'vehicleCount') }} / {{ getData(rawData, 'vehicleCountTotal') || '0' }}</i>
+    </ng-template>
+    <ng-template #vehiclePopover>
+        <b>{{ 'infringement-projection.vehicles' | i18next }}</b>
+        <br />
+        <table class="vehicle-popover">
+            <tbody>
+                <tr>
+                    <td>{{ 'infringement-projection.vehicles_with_infringements' | i18next }}</td>
+                    <td>{{ getData(rawData, 'vehicleCount') }}</td>
+                    <td>
+                        <button nz-button nzSize="small" nzType="primary" (click)="onViewVehiclesWithInfringements()" class="rp-space">
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'infringement-projection.vehicles_without_infringements' | i18next }}</td>
+                    <td>{{ getVehiclesWithoutInfringements(rawData) }}</td>
+                    <td>
+                        <button nz-button nzSize="small" nzType="primary" (click)="onViewVehiclesWithoutInfringements()" class="rp-space">
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'infringement-projection.total_vehicles' | i18next }}</td>
+                    <td>{{ getData(rawData, 'vehicleCountTotal') || '0' }}</td>
+                    <td>
+                        <button nz-button nzSize="small" nzType="primary" (click)="onViewVehiclesWithContracts()" class="rp-space">
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'infringement-projection.vehicle_with_infringements_percentage' | i18next }}</td>
+                    <td>{{ calculatePercentage(getData(rawData, 'vehicleCount'), getData(rawData, 'vehicleCountTotal')) }}</td>
+                </tr>
+                <tr class="vehicles-without-contracts">
+                    <td>{{ 'infringement-projection.vehicles_without_contracts' | i18next }}</td>
+                    <td>{{ getData(rawData, 'noContractCount') }}</td>
+                    <td>
+                        <button
+                            nz-button
+                            nzSize="small"
+                            nzType="default"
+                            (click)="onViewVehiclesNoContracts()"
+                            class="rp-space vehicles-without-contracts-button"
+                        >
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-template>
+</ng-template>
+
+<ng-template #valueTemplate let-rawData>
+    <ng-container *ngIf="!isPredictedData(rawData); else predictedData">
+        <a
+            class="non-linkable"
+            nz-popover
+            nzPopoverTrigger="hover"
+            (nzPopoverVisibleChange)="setSelectedCell($event, rawData)"
+            [nzPopoverContent]="viewInfringementsTemplate"
+        >
+            <rp-general-currency-display [value]="getData(rawData, 'value')"></rp-general-currency-display>
+        </a>
+    </ng-container>
+    <ng-template #predictedData>
+        <i class="future-date">
+            <rp-general-currency-display [value]="getData(rawData, 'value')"></rp-general-currency-display>
+        </i>
+    </ng-template>
+</ng-template>
+
+<ng-template #viewInfringementsTemplate>
+    <b>{{ 'infringement-projection.details' | i18next }}</b>
+    <br />
+    <table class="graphing-table-cell">
+        <tbody>
+            <ng-container *ngFor="let detail of selectedStatusData">
+                <tr>
+                    <td>{{ detail.status }}</td>
+                    <td><rp-general-currency-display [value]="detail.cost"></rp-general-currency-display> ({{ detail.count }})</td>
+                    <td>
+                        <button nz-button nzSize="small" nzType="primary" (click)="onViewInfringements(detail.status)" class="rp-space">
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+            <tr>
+                <td>
+                    <b> {{ 'infringement-projection.total_amount' | i18next }}</b>
+                </td>
+                <td>
+                    <b> <rp-general-currency-display [value]="getData(selectedData, 'value')"></rp-general-currency-display></b>
+                    <b> ({{ getData(selectedData, 'infringementCount') }}) </b>
+                </td>
+                <td>
+                    <button nz-button nzSize="small" nzType="primary" (click)="onViewInfringements()" class="rp-space">
+                        <i nz-icon nzType="eye" nzTheme="outline"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>

@@ -1,0 +1,43 @@
+<form nz-form [formGroup]="updateLocationForm" nzLayout="vertical" (ngSubmit)="onUpdateLocation()">
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-label nzRequired nzFor="name">Name</nz-form-label>-->
+    <!--        <nz-form-control>-->
+    <!--            <input nz-input formControlName="name" id="name">-->
+    <!--            <nz-form-explain *ngIf="updateLocationForm.get('name')?.dirty && updateLocationForm.get('name')?.errors">-->
+    <!--                {{ 'input_required' | i18next }}-->
+    <!--            </nz-form-explain>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-label nzRequired nzFor="identifier">Identifier</nz-form-label>-->
+    <!--        <nz-form-control>-->
+    <!--            <input nz-input formControlName="identifier" id="identifier">-->
+    <!--            <nz-form-explain-->
+    <!--                *ngIf="updateLocationForm.get('identifier')?.dirty && updateLocationForm.get('identifier')?.errors">-->
+    <!--                {{ 'input_required' | i18next }}-->
+    <!--            </nz-form-explain>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-control>-->
+    <!--            <button nz-button nzType="primary" [disabled]="!updateLocationForm.valid"-->
+    <!--                    [nzLoading]="updateLocationState.isLoading()"><i nz-icon nzType="save" nzTheme="outline"></i>-->
+    <!--                Save-->
+    <!--            </button>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateLocationState?.hasSucceeded()"
+    [nzMessage]="updateLocationState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateLocationState?.hasFailed()"
+    [nzMessage]="updateLocationState?.failedResult().message"
+    [nzDescription]="updateLocationState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

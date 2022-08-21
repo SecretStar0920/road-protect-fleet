@@ -1,0 +1,19 @@
+<rp-general-page [icon]="'profile'" [title]="'locations-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-locations class="rp-round-card" [action]="tableAction"></rp-view-locations>
+        <ng-template let-data #tableAction>
+            <button nz-button nzType="primary" nzSize="small" (click)="onViewLocation(data.locationId)" class="rp-space">
+                <i nz-icon nzType="eye" nzTheme="outline"></i>
+            </button>
+            <rp-delete-location [locationId]="data.locationId"></rp-delete-location>
+        </ng-template>
+    </div>
+    <div class="rp-round-card rp-page-section">
+        <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateLocation()">
+            <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'locations-page.create' | i18next }}
+        </button>
+        <button nz-button [nzType]="'default'">
+            <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'locations-page.import' | i18next }}
+        </button>
+    </div>
+</rp-general-page>

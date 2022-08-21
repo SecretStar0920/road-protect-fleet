@@ -1,0 +1,35 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <ng-container *ngIf="{{camelCase name}}">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <table class="rp-basic-data-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">\{{ {{camelCase name}}.name }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<!--                        <tr>-->
+<!--                            <td>\{{ '{{camelCase name}}.code' | i18next }}</td>-->
+<!--                            <td>\{{ {{camelCase name}}.code }}</td>-->
+<!--                        </tr>-->
+<!--                        CREATE FORM-->
+                    </tbody>
+                </table>
+            </nz-col>
+        </nz-row>
+    </ng-container>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-{{dashCase name}} [{{camelCase name}}]="{{camelCase name}}" (complete)="onUpdateComplete($event)"></rp-update-{{dashCase name}}>
+</ng-template>
+
+<div nz-row  nzAlign="middle" nzJustify="space-between" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+    <nz-divider></nz-divider>
+
+    <button nz-button [nzType]="!isUpdating ? 'primary' : 'default'" nz-col class="rp-space" (click)="onUpdate()">
+        \{{ isUpdating ? ('{{camelCase name}}.cancel' | i18next) : ('{{camelCase name}}.edit' | i18next) }}
+    </button>
+    <rp-delete-{{dashCase name}} [{{camelCase name}}Id]="{{camelCase name}}Id" (delete)="onDelete($event)" nz-col></rp-delete-{{dashCase name}}>
+</div>

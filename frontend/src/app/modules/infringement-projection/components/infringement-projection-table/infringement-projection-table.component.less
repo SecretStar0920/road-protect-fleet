@@ -1,0 +1,63 @@
+@import 'less/variables';
+
+.sticky-column {
+    width: 150px;
+    position: sticky;
+    border-right: 1px solid lightgrey !important;
+    border-left: 1px solid lightgrey;
+    z-index: 1000;
+    left: 0;
+    right: 0;
+}
+.vehicles-without-contracts {
+    font-style: italic;
+    color: @error-color;
+}
+
+.vehicles-without-contracts-button {
+    color: @error-color;
+    border-color: @error-color;
+}
+
+.infringement-projection-table {
+    margin-top: 24px;
+}
+
+::ng-deep {
+    .ant-table-tbody > tr > td {
+        border-bottom: 1px solid hsv(0, 0, 95%);
+        background: white;
+        white-space: nowrap;
+    }
+
+    .ant-table-thead > tr > th {
+        border-width: 1px;
+        white-space: nowrap;
+    }
+}
+
+.multicolumn {
+    width: 370px;
+}
+
+.future-date {
+    color: darkgrey;
+}
+
+.vehicle-popover td {
+    overflow: hidden;
+    height: 4px;
+    white-space: nowrap;
+    padding: 5px 10px;
+}
+
+.non-linkable {
+    color: @color3;
+}
+
+.graphing-table-cell td {
+    overflow: hidden;
+    height: 4px;
+    white-space: nowrap;
+    padding: 5px 10px;
+}

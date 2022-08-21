@@ -1,0 +1,2915 @@
+{
+    "account": {
+        "Hybrid": "Hybrid",
+        "Owner": "Owner",
+        "User": "User",
+        "account_details": "Account Details",
+        "account_metabase_reporting": "Account Metabase Reporting",
+        "account_reporting": "Account Reporting",
+        "active": "Active",
+        "address_line_one": "Address Line One",
+        "address_line_one_number": "Street Number",
+        "address_line_one_street": "Street Name",
+        "address_line_two": "Address Line Two",
+        "address_line_two_number": "Street Number (Secondary)",
+        "address_line_two_street": "Street Name (Secondary)",
+        "atg_token": "ATG Token",
+        "can_send_information_request": "Can Send Information Request",
+        "cancel": "Cancel",
+        "city": "City",
+        "confirm": "Confirm",
+        "contact_details": "Contact Details",
+        "contact_fax": "Primary Contact (fax)",
+        "contact_name": "Primary Contact (name)",
+        "contact_telephone": "Primary Contact (telephone)",
+        "count": "Count",
+        "country": "Country",
+        "create": "Create",
+        "created": "Created",
+        "credit_card": "Credit Card",
+        "details": "Details",
+        "document": "Document",
+        "edit": "Edit",
+        "fleet_manager_details": "Fleet Manager Details",
+        "id": "Identification / BRN",
+        "location": "Location",
+        "location_postal": "Postal Location",
+        "location_requirement": "* Either a Physical Location or a Postal Address is required (or both)",
+        "managed": "Managed",
+        "name": "Name",
+        "no_data": "No data",
+        "pa": "PA",
+        "payment_method": "Payment Method",
+        "post_office_box": "PO Box / Street",
+        "postal_code": "Postal Code",
+        "postal_location": "Postal Address",
+        "power_of_attorny": "Power of Attorney",
+        "power_of_attorny_add": "Upload Power of Attorney",
+        "power_of_attorny_missing": "Power of Attorney missing. We cannot collect data on your behalf without it.",
+        "primary_contact": "Primary Contact (email)",
+        "primary_role": "Primary Role",
+        "request_information_details": "Request Information Details",
+        "role": "Role",
+        "rp_token": "Road Protect Token",
+        "send_information_request": "Send Information Request",
+        "sender_name": "Sender Name",
+        "sender_role": "Sender Role",
+        "status": "Status",
+        "type": "Type",
+        "update": "Update",
+        "verified": "Verified"
+    },
+    "account-dropdown": {
+        "account_select_create": "Can't find the account you're looking for? Create it.",
+        "create_account": "Create an account",
+        "select": "Select an account"
+    },
+    "account-infringement-amounts": {
+        "message": "These are total amounts for infringements which have been nominated to this account. The total on vehicles you manage might be different",
+        "title": "Infringement Amounts"
+    },
+    "account-leading-vehicles": {
+        "chart-x": "Total Infringement Cost",
+        "chart-y": "Vehicle Registration",
+        "number_of_infringements": "Number of infringements",
+        "title": "Top 10 Vehicles",
+        "total_infringements_value": "Total infringement value"
+    },
+    "account-relation": {
+        "account": "With Account",
+        "custom_fields": "Custom Fields",
+        "filter_forward_identifier": "Identifier",
+        "filter_forward_name": "Name",
+        "filter_reverse_identifier": "Identifier",
+        "filter_reverse_name": "Name",
+        "forward": "With Account",
+        "reverse": "Account",
+        "summary": "Summary",
+        "view_title": "Relation"
+    },
+    "account-relation-document": {
+        "document": "Document",
+        "type": "Type"
+    },
+    "account-relation-documents": {
+        "create_title": "Add document",
+        "title": "Documents"
+    },
+    "account-relations": {
+        "generate": "Generate",
+        "view_page": "View Relation"
+    },
+    "account-reports-page": {
+        "title": "Reports"
+    },
+    "account-role-tag": {
+        "hybrid": "May be managing owned or leased vehicles",
+        "owner": "Primarily the owner or lessor of vehicles",
+        "user": "Primarily renting/leasing vehicles"
+    },
+    "account-user": {
+        "cancel": "Cancel",
+        "create": "Create",
+        "edit": "Edit",
+        "email": "Email",
+        "name": "Name",
+        "role": "Role",
+        "roles": "Roles",
+        "save": "Save",
+        "surname": "Surname"
+    },
+    "account-user-page": {
+        "title": "Account Users"
+    },
+    "account-user-role": {
+        "Account Relation Manager": "Account Relation Manager",
+        "Administrator": "Administrator",
+        "Finance Manager": "Finance Manager",
+        "Fleet Manager": "Fleet Manager",
+        "Manager": "Manager"
+    },
+    "account-vehicle-counts": {
+        "title": "Vehicle Counts"
+    },
+    "accounts-page": {
+        "title": "Accounts"
+    },
+    "acknowledge-nomination": {
+        "appeal": "Appeal",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "payment": "Payment",
+        "redirection": "Redirection",
+        "submit": "Submit",
+        "text": "Select which actions are valid for this nomination"
+    },
+    "action": {
+        "add": "Add",
+        "close": "Close",
+        "create": "Create",
+        "import": "Import",
+        "remove": "Remove",
+        "save": "Save"
+    },
+    "actions": {
+        "add": "Add",
+        "create": "Create",
+        "download": "Download",
+        "update": "Update"
+    },
+    "add-contract-document": {
+        "label": "Ownership Document",
+        "ocr-error": {
+            "contract_end_date_not_match": "End dates did not match",
+            "contract_not_found": "Contract not found",
+            "contract_owner_identifier_not_match": "Owner identifiers did not match",
+            "contract_start_date_not_match": "Start dates did not match",
+            "contract_user_identifier_not_match": "User identifiers did not match",
+            "contract_vehicle_registration_not_match": "Vehicle registrations did not match",
+            "force_create": "Force create",
+            "force_upload": "Force upload"
+        }
+    },
+    "add-power-of-attorny": {
+        "message": "By uploading this Power of Attorney document you are allowing Road Protect Int. to collect data on your behalf; such as Infringements and Nominations",
+        "title": "Upload Power of Attorney"
+    },
+    "address": {
+        "address": "Address",
+        "address_line_one_number": "Street Number",
+        "address_line_one_street": "Street Name",
+        "city": "City",
+        "code": "Code",
+        "country": "Country",
+        "location": "Location",
+        "post_office_box": "PO Box / Street",
+        "postal_code": "Postal Code",
+        "proximity": "Proximity",
+        "street_name": "Street Name",
+        "street_number": "Street Number",
+        "zip_code": "Zip Code"
+    },
+    "admin-reports-page": {
+        "export": "SYSTEM EXPORT",
+        "title": "Admin Reports"
+    },
+    "advanced-filter-table": {
+        "column_settings": "Column Settings",
+        "columns": "Columns",
+        "export_to_excel": "Export",
+        "filters": "Advanced Filters",
+        "no_result": "No information to display",
+        "please_select": "Please select",
+        "reset": "Reset",
+        "save_selection": "Save Selection",
+        "selected": "Selected",
+        "total": "Total:"
+    },
+    "auth-guard": {
+        "content": "You are either not authorised to access this page or your login has expired. Please re-login.",
+        "title": "Not Logged In"
+    },
+    "batch-acknowledge-nominations": {
+        "acknowledge": "Acknowledge",
+        "label": "Select which actions should be valid for these nominations",
+        "nominations": "Nominations",
+        "title": "Acknowledge"
+    },
+    "batch-approve-for-payment": {
+        "approve": "Approve",
+        "infringements_for_payment": "Infringements for Payment"
+    },
+    "batch-approve-nominations": {
+        "approve": "Approve",
+        "infringements_for_payment": "Infringements for Payment"
+    },
+    "batch-digitally-redirect-nominations": {
+        "close": "Close",
+        "confirm": "Confirm",
+        "failed_redirections_count": "Failed digital redirections: ",
+        "failed_redirections_heading": "Failed Digital Redirection Requests",
+        "infringements": "Infringements",
+        "label": "Recirect to",
+        "owner": "Owner",
+        "redirect": "Digitally Redirect",
+        "successful_redirections_count": "Succesfuly digital redirections: ",
+        "successful_redirections_heading": "Successful Digital Redirection Requests",
+        "title": "Batch Digital Redirection",
+        "user": "User"
+    },
+    "batch-municipally-redirect-nominations": {
+        "detail_check": "Check Details",
+        "failed": "Failed to make Request",
+        "failed_redirection_button_text": "failed redirections",
+        "failed_redirections_count": "Failed to redirect",
+        "failed_redirections_heading": "Failed Redirection Requests",
+        "failed_redirections_spreadsheet_description": "Please see the spreadsheet below for a summary of the infringements that failed to be redirected",
+        "has_drivers_contract_warning": "Infringement(s) you have selected will redirect to the driver",
+        "infringements": "Infringements",
+        "non_redirectable_heading": "Not Redirectable",
+        "non_redirectable_infringement_button_text": "non-redirectable infringements",
+        "non_redirectable_infringement_count": "infringements are not redirectable",
+        "non_redirectable_infringement_spreadsheet_description": "Please see the spreadsheet below for the infringements that cannot be redirected",
+        "redirect": "Municipally Redirect",
+        "redirect_progress": "Progress",
+        "redirect_these": "Redirect",
+        "redirectable_heading": "Redirectable",
+        "redirectable_infringement_count": "infringements are redirectable",
+        "results": "Results",
+        "successful": "Successfully Requested",
+        "successful_redirections_count": "Successfully redirected",
+        "successful_redirections_heading": "Successful Redirection Requests",
+        "title": "Batch Redirect",
+        "total": "Total to Redirect"
+    },
+    "batch-pay-nomination": {
+        "cvv_placeholder": "CVV",
+        "total_payable": "Amount Payable"
+    },
+    "batch-pay-nominations": {
+        "amount": "Amount paid",
+        "batch_transactions_warning": "Please be aware: the credit card will be charged once per infringement. Not all infringements are guaranteed to succeed payment. You will not be charged for any failed\ntransactions",
+        "cvv_placeholder": "CVV",
+        "enter_cvv_prompt": "Please enter your CVV to confirm you have access to the following Payment Method",
+        "failure_title": "Failed Payments",
+        "for_card": "(Credit) Card",
+        "infringements": "Infringements",
+        "not_payable_reason": "Not payable because",
+        "not_payable_title": "Not Payable",
+        "pay": "Pay",
+        "payable_title": "Payable",
+        "success_title": "Successful Payments",
+        "total_not_payable": "Amount Not Payable",
+        "total_payable": "Amount Payable",
+        "with_method": "Method"
+    },
+    "batch-redirect-nominations": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "infringements": "Infringements",
+        "label": "Select who these infringements should be redirected to",
+        "owner": "Owner",
+        "redirect": "Digitally Redirect",
+        "title": "Redirect",
+        "user": "User"
+    },
+    "breadcrumb": {
+        "account": "Account",
+        "accountRelations": "Relation",
+        "accounts": "Accounts",
+        "contracts": "Contracts",
+        "create": "Create",
+        "create_and_link": "Add Document",
+        "documents": "Documents",
+        "driver": "Driver",
+        "driver_upload": "Upload Driver Contract",
+        "generated-documents": "Generated Documents",
+        "graphing-by-issuer-page": "Graphing by Issuer",
+        "graphing-by-status-page": "Graphing by Status",
+        "home": "Home",
+        "infringements": "Infringements",
+        "integration-test": "Integration Test",
+        "integration_request": "Integration Request Logs",
+        "issuers": "Issuers",
+        "job": "Job Logs",
+        "lease_upload": "Lease Contract Upload",
+        "logs": "System Logs",
+        "municipal-redirection": "Municipal Redirection",
+        "generate_document_only": "Generate Redirection Document",
+        "nominations": "Nominations",
+        "ownership_upload": "Ownership Contract Upload",
+        "partial_infringement": "Partial Infringement",
+        "payments": "Payments",
+        "payments_upload": "Payments Upload",
+        "profile": "Profile",
+        "raw_infringement": "Raw Infringement Logs",
+        "reporting": "Reporting",
+        "request_information": "Information Request",
+        "upload": "Upload",
+        "upload_driver": "Upload Driver",
+        "upload_partial_infringement": "Upload Partial Infringements",
+        "upload_ocr_partial_infringement": "Upload infringements with OCR",
+        "users": "Users",
+        "vehicle_contracts": "Vehicle Contracts",
+        "vehicles": "Vehicles",
+        "view": "View All",
+        "view_account": "View Account",
+        "view_account_relation": "View",
+        "view_contract": "View Contract",
+        "view_driver": "View Driver",
+        "view_infringement": "View Infringement",
+        "view_integration_request": "View Integration Request",
+        "view_issuer": "View Issuer",
+        "view_job": "View Job",
+        "view_partial_infringement": "View Partial Infringement",
+        "view_raw_infringement": "View Raw Infringement",
+        "view_request_information": "View Information Request",
+        "view_user": "View User",
+        "view_vehicle": "View Vehicle",
+        "fetch_partial_infringement": "Fetch Partial Infringement",
+        "generate-redirection-document": ""
+    },
+    "bulk-generate-lease-contract-documents": {
+        "fail": "Failed to generate lease contract documents",
+        "representative_details": "Name and position of the owner account representative",
+        "success": "Successfully generated lease contract documents"
+    },
+    "change-current-account": {
+        "fail": "Failed to change account",
+        "select_account": "Select Account",
+        "success": "Successfully changed account"
+    },
+    "change-password": {
+        "confirm": "Confirm Change",
+        "confirm_password": "Password",
+        "confirm_password_validation": "Password does not match",
+        "fail": "Failed to changed password",
+        "new_password": "Password",
+        "new_password_validation": "Password is required",
+        "success": "Successfully changed password"
+    },
+    "change-to-account": {
+        "fail": "Failed to change account",
+        "login_as_account": "Login as this account",
+        "success": "Successfully changed account",
+        "success_confirm": "Go to full profile?"
+    },
+    "changing-account-page": {
+        "please_wait": "Please Wait",
+        "title": "Changing Current Account"
+    },
+    "contract": {
+        "lease_contract": "Lease Contract"
+    },
+    "contract-ocr-status": {
+        "Failed": "Failed",
+        "Incomplete": "Incomplete",
+        "Modified": "Modified",
+        "Success": "Success"
+    },
+    "contract-status": {
+        "Expired": "Expired",
+        "Expiring soon": "Expiring soon",
+        "Missing": "Missing",
+        "Upcoming": "Upcoming",
+        "Valid": "Valid"
+    },
+    "contract-status-tag": {
+        "end_date": "End date",
+        "start_date": "Start date"
+    },
+    "contracts-page": {
+        "title": "Vehicle Contracts"
+    },
+    "create-account": {
+        "fail": "Failed to create account",
+        "success": "Successfully created account"
+    },
+    "create-account-relation": {
+        "field_title": "Field",
+        "field_value": "Value"
+    },
+    "create-account-user": {
+        "fail": "Failed to create Account User",
+        "success": "Successfully created Account User"
+    },
+    "create-account-user-page": {
+        "title": "Create AccountUser"
+    },
+    "create-and-link-document": {
+        "click_here_to_close": "Click here to close",
+        "click_here_to_close_the_window": "Close the window",
+        "click_here_to_retry": "Click here to retry",
+        "failure_result": "Faild to upload your document",
+        "finalise": "Finalise",
+        "result": "Result",
+        "success_result": "Successfully uploaded your document",
+        "upload": "Upload"
+    },
+    "create-contract": {
+        "create": "Create",
+        "details": "Details",
+        "document": "Document",
+        "driver": "Driver",
+        "end_date": "End Date",
+        "fail": "Failed to create Vehicle Contract",
+        "owner": "Owner",
+        "reference": "Reference",
+        "start_date": "Start Date",
+        "success": "Successfully created Vehicle Contract",
+        "user": "User (lessee)",
+        "vehicle": "Vehicle",
+        "vehicle_registration": "Vehicle Registration"
+    },
+    "create-contract-page": {
+        "title": "Create Contract"
+    },
+    "create-document": {
+        "error": "Failed to upload the file",
+        "error_ts": "Failed to create Document",
+        "fail_ts": "Failed to create Document",
+        "ocr": {
+            "error": "Uploaded document does not match contract details"
+        },
+        "success": "Successfully uploaded the file",
+        "success_ts": "Successfully created Document",
+        "upload": "Upload"
+    },
+    "create-document-and-link-document-page": {
+        "title": "Add Document"
+    },
+    "create-document-page": {
+        "title": "Create Document"
+    },
+    "create-driver": {
+        "fail": "Failed to create driver",
+        "success": "Successfully created a driver"
+    },
+    "create-driver-page": {
+        "title": "Create Driver"
+    },
+    "create-generated-document": {
+        "generate": "Generate",
+        "upload": "Upload"
+    },
+    "create-infringement": {
+        "create": "Create",
+        "fail": "Failed to create Infringement",
+        "step_confirm": "Confirm",
+        "step_details": "Details",
+        "step_document": "Document",
+        "step_location": "Location",
+        "step_optional": "(optional)",
+        "success": "Successfully created Infringement"
+    },
+    "create-infringement-page": {
+        "title": "Create Infringement"
+    },
+    "create-issuer": {
+        "fail": "Failed to create Issuer",
+        "success": "Successfully created Issuer"
+    },
+    "create-issuer-page": {
+        "title": "Create Issuer"
+    },
+    "create-location": {
+        "fail": "Failed to create Location",
+        "success": "Successfully created Location"
+    },
+    "create-location-page": {
+        "title": "Create Location"
+    },
+    "create-nomination": {
+        "account": "Account",
+        "create": "Create",
+        "infringement": "Infringement"
+    },
+    "create-nomination-page": {
+        "title": "Create Nomination"
+    },
+    "create-partial-infringement": {
+        "details": "Details",
+        "fail": "Failed to create a partial infringement",
+        "invalid_json_format": "Invalid JSON format",
+        "success": "Successfully created a partial infringement"
+    },
+    "create-partial-infringement-page": {
+        "title": "Create a Partial Infringement"
+    },
+    "create-payment": {
+        "fail": "Failed to create Payment",
+        "success": "Successfully created Payment"
+    },
+    "create-payment-page": {
+        "title": "Create Payment"
+    },
+    "create-role-page": {
+        "fail": "Failed to create Role",
+        "success": "Successfully created Role",
+        "title": "Create Role"
+    },
+    "create-user": {
+        "create": "Create",
+        "email": "Email",
+        "fail": "Failed to create user",
+        "name": "Name",
+        "number": "Cellphone Number",
+        "save": "Create",
+        "success": "Successfully created user",
+        "surname": "Surname",
+        "type": "Type"
+    },
+    "create-user-page": {
+        "title": "Create User"
+    },
+    "create-vehicle": {
+        "category": "Category",
+        "color": "Color",
+        "create": "Create Vehicle",
+        "create_lease": "Create Lease Contract",
+        "create_ownership": "Create Ownership Contract",
+        "current_lease": "Current Lease",
+        "current_ownership": "Current Ownership",
+        "done": "Done",
+        "done_lease": "Added a lease contract",
+        "done_msg": "All done. You performed the following:",
+        "done_owner": "Added an ownership contract",
+        "done_vehicle": "Created the vehicle",
+        "fail": "Failed to create Vehicle",
+        "infringements": "Infringements",
+        "infringements_status": "Infringements Status",
+        "lease_end_date": "Lease End Date",
+        "lease_start_date": "Lease Start Date",
+        "manufacturer": "Manufacturer",
+        "model": "Model",
+        "model_year": "Model Year",
+        "optional": "(optional)",
+        "owner": "Owner",
+        "owner_end_date": "Ownership End Date",
+        "owner_start_date": "Ownership Start Date",
+        "registration": "Registration",
+        "step_1": "Details",
+        "step_2": "Ownership",
+        "step_3": "Lease",
+        "step_4": "Result",
+        "success": "Successfully created Vehicle",
+        "success_lease": "Successfully created lease contract",
+        "success_ownership": "Successfully created ownership contract",
+        "type": "Type",
+        "user": "User",
+        "weight": "Weight",
+        "year": "Year",
+        "year_placeholder": "Select Year"
+    },
+    "create-vehicle-document": {
+        "fail": "Failed to create Vehicle Document",
+        "success": "Successfully created Vehicle Document"
+    },
+    "create-vehicle-document-page": {
+        "title": "Create VehicleDocument"
+    },
+    "create-vehicle-page": {
+        "title": "Create Vehicle"
+    },
+    "current-account-contracts-page": {
+        "title": "Contracts"
+    },
+    "current-account-infringements-page": {
+        "all": "All",
+        "message": "These are infringements that have been linked to this account via the valid contract on the vehicle at the time of infringement offence.",
+        "nominated": "Nominated to me",
+        "title": "Infringements"
+    },
+    "current-account-nominations-page": {
+        "click_here": "Click Here",
+        "message": "These are infringements that have been nominated to this account; for approval, redirection, appeal or payment.",
+        "title": "Nominations"
+    },
+    "current-account-page": {
+        "title": "Account Profile"
+    },
+    "current-account-relations-page": {
+        "title": "Relations"
+    },
+    "current-account-users-page": {
+        "title": "Account Users"
+    },
+    "current-account-vehicles-page": {
+        "title": "Account Vehicles"
+    },
+    "dates": {
+        "friday": "Friday",
+        "monday": "Monday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "thursday": "Thursday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday"
+    },
+    "deactivate-account": {
+        "confirm_title": "Are you sure?",
+        "fail": "Failed to deactivated account",
+        "success": "Successfully deactivated account"
+    },
+    "delete": {
+        "Address": "Address",
+        "Address Line One": "Address Line One",
+        "Address Line Two": "Address Line Two",
+        "Administrator": "Administrator",
+        "Amount Due": "Amount Due",
+        "Appeal approved": "Appeal approved",
+        "Approved for payment": "Approved for payment",
+        "Brn": "Identification / BRN",
+        "City": "City",
+        "Closed": "Closed",
+        "Code": "Postal code",
+        "Contact Person": "Contact Person",
+        "Country": "Country",
+        "Create": "Create",
+        "Due": "Waiting for payment",
+        "Email": "Email",
+        "End Date": "End date",
+        "Fax": "Fax",
+        "Finance Manager": "Finance Manager",
+        "Fleet Manager": "Fleet Manager",
+        "Issuer": "Issuer",
+        "Issuer Status": "Issuer Status",
+        "Issuer Status Description": "Issuer Status Description",
+        "Latest Payment Date": "Latest Payment Date",
+        "Manager": "Manager",
+        "Nomination in process": "Nomination in Process",
+        "Notice Number": "Notice Number",
+        "Offence Date": "Offence Date",
+        "Original Amount": "Original Amount",
+        "Outstanding": "Outstanding",
+        "Owner": "Owner",
+        "Paid": "Paid",
+        "Pending": "Pending",
+        "Provider": "Provider",
+        "Reason": "Reason",
+        "Reason Code": "Reason Code",
+        "Reference Number": "Reference Number",
+        "Start Date": "Start Date",
+        "Telephone": "Telephone",
+        "Type": "Type",
+        "Update": "Update",
+        "Upload Manual Proof": "Upload Manual Proof",
+        "User": "User",
+        "Valid": "Valid",
+        "Vehicle": "Vehicle",
+        "input_required": "The input is required",
+        "optional": "Optional"
+    },
+    "delete-account": {
+        "confirm_title": "Are you sure?",
+        "fail": "Failed to delete account",
+        "success": "Successfully deleted account"
+    },
+    "delete-account-user": {
+        "confirmation": "Are you sure?",
+        "fail": "Failed to delete Account User",
+        "success": "Successfully deleted Account User"
+    },
+    "delete-contract": {
+        "confirmation": "Are you sure?",
+        "fail": "Failed to delete vehicle lease",
+        "success": "Successfully deleted vehicle lease"
+    },
+    "delete-document": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete document",
+        "failure": "Failed to upload document",
+        "success": "Successfully deleted document"
+    },
+    "delete-driver": {
+        "confirm_title": "Are you sure?",
+        "success": "Successfully deleted a driver"
+    },
+    "delete-infringement": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete infringement",
+        "success": "Successfully deleted infringement"
+    },
+    "delete-issuer": {
+        "confirm": "Are you sure?",
+        "fail": "'Failed to delete issuer'",
+        "success": "Successfully deleted issuer"
+    },
+    "delete-location": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete Location",
+        "success": "Successfully deleted Location"
+    },
+    "delete-nomination": {
+        "confirm": "Are you sure?"
+    },
+    "delete-partial-infringement": {
+        "confirm_title": "Are you sure?",
+        "fail": "Failed to delete partial infringement",
+        "success": "Successfully deleted partial infringement"
+    },
+    "delete-payment": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete Payment",
+        "success": "Successfully deleted Payment"
+    },
+    "delete-role": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete role",
+        "success": "Successfully deleted role"
+    },
+    "delete-user": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete user",
+        "success": "Successfully deleted user"
+    },
+    "delete-vehicle": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete vehicle",
+        "success": "Successfully deleted vehicle"
+    },
+    "delete-vehicle-document": {
+        "confirm": "Are you sure?",
+        "fail": "Failed to delete Vehicle Document",
+        "success": "Successfully deleted Vehicle Document"
+    },
+    "divider": {
+        "or": "OR"
+    },
+    "documents-page": {
+        "create": "Create",
+        "create_document": "Create Document",
+        "import": "Import",
+        "title": "Documents"
+    },
+    "driver": {
+        "cell": "Cell",
+        "cellphone": "Cellphone Number",
+        "cellphoneNumber": "Cellphone Number",
+        "city": "City",
+        "contact_details": "Contact Details",
+        "contact_fax": "Contact Fax",
+        "contact_name": "Contact Name",
+        "contact_telephone": "Contact Cellphone",
+        "country": "Country",
+        "create": "Create",
+        "details": "Details",
+        "email": "Email",
+        "id_number": "ID Number",
+        "license": "License",
+        "location": "Location",
+        "location_requirement": "Location Requirement",
+        "name": "Name",
+        "post_office_box": "Post Office Box",
+        "postal_code": "Postal Code",
+        "postal_location": "Postal Location",
+        "surname": "Surname",
+        "edit-driver": "Edit Driver",
+        "update": "Update"
+    },
+    "driver-page": {
+        "title": "Driver"
+    },
+    "edit-generated-document": {
+        "check_document": "Check Document",
+        "check_document_prompt": "Successfully generated your document. Please download the document and print it to complete missing fields or signatures.",
+        "complete": "Complete",
+        "confirm": "Confirm",
+        "generate": "Generate",
+        "result_success": "Successfully generated the document",
+        "return": "Returning you in",
+        "return_prompt": "If you have saved the above link or if you have already uploaded the document, click the button below to return you to where you were previously.",
+        "signature_disabled": "Signatures are currently disabled for legal reasons. The document must be printed, signed manually and then re-uploaded.",
+        "take_me_back": "Take me back",
+        "title": "Edit Document",
+        "upload_link_prompt": "Once you have completed the document, use the link below to re-upload it and store it on our system.",
+        "verify_information": "Verify Information"
+    },
+    "edit-status": {
+        "advanced": "Advanced",
+        "change_to_due": "Change Infringement Status to Due",
+        "edit_status": "Edit Redirection Status",
+        "failure": "Infringement status could not be updated.",
+        "infringement_status": "Infringement Status",
+        "invalid_transition": "Invalid status transition",
+        "no": "No",
+        "nomination_status": "Nomination Status",
+        "paid": "Paid",
+        "redirection_completed": "Redirection Completed",
+        "redirection_completion_date": "Date Redirection Completed",
+        "redirection_identifier": "Numerical Redirection Identifier",
+        "redirection_send_date": "Redirection Letter Send Date",
+        "reset": "Reset",
+        "select_infringement_status": "Select Infringement Status",
+        "select_status": "Select Status",
+        "selected_infringement_status": "Selected Infringement Status",
+        "selected_nomination_status": "The selected nomination status is:",
+        "submit": "Submit",
+        "success": "Infringement status was successfully updated",
+        "yes": "Yes"
+    },
+    "excel-column-mapper": {
+        "match_columns": "Match columns",
+        "no_spreadsheet": "Upload a spreadsheet file with headings as the top row.",
+        "select": "Select a column heading"
+    },
+    "export-all-button": {
+        "export_all": "Export all as Spreadsheet",
+        "export_all_description": "This action will export all data on the system database as a spreadsheet. Please note that this is a data-intensive action and will take some time to process."
+    },
+    "failed-batch-redirects-spreadsheet": {
+        "error_heading": "Error Message",
+        "infringement_url_heading": "URL",
+        "notice_number_heading": "Notice Number",
+        "sheet_name": "Failed Redirections",
+        "workbook_name": "Failed Redirections"
+    },
+    "filter-field": {
+        "Active": "Active",
+        "Address": "Address",
+        "Amount Due": "Amount Due",
+        "Approved Date": "Approved Date",
+        "Authority": "Authority",
+        "Case Number": "Case Number",
+        "Category": "Category",
+        "Code": "Code",
+        "Color": "Color",
+        "Contact Person": "Contact Person",
+        "Contract Type": "Contract Type",
+        "Country": "Country",
+        "Current Lease": "Current Lease",
+        "Current Ownership": "Current Ownership",
+        "Date Redirected": "Date Redirected",
+        "Date Uploaded": "Date Uploaded",
+        "Date of Offence": "Date of Offence",
+        "Email": "Email",
+        "End Date": "End Date",
+        "Fax": "Fax",
+        "Has Document?": "Has Document?",
+        "Identification / BRN": "Identification / BRN",
+        "Infringements Status": "Infringement Status",
+        "Issuer": "Issuer Name",
+        "Issuer Status": "Issuer Status",
+        "Latest Payment Date": "Latest Payment Date",
+        "Lease Contract PDF": "Has Lease Contract PDF?",
+        "Managed": "Managed",
+        "Manufacturer": "Manufacturer",
+        "Model": "Model",
+        "Name": "Name",
+        "Nominated Account": "Nominated Account",
+        "Nomination Status": "Nomination Status",
+        "Nomination Type": "Nomination Type",
+        "Notice Number": "Notice Number",
+        "Infringement Id": "Infringement Id",
+        "Original Amount": "Original Amount",
+        "Owner Name": "Owner Name",
+        "PA": "Power of Attorney",
+        "Paid Date": "Paid Date",
+        "Penalty Amount": "Penalty Amount",
+        "Postal code": "Zip Code",
+        "Power of Attorney PDF": "Has Power of Attorney?",
+        "Primary Contact (email)": "Primary Contact (Email)",
+        "Primary Role": "Primary Role",
+        "Provider": "Provider",
+        "Reason": "Reason",
+        "Reason Code": "Reason Code",
+        "Reference": "Reference",
+        "Registration": "Registration",
+        "Start Date": "Start Date",
+        "Status": "Status",
+        "System Status": "System Status",
+        "Telephone": "Telephone",
+        "Type": "Type",
+        "User Name": "User Name",
+        "Vehicle Registration": "Vehicle Registration",
+        "Verified": "Verified",
+        "Weight": "Weight",
+        "Year": "Year",
+        "issuer": {
+            "latestInfoDate": "Latest Info date"
+        }
+    },
+    "infringement-tag": {
+        "InLegalCare": "In legal care",
+        "FollowUp": "Follow up",
+        "Overdue": "Overdue"
+    },
+    "filter-label": {
+        "API": "API",
+        "ATG": "ATG",
+        "ATG Integration": "ATG Integration",
+        "AUTOMATION_ADD_VEHICLE": "Automation - Add Vehicle",
+        "AUTOMATION_REDIRECT_INFRINGEMENT": "Automation - Redirect Infringement",
+        "AUTOMATION_UPDATE_VEHICLE": "Automation - Update Vehicle",
+        "AUTOMATION_VERIFY_INFRINGEMENT": "Automation - Verify Infringement",
+        "AUTOMATION_VERIFY_INFRINGEMENT_SUM": "Automation - Verify Infringement Sum",
+        "Acknowledged": "Acknowledged",
+        "Admin": "Admin",
+        "Appeal approved": "Appeal Approved",
+        "Appealed": "Appealed",
+        "Approved for Payment": "Approved for Payment",
+        "Approved for payment": "Approved for payment",
+        "AtgSyncSingleInfringementJob": "ATG Verification",
+        "CONTRACT_OCR": "Contract Ocr",
+        "Cancelled": "Cancelled",
+        "Closed": "Closed",
+        "Completed": "Completed",
+        "Developer": "Developer",
+        "Digital": "Digital",
+        "DriverContract": "DriverContract",
+        "Due": "Due",
+        "Environmental": "Environmental",
+        "Expired": "Expired",
+        "Expiring soon": "Expiring soon",
+        "Failed": "Failed",
+        "Hybrid": "Hybrid",
+        "In Nomination Process": "In Nomination Process",
+        "In Redirection Process": "In Redirection Process",
+        "Redirection Error": "Redirection Error",
+        "Redirected To Third Party": "Redirected To Third Party",
+        "Redirection Request Error": "Redirection Request Error",
+        "Incomplete": "Incomplete",
+        "JERUSALEM_REDIRECT_INFRINGEMENT": "Jerusalem Redirect Infringement",
+        "JERUSALEM_VERIFY_INFRINGEMENT": "Jerusalem Verify Infringement",
+        "JerusalemSyncMultipleInfringementsJob": "Jerusalem Multiple Verification",
+        "JerusalemSyncSingleInfringementJob": "Jerusalem Single Verification",
+        "LeaseContract": "LeaseContract",
+        "Local": "Local",
+        "METROPARK_VERIFY_INFRINGEMENT": "Metropark Verify Infringement",
+        "MILEON_VERIFY_INFRINGEMENT": "Mileon Verify Infringement",
+        "Manual": "Manual",
+        "Manual Email": "Manual Email",
+        "Manual Upload": "Manual Upload",
+        "Manually Paid": "Manually Paid",
+        "MetroparkSyncSingleInfringementJob": "Metropark Single Verification",
+        "MileonSyncMultipleInfringementsJob": "Mileon Multiple Verification",
+        "MileonSyncSingleInfringementJob": "Mileon Single Verification",
+        "Missing": "Missing",
+        "Missing Contract": "Missing Contract",
+        "Missing Vehicle": "Missing Vehicle",
+        "Modified": "Modified",
+        "Municipal": "Municipal",
+        "New": "New",
+        "No / Does not exist": "No / Does not exist",
+        "Nomination in process": "Nomination in process",
+        "OLD_FLEET_INFRINGEMENT_DATA": "Old Fleet - Infringement Data",
+        "Other": "Other",
+        "Outstanding": "Outstanding",
+        "Owner": "Owner",
+        "OwnershipContract": "OwnershipContract",
+        "POLICE_VERIFY_INFRINGEMENT": "Police Verify Infringement",
+        "Paid": "Paid",
+        "Parking": "Parking",
+        "Pending": "Pending",
+        "PoliceSyncMultipleInfringementsJob": "Police Multiple Verification",
+        "PoliceSyncSingleInfringementJob": "Police Single Verification",
+        "Private": "Private",
+        "Processed": "Processed",
+        "Processing": "In Progress",
+        "Queued": "Queued",
+        "Redirection Completed": "Redirection Completed",
+        "Regional": "Regional",
+        "SHOHAR_VERIFY_INFRINGEMENT": "Shohar Verify Infringement",
+        "ShoharSyncSingleInfringementsJob": "Shohar Single Verification",
+        "Standard": "Standard",
+        "Success": "Successful",
+        "Successful": "Successful",
+        "TELAVIV_REDIRECT_INFRINGEMENT": "Telaviv Redirect Infringement",
+        "TELAVIV_VERIFY_INFRINGEMENT": "Telaviv Verify Infringement",
+        "TelavivSyncMultipleInfringementsJob": "Telaviv Multiple Verification",
+        "TelavivSyncSingleInfringementJob": "Telaviv Single Verification",
+        "Traffic": "Traffic",
+        "Truck": "Truck",
+        "Upcoming": "Upcoming",
+        "User": "User",
+        "Valid": "Valid",
+        "Yes / Exists": "Yes / Exists",
+        "atg": "ATG",
+        "atg-verification": "ATG Verification",
+        "manual-upload": "Manual Upload",
+        "old-israel-fleet": "Old IL Fleet",
+        "InLegalCare": "In legal care",
+        "FollowUp": "Follow up",
+        "Overdue": "Overdue",
+        "Collection": "Collection",
+        "Unmanaged": "Unmanaged"
+    },
+    "filter-visibility": {
+        "Detailed": "Detailed",
+        "None": "None / Hide",
+        "Simple": "Simple"
+    },
+    "filters": {
+        "!= (not equal)": "!= (not equal)",
+        "< (less than)": "< (less than)",
+        "<= (less than equal to)": "<= (less than equal to)",
+        "= (equals)": "= (equals)",
+        "> (greater than)": "> (greater than)",
+        ">= (greater than equal to)": ">= (greater than equal to)",
+        "Is in the range": "Is in the range",
+        "Is not specified": "Is not specified",
+        "Is specified": "Is specified",
+        "excludes / not equal": "excludes / not equal",
+        "includes / contains": "includes / contains"
+    },
+    "first-login": {
+        "complete_profile": "Click here to complete your profile",
+        "password_prompt": "We see this is your first time logging in. You need to set your password to something secure and memorable",
+        "step_1": "Update your password",
+        "step_2": "Terms and Conditions",
+        "step_3": "Complete your signup",
+        "thank_you": "Thank you",
+        "welcome": "Welcome"
+    },
+    "forgot-password-confirm": {
+        "confirm": "Confirm Password Change"
+    },
+    "forgot-password-request": {
+        "confirm": "Request Password Reset"
+    },
+    "general-between-input": {
+        "max": "Max",
+        "min": "Min"
+    },
+    "general-date-range-input": {
+        "from": "From Date",
+        "last_month": "Last Month",
+        "last_twelve_months": "Last 12 Months",
+        "last_week": "Last Week",
+        "last_year": "Last Year",
+        "to": "To Date",
+        "current_month": "Current Month",
+        "current_year": "Current Year",
+        "from_account_activation": "From Account Activation"
+    },
+    "general-entity-spreadsheet-upload": {
+        "download": "download",
+        "fail": "Failed to verify",
+        "fail_upload": "Failed to upload",
+        "failed": "Failed",
+        "invalid_for_upload": "Invalid for Upload",
+        "items_failed": "items failed to upload",
+        "note": "Note:",
+        "of": "of the valid items.",
+        "out_of": "out of",
+        "select": "Select a method for the upload",
+        "select_method": "Select Method",
+        "select_sheet": "Select Sheet",
+        "select_sheet_desc": "Select a spreadsheet file and the correct columns",
+        "success": "Completed verification",
+        "successful": "Successful",
+        "template": "Template (optional to use)",
+        "upload": "Upload",
+        "upload_desc": "Upload the Data",
+        "upload_desc_Driver": "Upload the Driver",
+        "upload_desc_DriverContract": "Upload the Driver Contract",
+        "upload_desc_account": "Upload the Accounts",
+        "upload_desc_leaseContract": "Upload the Lease Contracts",
+        "upload_desc_ownershipContract": "Upload the Ownership Contracts",
+        "upload_desc_partialInfringement": "Upload the Partial Infringements",
+        "upload_desc_payment": "Upload the Payments",
+        "upload_desc_vehicle": "Upload the Vehicles",
+        "upload_empty_spreadsheet": "Cannot upload an empty spreadsheet! Please upload another spreadsheet",
+        "upload_note_1": "this may take some time depending on the size of the upload.",
+        "upload_note_2": "only items that passed the previous verification step will attempt to be uploaded.",
+        "uploaded": "Uploaded",
+        "valid_for_upload": "Valid for Upload",
+        "verify": "Verify",
+        "verify-warning": "Cannot verify an empty spreadsheet! Please upload another spreadsheet",
+        "verify_desc": "Verify",
+        "verify_note": "this may take some time depending on the size of the upload."
+    },
+    "general-file-upload": {
+        "allowed_file_types": "Allowed File Types",
+        "empty_file_uploaded": "Uploaded file is empty! Please upload another spreadsheet",
+        "expected": "Expected:",
+        "failed": "Failed to add file",
+        "files": "Files",
+        "got": "Got:",
+        "issue": "Issue:",
+        "max_files": "Max Files",
+        "upload_file": "Upload File"
+    },
+    "general-form-dropdown": {
+        "select": "Select one"
+    },
+    "general-form-error-display": {
+        "email": "this email address is invalid",
+        "required": "this field is required and must be filled in"
+    },
+    "general-image-input": {
+        "clear_image": "Clear Image",
+        "select_image": "Select Image"
+    },
+    "general-query-builder": {
+        "add": "Add",
+        "asc": "Ascending",
+        "clear": "Clear",
+        "current_filter": "Current Filter",
+        "dsc": "Descending",
+        "end_date": "End date",
+        "filter-visibility": "Filter Visibility",
+        "filter_builder": "Filter Builder",
+        "filter_by": "What would you like to filter by?",
+        "filter_by_placeholder": "Select a field",
+        "filter_how": "How should it be filtered?",
+        "filter_how_placeholder": "Choose how it should filter",
+        "filter_how_value": "And with what value?",
+        "invalid_operator": "Operator not available for this filter property",
+        "max_value": "Maximum value",
+        "min_value": "Minimum value",
+        "no_saved_filters": "No saved filters",
+        "none": "None",
+        "order": "order",
+        "order_how": "In what order should this data be sorted?",
+        "save": "Save",
+        "save_filter": "Save Filter",
+        "saved_filters": "Saved Filters",
+        "search": "Search...",
+        "search all": "Search",
+        "select": "Select...",
+        "sorted_in": "sorted in",
+        "start_date": "Start date",
+        "presets": "Presets",
+        "manage_presets": "Manage presets",
+        "save_as_preset": "Save as preset",
+        "edit_presets": "Edit Presets"
+    },
+    "general-spreadsheet-upload": {
+        "select": "Select a sheet"
+    },
+    "general-table": {
+        "additional": "Additional",
+        "enabled_columns": "Enabled Columns",
+        "export": "Export",
+        "no_result": "No information to display",
+        "reset": "Reset",
+        "search": "Search"
+    },
+    "general-table-export": {
+        "all": "All",
+        "current_filters": "Current Filters (coming soon)",
+        "export": "Export"
+    },
+    "general-time-display": {
+        "never": "never"
+    },
+    "general-year-range-slider": {
+        "compare_to_previous_years": "Compare to Previous Years",
+        "year_range": "Year Range: "
+    },
+    "generic-text": {
+        "done": "Done"
+    },
+    "graphing-by": {
+        "aggregated_table": "Aggregated Table",
+        "bar_graph": "Bar Graph",
+        "comparison_description_comparing": "Comparing",
+        "comparison_description_years_back_from": "year(s) back from",
+        "comparison_information": "Comparison Information",
+        "count": "Count",
+        "dates": "Dates",
+        "infringements_table": "Infringements Table",
+        "line_graph": "Line Graph",
+        "number_of_years_previous": "Number of years previous",
+        "show_comparison": "Show comparison",
+        "sum": "Sum",
+        "table_details": "Details",
+        "total_amount": "Total Amount",
+        "view_graph": "View Graph",
+        "view_infringements": "View Infringements",
+        "view_selected_infringements": "View Selected Infringements",
+        "filter": "Filter",
+        "all": "All Vehicles",
+        "owner": "Owned Vehicles",
+        "user": "Leased Vehicles",
+        "total_count": "Total Count",
+        "offence_month": "Offence Month",
+        "selected_infringements": "Selected Infringements",
+        "status": "Status",
+        "start_date": "Start Date",
+        "end_date": "End Date",
+        "issuers": "Issuers",
+        "registration": "Registration"
+    },
+    "graphing-by-issuer": {
+        "bar_graph": "Bar Graph",
+        "compare_to_other_issuers": "Compare to other issuers",
+        "grouped_issuers": "Number of issuers to show before grouping",
+        "issuer": "Issuer Name",
+        "issuers": "Issuers",
+        "line_graph": "Line chart",
+        "no_data": "No aggregated data to display",
+        "number_of_issuers": "Number of issuers",
+        "total_number_of_unique_issuers": "Total number of issuers",
+        "number_of_years_previous": "Number of years previous",
+        "offence_date": "Offence Date",
+        "other": "Other",
+        "show_comparison": "Show comparation",
+        "table_details": "Details",
+        "total_amount": "Total Amount",
+        "view_graph": "View chart",
+        "year_and_month": "Year and Month"
+    },
+    "graphing-by-issuer-page": {
+        "title": "Graphing by Issuer"
+    },
+    "graphing-by-issuer-page-vehicle-owner": {
+        "title": "Graphing By Issuer For Vehicle Owner"
+    },
+    "graphing-by-issuer-page-vehicle-user": {
+        "title": "Graphing By Issuer For Vehicle User"
+    },
+    "graphing-by-status": {
+        "bar_graph": "Bar Graph",
+        "end_date": "End Date",
+        "line_graph": "Line chart",
+        "no_data": "No aggregated data to display",
+        "start_date": "Start Date",
+        "status": "Status",
+        "total_amount": "Total Amount",
+        "view_graph": "View chart",
+        "year_and_month": "Year and Month",
+        "infringement_status": "Infringement Status"
+    },
+    "graphing-by-status-page": {
+        "title": "Graphing by Status"
+    },
+    "graphing-by-status-vehicle-owner-page": {
+        "title": "Graphing By Status For Vehicle Owner"
+    },
+    "graphing-by-status-vehicle-user-page": {
+        "title": "Graphing By Status For Vehicle User"
+    },
+    "graphing-by-vehicle": {
+        "infringement_status": "Infringement Status",
+        "number_of_vehicles": "Number of vehicles to show",
+        "offence_date": "Offence Date",
+        "total_amount": "Total Amount",
+        "vehicle_registration": "Vehicle Registration"
+    },
+    "graphing-by-vehicle-vehicle-owner-page": {
+        "title": "Graphing By Vehicle For Vehicle Owner"
+    },
+    "graphing-by-vehicle-vehicle-user-page": {
+        "title": "Graphing By Vehicle For Vehicle User"
+    },
+    "header": {
+        "notifications": "Notifications",
+        "show_infringement": "View infringement"
+    },
+    "home": {
+        "account_profile": "My Account Profile",
+        "account_profile_desc": "View overall account reporting and account details",
+        "acknowledged": "Acknowledged",
+        "approved": "Approved",
+        "call_to_action_title": "WHAT WOULD YOU LIKE TO DO?",
+        "create-account": "Create account",
+        "create-contract-lease": "Create lease contract",
+        "create-contract-ownership": "Create ownership contract",
+        "create-infringement": "Create infringement",
+        "create-vehicle": "Create vehicle",
+        "current_account": "Your current account is",
+        "expiring_soon": "Expiring soon",
+        "fleet": "Fleet",
+        "logged_in_as": "You are logged in as",
+        "my_contracts": "My Contracts",
+        "my_contracts_desc": "View the contracts on your vehicles and their dates",
+        "my_infringements": "My Infringements",
+        "my_infringements_desc": "View all infringements on your vehicles",
+        "my_nominations": "My Nominations",
+        "my_nominations_desc": "View infringements nominated to my account",
+        "my_users": "My Users",
+        "my_users_desc": "View who has access to this account and what their roles are",
+        "my_vehicles": "My Vehicles",
+        "my_vehicles_desc": "View the vehicles you own or lease",
+        "outstanding": "Outstanding",
+        "outstanding_infringements": "Outstanding Infringements",
+        "outstanding_soon_infringements": "Outstanding Soon Infringements",
+        "owned": "Owned",
+        "pending": "Pending",
+        "reports": "Reports",
+        "reports_desc": "Data visualisation to help understand your data",
+        "role": "and you are a",
+        "title": "Home",
+        "users": "Users",
+        "valid": "Valid",
+        "view_permissions_prompt": "Click here to view your permissions",
+        "welcome": "WELCOME",
+        "comparison_information": "Comparison Information",
+        "summary": "Summary",
+        "totals": {
+            "infringementCount": "Infringements",
+            "infringementAvgCost": "Average Infringement amount",
+            "vehicleCount": "Vehicles",
+            "vehicleAvgInfringement": "Average Infringements for vehicle",
+            "contractCount": "Contracts",
+            "userCount": "Users",
+            "leading_issuer": "Leading issuer",
+            "leading_vehicle": "Leading vehicle"
+        },
+        "costs": {
+            "amountDue": "Amount to pay",
+            "penaltyAmount": "Penalty amount to pay",
+            "totalPayments": "Total amount paid"
+        },
+        "costs_title": "Cost",
+        "infringement-status": {
+            "Outstanding": "Outstanding",
+            "Paid": "Paid",
+            "Approved for Payment": "Approved for payment",
+            "Closed": "Closed",
+            "Due": "Due",
+            "outstandingSoon": "Outstanding Soon",
+            "Collection": "Collection",
+            "Unmanaged": "Unmanaged"
+        },
+        "infringements": "Infringements",
+        "contracts": "Vehicle contracts",
+        "contract-status": {
+            "Expired": "Expired",
+            "Expiring soon": "Expiring soon",
+            "Valid": "Valid",
+            "Upcoming": "Upcoming"
+        },
+        "vehicles_title": "Vehicles",
+        "vehicles": {
+            "ownedVehicles": "Owned vehicles",
+            "leasedVehicles": "Leased vehicles",
+            "allVehicles": "Total vehicles"
+        },
+        "issuers_title": "Issuers",
+        "issuers": {
+            "issuerTotal": "Issuer Total"
+        },
+        "issuers_leading_title": "5 Leading Issuers",
+        "dashboard": "Dashboard",
+        "nomination-status": {
+            "Acknowledged": "Acknowledged",
+            "Appealed": "Appealed",
+            "Closed": "Closed",
+            "In Redirection Process": "In Redirection Process",
+            "Paid": "Paid",
+            "Redirection Completed": "Redirection Completed",
+            "New": "New",
+            "Redirection Error": "Redirection Error",
+            "Redirection Request Error": "Redirection Request Error",
+            "Redirected To Third Party": "Redirected To Third Party"
+        },
+        "redirections": "Redirections",
+        "total_value": "Total"
+    },
+    "infringement": {
+        "address": "Address",
+        "address_line_one": "Address Line One",
+        "address_line_one_number": "Address line one number",
+        "address_line_one_street": "Address line one street",
+        "address_line_two": "Address Line Two",
+        "address_line_two_number": "Street Number (Secondary)",
+        "address_line_two_street": "Address line two street",
+        "amount_due": "Amount Due",
+        "approved_date": "Approved Date",
+        "brn": "Identification / BRN",
+        "case": "Case",
+        "case_number": "Case Number",
+        "city": "City",
+        "code": "Postal code",
+        "contract": "Contract",
+        "country": "Country",
+        "create_infringement": "Create Infringement",
+        "date_of_offence": "Date of Offence",
+        "document": "Document (scan or email PDF)",
+        "external_change_date": "Verification Status Date",
+        "external_payment": "External Payment",
+        "id": "Road Protect Id",
+        "issuer": "Issuer",
+        "issuer_status": "Issuer Status",
+        "issuer_status_description": "Issuer Status Description",
+        "last_infringement_status_change_date": "Last Infringement Status Change Date",
+        "last_nomination_status_change_date": "Last Nomination Status Change Date",
+        "latest_payment_date": "Latest Payment Date",
+        "latest_status_change_date": "Latest Status Change Date",
+        "location": "Location",
+        "note": "Note",
+        "notice-number": "Notice Number",
+        "notice_number": "Notice Number",
+        "infringement_id": "Infringement Id",
+        "offence_date": "Offence Date",
+        "original_amount": "Original Amount",
+        "original_amount_due": "Original Amount Due",
+        "ownership_from_issuer": "BRN from Issuer",
+        "payment_amount": "Payment Amount",
+        "payment_date": "Payment Date",
+        "payment_provider": "Payment Provider",
+        "payment_reference": "Payment Reference",
+        "payment_type": "Payment Type",
+        "penalty_amount": "Penalty Amount",
+        "postal_code": "Postal code",
+        "proximity": "Proximity",
+        "reason": "Reason",
+        "reason_code": "Reason Code",
+        "redirection_completion_date": "Redirection Completion Date",
+        "redirection_identifier": "Raw Redirection Identifier",
+        "redirection_letter_send_date": "Redirection Letter Send Date",
+        "status": "Status",
+        "street_name": "Street Name",
+        "street_number": "Street Number",
+        "system_status": "System Status",
+        "total_amount": "Total Amount",
+        "total_payment_amount": "Total Amount Paid",
+        "total_payments": "Total Payments",
+        "type": "Type",
+        "vehicle": "Vehicle",
+        "vehicle_owner": "Vehicle Owner",
+        "vehicle_registration": "Vehicle Registration",
+        "vehicle_user": "Vehicle User",
+        "tags": "Tags",
+        "InLegalCare": "In legal care",
+        "FollowUp": "Follow up",
+        "Overdue": "Overdue"
+    },
+    "infringement-due-reporting": {
+        "chart_x": "Week of year",
+        "chart_y": "Day of week",
+        "select_end_date": "Select end date",
+        "title": "Infringement Due Calendar"
+    },
+    "infringement-note": {
+        "create_button": "Create note",
+        "create_title": "Create note",
+        "admin_notes": "Admin Notes",
+        "value_placeholder": "Enter your note..."
+    },
+    "infringement-projection": {
+        "compare_to_previous_years": "Compare to Previous Years",
+        "details": "Details",
+        "end_date": "End Date",
+        "hide": "Hide",
+        "infringement_count": "Infringements",
+        "infringements_without_contracts": "Infringements on vehicles without contracts",
+        "no_previous_data": "No previous data found from last year, predictions are calculated as an average",
+        "no_vehicle_contracts": "No vehicle contracts found, predictions cannot be made",
+        "number_of_infringements": "Number of Infringements",
+        "offence_month": "Offence Month",
+        "start_date": "Start Date",
+        "title": "Infringement Prediction",
+        "total_amount": "Total Amount",
+        "total_vehicles": "Vehicles with valid contracts",
+        "value": "Value",
+        "vehicle-via": {
+            "infringementProjectionsContracts": "Vehicles with valid contracts",
+            "infringementProjectionsInfringements": "Vehicles with infringements",
+            "infringementProjectionsNoContracts": "Vehicles without contracts",
+            "infringementProjectionsWithoutInfringements": "Vehicles without Infringements"
+        },
+        "vehicle_count": "Vehicles",
+        "vehicle_via": "Filter",
+        "vehicle_with_infringements_percentage": "Percentage of Vehicles with Infringements",
+        "vehicles": "Vehicles",
+        "vehicles_with_infringements": "Vehicles with infringements",
+        "vehicles_without_contracts": "Vehicles without contracts",
+        "vehicles_without_infringements": "Vehicles without Infringements",
+        "view_infringement_data": "View Selected Infringements",
+        "view_infringements": "View Infringements",
+        "view_vehicle_data": "View Vehicle Data",
+        "view_vehicles": "View vehicles with valid contracts"
+    },
+    "infringement-redirection-details": {
+        "address": "Redirection Address Validation",
+        "address_invalid": "The address is invalid",
+        "address_success": "Address is valid",
+        "check_address_prompt": "Please check the address below before sending",
+        "contract_allows_redirections": "Contract allows redirections",
+        "contract_prevent_redirections": "Contract prevents redirections",
+        "contract_redirections": "Contract Redirections",
+        "drivers_contract": "Drivers Contract",
+        "has_drivers_contract_warning": "Will redirect to the driver",
+        "infringement_status": "Infringement Status",
+        "infringement_status_success": "The infringement status is valid",
+        "invalid_infringement_status": "The infringement does not have a valid status for redirection",
+        "invalid_nomination_status": "The nomination does not have a valid status for redirection",
+        "lease": "Lease Contract Document",
+        "lease_missing": "Missing the lease contract document",
+        "lease_success": "The lease contract document exists",
+        "nomination_status": "Nomination Status",
+        "nomination_status_success": "The nomination status is valid",
+        "not_ready": "Not Ready",
+        "pa": "Power of Attorney Document",
+        "pa_missing": "Missing the owner's Power of Attorney",
+        "pa_success": "The owner has a Power of Attorney document",
+        "popover": "Check whether this infringement has all documentation required to perform a municipal redirection?",
+        "ready": "Ready",
+        "recheck_details": "Re-check Details",
+        "redirection": "Infringement Redirection Document",
+        "redirection_missing": "Missing an infringement redirection document",
+        "redirection_success": "The redirection document exists",
+        "signature": "Signature Details",
+        "signature_success": "A valid signature option is available",
+        "signature_type_Natural": "Natural Signature",
+        "signature_type_RP": "Road Protect Signature: We'll use the Road Protect signature on your behalf to ease the process.",
+        "title": "Municipal Redirection Readiness",
+        "type_ATG": "Automatic redirection via our partners",
+        "type_ATG Integration": "Automatic redirection via our partners",
+        "type_ATG Integration_email": "Automatic redirection via email",
+        "type_Jerusalem": "Automatic redirection via Jerusalem",
+        "type_Manual": "Manual redirection via email",
+        "type_Manual Email": "Manual redirection via email",
+        "type_Mileon": "Automatic redirection via Mileon",
+        "type_Police": "Automatic redirection via Police",
+        "type_Telaviv": "Automatic redirection via Telaviv",
+        "valid_infringements": "Valid infringement statuses are: ",
+        "valid_nominations": "Valid nomination statuses are: "
+    },
+    "infringement-spreadsheet-upload": {
+        "account_disclaimer": "Please note that choosing the customer here does not affect which customers you can upload, it only affects which missing infringements you see in step 5.",
+        "missing_infringements_description": "The infringements below were missing from the spreadsheet, please review the list and continue if you would like to mark all of these as Redirection Complete.",
+        "no_issuer_disclaimer": "By not selecting an issuer, the missing infringement stage for redirections will be skipped.",
+        "no_issuer_selected_for_redirection": "You did not select an issuer in the first step so no missing infringements can be found.",
+        "redirect_missing_infringements": "Redirect missing infringements",
+        "redirection_process_complete": "Redirection Process Complete",
+        "select_customer": "Select Customer",
+        "select_issuer": "Select Issuer",
+        "select_issuer_desc": "Infringement issuer",
+        "select_sheet": "Spreadsheet",
+        "select_sheet_desc": "Select the spreadsheet",
+        "skip_redirections": "Skip Redirections",
+        "summary": "Summary",
+        "summary_desc": "Overview of changes",
+        "total_created": "Total Created",
+        "total_missing_from_spreadsheet": "Total Missing from Spreadsheet",
+        "total_updated": "Total Updated",
+        "total_uploaded": "Total Uploaded",
+        "upload": "Upload",
+        "upload_desc": "Upload spreadsheet",
+        "verify": "Verify",
+        "verify_desc": "Test data integrity",
+        "view_missing": "View",
+        "view_missing_desc": "Missing infringements"
+    },
+    "infringement-status": {
+        "Appeal approved": "Appeal Approved",
+        "Approved for Payment": "Approved for payment",
+        "Approved for payment": "Approved for payment",
+        "Closed": "Closed",
+        "Due": "Due",
+        "Nomination in process": "Nomination in process",
+        "Outstanding": "Outstanding",
+        "Paid": "Paid",
+        "Pending": "Pending",
+        "Collection": "Collection",
+        "Unmanaged": "Unmanaged"
+    },
+    "infringement-status-reporting": {
+        "created_between": "Created between",
+        "latest_payment_between": "Latest payment due between",
+        "no_result": "No information found for the given filters",
+        "title": "Infringement Status Counts"
+    },
+    "infringement-status-tag": {
+        "appeal_approved": "Appeal has been approved",
+        "approved": "This fine has been approved",
+        "approved_for_payment": "This fine is approved for payment",
+        "closed": "This fine has been closed",
+        "due": "This fine must be paid",
+        "nomination_process": "This fine nomination is in process",
+        "outstanding": "This fine is outstanding and it may no longer be valid for payment, please contact the Issuer / Municipality",
+        "paid": "This fine has been paid",
+        "pending": "This fine is currently pending approval or payment proof",
+        "unmanaged": "This fine is not managed",
+        "collection": "This fine in collection"
+    },
+    "infringement-system-status-tag": {
+        "missing_contract": "Infringement could not be linked to a valid contract for the given offense date",
+        "missing_vehicle": "Infringement could not be linked to a valid vehicle as none were found matching the infringement vehicle provided"
+    },
+    "infringements-page": {
+        "create": "Create Infringement",
+        "title": "Infringements"
+    },
+    "integration-request-log": {
+        "integration_request_log_id": "Log Id",
+        "request": "Request",
+        "response": "Response",
+        "success": "Successful?",
+        "timestamp": "Timestamp",
+        "type": "Source"
+    },
+    "integration-request-log-page": {
+        "title": "Integration Request Logs"
+    },
+    "integration-testing": {
+        "title": "Integration Testing"
+    },
+    "issuer": {
+        "address": "Address",
+        "authority": "Authority",
+        "batch_request_information": "Batch Request Information",
+        "cancel": "Cancel",
+        "code": "Code",
+        "contactPerson": "Contact Person",
+        "contact_person": "Contact Person",
+        "edit": "Edit",
+        "email": "Email",
+        "externalPaymebtLink": "External Payment Site",
+        "redirectionEmail": "Redirection Email",
+        "externalCode": "External Code",
+        "fax": "Fax",
+        "integration_details": "Integration Details",
+        "latestInfoDate": "Latest Info Date",
+        "latest_info_date": "Latest Information Update Date",
+        "name": "Name",
+        "provider": "Provider",
+        "save": "Save",
+        "telephone": "Telephone",
+        "externalPaymentLink": "External Payment Link",
+        "type": "Type",
+        "integrationDetails": "Integration Details"
+    },
+    "issuer-dropdown": {
+        "placeholder": "Select and issuer"
+    },
+    "issuer-infringement-reporting": {
+        "legend_title": "Infringement Status",
+        "title": "Top Issuers"
+    },
+    "issuer-page": {
+        "create": "Create",
+        "create_issuer": "Create Issuer",
+        "title": "Issuers"
+    },
+    "issuer-providers-dropdown": {
+        "placeholder": "Select a Provider"
+    },
+    "job-log": {
+        "data": "Data",
+        "end_time": "Process Finished",
+        "error": "Error",
+        "job_id": "Job Id",
+        "job_type": "Job Name",
+        "notice_number": "Notice Number",
+        "queue_name": "Queue Name",
+        "queued_time": "Queued Time",
+        "start_time": "Process Started",
+        "status": "Status",
+        "success": "Success",
+        "timestamp": "Queued Time",
+        "uuid": "UUID"
+    },
+    "job-log-page": {
+        "title": "Job Logs"
+    },
+    "lease-contracts-page": {
+        "title": "Lease Contracts"
+    },
+    "locations-page": {
+        "create": "Create",
+        "create_location": "Create Location",
+        "import": "Import",
+        "title": "Locations"
+    },
+    "log": {
+        "data": "Data",
+        "issuer_code": "Issuer Code",
+        "log_id": "Log Id",
+        "notice_number": "Notice Number",
+        "request": "Request",
+        "response": "Response",
+        "result": "Result",
+        "source": "Source",
+        "status": "Status",
+        "successful": "Successful",
+        "timestamp": "Timestamp"
+    },
+    "login": {
+        "email": "E-mail",
+        "email_validation": "Your email is required to login",
+        "fail": "Login Unsuccessful",
+        "forgot_password_prompt": "Forgot password?",
+        "password": "Password",
+        "password_validation": "Your password is required to login",
+        "sign_in": "Sign In",
+        "success": "Successfully logged in"
+    },
+    "municipally-redirect-nomination": {
+        "Contacting the municipality": "Contacting the municipality",
+        "Emailing the redirection document to you": "Emailing the redirection document to you",
+        "Failed to make the redirection request, request to the integration partner was unsuccessful": "Failed to make the redirection request, request to the integration partner was unsuccessful",
+        "Files are ready": "Files are ready",
+        "Generated redirection document": "Generated redirection document",
+        "Generated redirection documentation": "Generated redirection documentation",
+        "Generating redirection PDF document": "Generating redirection PDF document",
+        "Generating redirection PDF document for you to send to the municipality": "Generating redirection PDF document for you to send to the municipality",
+        "Generating redirection PDF documentation": "Generating redirection PDF documentation",
+        "Getting the files ready": "Getting the files ready",
+        "Invalid redirection data, please contact support": "Invalid redirection data, please contact support",
+        "Made request": "Made request",
+        "Making a request to the municipality": "Making a request to the municipality",
+        "Municipality contacted": "Municipality contacted",
+        "Re-checking readiness": "Re-checking readiness",
+        "Re-checking redirectionDetails": "Re-checking redirection details",
+        "Redirection complete": "Redirection complete",
+        "Redirection ready": "Redirection ready",
+        "Saving the details": "Saving the details",
+        "Sending the email": "Sending the email",
+        "account": "Account",
+        "advice": "Once all information is complete, click redirect to perform the redirection.",
+        "check_details": "Check Details",
+        "check_readiness": "Check infringement redirection readiness",
+        "contract": "Lease Contract",
+        "generate_pa_prompt": "Please generate the power of attorney document using our document generation system",
+        "generate_redirection_prompt": "Please generate the redirection document in its place by clicking here",
+        "lease_contract_valid": "Lease contract is Valid",
+        "lease_document_temp_friendly_name": "Lease Document (Temporary)",
+        "missing_lease": "Missing Lease or Redirection document",
+        "missing_lease_fix": "Please rectify this by uploading a Lease Contract PDF to this ",
+        "missing_pa": "Missing account Power of Attorney",
+        "missing_pa_rectify": "Please rectify this by uploading a Power of Attorney PDF to this",
+        "not_ready_1": "This infringement is",
+        "not_ready_2": "not ready for redirection",
+        "not_ready_3": "and we need some more information from you",
+        "null": "Progress message",
+        "pa_friendly_name": "Power of Attorney",
+        "pa_valid": "Power of Attorney Valid",
+        "proceed": "Proceed",
+        "proceed_with_redirection": "Proceed with Redirection",
+        "prompt": "Please click the button below to confirm that the infringement is ready for redirection.",
+        "redirection_failure": "Failed to redirect infringement",
+        "redirection_friendly_name": "Redirection",
+        "redirection_ready": "Infringement is ready for redirection",
+        "redirection_successful": "Successfully made the request for redirection",
+        "return_to_infringement": "Return to the infringement",
+        "step_1": "Verify",
+        "step_2": "Redirect",
+        "step_3": "Complete",
+        "title": "Redirect Infringement",
+        "There is no currently nominated account on this redirection, please contact support": ""
+    },
+    "nomination": {
+        "redirection_completion_date": "Redirection completion date",
+        "redirection_identifier": "Redirection identifier (eg. BRN number)",
+        "redirection_letter_send_date": "Redirection letter send date",
+        "redirection_reference": "Redirection Reference"
+    },
+    "nomination-status": {
+        "Acknowledged": "Acknowledged",
+        "Appealed": "Appealed",
+        "Approved for Payment": "Approved for Payment",
+        "Closed": "Closed",
+        "In Nomination Process": "In Nomination Process",
+        "In Redirection Process": "In Redirection Process",
+        "Manually Paid": "Manually Paid",
+        "Paid": "Paid",
+        "Pending": "Pending",
+        "Redirection Completed": "Redirection Completed",
+        "new": "New",
+        "Redirection Request Error": "Redirection Request Error",
+        "Redirection Error": "Redirection Error",
+        "Redirected To Third Party": "Redirected To Third Party"
+    },
+    "nomination-status-tag": {
+        "acknowledged": "This infringement has been acknowledged, and must now be approved for payment, redirected or appealed",
+        "appealed": "Appealed",
+        "approved": "This infringement has been readied for payment by the nominated account",
+        "closed": "Closed",
+        "in_process": "In Nomination Process",
+        "error": "Error",
+        "request_error": "Request Error",
+        "manually_paid": "This nomination has been paid manually",
+        "new": "New",
+        "paid": "Paid",
+        "pending": "This infringement must be acknowledged by the nominated account"
+    },
+    "nominations-page": {
+        "create": "Create",
+        "create_nomination": "Create Nomination",
+        "import": "Import",
+        "title": "Nominations"
+    },
+    "notifications": {
+        "over250": "A fine over NIS 250 was received"
+    },
+    "ownership-contracts-page": {
+        "create": "Create",
+        "import": "Import",
+        "title": "Ownership Contracts"
+    },
+    "partial-infringement": {
+        "created_at": "Timestamp",
+        "details": "Details",
+        "failed": "Failed",
+        "id": "Id",
+        "notice_number": "Notice Number",
+        "pending": "Pending",
+        "processed": "Processed",
+        "processed_date": "Processed Date",
+        "queued": "Queued",
+        "response": "Response",
+        "save": "Save",
+        "status": "Status",
+        "successful": "Successful"
+    },
+    "partial-infringement-page": {
+        "title": "Partial Infringements"
+    },
+    "pay-nomination": {
+        "additional_information": "Additional Information (optional)",
+        "confirm": "Confirm",
+        "confirm_manual": "Do you confirm that this infringement has been manually paid for and that no further action will be required on this infringement?",
+        "document": "Document (optional)",
+        "enter_cvv_prompt": "Please enter your CVV to confirm you have access to the following Payment Method",
+        "for_card": "(Credit) Card",
+        "infringement_has_been_paid": "Infringement has already been paid!",
+        "manual": "Upload Manual Proof",
+        "pay_all_now": "Pay All Now",
+        "pay_now": "Pay Now",
+        "payment_failure_title": "Payment Failure",
+        "payment_success_title": "Payment Success",
+        "reference_number": "Reference Number",
+        "step_optional": "(optional)",
+        "step_proof": "Proof",
+        "verification": "Verification",
+        "verify_now": "Verify Now",
+        "with_method": "Method"
+    },
+    "pay-nomination-manual": {
+        "amount_paid": "Amount Paid"
+    },
+    "payment-method": {
+        "failure_description": "Please try again and contact us if you continue to have problems",
+        "failure_title": "Failed to update your Payment Method",
+        "success_description": "Your payment method has been stored and will be used for future payments",
+        "success_title": "Successfully added the Payment Method"
+    },
+    "payment-methods": {
+        "add_payment_method": "Add Method",
+        "atg": "ATG: Single Phase Municipality Payments",
+        "change_payment_method": "Update Payment method",
+        "credit_card": "Credit Card",
+        "rp": "RP: Two Phase Municipality Payments",
+        "title": "Payment Methods"
+    },
+    "payments-page": {
+        "create": "Create",
+        "create_payment": "Create Payment",
+        "import": "Import",
+        "title": "Payments"
+    },
+    "permission-guard": {
+        "content_1": "Permissions required:",
+        "content_2": "Please contact your account Administrator if you require access.",
+        "title": "You do not have the permissions required to view that information"
+    },
+    "permissions": {
+        "Account Reporting": "Account Reporting",
+        "Acknowledge Infringement": "Acknowledge Infringement",
+        "Appeal Infringement": "Appeal Infringement",
+        "Approve Infringement": "Approve Infringement",
+        "Create Account Relation": "Create Account Relation",
+        "Create Contract": "Create Contract",
+        "Create Document": "Create Document",
+        "Create Infringement": "Create Infringement",
+        "Create Infringement Note": "Create Infringement Note",
+        "Create Profile": "Create Profile",
+        "Create Users": "Create Users",
+        "Create Vehicle": "Create Vehicle",
+        "Delete Account Relation": "Delete Account Relation",
+        "Delete Contract": "Delete Contract",
+        "Delete Document": "Delete Document",
+        "Delete Infringement": "Delete Infringement",
+        "Delete Infringement Note": "Delete Infringement Note",
+        "Delete Profile": "Delete Profile",
+        "Delete User": "Delete User",
+        "Delete Vehicle": "Delete Vehicle",
+        "Edit Account Relation": "Edit Account Relation",
+        "Edit Contract": "Edit Contract",
+        "Edit Document": "Edit Document",
+        "Edit Infringement": "Edit Infringement",
+        "Edit Infringement Note": "Edit Infringement Note",
+        "Edit Infringement Status": "Edit Infringement Status",
+        "Edit Profile": "Edit Profile",
+        "Edit Users": "Edit Users",
+        "Edit Vehicle": "Edit Vehicle",
+        "Finance Reporting": "Finance Reporting",
+        "Infringement Reporting": "Infringement Reporting",
+        "Link Document": "Link Document",
+        "Manual Pay Infringement": "Manual Pay Infringement",
+        "Pay Infringement": "Pay Infringement",
+        "Redirect Infringement": "Redirect Infringement",
+        "Unapprove Infringement": "Unapprove Infringment",
+        "Vehicle Reporting": "Vehicle Reporting",
+        "View Account Relation": "View Account Relation",
+        "View Contract": "View Contract",
+        "View Contracts": "View Contracts",
+        "View Document": "View Document",
+        "View Infringement": "View Infringement",
+        "View Infringement Logs": "View Infringement Logs",
+        "View Infringement Note": "View Infringement Note",
+        "View Infringement Notes": "View Infringement Notes",
+        "View Infringements": "View Infringements",
+        "View Past Payments": "View Past Payments",
+        "View Profile": "View Profile",
+        "View Profile Logs": "View Profile Logs",
+        "View User": "View User",
+        "View Users": "View Users",
+        "View Vehicle": "View Vehicle",
+        "View Vehicle Logs": "View Vehicle Logs",
+        "View Vehicles": "View Vehicles",
+        "Generate Redirection Document": "",
+        "Generate Redrection Document": ""
+    },
+    "permissions-groups": {
+        "Account Relation": "Account Relations",
+        "Contracts": "Contracts",
+        "Document": "Documents",
+        "Infringements": "Infringements",
+        "Profile": "Profile",
+        "Reporting": "Reporting",
+        "Users": "Users",
+        "Vehicles": "Vehicles"
+    },
+    "raw-infringement-log": {
+        "data": "Data",
+        "issuer": "Issuer Code",
+        "notice_number": "Notice Number",
+        "raw_infringement_id": "Log Id",
+        "result": "Result",
+        "source": "Source",
+        "status": "Status",
+        "success": "Successful?",
+        "timestamp": "Timestamp"
+    },
+    "raw-infringement-log-page": {
+        "title": "Raw Infringement Logs"
+    },
+    "redirect-nomination": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "document": "Document (optional)",
+        "na": "N/A",
+        "optional": "(optional)",
+        "owner": "Owner",
+        "reason": "Reason (optional)",
+        "redirection-complete": "Redirection Complete",
+        "redirection_complete": "Redirection Complete",
+        "select_label": "Select who this infringement should be redirected to",
+        "step_1": "Select account",
+        "step_2": "Upload redirection document",
+        "step_3": "Specify reason",
+        "user": "User"
+    },
+    "reporting": {
+        "No Current Lease": "No Current Lease",
+        "No Current Ownership": "No Current Ownership",
+        "Owned": "Owned",
+        "Total": "Total",
+        "Used": "Used",
+        "With Infringements": "With Infringements"
+    },
+    "request-information-log-page": {
+        "title": "Information Requests"
+    },
+    "request_information_log": {
+        "account": "Account",
+        "issuer": "Issuer",
+        "log_response": "Log Response",
+        "request_send_date": "Request Send Date",
+        "response_received": "Response Received",
+        "response_received_date": "Response Received Date",
+        "sender_account": "Sender Account"
+    },
+    "reset-user-login": {
+        "fail": "Failed to reset user's login attempts",
+        "success": "Successfully reset user's login attempts"
+    },
+    "role-dropdown": {
+        "placeholder": "Select a role"
+    },
+    "roles-page": {
+        "create": "Create",
+        "create_role": "Create Role",
+        "import": "Import",
+        "title": "Roles"
+    },
+    "send-user-forgot-password": {
+        "fail": "Failed to send user their forgot password email",
+        "success": "Successfully sent user their forgot password email"
+    },
+    "sidebar": {
+        "account_users": "Account Users",
+        "account_users_desc": "The other users who may represent this account and their access level",
+        "admin": "Admin",
+        "contracts": "Contracts",
+        "contracts_desc": "Lease and ownership contracts",
+        "graphing": "Graphing",
+        "graphing_by_issuer": "Infringements by Issuer",
+        "graphing_by_status": "Infringements by Status",
+        "graphing_by_vehicle": "Infringements by Vehicle",
+        "graphing_for_vehicle_owner": "Vehicle Owner",
+        "graphing_for_vehicle_user": "Vehicle User",
+        "infringement-projection": "Infringement Projection",
+        "my_account": "Account",
+        "my_account_desc": "The account / business you represent",
+        "nominated_to_me": "Nominated to me",
+        "nominated_to_me_desc": "Infringements that are this accounts responsibility to perform actions on",
+        "relations": "Relations",
+        "relations_desc": "Accounts you have custom relations with",
+        "reporting": "Reporting",
+        "reporting_desc": "Data visualisation to help understand your data",
+        "summary-indicators": "Summary Indicators",
+        "vehicles": "Vehicles",
+        "vehicles_contracts": "Vehicle Contracts",
+        "vehicles_desc": "Vehicles that are owned or used by this account",
+        "vehicles_infringements": "Infringements",
+        "vehicles_infringements_desc": "Infringements that are on your vehicles"
+    },
+    "sidebar-admin": {
+        "accounts": "System Accounts",
+        "create": "Create",
+        "driver": "Drivers",
+        "infringements": "System Infringements",
+        "integration-request-logs": "Integration Requests",
+        "integration-test": "Integration Testing",
+        "issuers": "System Issuers",
+        "job-logs": "Jobs",
+        "logs": "System Logs",
+        "partial_infringements": "Partial Infringements",
+        "payments": "Payments",
+        "raw-infringement-logs": "Raw Infringements",
+        "reporting": "Reports",
+        "request_information": "Information Requests",
+        "upload": "Upload",
+        "upload_driver_contracts": "Upload Driver Contracts",
+        "upload_lease_contracts": "Upload Lease Contracts",
+        "upload_ownership_contracts": "Upload Ownership Contracts",
+        "upload_proof_of_payments": "Upload Proof of Payments",
+        "users": "All Users",
+        "vehicles": "System Vehicles",
+        "vehicles_contracts": "System Contracts",
+        "view": "View",
+        "partial-infringements": {
+            "fetch": "Fetch New",
+            "upload-ocr": "Upload infringements with OCR"
+        }
+    },
+    "stepper": {
+        "cancel": "Cancel",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "summary-indicators": {
+        "compare_years": "Compare Years",
+        "encountered_error": " Encountered an error during calculation",
+        "end_date": "End Date",
+        "export": "Export",
+        "filter": "Filter",
+        "hide": "Hide",
+        "infringement-cost": {
+            "count": "Count",
+            "penalty_amount": "Total Penalty",
+            "total_amount": "Total Amount"
+        },
+        "infringement_cost": "Infringement Cost",
+        "infringement_cost_description": "The cost breakdown of infringements linked to your account or with your BRN",
+        "infringement_count": "Infringement Count",
+        "infringement_count_description": "Number of infringements linked to your account or with your BRN",
+        "infringements": "Infringements",
+        "managed-vehicles": {
+            "LeaseContract": "Lease contract",
+            "OwnershipContract": "Ownership contract",
+            "count": "Count",
+            "leased": "Leased",
+            "leased_description": "The lease contract statuses linked to your account",
+            "owned": "Owned",
+            "owned_description": "The ownership contract statuses linked to your account",
+            "status": "Status",
+            "type": "Type"
+        },
+        "managed_vehicles": "Managed Vehicles",
+        "managed_vehicles_description": "The contract statuses linked to your account",
+        "more-details": {
+            "infringement-cost": "All Infringements",
+            "managed-vehicles": "Managed Vehicle Contracts",
+            "redirection-information": "Redirection information",
+            "unmanaged-vehicles": "Unmanaged Vehicles"
+        },
+        "redirection-information": {
+            "count": "Count",
+            "status": "Nomination Status"
+        },
+        "redirection_information": "Redirection Information",
+        "redirection_information_description": "The nomination status of infringements linked to your account or with your BRN",
+        "start_date": "Start Date",
+        "this_year": "This Year",
+        "title": "Summary Indicators",
+        "unmanaged-vehicles": {
+            "count": "Count",
+            "status": "Infringement Status"
+        },
+        "unmanaged_vehicles": "Unmanaged Vehicles",
+        "unmanaged_vehicles_description": "The infringement statuses of infringements with your brn without a vehicle contract",
+        "vehicles": "Vehicles",
+        "view_more_details": "More Details",
+        "year-comparison-keys": {
+            "Acknowledged": "Acknowledged",
+            "Approved for Payment": "Approved for Payment",
+            "Closed": "Closed",
+            "Due": "Due",
+            "Expired": "Expired",
+            "Expiring soon": "Expiring soon",
+            "In Redirection Process": "In Redirection Process",
+            "Missing": "Missing",
+            "Outstanding": "Outstanding",
+            "Paid": "Paid",
+            "Pending": "Pending",
+            "Redirection Completed": "Redirection Completed",
+            "Upcoming": "Upcoming",
+            "Valid": "Valid",
+            "amountDue": "Amount Due",
+            "count": "Count",
+            "originalAmount": "Original Amount",
+            "penaltyAmount": "Penalty Amount",
+            "totalAmount": "Total Amount",
+            "totalPayments": "Total Payments"
+        }
+    },
+    "summary-reporting": {
+        "title": "Summary"
+    },
+    "unready-batch-redirects-spreadsheet": {
+        "has_lease_document_heading": "Has Lease Document?",
+        "has_lease_substitute_document_heading": "Has Lease Substitute Document?",
+        "has_power_of_attorney_document_heading": "Has Power of Attorney Document?",
+        "has_signature_available_heading": "Has Signature Available?",
+        "has_valid_redirection_address_heading": "Has Valid Redirection Address?",
+        "has_valid_status_heading": "Has Valid Status?",
+        "infringement_url_heading": "URL",
+        "message_heading": "Message",
+        "no": "No",
+        "notice_number_heading": "Notice Number",
+        "redirection_type_heading": "Redirection Type",
+        "sheet_name": "Sheet 1",
+        "workbook_name": "Unready Redirects",
+        "yes": "Yes"
+    },
+    "update-account": {
+        "fail": "Failed to update account",
+        "success": "Successfully updated account"
+    },
+    "update-account-user": {
+        "fail": "Failed to update Account User",
+        "success": "Successfully updated Account User"
+    },
+    "update-contract": {
+        "create": "Create",
+        "details": "Details",
+        "document": "Document",
+        "end_date": "End Date",
+        "fail": "Failed to update contract",
+        "owner": "Owner",
+        "reference": "Reference",
+        "start_date": "Start Date",
+        "success": "Successfully updated contract",
+        "user": "User (lessee)",
+        "vehicle": "Vehicle",
+        "vehicle_registration": "Vehicle Registration"
+    },
+    "update-contract-dates": {
+        "end_date": "End Date",
+        "fail": "Failed to update dates",
+        "prevent_redirections": "Prevent Redirections",
+        "start_date": "Start Date",
+        "success": "Successfully updated dates",
+        "update": "Update"
+    },
+    "update-document": {
+        "fail": "Failed to update document",
+        "success": "Successfully updated document"
+    },
+    "update-infringement": {
+        "documentation": "Documentation (optional)",
+        "fail": "Failed to update infringement",
+        "general_details": "General Details",
+        "location": "Location",
+        "success": "Successfully updated infringement",
+        "update": "Update"
+    },
+    "update-issuer": {
+        "fail": "Failed to update issuer",
+        "success": "Successfully updated issuer"
+    },
+    "update-location": {
+        "fail": "Failed to update location",
+        "success": "Successfully updated location"
+    },
+    "update-nomination": {
+        "account": "Account",
+        "create": "Create",
+        "infringement": "Infringement"
+    },
+    "update-payment": {
+        "fail": "Failed to update payment",
+        "success": "Successfully updated payment"
+    },
+    "update-redirection-status": {
+        "approved": "Approved",
+        "denied": "Denied",
+        "title": "Update Redirection Status"
+    },
+    "generate-redirection-document-status": {
+        "approved": "Approved",
+        "denied": "Denied",
+        "title": "Generate Redirection Document Status"
+    },
+    "update-request-information-log": {
+        "fail": "Fail",
+        "success": "Success"
+    },
+    "update-role": {
+        "fail": "Failed to update role",
+        "success": "Successfully updated role"
+    },
+    "update-user": {
+        "change_password": "Change Password",
+        "fail": "Failed to update user",
+        "reset_login_attempts": "Reset login attempts",
+        "save": "Update",
+        "send_forgot_password_email": "Send forgot password email",
+        "success": "Successfully updated user"
+    },
+    "update-vehicle": {
+        "fail": "Failed to update vehicle",
+        "success": "Successfully updated vehicle",
+        "update": "Update"
+    },
+    "update-vehicle-document": {
+        "fail": "Failed to update Vehicle Document",
+        "success": "Successfully updated Vehicle Document"
+    },
+    "upload-accounts-page": {
+        "title": "Upload Accounts"
+    },
+    "upload-action": {
+        "create": "create",
+        "manualRedirection": "Manual Redirection",
+        "update": "Update",
+        "uploadManualProof": "Upload Manual Proof",
+        "upsert": "Create or Update"
+    },
+    "upload-driver-contracts-page": {
+        "title": "Upload Driver Contracts"
+    },
+    "upload-driver-page": {
+        "title": "Upload Driver"
+    },
+    "upload-infringement-page": {
+        "title": "Upload Infringements"
+    },
+    "upload-issuers-page": {
+        "title": "Upload Issuers"
+    },
+    "upload-lease-contracts-page": {
+        "title": "Upload Lease Contracts"
+    },
+    "upload-ownership-contracts-page": {
+        "title": "Upload Ownership Contracts"
+    },
+    "upload-partial-infringement": {
+        "amount_due": "Amount Due",
+        "brn": "Identification / BRN",
+        "case_number": "Case Number",
+        "issuer_code": "Issuer Code",
+        "issuer_name": "Issuer Name",
+        "issuer_status": "Issuer Status",
+        "issuer_status_description": "Issuer Status Description",
+        "latest_payment_date": "Latest Payment Date",
+        "notice_number": "Notice Number",
+        "offence_date": "Offense Date",
+        "original_amount": "Original Amount",
+        "provider": "Provider",
+        "reason": "Reason",
+        "reason_code": "Reason Code",
+        "type": "Type",
+        "vehicle_registration": "Vehicle Registration"
+    },
+    "upload-partial-infringement-page": {
+        "title": "Upload partial infringements"
+    },
+    "upload-ocr-partial-infringement-page": {
+        "title": "Upload OCR partial infringements",
+        "select_issuer_step": {
+            "title": "Select issuer",
+            "description": "Select issuer to allow infringements upload",
+            "select_issuer": "Select issuer",
+            "select_number_of_documents": "Enter number of documents",
+            "select_is_complete_list": "This is a complete list of infringement from issuer"
+        },
+        "upload_file_step": {
+            "title": "Select file",
+            "description": "Select file with partial infringements",
+            "upload": "Upload"
+        },
+        "view_infringements_step": {
+            "title": "Infringements",
+            "description": "Created partial infringements"
+        }
+    },
+    "upload-payments-page": {
+        "title": "Upload Payments"
+    },
+    "upload-vehicle-documents-page": {
+        "constraints": "Constraints",
+        "invalid": "Invalid",
+        "invalid_columns": "Invalid Columns",
+        "invalid_registration": "!No Registration!",
+        "note": "Note:",
+        "out_of": "out of",
+        "registration": "Registration",
+        "step_1": "Select Sheet",
+        "step_1_desc": "Select a spreadsheet file and the correct columns",
+        "step_2": "Verify Vehicle Documents",
+        "step_2_desc": "Request verification on the Vehicle Documents to upload",
+        "step_3": "Upload Vehicle Documents",
+        "step_3_desc": "Upload the Vehicle Documents",
+        "success_1": "Successfully uploaded",
+        "success_2": "of the valid Vehicle Documents",
+        "success_verify": "Successfully verified vehicleDocuments",
+        "title": "Upload Vehicle Documents",
+        "upload": "Upload",
+        "upload_note": "this may take some time depending on how many Vehicle Documents are uploaded and you may skip this step to upload directly.",
+        "verify": "Verify",
+        "verify_note": "this may take some time depending on how many Vehicle Documents are verified and you may skip this step to upload directly."
+    },
+    "upload-vehicles-page": {
+        "title": "Upload Vehicles"
+    },
+    "upsert-infringement": {
+        "no_missing_infringements": "No missing infringements!"
+    },
+    "user": {
+        "accounts": "Accounts",
+        "email": "Email",
+        "name": "Name",
+        "surname": "Surname",
+        "type": "Type"
+    },
+    "user-type-guard": {
+        "title": "Your are not authorised to view that information"
+    },
+    "users-page": {
+        "title": "Users"
+    },
+    "vehicle-documents-page": {
+        "create": "Create",
+        "create_vehicle_document": "Create VehicleDocument",
+        "import": "Import",
+        "title": "Vehicle Documents"
+    },
+    "vehicle-dropdown": {
+        "select": "Vehicle Type"
+    },
+    "vehicles-page": {
+        "title": "Vehicles"
+    },
+    "vehicles-reporting": {
+        "title": "Vehicles"
+    },
+    "view-account-page": {
+        "title": "View Account"
+    },
+    "view-account-relation-advanced": {
+        "create": "Create",
+        "upload": "Upload",
+        "create_account-relation": "View Relations",
+        "edit_account-relation": "Edit Relation"
+    },
+    "view-account-reports": {
+        "overview": "Overview",
+        "refresh": "Refresh"
+    },
+    "view-account-user-page": {
+        "title": "View Account User"
+    },
+    "view-account-users": {
+        "add": "Add Account User",
+        "fail": "Failed to retrieve Account Users",
+        "roles": "Roles",
+        "success": "Successfully retrieved Account Users",
+        "view": "View Account User"
+    },
+    "view-account-vehicles": {
+        "fleet": "Fleet",
+        "less": "less",
+        "more": "more",
+        "owned": "Owned",
+        "show": "Show",
+        "all": "All"
+    },
+    "view-accounts-advanced": {
+        "create_account": "Create Account",
+        "import": "Import",
+        "missing": "Missing",
+        "toggle_active": "Toggle Active",
+        "edit_account": "Edit Account"
+    },
+    "view-admin-reports": {
+        "refresh": "Refresh",
+        "title": "Admin Summaries"
+    },
+    "view-contract": {
+        "add_document": "Add Document",
+        "add_document_warning": "Document missing.",
+        "add_document_warning_desc": "This document is important for nominating infringements.",
+        "change_contract_dates": "Edit Contract",
+        "document": "Document",
+        "edit_contract": "Edit Contract",
+        "status": "Status",
+        "type": "Type",
+        "run_ocr": "Run OCR"
+    },
+    "view-contract-page": {
+        "title": "View Contract"
+    },
+    "view-contracts": {
+        "add_lease_contract": "Add Lease Contract",
+        "add_ownership_contract": "Add Ownership Contract"
+    },
+    "view-contracts-advanced": {
+        "create": "Create One",
+        "create_driver_contract": "Create driver contract",
+        "create_lease_contract": "Create Lease Contract",
+        "create_ownership_contract": "Create Ownership Contract",
+        "document": "Has Document?",
+        "driver": "Driver",
+        "end_date": "End Date",
+        "generate_lease_contract_documents": "Generate Lease Contract Documents",
+        "is_current": "Is Current?",
+        "lease": "Lease",
+        "lease_contract": "LeaseContract",
+        "na": "N/A",
+        "no": "No",
+        "ocr-status": "OCR Status",
+        "owner": "Owner",
+        "owner_brn": "Owner BRN",
+        "owner_name": "Owner Name",
+        "ownership": "Ownership",
+        "ownership_contract": "OwnershipContract",
+        "prevent_redirections": "Prevent Redirections",
+        "reference": "Reference",
+        "start_date": "Start Date",
+        "status": "Status",
+        "true": "True",
+        "type": "Contract Type",
+        "upload": "Upload",
+        "user": "User",
+        "user_brn": "User BRN",
+        "user_name": "User Name",
+        "vehicle": "Vehicle",
+        "vehicle_registration": "Vehicle Registration",
+        "yes": "Yes",
+        "ocr_results": "OCR Results",
+        "ocr": "OCR",
+        "run_bulk_ocr": "Run Bulk OCR"
+    },
+    "view-current-account-user-permissions": {
+        "button": "My Permissions",
+        "ok": "Ok",
+        "your_permissions": "Your permissions",
+        "your_permissions_desc": "Below are the permissions you have for the account you are currently logged into."
+    },
+    "view-document-page": {
+        "title": "View Document"
+    },
+    "view-documents": {
+        "fail": "Failed to retrieve Documents",
+        "success": "Successfully retrieved Documents"
+    },
+    "view-driver-contract": {
+        "driver": "Driver",
+        "end_date": "End Date",
+        "start_date": "Start Date"
+    },
+    "view-driver-page": {
+        "title": "View Driver"
+    },
+    "view-infringement": {
+        "approve": "Approve for Payment",
+        "approve_text": "Approve for Payment",
+        "cancel": "Cancel",
+        "contract": "Contract",
+        "document": "Document",
+        "edit": "Edit",
+        "infringement_approval": "Infringement Approval For Payment",
+        "infringement_ownership": "Infringement Ownership",
+        "location": "Location",
+        "more_details": "More Details",
+        "no_contract": "Contract is missing",
+        "nominated_by_contract": "Nominated by Contract",
+        "nomination": "Nomination",
+        "notes": "Notes",
+        "payment": "Payment",
+        "redirection": "Redirection",
+        "title": "Infringements Details",
+        "unapprove": "Unapprove for Payment",
+        "unapprove_text": "By unapproving this infringement, you will no longer be able to pay this infringement until the infringement is approved again.",
+        "upload_date": "Upload Date"
+    },
+    "view-infringement-advanced": {
+        "approved_date": "Approved for Payment Date",
+        "brn": "BRN from Issuer",
+        "brn_account": "Account name from Issuer",
+        "contract_owner": "Vehicle Owner",
+        "contract_pdf": "Contract Document Exists",
+        "contract_pdf_created": "Contract Document Creation",
+        "contract_user": "Contract User",
+        "create": "Create",
+        "create_infringement": "Create Infringement",
+        "date_uploaded": "Date Uploaded",
+        "external_change_date": "Verification Status Date",
+        "external_identifier": "External Identifier",
+        "external_payment_reference": "Payment Reference",
+        "external_redirection_reference": "External Redirection Reference",
+        "import": "Import",
+        "invalid_redirection": "Invalid Redirection",
+        "last_infringement_status_change_date": "Last Infringement Status Change Date",
+        "last_nomination_status_change_date": "Last Nomination Status Change Date",
+        "lease_contract_pdf": "Lease Contract PDF",
+        "location": "Location",
+        "missing": "Not allocated, please add a contract for this period",
+        "nominated_account": "Nominated Account",
+        "nomination_status": "Redirection Status",
+        "nomination_type": "Nomination Type",
+        "notes": "Notes",
+        "ocr_status": "OCR Status",
+        "paid_date": "Payment Date",
+        "power_of_attorney_pdf": "Power of Attorney PDF",
+        "prevent_redirections": "Prevent Redirectons",
+        "raw_redirection_identifier": "Redirection Identifier",
+        "raw_redirection_identifier_exists": "Redirection Identifier Exists",
+        "redirected_date": "Redirection Completed Date",
+        "redirection_document_update_date": "Redirection Document Update Date",
+        "redirection_error_description": "Redirection Error description",
+        "Redirected_to_third_party": "Redirected To Third Party description",
+        "redirection_letter_send_date": "Redirection Start Date",
+        "redirection_status": "Redirection Status",
+        "redirection_type": "Redirection Type",
+        "system_status": "System Status",
+        "valid_redirection": "Valid Redirection",
+        "vehicle_type": "Vehicle Type",
+        "edit_infringement": "Edit Infringement",
+        "creation_user": "Creation User",
+        "creationMethod": "Creation Method",
+        "redirection_error": "Redirection Error",
+        "tags": ""
+    },
+    "view-infringement-approval": {
+        "Approve For Payment": "Approve for Payment",
+        "Unapprove for Payment": "Unapprove for Payment",
+        "account": "Account",
+        "action": "Action",
+        "action_date": "Action date",
+        "amount_due": "Amount due",
+        "user": "User"
+    },
+    "view-infringement-page": {
+        "title": "View Infringements"
+    },
+    "view-infringement-payment": {
+        "amount_paid": "Amount Paid",
+        "external_reference": "External Reference",
+        "infringement_payments_received": "Infringement Payments Received",
+        "no_payments_made": "No Payments have been made for this infringement",
+        "payment_date": "Payment Date",
+        "payment_provider": "Payment Provider",
+        "payment_status": "Payment Status",
+        "payment_type": "Payment Type",
+        "reference_number": "Reference Number"
+    },
+    "view-infringements-advanced": {
+        "all": "All",
+        "me": "Me",
+        "no": "No",
+        "nominated_to": "Nominated to",
+        "vehicle_owner": "Vehicle Owner",
+        "vehicle_user": "Vehicle User",
+        "withBRN": "Infringements with a BRN",
+        "withoutBRN": "Infringements without a BRN",
+        "no_owner_defined": "Owner not defined",
+        "owner_infringements": "Infringements on Owner",
+        "no_lease_document": "Missing Lease Document",
+        "yes": "Yes",
+        "creationMethod": {
+            "User": "User",
+            "Unknown": "Unknown",
+            "Excel Upload": "Excel Upload",
+            "Crawler": "Crawler",
+            "Partial Infringement": "Partial Infringement"
+        }
+    },
+    "view-integration-request-log-page": {
+        "title": "View Integration Request Log"
+    },
+    "view-issuer-advanced": {
+        "create_issuer": "Create Issuer",
+        "edit_issuer": "Edit Issuer"
+    },
+    "view-issuer-page": {
+        "title": "View Issuer"
+    },
+    "view-issuers": {
+        "fail": "Failed to retrieve Issuers",
+        "success": "Successfully retrieved Issuers"
+    },
+    "view-job-log-page": {
+        "title": "View Job Log"
+    },
+    "view-lease-contract": {
+        "end_date": "Lease End Date",
+        "ocr_result": "OCR Result",
+        "ocr_status": "OCR Status",
+        "owner": "Owner",
+        "redirection_document": "Redirection document",
+        "start_date": "Lease Start Date",
+        "user": "User"
+    },
+    "view-lease-contracts": {
+        "fail": "Failed to retrieve Lease Contracts",
+        "success": "Successfully retrieved Lease Contracts"
+    },
+    "view-location": {
+        "note1": "Note: this location was unable to be searched by Google for further information and is likely invalid",
+        "note2": "Note: this location has not been processed via Google yet, please refresh this page in a couple of minutes for a full\n            address."
+    },
+    "view-location-page": {
+        "title": "View Location"
+    },
+    "view-locations": {
+        "message": "Only locations that were successfully found on Google are displayed here"
+    },
+    "view-logs": {
+        "after": "After",
+        "before": "Before",
+        "by_user": "By user",
+        "changes_made": "Changes made",
+        "fail": "Failed to retrieve Logs",
+        "for_vehicle": "For vehicle",
+        "history": "History",
+        "no_high_priority_logs_found": "No high priority logs found",
+        "no_logs_found": "No logs found",
+        "none": "none",
+        "relating_to_account": "Relating to account",
+        "relating_to_infringement": "Relating to infringement",
+        "show_all": "Show all",
+        "success": "Successfully retrieved Logs",
+        "title": "History - (last 100)"
+    },
+    "view-nomination": {
+        "account": "Nominated to account",
+        "account_not_on_system": "This account does not exist on the system",
+        "acknowledge": "Acknowledge",
+        "appeal": "Appeal",
+        "appeal_text": "Coming soon. Using our Appeal system you can challenge this infringement with the issuer.",
+        "approve": "Approve for Payment",
+        "approve_text": "By approving this infringement nomination you are agreeing that the account as specified above is responsible for paying this infringement in full. This infringement may not be redirected after approval for payment.",
+        "approved_date": "Approved Date",
+        "current_status": "Current status",
+        "date": "Nomination Date",
+        "date_letter_sent": "Date Redirection Letter was Sent",
+        "document": "Redirection document",
+        "external_redirection_reference": "External Redirection Reference",
+        "missing_account": "Error: missing account",
+        "missing_account_tooltip": "Please nominate to a valid account",
+        "paid_date": "Paid Date",
+        "pay": "Pay",
+        "previously": "Previously Nominated To",
+        "redirect": "Redirect",
+        "redirect_by_mail": "Redirect By Mail",
+        "redirect_text_1": "By redirecting this fine you are stating that the currently nominated account is not liable to pay for this infringement and that another account,",
+        "redirect_text_2": "User / Driver / Owner",
+        "redirect_text_3": "as specified on the vehicle",
+        "redirect_text_4": "is responsible for payment.",
+        "redirected_date": "Redirected Date",
+        "redirection": "Redirection",
+        "redirection_completion_date": "Date Redirection was Completed",
+        "redirection_document_update_date": "Redirection Document Update Date",
+        "redirection_error_description": "Redirection Error description",
+        "redirection_identifier": "Redirection Identifier",
+        "redirection_target": "Target Account",
+        "generate_documents_only": "Generate Redirection Documents",
+        "type": "Nomination Type",
+        "unapprove": "Unapprove for Payment",
+        "unapprove_text": "By unapproving this infringement nomination, the account as specified above will no longer be able to pay this infringement until the infringement nomination is approved again.",
+        "update_redirection_status": "Update Redirection",
+        "update_redirection_status_description": "Click here to update the redirection status by approving or denying the request. Only do this if the municipality has let you know whether the request was approved or not",
+        "verify_text": "Verify Infringement",
+        "generate_redirection_document": "Generate Redirection Document",
+        "view-nomination": {
+            "generate_redirection_document": ""
+        }
+    },
+    "view-nomination-page": {
+        "title": "View Nomination"
+    },
+    "view-nominations-advanced": {
+        "account": "Nominated Account",
+        "account_name": "Account Name",
+        "amount_due": "Amount Due",
+        "approved_date": "Approved Date",
+        "infringement_status": "Status",
+        "issuer_name": "Issuer",
+        "issuer_status": "Issuer Status",
+        "latest_payment_date": "Latest Payment Date",
+        "location": "Location",
+        "notice_number": "Notice Number",
+        "offence_date": "Offence Date",
+        "paid_date": "Paid Date",
+        "reason": "Reason",
+        "reason_code": "Reason Code",
+        "reference": "Reference",
+        "status": "Nomination Status",
+        "type": "Nomination Type",
+        "vehicle_owner": "Vehicle Owner",
+        "vehicle_registration": "Vehicle Registration",
+        "vehicle_user": "Vehicle User",
+        "view_map": "Infringement Map",
+        "view_selected": "View selected on map"
+    },
+    "view-ocr-result": {
+        "contract_name": "Contract Name",
+        "end_date": "End Date",
+        "owner_brn": "Owner BRN",
+        "start_date": "Start Date",
+        "user_brn": "User BRN",
+        "vehicle": "Vehicle"
+    },
+    "view-ownership-contract": {
+        "end_date": "Ownership End Date",
+        "owner": "Owner",
+        "start_date": "Ownership Start Date"
+    },
+    "view-ownership-contracts": {
+        "fail": "Failed to retrieve Ownership Contracts",
+        "success": "Successfully retrieved Ownership Contracts"
+    },
+    "view-partial-infringement-page": {
+        "title": "View Partial Infringement"
+    },
+    "view-payment": {
+        "details": "Details",
+        "document": "Document",
+        "payment_id": "Payment ID (Not implemented)",
+        "payment_type_not_supported": "Payment type not supported, please contact a developer",
+        "reference": "Reference",
+        "type": "Type"
+    },
+    "view-payment-page": {
+        "title": "View Payment"
+    },
+    "view-payments": {
+        "fail": "Failed to retrieve Payments",
+        "success": "Successfully retrieved Payments"
+    },
+    "view-payments-advanced": {
+        "create_payment": "Create Payment",
+        "import": "Import",
+        "notice_number": "Notice Number"
+    },
+    "view-raw-infringement-log-page": {
+        "title": "View Raw Infringement Log"
+    },
+    "view-request-information-log-page": {
+        "title": "View Information Requests"
+    },
+    "view-role": {
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "insert_value": "INSERT VALUE",
+        "key_insert_value": "Key: INSERT VALUE"
+    },
+    "view-role-page": {
+        "title": "View Role"
+    },
+    "view-roles": {
+        "fail": "Failed to retrieve Roles",
+        "success": "Successfully retrieved Roles"
+    },
+    "view-user": {
+        "accounts": "Accounts",
+        "cancel": "Cancel",
+        "edit": "Edit"
+    },
+    "view-user-advanced": {
+        "edit_user": "Edit User"
+    },
+    "view-user-page": {
+        "title": "View User"
+    },
+    "view-users": {
+        "accounts": "Accounts",
+        "create": "Create",
+        "create_user": "Create",
+        "fail": "Failed to retrieve users",
+        "success": "Successfully retrieved users"
+    },
+    "view-vehicle": {
+        "auto_assign": "Digitally nominate infringements to",
+        "cancel": "Cancel",
+        "category": "Category",
+        "color": "Color",
+        "contracts": "Contracts",
+        "current_lease": "Current Lease Contract",
+        "current_ownership": "Current Ownership Contract",
+        "edit": "Edit",
+        "infringements": "Infringements",
+        "manufacturer": "Manufacturer",
+        "model": "Model",
+        "no_lease": "There is no current lease contract for this vehicle.",
+        "no_ownership": "Current Ownership Contract",
+        "type": "Type",
+        "weight": "Weight",
+        "year": "Year",
+        "year_placeholder": "Select Year"
+    },
+    "view-vehicle-advanced": {
+        "current_lease": "Current Lease Contract Status",
+        "current_ownership": "Current Ownership Contract Status",
+        "infringements": "Infringements",
+        "infringements_status": "Has Infringements with Status",
+        "edit_vehicle": "Edit Vehicle"
+    },
+    "view-vehicle-document-page": {
+        "title": "View VehicleDocument"
+    },
+    "view-vehicle-documents": {
+        "fail": "Failed to retrieve Vehicle Documents",
+        "success": "Successfully retrieved Vehicle Documents"
+    },
+    "view-vehicle-page": {
+        "title": "View Vehicle"
+    },
+    "view-vehicles-advanced": {
+        "create": "Create",
+        "create_vehicle": "Create Vehicle",
+        "import": "Import"
+    },
+    "edit-presets": {
+        "description": "The preset will save current filters and column settings.",
+        "name": "Preset name",
+        "save": "Save",
+        "cancel": "Cancel",
+        "max_length_exceeded": "The maximum length for preset name is 25 characters",
+        "default": "Set as default preset?"
+    },
+    "manage-presets": {
+        "name": "Preset name",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete_confirm_title": "Are you sure?",
+        "default": "Default"
+    },
+    "view-account-user-advanced": {
+        "edit_account_user": "Edit account user"
+    },
+    "fetch-partial-infringement-page": {
+        "title": "Fetch Partial Infringements",
+        "fetch_partial_infringements": "Fetch Partial Infringements",
+        "description": "A request will be made to fetch and load new partial infringements.",
+        "fetch": "Fetch",
+        "failed": "Failed to create",
+        "successful": "Successfully created"
+    },
+    "account-reporting-page": {
+        "title": "Account Reporting",
+        "status": "Status",
+        "issuer": "Issuer",
+        "vehicle": "Vehicle"
+    },
+    "update-preset": {
+        "success": "Successfully updated preset",
+        "fail": "Failed to update preset"
+    },
+    "general-graphing": {
+        "legend": "Legend"
+    },
+    "Total amount paid": "",
+    "Amount to pay": ""
+}

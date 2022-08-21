@@ -1,0 +1,71 @@
+<ng-container>
+    <ng-container *ngIf="contract.document.ocr">
+        <table class="rp-basic-data-table">
+            <tbody>
+                <tr>
+                    <td>{{ 'view-ocr-result.vehicle' | i18next }}</td>
+                    <td>
+                        {{ contract.document.ocr.car }}
+                    </td>
+                    <td>
+                        <ng-container *ngIf="ocrResults.car; else fail">
+                            <ng-container *ngTemplateOutlet="pass"> </ng-container>
+                        </ng-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'view-ocr-result.start_date' | i18next }}</td>
+                    <td>
+                        <rp-general-time-display [time]="contract.document.ocr.start" [short]="true"></rp-general-time-display>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="ocrResults.start; else fail">
+                            <ng-container *ngTemplateOutlet="pass"> </ng-container>
+                        </ng-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'view-ocr-result.end_date' | i18next }}</td>
+                    <td>
+                        <rp-general-time-display [time]="contract.document.ocr.end" [short]="true"></rp-general-time-display>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="ocrResults.end; else fail">
+                            <ng-container *ngTemplateOutlet="pass"> </ng-container>
+                        </ng-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'view-ocr-result.owner_brn' | i18next }}</td>
+                    <td>
+                        {{ contract.document.ocr.owner }}
+                    </td>
+                    <td>
+                        <ng-container *ngIf="ocrResults.owner; else fail">
+                            <ng-container *ngTemplateOutlet="pass"> </ng-container>
+                        </ng-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'view-ocr-result.user_brn' | i18next }}</td>
+                    <td>
+                        {{ contract.document.ocr.customer }}
+                    </td>
+                    <td>
+                        <ng-container *ngIf="ocrResults.customer; else fail">
+                            <ng-container *ngTemplateOutlet="pass"> </ng-container>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</ng-container>
+
+<ng-template #pass>
+    <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green"></i>
+</ng-template>
+
+<ng-template #fail>
+    <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+</ng-template>

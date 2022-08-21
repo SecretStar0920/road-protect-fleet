@@ -1,0 +1,245 @@
+<div class="filter-section">
+    <form nz-form [formGroup]="query.form" nzLayout="vertical">
+        <h3 class="rp-primary-color">
+            <i nz-icon nzType="filter" nzTheme="outline"></i> {{ 'general-query-builder.filter_builder' | i18next }}
+        </h3>
+
+        <nz-form-item>
+            <nz-form-label nzFor="key">{{ 'general-query-builder.filter_by' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <nz-select
+                    formControlName="key"
+                    style="width: 100%"
+                    [nzPlaceHolder]="'general-query-builder.filter_by_placeholder' | i18next"
+                    nzShowSearch
+                >
+                    <nz-option
+                        *ngFor="let key of visibleFilters"
+                        [nzValue]="key"
+                        nzLabel="{{ key.display || key.key | sentenceCase }}"
+                    ></nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        <!--        <h3 class="rp-primary-color"><i nz-icon nzType="filter" nzTheme="outline"></i> Filter</h3>-->
+
+        <nz-form-item *ngIf="query.form.controls.key.valid">
+            <nz-form-label nzFor="operator">{{ 'general-query-builder.filter_how' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <nz-select
+                    style="width: 100%"
+                    nzAllowClear
+                    [nzPlaceHolder]="'general-query-builder.filter_how_placeholder' | i18next"
+                    formControlName="operator"
+                >
+                    <ng-container *ngFor="let operator of typeOperators[query.form.value.key.type || 'string']">
+                        <nz-option [nzValue]="operator" [nzLabel]="'filters.' + operatorDisplay.get(operator) | i18next"></nz-option>
+                    </ng-container>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item *ngIf="query.form.controls.operator.valid">
+            <nz-form-label nzFor="value">{{ 'general-query-builder.filter_how_value' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <ng-container [ngSwitch]="query.form.value.key?.type">
+                    <!--                    Date inputs-->
+                    <ng-container *ngSwitchCase="filterTypes.Date">
+                        <ng-container [ngSwitch]="query.form.value.operator">
+                            <ng-container *ngSwitchCase="operators.IS_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.NOT_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+                            <ng-container *ngSwitchCase="operators.BETWEEN">
+                                <rp-general-date-range-input formControlName="value"></rp-general-date-range-input>
+                            </ng-container>
+
+                            <ng-container *ngSwitchDefault>
+                                <nz-date-picker formControlName="value" [nzFormat]="query.dateFormat" nzShowTime></nz-date-picker>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="filterTypes.Dropdown">
+                        <ng-container [ngSwitch]="query.form.value.operator">
+                            <ng-container *ngSwitchCase="operators.IS_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.NOT_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.BETWEEN">
+                                <span nz-text nzType="secondary">{{ 'general-query-builder.invalid_operator' | i18next }}</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.CONTAINS">
+                                <span nz-text nzType="secondary">{{ 'general-query-builder.invalid_operator' | i18next }}</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchDefault>
+                                <nz-select formControlName="value" style="width: 100%">
+                                    <nz-option
+                                        *ngFor="let option of query.form.value.key.options"
+                                        [nzValue]="option"
+                                        [nzLabel]="'filter-label.' + option | i18next"
+                                    ></nz-option>
+                                </nz-select>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="filterTypes.Number">
+                        <ng-container [ngSwitch]="query.form.value.operator">
+                            <ng-container *ngSwitchCase="operators.IS_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.NOT_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.BETWEEN">
+                                <nz-row nzGutter="24">
+                                    <rp-general-between-input inputType="number" formControlName="value"></rp-general-between-input>
+                                </nz-row>
+                            </ng-container>
+
+                            <ng-container *ngSwitchDefault>
+                                <input type="number" nz-input formControlName="value" style="width: 100%" />
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+
+                    <!--                    Assuming String input-->
+                    <ng-container *ngSwitchDefault>
+                        <ng-container [ngSwitch]="query.form.value.operator">
+                            <ng-container *ngSwitchCase="operators.IS_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.NOT_NULL">
+                                <span nz-text nzType="secondary">--</span>
+                            </ng-container>
+
+                            <ng-container *ngSwitchCase="operators.BETWEEN">
+                                <nz-row nzGutter="24">
+                                    <rp-general-between-input formControlName="value"></rp-general-between-input>
+                                </nz-row>
+                            </ng-container>
+
+                            <ng-container *ngSwitchDefault>
+                                <input type="text" nz-input formControlName="value" style="width: 100%" />
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzFor="order">{{ 'general-query-builder.order_how' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <nz-radio-group formControlName="order">
+                    <label nz-radio nzValue="ASC">{{ 'general-query-builder.asc' | i18next }}</label>
+                    <label nz-radio nzValue="DESC">{{ 'general-query-builder.dsc' | i18next }}</label>
+                    <label nz-radio [nzValue]="null">{{ 'general-query-builder.none' | i18next }}</label>
+                </nz-radio-group>
+            </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button (click)="query.onAdd()" nzType="primary" [disabled]="!query.form.valid">
+            {{ 'general-query-builder.add' | i18next }}
+        </button>
+
+        <nz-divider></nz-divider>
+
+        <nz-row nzGutter="16">
+            <nz-col nzSpan="24">
+                <h3 class="rp-primary-color">
+                    <i nz-icon nzType="build" nzTheme="outline"></i> {{ 'general-query-builder.current_filter' | i18next }}
+                </h3>
+            </nz-col>
+
+            <nz-col nzSpan="18">
+                <div>
+                    <ng-container *ngFor="let filter of query.currentOptions._filter">
+                        <span nz-text style="display: block" class="rp-primary-color" *ngIf="isNotFixedFilter(filter)">
+                            {{ filter.field | sentenceCase }} {{ operatorDisplay.get(filter.operator) }} {{ filter.value }}
+                            <button nz-button nzShape="circle" (click)="query.onRemoveFilter(filter)" nzSize="small">
+                                <i nz-icon nzType="close"></i>
+                            </button>
+                        </span>
+                    </ng-container>
+
+                    <span nz-text nzType="secondary" *ngFor="let or of query.currentOptions._or" style="display: block">
+                        OR: {{ or.field | sentenceCase }} {{ operatorDisplay.get(or.operator) }} {{ or.value }}
+                        <button nz-button nzShape="circle" (click)="query.onRemoveOr(or)" nzSize="small">
+                            <i nz-icon nzType="close"></i>
+                        </button>
+                    </span>
+                </div>
+                <div style="margin-top: 12px">
+                    <!--                    <span nz-text nzType="secondary">Current sorts</span> <br>-->
+                    <span nz-text class="rp-primary-color" *ngFor="let sort of query.currentOptions._sort" style="display: block">
+                        {{ sort.field | sentenceCase }} {{ 'general-query-builder.sorted_in' | i18next }} {{ sort.order }}
+                        {{ 'general-query-builder.order' | i18next }}
+                        <button nz-button nzShape="circle" (click)="query.onRemoveSort(sort)" nzSize="small">
+                            <i nz-icon nzType="close"></i>
+                        </button>
+                    </span>
+                </div>
+            </nz-col>
+            <nz-col nzSpan="6">
+                <button nz-button (click)="query.onClear({})" nzBlock style="margin-bottom: 12px">
+                    <i nz-icon nzType="close" nzTheme="outline"></i> {{ 'general-query-builder.clear' | i18next }}
+                </button>
+                <button
+                    nz-button
+                    nzBlock
+                    nz-popover
+                    [nzPopoverContent]="saveFilter"
+                    nzPopoverTrigger="click"
+                    [(nzPopoverVisible)]="query.saveFilterVisible"
+                    [nzPopoverTitle]="'general-query-builder.save_filter' | i18next"
+                >
+                    <i nz-icon nzType="save" nzTheme="outline"></i> {{ 'general-query-builder.save' | i18next }}
+                </button>
+                <ng-template #saveFilter>
+                    <span>Name this filter something memorable</span>
+                    <input type="text" nz-input #filterName />
+                    <br /><br />
+                    <button nz-button (click)="query.onSaveFilter(filterName.value)">{{ 'general-query-builder.save' | i18next }}</button>
+                </ng-template>
+            </nz-col>
+        </nz-row>
+
+        <nz-divider></nz-divider>
+
+        <nz-row>
+            <nz-col nzSpan="24">
+                <h3 class="rp-primary-color">
+                    <i nz-icon nzType="database" nzTheme="outline"></i> {{ 'general-query-builder.saved_filters' | i18next }}
+                </h3>
+            </nz-col>
+            <ng-container *ngIf="query.savedFilters?.length > 0; else noFilters">
+                <nz-tag
+                    *ngFor="let savedFilter of query.savedFilters"
+                    [nzColor]="'blue'"
+                    nzMode="closeable"
+                    (nzOnClose)="query.onRemoveSavedFilter(savedFilter.name)"
+                >
+                    <a (click)="query.onSetFilter(savedFilter.filter)">{{ savedFilter.name }}</a>
+                </nz-tag>
+            </ng-container>
+            <ng-template #noFilters>
+                <span nz-text nzType="secondary">{{ 'general-query-builder.no_saved_filters' | i18next }}</span>
+            </ng-template>
+        </nz-row>
+    </form>
+</div>

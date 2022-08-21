@@ -1,0 +1,49 @@
+<div class="upload-area">
+    <div class="upload-button" (click)="uploadButton.click()">
+        <i nz-icon nzType="upload" nzTheme="outline"></i>
+        <div>{{ 'general-file-upload.upload_file' | i18next }}</div>
+    </div>
+    <input style="display: none" type="file" ng2FileSelect [uploader]="uploader" #uploadButton />
+    <div class="upload-options">
+        <div *ngIf="mimeTypes.length > 0">
+            {{ 'general-file-upload.allowed_file_types' | i18next }}:
+            <span *ngFor="let mimeType of mimeTypes" class="rp-space"
+                ><i nz-icon nzType="file" nzTheme="twotone"></i> {{ mimeTypesReverse[mimeType] }}</span
+            >
+        </div>
+        <div style="margin-top: 12px">
+            {{ 'general-file-upload.max_files' | i18next }}:
+            <span>{{ limit }}</span>
+        </div>
+    </div>
+</div>
+<!--<nz-divider nzText="Files selected ({{uploader?.queue?.length || 0}})" [nzOrientation]="'left'"></nz-divider>-->
+<br />
+<h4>{{ 'general-file-upload.files' | i18next }}</h4>
+<!--<div class="file-list">-->
+<!--    <div class="file-item" *ngFor="let file of uploader.queue" (click)="onPreviewFile(file)">-->
+<!--        <div class="remove">-->
+<!--            <button nz-button nzType="default" [nzSize]="'small'" nzShape="circle" (click)="onRemoveFile(file)">-->
+<!--                <i nz-icon type="close"></i>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div class="icon">-->
+<!--            <i nz-icon nzType="file" nzTheme="twotone"></i>-->
+<!--        </div>-->
+<!--        <div class="name">-->
+<!--            {{file.file.name}}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="file-list-2" *ngFor="let file of uploader.queue">
+    <span *ngIf="spreadSheet; else noContentsInSpreadSheet">
+        <span nz-text nzType="secondary" class="file-item" (click)="onPreviewFile(file)"> </span>
+    </span>
+    <ng-template #noContentsInSpreadSheet>
+        <p class="ant-alert-warning">{{ 'general-file-upload.empty_file_uploaded' | i18next }}</p>
+    </ng-template>
+    <i nz-icon nzType="file" nzTheme="twotone"></i> {{ file.file.name }}
+    <button nz-button nzType="default" [nzSize]="'small'" nzShape="circle" (click)="onRemoveFile(file)">
+        <i nz-icon nzType="close"></i>
+    </button>
+</div>

@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: cron
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: cron
+            env: prod
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: cron
+                env: prod
+        spec:
+            containers:
+                - image: eu.gcr.io/fleet-260107/backend:stable
+                  name: cron
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 50m
+                      limits:
+                          memory: 2048Mi
+                  ports:
+                      - containerPort: 8080
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      httpGet:
+                          path: api/v1/health
+                          port: 8080
+                      initialDelaySeconds: 60
+                      periodSeconds: 60
+                      timeoutSeconds: 45
+                  readinessProbe:
+                      httpGet:
+                          path: api/v1/health
+                          port: 8080
+                      initialDelaySeconds: 60
+                      periodSeconds: 15
+                  envFrom:
+                      - secretRef:
+                            name: backend
+                  volumeMounts:
+                      - name: storage
+                        mountPath: /app/storage
+                        subPath: storage
+                  env:
+                      - name: DEFAULT_CONCURRENT_JOBS
+                        value: '5'
+                      - name: CRON_ENABLED
+                        value: '1'
+            volumes:
+                - name: storage
+                  persistentVolumeClaim:
+                      claimName: backend-storage-pvc

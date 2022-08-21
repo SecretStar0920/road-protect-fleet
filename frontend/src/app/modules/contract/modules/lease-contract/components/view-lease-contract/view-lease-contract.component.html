@@ -1,0 +1,65 @@
+<table class="rp-basic-data-table">
+    <tbody>
+        <tr>
+            <td>{{ 'view-lease-contract.start_date' | i18next }}</td>
+            <td>
+                <rp-general-time-display
+                    *ngIf="leaseContract.startDate"
+                    [time]="leaseContract.startDate"
+                    [short]="true"
+                ></rp-general-time-display>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-lease-contract.end_date' | i18next }}</td>
+            <td>
+                <rp-general-time-display
+                    *ngIf="leaseContract.endDate"
+                    [time]="leaseContract.endDate"
+                    [short]="true"
+                ></rp-general-time-display>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-lease-contract.owner' | i18next }}</td>
+            <td>
+                <rp-account-tag *ngIf="leaseContract.owner" [account]="leaseContract.owner"></rp-account-tag>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-lease-contract.user' | i18next }}</td>
+            <td>
+                <rp-account-tag *ngIf="leaseContract.user" [account]="leaseContract.user"></rp-account-tag>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-lease-contract.ocr_status' | i18next }}</td>
+            <td>
+                <rp-contract-ocr-status-tag [contract]="leaseContract"></rp-contract-ocr-status-tag>
+            </td>
+        </tr>
+        <tr *ngIf="leaseContract?.document?.ocr">
+            <td>{{ 'view-lease-contract.ocr_result' | i18next }}</td>
+            <td>
+                <rp-view-ocr-result [contract]="leaseContract"></rp-view-ocr-result>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!--<p>-->
+<!--    {{ 'view-lease-contract.redirection_document' | i18next }}:-->
+
+<!--    <ng-container *ngIf="leaseContract.redirectionDocument; else generate">-->
+<!--        <rp-view-document [document]="leaseContract.redirectionDocument"></rp-view-document>-->
+<!--    </ng-container>-->
+<!--    <ng-template #generate>-->
+<!--        <rp-create-generated-document-->
+<!--            [documentTemplate]="'Redirection'"-->
+<!--            [friendlyName]="'municipally-redirect-nomination.lease_document_temp_friendly_name' | i18next"-->
+<!--            [target]="'contract'"-->
+<!--            [targetId]="leaseContract.contractId"-->
+<!--            [contractId]="leaseContract.contractId"-->
+<!--        ></rp-create-generated-document>-->
+<!--    </ng-template>-->
+<!--</p>-->

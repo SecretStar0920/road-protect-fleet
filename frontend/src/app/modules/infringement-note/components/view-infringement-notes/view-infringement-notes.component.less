@@ -1,0 +1,31 @@
+@import 'variables';
+@import 'mixins';
+
+.notes {
+    display: flex;
+}
+
+.create {
+    //.rp-card;
+    margin: 5px;
+    padding: 14px;
+    //max-width: 300px;
+    //min-width: 300px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.4s;
+    border-radius: 2px;
+    border: 1px solid rgb(200, 200, 200);
+
+    &:hover {
+        background-color: rgb(200, 200, 200);
+        cursor: pointer;
+    }
+
+    i {
+        color: @color1;
+        font-size: 18px;
+    }
+}

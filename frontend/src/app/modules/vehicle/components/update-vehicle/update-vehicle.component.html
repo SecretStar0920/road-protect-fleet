@@ -1,0 +1,124 @@
+<form nz-form [formGroup]="updateVehicleForm" nzLayout="vertical" (ngSubmit)="onUpdateVehicle()">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="registration">{{ 'create-vehicle.registration' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="registration" id="registration" />
+                    <nz-form-explain *ngIf="updateVehicleForm.get('registration')?.dirty && updateVehicleForm.get('registration')?.errors">
+                        <rp-general-form-error-display [form]="updateVehicleForm" key="registration"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="manufacturer">{{ 'create-vehicle.manufacturer' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-vehicle-manufacturer-autocomplete formControlName="manufacturer"></rp-vehicle-manufacturer-autocomplete>
+                    <nz-form-explain *ngIf="updateVehicleForm.get('manufacturer')?.dirty && updateVehicleForm.get('manufacturer')?.errors">
+                        <rp-general-form-error-display [form]="updateVehicleForm" key="manufacturer"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="model">{{ 'create-vehicle.model' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="model" id="model" />
+                    <nz-form-explain *ngIf="updateVehicleForm.get('model')?.dirty && updateVehicleForm.get('model')?.errors">
+                        <rp-general-form-error-display [form]="updateVehicleForm" key="model"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="modelYear">{{ 'create-vehicle.model_year' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="modelYear" id="modelYear" />
+                    <nz-form-explain *ngIf="updateVehicleForm.get('modelYear')?.dirty && updateVehicleForm.get('modelYear')?.errors">
+                        <rp-general-form-error-display [form]="updateVehicleForm" key="modelYear"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="color">{{ 'create-vehicle.color' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="color" id="color" />
+                    <nz-form-explain *ngIf="updateVehicleForm.get('color')?.dirty && updateVehicleForm.get('color')?.errors">
+                        <rp-general-form-error-display [form]="updateVehicleForm" key="color"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="category">{{ 'create-vehicle.category' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-vehicle-category-autocomplete formControlName="category"></rp-vehicle-category-autocomplete>
+                    <nz-form-explain *ngIf="updateVehicleForm.get('category')?.dirty && updateVehicleForm.get('category')?.errors">
+                        <rp-general-form-error-display [form]="updateVehicleForm" key="category"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="weight">{{ 'create-vehicle.type' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-vehicle-type-dropdown formControlName="type"></rp-vehicle-type-dropdown>
+                    <nz-form-explain *ngIf="updateVehicleForm.get('type')?.dirty && updateVehicleForm.get('type')?.errors">
+                        <rp-general-form-error-display [form]="updateVehicleForm" key="type"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <!--        <nz-col nzSpan="24">-->
+        <!--            <nz-form-item>-->
+        <!--                <nz-form-label nzFor="autoAssignTo">Auto Assign Infringements To</nz-form-label>-->
+        <!--                <nz-form-control>-->
+        <!--                    <nz-select formControlName="autoAssignTo">-->
+        <!--                        <nz-option [nzValue]="autoAssignTo.Driver" [nzLabel]="autoAssignTo.Driver"></nz-option>-->
+        <!--                        <nz-option [nzValue]="autoAssignTo.Owner" [nzLabel]="autoAssignTo.Owner"></nz-option>-->
+        <!--                        <nz-option [nzValue]="autoAssignTo.User" [nzLabel]="autoAssignTo.User"></nz-option>-->
+        <!--                    </nz-select>-->
+        <!--                    <nz-form-explain-->
+        <!--                        *ngIf="updateVehicleForm.get('autoAssignTo')?.dirty && updateVehicleForm.get('autoAssignTo')?.errors">-->
+        <!--                        <rp-general-form-error-display [form]="updateVehicleForm" key="autoAssignTo"></rp-general-form-error-display>-->
+        <!--                    </nz-form-explain>-->
+        <!--                </nz-form-control>-->
+        <!--            </nz-form-item>-->
+        <!--        </nz-col>-->
+    </nz-row>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button
+                nz-button
+                nzType="primary"
+                [disabled]="!updateVehicleForm.valid"
+                nzSize="large"
+                [nzLoading]="updateVehicleState.isLoading()"
+            >
+                <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                {{ 'update-vehicle.update' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="updateVehicleForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>
+<br />
+<nz-alert nzType="success" *ngIf="updateVehicleState?.hasSucceeded()" [nzMessage]="updateVehicleState?.successResult().message" nzShowIcon>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateVehicleState?.hasFailed()"
+    [nzMessage]="updateVehicleState?.failedResult().message"
+    [nzDescription]="updateVehicleState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

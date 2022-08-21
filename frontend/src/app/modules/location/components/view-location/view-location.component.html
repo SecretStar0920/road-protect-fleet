@@ -1,0 +1,24 @@
+<ng-container *ngIf="location">
+    <ng-container *ngIf="location.hasGoogleResult && location.googleLocation.results.length > 0; else basicLocation">
+<!-- No longer using Angular Google Maps -->
+        <br />
+        <div style="text-align: right">
+            <span nz-text nzType="secondary">{{ location.toString() }}</span>
+        </div>
+    </ng-container>
+
+    <ng-template #basicLocation>
+        <span *ngIf="location">
+            {{ location.toString() }}
+        </span>
+
+        <br />
+
+        <!--        <span nz-text nzType="secondary" *ngIf="location.hasGoogleResult"-->
+        <!--            >{{ 'view-location.note1' | i18next }}</span-->
+        <!--        >-->
+        <!--        <span nz-text nzType="secondary" *ngIf="!location.hasGoogleResult"-->
+        <!--            >{{ 'view-location.note2' | i18next }}</span-->
+        <!--        >-->
+    </ng-template>
+</ng-container>

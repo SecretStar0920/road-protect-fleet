@@ -1,0 +1,9 @@
+<nz-alert nzType="success" *ngIf="state?.hasSucceeded() && showSuccess" [nzMessage]="state?.successResult()?.message" nzShowIcon>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="state?.hasFailed()"
+    [nzMessage]="state?.failedResult()?.message"
+    [nzDescription]="state?.failedResult()?.context?.message"
+    nzShowIcon
+></nz-alert>

@@ -1,0 +1,31 @@
+<ng-container *ngIf="sheetHeadings.length > 0; else noSpreadsheet">
+    <h4>{{ 'excel-column-mapper.match_columns' | i18next }}</h4>
+    <nz-row nzGutter="24">
+        <nz-col *ngFor="let field of entityUpload.currentOption.orderedFields" nzSpan="6" style="margin-bottom: 15px">
+            <p>
+                <span *ngIf="field.required; else normal" style="font-weight: bold"> * {{ field.label | i18next | sentenceCase }} </span>
+                <ng-template #normal>
+                    <span>{{ field.label | i18next | sentenceCase }}</span>
+                </ng-template>
+            </p>
+            <nz-select
+                style="width: 100%"
+                nzShowSearch
+                nzAllowClear
+                [nzPlaceHolder]="'excel-column-mapper.select' | i18next"
+                [ngModel]="mappedHeadings[field.key]"
+                (ngModelChange)="mapHeading($event, field.key)"
+            >
+                <nz-option
+                    *ngFor="let spreadsheetHeading of sheetHeadings"
+                    [nzLabel]="spreadsheetHeading"
+                    [nzValue]="spreadsheetHeading"
+                ></nz-option>
+            </nz-select>
+        </nz-col>
+    </nz-row>
+</ng-container>
+
+<ng-template #noSpreadsheet>
+    {{ 'excel-column-mapper.match_columns' | i18next }}
+</ng-template>

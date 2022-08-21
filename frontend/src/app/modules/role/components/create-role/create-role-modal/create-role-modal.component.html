@@ -1,0 +1,8 @@
+<rp-create-role (complete)="onComplete($event)"></rp-create-role>
+<nz-alert
+    nzType="error"
+    *ngIf="createRoleState?.hasFailed()"
+    [nzMessage]="createRoleState?.failedResult().message"
+    [nzDescription]="createRoleState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

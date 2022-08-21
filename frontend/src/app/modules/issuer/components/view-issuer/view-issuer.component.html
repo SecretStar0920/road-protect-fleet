@@ -1,0 +1,101 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <ng-container *ngIf="issuer">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <table class="rp-basic-data-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">{{ issuer.name }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ 'issuer.code' | i18next }}</td>
+                            <td>{{ issuer.code }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.type' | i18next }}</td>
+                            <td>{{ issuer.type }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.address' | i18next }}</td>
+                            <td>{{ issuer.address }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.email' | i18next }}</td>
+                            <td>{{ issuer.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.fax' | i18next }}</td>
+                            <td>{{ issuer.fax }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.telephone' | i18next }}</td>
+                            <td>{{ issuer.telephone }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.contact_person' | i18next }}</td>
+                            <td>{{ issuer.contactPerson }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.provider' | i18next }}</td>
+                            <td>{{ issuer.integrationDetails.type }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.externalCode' | i18next }}</td>
+                            <td>{{ issuer.integrationDetails.code }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.authority' | i18next }}</td>
+                            <td>{{ issuer.authority?.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.redirectionEmail' | i18next }}</td>
+                            <td>{{ issuer.redirectionEmail }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.externalPaymentLink' | i18next }}</td>
+                            <td>{{ issuer.externalPaymentLink }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'issuer.latest_info_date' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display [time]="issuer.latestInfoDate"></rp-general-time-display>
+                            </td>
+                        </tr>
+                        <tr *rpIsUserType="[ userTypes.Developer]">
+                            <td >{{ 'issuer.integrationDetails' | i18next }}</td>
+                            <td><rp-json [data]=" issuer.integrationDetails "></rp-json></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </nz-col>
+            <!--            <nz-col nzSpan="24" *ngIf="issuer.details.banking">-->
+            <!--                <rp-general-object-display [data]="issuer.details.banking"-->
+            <!--                                           title="Banking Details"></rp-general-object-display>-->
+            <!--            </nz-col>-->
+        </nz-row>
+    </ng-container>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-issuer [issuer]="issuer" (complete)="onUpdateComplete($event)"></rp-update-issuer>
+</ng-template>
+
+<div nz-row  nzAlign="middle" nzJustify="space-between" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+    <nz-divider></nz-divider>
+
+    <button nz-button [nzType]="!isUpdating ? 'primary' : 'default'" nz-col class="rp-space" (click)="onUpdate()">
+        {{ isUpdating ? ('issuer.cancel' | i18next) : ('issuer.edit' | i18next) }}
+    </button>
+    <rp-delete-issuer [issuerId]="issuerId" (delete)="onDelete($event)" nz-col></rp-delete-issuer>
+</div>
+
+<ng-container *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+    <!--    <nz-divider></nz-divider>-->
+    <!--    <nz-tabset>-->
+    <!--        <nz-tab [nzTitle]="'Infringements'">-->
+    <!--            <rp-view-infringements [issuerId]="issuer?.issuerId"></rp-view-infringements>-->
+    <!--        </nz-tab>-->
+    <!--    </nz-tabset>-->
+</ng-container>

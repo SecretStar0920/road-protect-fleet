@@ -1,0 +1,13 @@
+<div *ngIf="reportDetails" class="rp-round-card dashboard-card">
+    <div class="dashboard-container">
+        <div *ngIf="reportDetails.embeddedUrl">
+            <iframe
+                [src]="transform(reportDetails.embeddedUrl)"
+                frameborder="0"
+                allowtransparency
+                class="dashboard-embedded"
+                scrolling="no"
+            ></iframe>
+        </div>
+    </div>
+</div>

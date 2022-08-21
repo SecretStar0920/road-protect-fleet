@@ -1,0 +1,8 @@
+<div class="sort-container" (click)="onSortChange()">
+    <div class="caret up" [ngClass]="{ on: order === orders.Asc }">
+        <i nz-icon nzType="caret-up" nzTheme="outline"></i>
+    </div>
+    <div class="caret down" [ngClass]="{ on: order === orders.Desc }">
+        <i nz-icon nzType="caret-down" nzTheme="outline"></i>
+    </div>
+</div>

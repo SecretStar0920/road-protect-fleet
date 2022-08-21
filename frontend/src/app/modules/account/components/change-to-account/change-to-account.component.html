@@ -1,0 +1,9 @@
+<button
+    nz-button
+    *rpIsUserType="[userTypes.Developer, userTypes.Admin]"
+    nzType="primary"
+    (click)="onChangeAccount()"
+    [nzLoading]="changeAccountState.isLoading()"
+>
+    {{ 'change-to-account.login_as_account' | i18next }}
+</button>

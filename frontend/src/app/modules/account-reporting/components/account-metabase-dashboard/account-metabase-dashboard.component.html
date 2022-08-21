@@ -1,0 +1,10 @@
+<ng-container *ngIf="isDev">
+    <span nz-text nzType="danger"
+        >The reports will not show in development unless a METABASE DASHBOARD for accounts is created. Please ignore the reports in
+        development environment, see http://localhost:4400 for Metabase</span
+    >
+</ng-container>
+
+<ng-container *ngIf="currentAccount">
+    <iframe [src]="safeUrl" frameborder="0" allowtransparency id="reporting-embed"></iframe>
+</ng-container>

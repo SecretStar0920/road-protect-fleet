@@ -1,0 +1,20 @@
+@import 'mixins';
+
+h2 {
+    .rp-primary-color;
+}
+
+.reports {
+    .report-item {
+        //max-height: 400px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        ::ng-deep {
+            h2 {
+                .rp-primary-color;
+                text-align: center;
+            }
+        }
+    }
+}

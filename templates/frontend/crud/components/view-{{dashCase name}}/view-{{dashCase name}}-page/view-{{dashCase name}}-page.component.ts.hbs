@@ -1,0 +1,27 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+    selector: 'rp-view-{{dashCase name}}-page',
+    templateUrl: './view-{{dashCase name}}-page.component.html',
+    styleUrls: ['./view-{{dashCase name}}-page.component.less'],
+})
+export class View{{pascalCase name}}PageComponent implements OnInit {
+    {{camelCase name}}Id: number;
+
+    constructor(private route: ActivatedRoute, private router: Router) {
+        this.get{{pascalCase name}}IdFromParam();
+    }
+
+    ngOnInit() {}
+
+    get{{pascalCase name}}IdFromParam() {
+        this.route.params.subscribe(params => {
+            this.{{camelCase name}}Id = Number(params.id);
+        });
+    }
+
+    onDelete() {
+        this.router.navigate(['/home', '{{dashCase name}}']);
+    }
+}

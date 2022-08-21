@@ -1,0 +1,15 @@
+import { Injectable } from '@nestjs/common';
+import { Logger } from '@logger';
+import { {{pascalCase name}} } from '@entities';
+
+@Injectable()
+export class Get{{pascalCase name}}sService {
+    constructor(private logger: Logger) {}
+
+    async get{{pascalCase name}}s(): Promise<{{pascalCase name}}[]> {
+        this.logger.log({ message: `Getting {{pascalCase name}}s`, detail: null, fn: this.get{{pascalCase name}}s.name });
+        const {{camelCase name}}s = await {{pascalCase name}}.findWithMinimalRelations().getMany();
+        this.logger.log({ message: `Found {{pascalCase name}}s, length: `, detail: {{camelCase name}}s.length, fn: this.get{{pascalCase name}}s.name });
+        return {{camelCase name}}s;
+    }
+}

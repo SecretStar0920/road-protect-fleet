@@ -1,0 +1,33 @@
+<ng-container [ngSwitch]="status">
+    <span *ngSwitchCase="nominationStatus.Pending" nz-tooltip [nzTooltipTitle]="'nomination-status-tag.new' | i18next"
+        ><i nz-icon nzType="plus-circle" nzTheme="twotone" nzTwotoneColor="orange"></i> {{ 'nomination-status.new' | i18next }}</span
+    >
+    <span *ngSwitchCase="nominationStatus.Acknowledged" nz-tooltip [nzTooltipTitle]="'nomination-status-tag.new' | i18next"
+        ><i nz-icon nzType="plus-circle" nzTheme="twotone" nzTwotoneColor="orange"></i> {{ 'nomination-status.new' | i18next }}</span
+    >
+
+    <span *ngSwitchCase="nominationStatus.Closed" nz-tooltip [nzTooltipTitle]="'nomination-status-tag.closed' | i18next"
+        ><i nz-icon nzType="stop" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'nomination-status.' + nominationStatus.Closed | i18next }}</span
+    >
+
+    <span *ngSwitchCase="nominationStatus.InRedirectionProcess" nz-tooltip [nzTooltipTitle]="'nomination-status-tag.in_process' | i18next"
+        ><i nz-icon nzType="clock-circle" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'nomination-status.' + nominationStatus.InRedirectionProcess | i18next }}</span
+    >
+
+    <span *ngSwitchCase="nominationStatus.RedirectionCompleted" nz-tooltip [nzTooltipTitle]="'nomination-status-tag.appealed' | i18next"
+        ><i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green"></i>
+        {{ 'nomination-status.' + nominationStatus.RedirectionCompleted | i18next }}</span
+    >
+
+    <span *ngSwitchCase="nominationStatus.RedirectionRequestError" nz-tooltip [nzTooltipTitle]="'nomination-status-tag.request_error' | i18next">
+        <i nz-icon nzType="exclamation-circle" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'nomination-status.' + nominationStatus.RedirectionRequestError | i18next }}
+    </span>
+
+    <span *ngSwitchCase="nominationStatus.RedirectionError" nz-tooltip [nzTooltipTitle]="'nomination-status-tag.error' | i18next">
+        <i nz-icon nzType="exclamation-circle" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'nomination-status.' + nominationStatus.RedirectionError | i18next }}
+    </span>
+</ng-container>

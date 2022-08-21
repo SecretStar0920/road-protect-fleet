@@ -1,0 +1,71 @@
+
+<ng-container>
+    <ng-container *ngIf="requestInformationLog">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <table class="rp-basic-data-table">
+                    <tbody>
+                        <tr>
+                            <td>{{ 'request_information_log.request_send_date' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display
+                                    [time]="requestInformationLog.requestSendDate"
+                                    [short]="true"
+                                ></rp-general-time-display>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>{{ 'request_information_log.sender_account' | i18next }}</td>
+                            <td>
+                                <rp-account-tag [account]="requestInformationLog.senderAccount"></rp-account-tag>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'request_information_log.issuer' | i18next }}</td>
+                            <td>
+                                <rp-issuer-tag [issuer]="requestInformationLog.issuer"></rp-issuer-tag>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'request_information_log.response_received' | i18next }}</td>
+                            <td>
+                                <i
+                                    nz-icon
+                                    nzType="check-circle"
+                                    nzTheme="twotone"
+                                    nzTwotoneColor="green"
+                                    *ngIf="requestInformationLog.responseReceived"
+                                ></i>
+                                <i
+                                    nz-icon
+                                    nzType="close-circle"
+                                    nzTheme="twotone"
+                                    nzTwotoneColor="red"
+                                    *ngIf="!requestInformationLog.responseReceived"
+                                ></i>
+                            </td>
+                        </tr>
+                        <tr *ngIf="requestInformationLog.responseReceived">
+                            <td>{{ 'request_information_log.response_received_date' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display
+                                    [time]="requestInformationLog.responseReceivedDate"
+                                    [short]="true"
+                                ></rp-general-time-display>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </nz-col>
+        </nz-row>
+    </ng-container>
+</ng-container>
+
+<div nz-row nzType="flex" nzAlign="middle" nzJustify="space-between" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+    <nz-divider></nz-divider>
+
+    <button nz-button nzType="primary" nz-col class="rp-space" (click)="onUpdate()">
+        {{ 'request_information_log.log_response' | i18next }}
+    </button>
+</div>

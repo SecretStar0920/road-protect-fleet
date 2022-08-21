@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: frontend
+    labels:
+        app: fleet
+        type: frontend
+        env: staging
+spec:
+    ports:
+        - port: 3000
+          name: entry
+          protocol: TCP
+    selector:
+        app: fleet
+        type: frontend
+        env: staging

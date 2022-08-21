@@ -1,0 +1,67 @@
+.document-root {
+    direction: rtl;
+    text-align: justify;
+
+    p {
+        margin-bottom: 14px;
+
+        &.spaced {
+            margin-top: 52px;
+            margin-bottom: 52px;
+        }
+    }
+
+    li {
+        margin-bottom: 14px;
+    }
+
+    .columns.signature {
+        .column {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            text-align: center;
+            flex-direction: column;
+
+            .top-block {
+                border-bottom: solid 1px black;
+                vertical-align: bottom;
+
+                &.signature {
+                    min-width: 300px;
+                    min-height: 150px;
+                }
+            }
+
+            .bottom-block {
+            }
+        }
+    }
+
+    img {
+        vertical-align: middle;
+        margin: 5px;
+    }
+}
+
+@page {
+    size: A4;
+    margin: 2cm;
+
+    @bottom-right {
+        content: counter(page) ' of ' counter(pages);
+    }
+}
+
+@media print {
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+    }
+
+    p,
+    .columns.signature {
+        page-break-inside: avoid;
+    }
+}

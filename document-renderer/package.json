@@ -1,0 +1,37 @@
+{
+    "name": "document-renderer",
+    "version": "1.0.0",
+    "description": "Renders html for html to PDF generator",
+    "author": "Liam Brooksbank",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt-ts",
+        "build": "nuxt-ts build",
+        "generate": "nuxt-ts generate",
+        "start": "nuxt-ts start"
+    },
+    "dependencies": {
+        "@nuxt/typescript-runtime": "^0.4.6",
+        "@nuxtjs/axios": "^5.10.3",
+        "@nuxtjs/bulma": "^1.2.7",
+        "@nuxtjs/style-resources": "^1.0.0",
+        "apexcharts": "^3.19.0",
+        "bulma": "^0.8.2",
+        "cross-env": "^7.0.2",
+        "express": "^4.16.4",
+        "less": "^3.11.1",
+        "less-loader": "^6.0.0",
+        "moment": "^2.25.1",
+        "nuxt": "^2.12.2",
+        "nuxt-property-decorator": "^2.7.2",
+        "vue-apexcharts": "^1.5.3"
+    },
+    "devDependencies": {
+        "@nuxt/typescript-build": "^0.6.6",
+        "@types/moment": "^2.13.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-prettier": "^3.1.3",
+        "nodemon": "^2.0.3",
+        "prettier": "^2.0.5"
+    }
+}

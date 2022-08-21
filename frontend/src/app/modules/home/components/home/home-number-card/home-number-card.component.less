@@ -1,0 +1,37 @@
+@import 'mixins';
+@import 'less/variables';
+
+.card {
+    color: var(--color) !important;
+    ::ng-deep {
+        .ant-card-head {
+            color: var(--color) !important;
+        }
+    }
+}
+
+.number-row {
+    justify-content: center;
+    width: 100%;
+}
+
+.number-column {
+    padding: 5px;
+}
+
+::ng-deep {
+    .ant-card {
+        border: none;
+    }
+    .ant-card-body {
+        padding: 0;
+    }
+    .ant-card-head {
+        min-height: 10px;
+        border: none;
+    }
+    .ant-card-head-title {
+        font-weight: bold;
+        padding: 0;
+    }
+}

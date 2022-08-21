@@ -1,0 +1,28 @@
+import { Component, OnInit } from '@angular/core';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { ElementStateModel } from '@modules/shared/models/element-state.model';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+
+@Component({
+    selector: 'rp-create-{{dashCase name}}-modal',
+    templateUrl: './create-{{dashCase name}}-modal.component.html',
+    styleUrls: ['./create-{{dashCase name}}-modal.component.less'],
+})
+export class Create{{pascalCase name}}ModalComponent implements OnInit {
+    create{{pascalCase name}}State: ElementStateModel<{{pascalCase name}}> = new ElementStateModel();
+
+    constructor(private modal: NzModalRef, private message: NzMessageService) {}
+
+    ngOnInit() {}
+
+    onComplete(state: ElementStateModel<{{pascalCase name}}>) {
+        this.create{{pascalCase name}}State = state;
+
+        if (this.create{{pascalCase name}}State.hasSucceeded()) {
+            this.message.success(this.create{{pascalCase name}}State.successResult().message);
+            this.modal.close(this.create{{pascalCase name}}State);
+        } else if (this.create{{pascalCase name}}State.hasFailed()) {
+            this.message.error(this.create{{pascalCase name}}State.failedResult().message);
+        }
+    }
+}

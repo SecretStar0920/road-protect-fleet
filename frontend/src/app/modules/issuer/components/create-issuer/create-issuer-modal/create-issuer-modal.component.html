@@ -1,0 +1,8 @@
+<rp-create-issuer (complete)="onComplete($event)"></rp-create-issuer>
+<nz-alert
+    nzType="error"
+    *ngIf="createIssuerState?.hasFailed()"
+    [nzMessage]="createIssuerState?.failedResult().message"
+    [nzDescription]="createIssuerState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

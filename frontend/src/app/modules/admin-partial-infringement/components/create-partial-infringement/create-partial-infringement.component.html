@@ -1,0 +1,37 @@
+<form nz-form [formGroup]="createPartialInfringementForm" nzLayout="vertical" (ngSubmit)="onCreatePartialInfringement()">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="details">{{ 'partial-infringement.details' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="details" id="details" />
+                    <nz-form-explain *ngIf="createPartialInfringementForm.get('details')?.dirty && createPartialInfringementForm.get('details')?.errors">
+                        <ng-container *ngIf="createPartialInfringementForm.get('details')?.errors.jsonInvalid; else generalError">
+                            {{ 'create-partial-infringement.invalid_json_format' | i18next }}
+                        </ng-container>
+                        <ng-template #generalError>
+                            <rp-general-form-error-display [form]="createPartialInfringementForm" key="details"></rp-general-form-error-display>
+                        </ng-template>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button
+                nz-button
+                nzType="primary"
+                [disabled]="!createPartialInfringementForm.valid"
+                nzSize="large"
+                [nzLoading]="createPartialInfringementState.isLoading()"
+            >
+                <i nz-icon nzType="save" nzTheme="outline"></i>
+                {{ 'partial-infringement.save' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="createPartialInfringementForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>

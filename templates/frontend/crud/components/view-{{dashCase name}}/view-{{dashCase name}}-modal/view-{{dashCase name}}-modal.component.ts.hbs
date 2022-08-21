@@ -1,0 +1,19 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+
+@Component({
+    selector: 'rp-view-{{dashCase name}}-modal',
+    templateUrl: './view-{{dashCase name}}-modal.component.html',
+    styleUrls: ['./view-{{dashCase name}}-modal.component.less'],
+})
+export class View{{pascalCase name}}ModalComponent implements OnInit {
+    @Input() {{camelCase name}}Id: number;
+
+    constructor(private modal: NzModalRef) {}
+
+    ngOnInit() {}
+
+    onDelete() {
+        this.modal.close();
+    }
+}

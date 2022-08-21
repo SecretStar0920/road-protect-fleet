@@ -1,0 +1,171 @@
+<rp-general-stepper [stepper]="parentStepper" [size]="'small'" *ngIf="method === 'parent'" [showControls]="false">
+    <nz-row nzGutter="12" [rpShow]="parentStepper.isStep(1)" *ngIf="paymentDetails">
+        <!--        Integration-->
+        <nz-col nzSpan="24">
+            <h3>
+                {{ 'batch-pay-nomination.total_payable' | i18next }}:
+                <rp-general-currency-display [value]="paymentDetails?.amountDue"></rp-general-currency-display>
+            </h3>
+        </nz-col>
+        <nz-col nzSpan="24" [formGroup]="cvvForm" *ngIf="!(isPaid$ | async)">
+            <nz-row nzGutter="24" *ngFor="let method of paymentDetails?.paymentMethodsToBeUsed" class="payment-methods-used">
+                <nz-col nzSpan="12">
+                    <div>
+                        <p>{{ 'pay-nomination.enter_cvv_prompt' | i18next }}</p>
+                        <div>
+                            <span nz-text nzType="secondary">{{ 'pay-nomination.for_card' | i18next }}: </span
+                            ><strong>{{ method.cardMask }}</strong>
+                        </div>
+                        <div>
+                            <span nz-text nzType="secondary">{{ 'pay-nomination.with_method' | i18next }}: </span
+                            ><strong>{{ method.method }}</strong>
+                        </div>
+                    </div>
+                </nz-col>
+                <nz-col nzSpan="12" class="payment-centered">
+                    <nz-input-group nzPrefixIcon="credit-card" nzSize="large" class="payment-input">
+                        <input
+                            formControlName="{{ method.method }}"
+                            type="text"
+                            nz-input
+                            placeholder="{{ 'batch-pay-nomination.cvv_placeholder' | i18next }}"
+                        />
+                    </nz-input-group>
+                </nz-col>
+            </nz-row>
+        </nz-col>
+        <nz-col nzSpan="24" class="payment-centered">
+            <nz-alert
+                nzType="warning"
+                *ngIf="isPaid$ | async"
+                [nzMessage]="'pay-nomination.infringement_has_been_paid' | i18next"
+                nzShowIcon
+            ></nz-alert>
+            <ng-container *ngIf="!(isPaid$ | async)">
+                <!--        Credit Card -->
+                <ng-container *ngIf="paymentDetails?.canBePaid; else payNowDisabled">
+                    <button
+                        (click)="onPayNow()"
+                        [nzLoading]="payNominationState.isLoading()"
+                        [disabled]="!cvvForm.valid"
+                        nz-button
+                        nzSize="large"
+                        nzType="primary"
+                    >
+                        <i nz-icon nzType="credit-card" nzTheme="outline"></i> {{ 'pay-nomination.pay_now' | i18next }}
+                    </button>
+                    <div class="payment-spacing"></div>
+                    <p nz-paragraph nzType="secondary">{{ paymentDetails?.paymentFlow.description }}</p>
+                </ng-container>
+                <ng-template #payNowDisabled>
+                    <button nz-button disabled nzSize="large">
+                        <i nz-icon nzType="credit-card" nzTheme="outline"></i> {{ 'pay-nomination.pay_now' | i18next }}
+                    </button>
+                    <div class="payment-spacing"></div>
+                    <p nz-paragraph nzType="warning" class="payment-warning">{{ paymentDetails.message }}</p>
+                </ng-template>
+                <!--        Verification -->
+                <nz-col *ngIf="notRecentlyVerified()" nzSpan="24" class="payment-centered">
+                    <nz-divider nzText="{{ 'pay-nomination.verification' | i18next }}"></nz-divider>
+                    <button (click)="onVerify()" [nzLoading]="isVerifying$ | async" nz-button nzSize="large" nzType="primary">
+                        <i nz-icon nzType="redo" nzTheme="outline"></i> {{ 'pay-nomination.verify_now' | i18next }}
+                    </button>
+                </nz-col>
+                <nz-divider nzText="{{ 'divider.or' | i18next }}"></nz-divider>
+                <!--        Manual-->
+                <nz-col nzSpan="24">
+                    <button nz-button (click)="toManual()" nzSize="large" nzType="default">
+                        <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'pay-nomination.manual' | i18next }}
+                    </button>
+                </nz-col>
+            </ng-container>
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="12" [rpShow]="parentStepper.isStep(2)">
+        <nz-col nzSpan="24" class="payment-centered">
+            <ng-container *ngIf="payNominationState.hasSucceeded(); else failedPayment">
+                <h3>{{ 'pay-nomination.payment_success_title' | i18next }}</h3>
+                <button nz-button nzType="primary" (click)="onCloseModal()">{{ 'action.close' | i18next }}</button>
+            </ng-container>
+            <ng-template #failedPayment>
+                <h3 class="rp-warn-color">{{ 'pay-nomination.payment_failure_title' | i18next }}</h3>
+                <p>
+                    {{ payNominationState.failedResult().message }}
+                </p>
+                <button nz-button nzType="primary" (click)="onCloseModal()">{{ 'action.close' | i18next }}</button>
+            </ng-template>
+        </nz-col>
+    </nz-row>
+</rp-general-stepper>
+
+<rp-general-stepper [stepper]="manualStepper" *ngIf="method === 'manual'">
+    <nz-row nzGutter="24" [rpShow]="manualStepper.isStep(1)">
+        <nz-col nzSpan="24">
+            <form nz-form [formGroup]="manualForm" nzLayout="vertical">
+                <nz-form-item>
+                    <nz-form-label nzFor="documentId">{{ 'pay-nomination.document' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <rp-create-document-form-control formControlName="documentId"></rp-create-document-form-control>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="additional">{{ 'pay-nomination.additional_information' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <textarea rows="4" nz-input formControlName="additional" id="additional"></textarea>
+                        <nz-form-explain *ngIf="manualForm.get('additional')?.dirty && manualForm.get('additional')?.errors">
+                            <rp-general-form-error-display [form]="manualForm" key="additional"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="referenceNumber">{{ 'pay-nomination.reference_number' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <textarea rows="4" nz-input formControlName="referenceNumber" id="referenceNumber"></textarea>
+                        <nz-form-explain *ngIf="manualForm.get('referenceNumber')?.dirty && manualForm.get('referenceNumber')?.errors">
+                            <rp-general-form-error-display [form]="manualForm" key="referenceNumber"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="amountPaid">{{ 'pay-nomination-manual.amount_paid' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <textarea rows="4" nz-input formControlName="amountPaid" id="amountPaid"></textarea>
+                        <nz-form-explain *ngIf="manualForm.get('amountPaid')?.dirty && manualForm.get('amountPaid')?.errors">
+                            <rp-general-form-error-display [form]="manualForm" key="amountPaid"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="24" [rpShow]="manualStepper.isStep(2)">
+        <nz-col nzSpan="24">
+            <p>
+                {{ 'pay-nomination.confirm_manual' | i18next }}
+            </p>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <button nz-button nzType="primary" (click)="onConfirmManual()" nzSize="large" [disabled]="!manualForm.valid">
+                <i nz-icon nzType="check" nzTheme="outline"></i>
+                {{ 'pay-nomination.confirm' | i18next }}
+            </button>
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="12" [rpShow]="manualStepper.isStep(3)">
+        <nz-col nzSpan="24" class="payment-centered">
+            <ng-container *ngIf="payNominationState.hasSucceeded(); else failedPayment">
+                <h3>{{ 'pay-nomination.payment_success_title' | i18next }}</h3>
+                <button nz-button nzType="primary" (click)="onCloseModal()">{{ 'action.close' | i18next }}</button>
+            </ng-container>
+            <ng-template #failedPayment>
+                <h3 class="rp-warn-color">{{ 'pay-nomination.payment_failure_title' | i18next }}</h3>
+                <p>
+                    {{ payNominationState.failedResult().message }}
+                </p>
+                <button nz-button nzType="primary" (click)="onCloseModal()">{{ 'action.close' | i18next }}</button>
+            </ng-template>
+        </nz-col>
+    </nz-row>
+</rp-general-stepper>
+
+<rp-general-stepper [stepper]="autoStepper" *ngIf="method === 'auto'"></rp-general-stepper>

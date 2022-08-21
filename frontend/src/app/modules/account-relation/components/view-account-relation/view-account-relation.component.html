@@ -1,0 +1,67 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <ng-container *ngIf="accountRelation">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <table class="rp-basic-data-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                {{ 'account-relation.view_title' | i18next }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ 'account-relation.forward' | i18next }}</td>
+                            <td>
+                                <rp-account-tag [account]="accountRelation.forward"></rp-account-tag>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account-relation.summary' | i18next }}</td>
+                            <td>{{ accountRelation.data?.summary }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </nz-col>
+
+            <nz-col nzSpan="24">
+                <rp-general-object-display
+                    [data]="accountRelation.data?.customFields"
+                    [title]="'account-relation.custom_fields' | i18next"
+                ></rp-general-object-display>
+            </nz-col>
+        </nz-row>
+        <nz-divider></nz-divider>
+        <nz-row nzGutter="24" *rpHasPermission="[permissions.ViewDocument]">
+            <nz-col nzSpan="24">
+                <rp-view-account-relation-documents [accountRelationId]="accountRelationId"></rp-view-account-relation-documents>
+            </nz-col>
+        </nz-row>
+    </ng-container>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-account-relation [accountRelation]="accountRelation" (complete)="onUpdateComplete($event)"></rp-update-account-relation>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<div nz-row nzAlign="middle" nzJustify="space-between">
+    <button
+        nz-button
+        [nzType]="!isUpdating ? 'primary' : 'default'"
+        nz-col
+        class="rp-space"
+        (click)="toggleUpdating()"
+        *rpHasPermission="[permissions.EditAccountRelation]"
+    >
+        {{ isUpdating ? 'Cancel' : 'Edit' }}
+    </button>
+    <rp-delete-account-relation
+        [accountRelationId]="accountRelationId"
+        (delete)="onDelete($event)"
+        nz-col
+        *rpHasPermission="[permissions.DeleteAccountRelation]"
+    ></rp-delete-account-relation>
+</div>

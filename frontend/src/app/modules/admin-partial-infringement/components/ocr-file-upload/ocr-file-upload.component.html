@@ -1,0 +1,11 @@
+<nz-row nzGutter="24">
+    <nz-col nzSpan="24">
+        <rp-general-file-upload
+            [limit]="1"
+            [mimeTypes]="[mimeTypes.png, mimeTypes.jpeg, mimeTypes.pdf]"
+            (files)="onFilesChanged($event)"
+            [spreadSheet]="false"
+        >
+        </rp-general-file-upload>
+    </nz-col>
+</nz-row>

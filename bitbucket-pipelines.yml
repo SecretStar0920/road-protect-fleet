@@ -1,0 +1,31 @@
+options:
+    docker: true
+
+image: google/cloud-sdk:latest
+pipelines:
+    branches:
+        master:
+            -   step:
+                    size: 2x
+                    caches:
+                        - docker
+                    name: Build and Push Docker Images
+                    script:
+                        - /bin/bash devops/bitbucket/setup.sh
+                        - cd devops/kubernetes/prod/scripts
+                        - /bin/bash deploy-images.sh yes
+        staging:
+            -   step:
+                    size: 2x
+                    caches:
+                        - docker
+                    name: Build and Push Docker Images
+                    script:
+                        - /bin/bash devops/bitbucket/setup.sh
+                        - cd devops/kubernetes/staging/scripts
+                        - /bin/bash deploy-images.sh yes
+
+definitions:
+    services:
+        docker:
+            memory: 7168

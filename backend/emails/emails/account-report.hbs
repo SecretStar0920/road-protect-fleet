@@ -1,0 +1,71 @@
+<div style="direction: rtl; text-align: right; font-family: Arial, sans-serif;">
+    שלום רב,
+    <br/>
+    <br/>
+    מצב עדכני של {{report.clientName}} נכון לתאריך {{report.currentDate}}.
+    <br/>
+    <br/>
+    <strong>קנסות:</strong>
+    <br/>
+    מתחילת הפעילות ועד היום נאספו {{report.infringements.totalInfringementsCount}} קנסות על סך
+    <br/>
+    {{report.infringements.totalInfringementsCost}} ש״ח
+    <br/>
+    מתוכם {{report.infringements.totalPaidInfringements}} קנסות שולמו,
+    <br/>
+    {{report.infringements.totalOutstandingSoon}} עומדים להיכנס לחריגה,
+    <br/>
+    {{report.infringements.totalOutstanding}}   בחריגה.
+    <br/>
+    קישור לכל הקנסות - <a href="{{report.infringements.allInfringementsLink}}">{{report.infringements.allInfringementsLink}}</a>.
+    <br />
+    קישור לקנסות בדרך לחריגה - <a href="{{report.infringements.outstandingSoonInfringementsLink}}">{{report.infringements.outstandingSoonInfringementsLink}}</a>.
+    <br />
+    קישור לקנסות בחריגה - <a href="{{report.infringements.outstandingInfringementsLink}}">{{report.infringements.outstandingInfringementsLink}}</a>.
+
+    <br />
+    <br />
+    <strong>רשויות:</strong>
+    <br />
+    הקנסות התקבלו מ {{report.issuers.totalIssuersCount}} רשויות. להלן משטרת ישראל ושלושת
+    <br />
+    הרשויות המובילות:
+    <br />
+    {{#if report.issuers.policeIssuer}}
+      {{report.issuers.policeIssuer.name}} - {{report.issuers.policeIssuer.infringements}} קנסות.
+      <br/>
+    {{/if}}
+
+    {{#each report.issuers.topIssuers}}
+      {{this.name}} - {{this.infringements}} קנסות.
+      <br/>
+    {{/each}}
+
+    <br/>
+    <br/>
+
+    <strong>רכבים:</strong>
+    <br/>
+    סך מספר הרכבים במערת Road Protect עומד על {{report.vehicles.totalVehiclesCount}}
+    <br/>
+    רכבים.
+    <br/>
+    מתוכם {{report.vehicles.totalLeasedVehiclesCount}} רכבים עם הסכם שכירות
+    <br/>
+    בתוקף, {{report.vehicles.totalLeasedExpiredVehiclesCount}} רכיבים ללא הסכם שכירות
+    <br/>
+    בתוקף.
+    <br/>
+    קישור לכל הרכבים - <a href="{{report.vehicles.allVehiclesLink}}">{{report.vehicles.allVehiclesLink}}</a>
+
+    <br/>
+    <br/>
+    <strong>הסבות:</strong>
+    <br/>
+    מתחילת הפעילות ועד היום בוצעו {{report.redirections.totalRedirectionsCount}} הסבות.
+    <br/>
+    מתוכם {{report.redirections.totalFinishedRedirectionsCount}} הסבות בוצעו בהצלחה,
+    <br/>
+    {{report.redirections.totalInProgressRedirectionsCount}} הסבות בתהליך.
+
+</div>

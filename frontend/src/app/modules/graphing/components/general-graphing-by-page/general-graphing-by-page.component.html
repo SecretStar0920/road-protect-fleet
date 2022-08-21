@@ -1,0 +1,61 @@
+<nz-row>
+    <h2>{{ 'graphing-by.comparison_information' | i18next }}</h2>
+</nz-row>
+<nz-row [nzGutter]="24">
+    <nz-col [nzSpan]="12">
+        <table class="rp-basic-data-table graphing-comparison-table">
+            <tbody>
+                <tr>
+                    <td>{{ 'graphing-by.filter' | i18next }}</td>
+                    <td>
+                        <nz-radio-group [(ngModel)]="selectedEndpoint" (ngModelChange)="onChangeEndpoint()">
+                            <label nz-radio [nzValue]="reportingEndpoints.All"> {{ 'graphing-by.all' | i18next }}</label>
+                            <label nz-radio [nzValue]="reportingEndpoints.Owner">{{ 'graphing-by.owner' | i18next }}</label>
+                            <label nz-radio [nzValue]="reportingEndpoints.User">{{ 'graphing-by.user' | i18next }}</label>
+                        </nz-radio-group>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'graphing-by.number_of_years_previous' | i18next }} [{{ numberOfYears }}]</td>
+                    <td>
+                        <nz-slider
+                            [(ngModel)]="numberOfYears"
+                            [nzMin]="yearsComparisonSliderRange?.min"
+                            [nzMax]="yearsComparisonSliderRange?.max"
+                            (ngModelChange)="onShowComparison()"
+                        >
+                        </nz-slider>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </nz-col>
+    <nz-col [nzSpan]="12">
+        <table class="rp-basic-data-table graphing-comparison-table">
+            <tbody>
+                <tr>
+                    <td>{{ 'graphing-by.dates' | i18next }}</td>
+                    <td>
+                        <form nz-form [formGroup]="dateRangeForm" [nzLayout]="'horizontal'">
+                            <nz-form-item>
+                                <rp-general-date-range-input
+                                    [isCompact]="false"
+                                    [displayModifiers]="true"
+                                    [displayLastMonthModifier]="false"
+                                    [displayLastWeekModifier]="false"
+                                    [displayLastYearModifier]="false"
+                                    [displayCurrentMonthModifier]="true"
+                                    [displayCurrentYearModifier]="true"
+                                    [displayPreviousYearModifier]="false"
+                                    [displayAllModifier]="true"
+                                    [formControl]="dateRangeForm.get('dateRange')"
+                                    (newDate)="onChangeDate()"
+                                ></rp-general-date-range-input>
+                            </nz-form-item>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </nz-col>
+</nz-row>

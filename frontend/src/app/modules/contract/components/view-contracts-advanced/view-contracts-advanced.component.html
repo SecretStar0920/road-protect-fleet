@@ -1,0 +1,138 @@
+<rp-advanced-filter-table>
+    <nz-row nzGutter="24" nzJustify="start">
+        <nz-col>
+            <nz-row
+                ><h3>{{ 'view-contracts-advanced.lease' | i18next }}</h3></nz-row
+            >
+            <nz-row>
+                <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateLeaseContract()">
+                    <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'view-contracts-advanced.create' | i18next }}
+                </button>
+                <button nz-button [nzType]="'default'" class="rp-space" [routerLink]="['/home', 'contracts', 'lease', 'upload']">
+                    <i nz-icon nzType="upload" nzTheme="outline"></i>
+                    {{ 'view-contracts-advanced.upload' | i18next }}
+                </button>
+                <button
+                    nz-button
+                    [nzType]="'primary'"
+                    (click)="batchGenerateLeaseContractDocuments()"
+                    [disabled]="!canGenerateLeaseContractDocuments()"
+                >
+                    <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                    {{ 'view-contracts-advanced.generate_lease_contract_documents' | i18next }}
+                </button>
+            </nz-row>
+        </nz-col>
+        <nz-col>
+            <nz-row
+                ><h3>{{ 'view-contracts-advanced.ownership' | i18next }}</h3></nz-row
+            >
+            <nz-row>
+                <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateOwnershipContract()">
+                    <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'view-contracts-advanced.create' | i18next }}
+                </button>
+                <button nz-button [nzType]="'default'" [routerLink]="['/home', 'contracts', 'ownership', 'upload']">
+                    <i nz-icon nzType="upload" nzTheme="outline"></i>
+                    {{ 'view-contracts-advanced.upload' | i18next }}
+                </button>
+            </nz-row>
+        </nz-col>
+        <nz-col>
+            <nz-row
+                ><h3>{{ 'view-contracts-advanced.driver' | i18next }}</h3></nz-row
+            >
+            <nz-row>
+                <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateDriverContract()">
+                    <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'view-contracts-advanced.create' | i18next }}
+                </button>
+                <button nz-button [nzType]="'default'" [routerLink]="['/home', 'contracts', 'driver', 'upload']">
+                    <i nz-icon nzType="upload" nzTheme="outline"></i>
+                    {{ 'view-contracts-advanced.upload' | i18next }}
+                </button>
+            </nz-row>
+        </nz-col>
+        <nz-col>
+            <nz-row
+                ><h3>{{ 'view-contracts-advanced.ocr' | i18next }}</h3></nz-row
+            >
+            <nz-row>
+                <button
+                    nz-button
+                    [nzType]="'primary'"
+                    class="rp-space"
+                    (click)="onRunBulkOcr()"
+                    [nzLoading]="isLoading$ | async"
+                    [disabled]="!canRunBulkOcr()"
+                >
+                    <i nz-icon nzType="tag" nzTheme="outline"></i> {{ 'view-contracts-advanced.run_bulk_ocr' | i18next }}
+                </button>
+            </nz-row>
+        </nz-col>
+    </nz-row>
+</rp-advanced-filter-table>
+<nz-alert
+    *ngIf="getContractsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getContractsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+
+<ng-template let-data #action>
+    <button nz-button nzSize="small" nzType="primary" *ngIf="data" (click)="onViewContract(data.contractId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    <button nz-button nzType="primary" nzSize="small" (click)="onEditContract(data)" class="rp-space">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+    </button>
+    <!--    <button nz-button nzSize="small" (click)="updateContractDatesVisible = true">-->
+    <!--        <i nz-icon nzType="calendar" nzTheme="outline"></i>-->
+    <!--    </button>-->
+    <!--    <nz-modal [(nzVisible)]="updateContractDatesVisible" nzTitle="Update contract date" [nzFooter]="null"-->
+    <!--              (nzOnCancel)="updateContractDatesVisible = false" [nzClosable]="true">-->
+    <!--        <rp-update-contract-dates [contract]="data" *ngIf="data"></rp-update-contract-dates>-->
+    <!--    </nz-modal>-->
+</ng-template>
+
+<ng-template let-data #delete>
+    <rp-delete-contract *ngIf="data" [contractId]="data.contractId"></rp-delete-contract>
+</ng-template>
+
+<ng-template let-data #owner>
+    <rp-account-tag *ngIf="data.owner" [account]="data.owner"></rp-account-tag>
+</ng-template>
+<ng-template let-data #user>
+    <rp-account-tag *ngIf="data.user; else noUser" [account]="data.user"></rp-account-tag>
+    <ng-template #noUser>
+        <span>{{ 'view-contracts-advanced.na' | i18next }}</span>
+    </ng-template>
+</ng-template>
+<ng-template let-data #startDate>
+    <rp-general-time-display [time]="data.startDate" [short]="true"></rp-general-time-display>
+</ng-template>
+<ng-template let-data #endDate>
+    <rp-general-time-display [time]="data.endDate" [short]="true"></rp-general-time-display>
+</ng-template>
+<ng-template let-data #status>
+    <rp-contract-status-tag [contract]="data"></rp-contract-status-tag>
+</ng-template>
+<ng-template let-data #vehicle>
+    <rp-vehicle-tag [vehicle]="data.vehicle"></rp-vehicle-tag>
+</ng-template>
+<ng-template let-data #current>
+    {{
+        data.currentLeaseForVehicle || data.currentOwnershipForVehicle
+            ? ('view-contracts-advanced.yes' | i18next)
+            : ('view-contracts-advanced.no' | i18next)
+    }}
+</ng-template>
+<ng-template let-data #document>
+    {{ data.document ? ('view-contracts-advanced.yes' | i18next) : ('view-contracts-advanced.no' | i18next) }}
+</ng-template>
+<ng-template let-data #ocrStatus>
+    <rp-contract-ocr-status-tag [contract]="data"></rp-contract-ocr-status-tag>
+</ng-template>
+<ng-template let-data #ocr>
+    <ng-container *ngIf="data?.document?.ocr">
+        <rp-json [data]="data.document.ocr" maxHeight="50px"></rp-json>
+    </ng-container>
+</ng-template>

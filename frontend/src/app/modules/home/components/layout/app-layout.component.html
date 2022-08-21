@@ -1,0 +1,15 @@
+<div id="header">
+    <rp-header></rp-header>
+</div>
+<!--<div id="sidebar" [class.collapsed]="layoutService.isSidebarCollapsed">-->
+<!--</div>-->
+<div id="page">
+    <rp-sidebar></rp-sidebar>
+    <rp-page id="scroll-target">
+        <nz-back-top nzTarget="#scroll-target"></nz-back-top>
+        <router-outlet></router-outlet>
+    </rp-page>
+    <rp-view-http-loading></rp-view-http-loading>
+    <rp-notification-responder></rp-notification-responder>
+    <rp-first-login></rp-first-login>
+</div>

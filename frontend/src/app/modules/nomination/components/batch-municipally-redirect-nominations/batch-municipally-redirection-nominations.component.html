@@ -1,0 +1,142 @@
+<ng-container *rpHasPermission="[permissions.RedirectInfringement]">
+    <button
+        nz-button
+        nzType="primary"
+        (click)="onClickBatchRedirect()"
+        [nzLoading]="getDetailsLoadingState.isLoading()"
+        [disabled]="filteredInfringements.length <= 0"
+    >
+        <i nz-icon nzType="retweet" nzTheme="outline"></i> {{ 'batch-municipally-redirect-nominations.redirect' | i18next }}
+        {{ filteredInfringements.length }}
+        {{ 'batch-municipally-redirect-nominations.infringements' | i18next }}
+    </button>
+</ng-container>
+
+<nz-modal
+    [(nzVisible)]="modalVisible"
+    [nzTitle]="'batch-municipally-redirect-nominations.title' | i18next"
+    [nzFooter]="null"
+    (nzOnCancel)="modalVisible = false"
+    [nzContent]="viewDetails"
+>
+</nz-modal>
+
+<ng-template #viewDetails>
+    <rp-general-stepper [showControls]="false" [stepper]="stepper">
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(1)">
+            <nz-col nzSpan="24">
+                <nz-row nzGutter="24">
+                    <nz-col nzSpan="24"
+                        ><h2 class="rp-primary-color">{{ 'batch-municipally-redirect-nominations.redirectable_heading' | i18next }}</h2>
+                    </nz-col>
+                    <nz-col nzSpan="24">
+                        <p>
+                            {{ batchRedirectionDetails.ready.summary.count }}
+                            {{ 'batch-municipally-redirect-nominations.redirectable_infringement_count' | i18next }}
+                        </p>
+                    </nz-col>
+                    <nz-col
+                        nzSpan="24"
+                        style="text-align: center; margin-bottom: 20px"
+                        *ngIf="batchRedirectionDetails.ready.redirectToDriver.length > 0"
+                    >
+                        <nz-alert
+                            nzType="warning"
+                            nzMessage="{{ 'batch-municipally-redirect-nominations.has_drivers_contract_warning' | i18next }}"
+                        ></nz-alert>
+                    </nz-col>
+                    <nz-col nzSpan="24">
+                        <button
+                            nz-button
+                            nzSize="large"
+                            nzType="primary"
+                            (click)="batchRedirectConfirm()"
+                            [disabled]="batchRedirectionDetails.ready.summary.count <= 0"
+                        >
+                            <i nz-icon nzType="credit-card" nzTheme="outline"></i>
+                            {{ 'batch-municipally-redirect-nominations.redirect_these' | i18next }}
+                        </button>
+                    </nz-col>
+                </nz-row>
+            </nz-col>
+
+            <nz-col nzSpan="24">
+                <nz-row nzGutter="24">
+                    <nz-divider></nz-divider>
+                    <nz-col nzSpan="24"
+                        ><h2 class="rp-warn-color">{{ 'batch-municipally-redirect-nominations.non_redirectable_heading' | i18next }}</h2>
+                        <p>
+                            {{ batchRedirectionDetails.unready.summary.count }}
+                            {{ 'batch-municipally-redirect-nominations.non_redirectable_infringement_count' | i18next }}
+                        </p>
+                    </nz-col>
+                    <nz-col nzSpan="24">
+                        <p>
+                            {{ 'batch-municipally-redirect-nominations.non_redirectable_infringement_spreadsheet_description' | i18next }}
+                        </p>
+                        <button nz-button nzType="primary" (click)="downloadUnreadyRedirects()">
+                            <i nz-icon nzType="retweet" nzTheme="outline"></i> {{ 'actions.download' | i18next }}
+                            {{ batchRedirectionDetails.unready.summary.count }}
+                            {{ 'batch-municipally-redirect-nominations.non_redirectable_infringement_button_text' | i18next }}
+                        </button>
+                    </nz-col>
+                </nz-row>
+            </nz-col>
+        </nz-row>
+
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(2)">
+            <nz-col nzSpan="24" style="text-align: center">
+                <p>
+                    <span nz-text nzType="secondary">{{ 'batch-municipally-redirect-nominations.total' | i18next }}:</span>
+                    {{ batchProgress.total }}
+                </p>
+                <p>
+                    <span nz-text nzType="secondary">{{ 'batch-municipally-redirect-nominations.successful' | i18next }}:</span>
+                    {{ batchProgress.successful }}
+                </p>
+                <p>
+                    <span nz-text nzType="secondary">{{ 'batch-municipally-redirect-nominations.failed' | i18next }}:</span>
+                    {{ batchProgress.failed }}
+                </p>
+                <nz-progress [nzPercent]="batchProgressPercent"></nz-progress>
+            </nz-col>
+        </nz-row>
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(3)">
+            <nz-col nzSpan="24">
+                <nz-row nzGutter="24">
+                    <nz-col nzSpan="24"
+                        ><h2 class="rp-primary-color">
+                            {{ 'batch-municipally-redirect-nominations.successful_redirections_heading' | i18next }}
+                        </h2>
+                    </nz-col>
+                    <nz-col nzSpan="24">
+                        <p>
+                            {{ 'batch-municipally-redirect-nominations.successful_redirections_count' | i18next }}
+                            {{ batchRedirectionResult?.successfulRedirections.length }}
+                        </p>
+                    </nz-col>
+                </nz-row>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <nz-row nzGutter="24">
+                    <nz-divider></nz-divider>
+                    <nz-col nzSpan="24"
+                        ><h2 class="rp-warn-color">{{ 'batch-municipally-redirect-nominations.failed_redirections_heading' | i18next }}</h2>
+                        <p>
+                            {{ 'batch-municipally-redirect-nominations.failed_redirections_count' | i18next }}
+                            {{ batchRedirectionResult?.failedRedirections.length }}
+                        </p>
+                    </nz-col>
+                    <nz-col nzSpan="24">
+                        <p>{{ 'batch-municipally-redirect-nominations.failed_redirections_spreadsheet_description' | i18next }}</p>
+                        <button nz-button nzType="primary" (click)="downloadFailedRedirects()">
+                            <i nz-icon nzType="retweet" nzTheme="outline"></i> {{ 'actions.download' | i18next }}
+                            {{ batchRedirectionResult?.failedRedirections.length }}
+                            {{ 'batch-municipally-redirect-nominations.failed_redirection_button_text' | i18next }}
+                        </button>
+                    </nz-col>
+                </nz-row>
+            </nz-col>
+        </nz-row>
+    </rp-general-stepper>
+</ng-template>

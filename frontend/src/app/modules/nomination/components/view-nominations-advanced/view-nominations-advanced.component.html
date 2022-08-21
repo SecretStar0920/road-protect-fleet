@@ -1,0 +1,67 @@
+<rp-advanced-filter-table>
+    <!--    <div class="batch-actions" *ngIf="selectedRows.length > 0">-->
+    <!--        <rp-batch-pay-nominations [nominations]="selectedRows" class="rp-space"></rp-batch-pay-nominations>-->
+    <!--        <rp-batch-approve-for-payment-for-payment [nominations]="selectedRows" class="rp-space"></rp-batch-approve-for-payment-for-payment>-->
+    <!--        <rp-batch-redirect-nominations [nominations]="selectedRows" class="rp-space"></rp-batch-redirect-nominations>-->
+    <!--        <rp-batch-acknowledge-nominations [nominations]="selectedRows" class="rp-space"></rp-batch-acknowledge-nominations>-->
+    <!--        <button nz-button nzType="primary" (click)="onViewSelectOnMap()"><i nz-icon nzType="pushpin" nzTheme="outline"></i> View selected on map</button>-->
+    <!--    </div>-->
+</rp-advanced-filter-table>
+<nz-alert
+    *ngIf="getNominationsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getNominationsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+
+<ng-template #offenceDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.infringement.offenceDate"></rp-general-time-display>
+</ng-template>
+
+<ng-template #paidDate let-data>
+    <rp-general-time-display *ngIf="data.paidDate" [time]="data.paidDate"></rp-general-time-display>
+</ng-template>
+
+<ng-template #latestPaymentDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.infringement.latestPaymentDate" [short]="true"></rp-general-time-display>
+</ng-template>
+<ng-template #issuer let-data>
+    <rp-issuer-tag [issuer]="data.infringement?.issuer"></rp-issuer-tag>
+</ng-template>
+<ng-template #vehicle let-data>
+    <rp-vehicle-tag [vehicle]="data.infringement?.vehicle"></rp-vehicle-tag>
+</ng-template>
+<ng-template #vehicleOwner let-data>
+    <rp-account-tag [account]="data.infringement?.contract?.owner"></rp-account-tag>
+</ng-template>
+<ng-template #vehicleUser let-data>
+    <rp-account-tag [account]="data.infringement?.contract?.user"></rp-account-tag>
+</ng-template>
+<ng-template #amountDue let-data> {{ currency.symbol }} {{ data.infringement.amountDue }} </ng-template>
+<ng-template #status let-data>
+    <rp-infringement-status-tag *ngIf="data" [status]="data.infringement.status"></rp-infringement-status-tag>
+</ng-template>
+
+<ng-template #nominationStatus let-data>
+    <rp-nomination-status-tag [status]="data.status"></rp-nomination-status-tag>
+</ng-template>
+<ng-template #nominationAccount let-data>
+    <rp-account-tag [account]="data.account"></rp-account-tag>
+</ng-template>
+
+<ng-template let-data #action>
+    <button
+        nz-button
+        nzSize="small"
+        nzType="primary"
+        *ngIf="data"
+        (click)="onViewNomination(data.infringement.infringementId)"
+        class="rp-space"
+    >
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+</ng-template>
+
+<ng-template let-data #location>
+    <rp-view-short-location [location]="data.infringement?.location"></rp-view-short-location>
+</ng-template>

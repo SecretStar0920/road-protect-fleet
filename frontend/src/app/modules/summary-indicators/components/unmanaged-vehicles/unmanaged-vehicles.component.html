@@ -1,0 +1,27 @@
+<h2 class="rp-primary-color">
+    <button nz-button nzSize="small" nzType="primary" (click)="onViewInfringementsNoContracts()" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    {{ 'summary-indicators.unmanaged_vehicles' | i18next }}
+</h2>
+<p>
+    {{ 'summary-indicators.unmanaged_vehicles_description' | i18next }}
+</p>
+<ng-container *ngIf="!isComparingDates; else yearComparison">
+    <rp-graphing [graphingType]="graphingType" [dataPoints]="graphingData"></rp-graphing>
+</ng-container>
+
+<!-- Year Comparison -->
+<ng-template #yearComparison>
+    <ng-container *ngIf="comparisonGraphingData?.length > 0; else noResult">
+        <nz-col>
+            <ng-container *ngIf="comparisonGraphingData?.length > 0">
+                <rp-graphing [graphingType]="comparisonGraphing" [dataSeries]="comparisonGraphingData"></rp-graphing>
+            </ng-container>
+        </nz-col>
+    </ng-container>
+</ng-template>
+
+<ng-template #noResult>
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-template>

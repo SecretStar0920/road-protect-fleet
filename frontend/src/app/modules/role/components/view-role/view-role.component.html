@@ -1,0 +1,17 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <h1 id="name">{{ 'view-role.insert_value' | i18next }}</h1>
+    <p>{{ 'view-role.key_insert_value' | i18next }}</p>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-role [role]="role" (complete)="onUpdateComplete($event)"></rp-update-role>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<div nz-row  nzAlign="middle" nzJustify="space-between">
+    <button nz-button [nzType]="!isUpdating ? 'primary' : 'default'" nz-col class="rp-space" (click)="onUpdate()">
+        {{ isUpdating ? ('view-role.cancel' | i18next) : ('view-role.edit' | i18next) }}
+    </button>
+    <rp-delete-role [roleId]="roleId" (delete)="onDelete($event)" nz-col></rp-delete-role>
+</div>

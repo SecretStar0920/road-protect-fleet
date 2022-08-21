@@ -1,0 +1,229 @@
+<!--<nz-collapse [nzBordered]="true">-->
+<!--    <nz-collapse-panel [nzHeader]="'Filters'">-->
+<!--        -->
+<!--    </nz-collapse-panel>-->
+<!--</nz-collapse>-->
+
+<nz-row nzGutter="24" style="justify-content: flex-end">
+    <nz-col>
+        <!--        Filter-->
+        <button nz-button nzType="default" nzSize="default" nz-popover [nzPopoverContent]="visibilityTemplate">
+            <i nz-icon nzType="eye" nzTheme="outline"> </i> {{ 'general-query-builder.filter-visibility' | i18next }}
+        </button>
+        <ng-template #visibilityTemplate>
+            <div>
+                <nz-input-group style="width: initial">
+                    <nz-radio-group [(ngModel)]="visibility" nzButtonStyle="solid">
+                        <label nz-radio-button [nzValue]="visibilities.None">{{
+                            'filter-visibility.' + visibilities[visibilities.None] | i18next
+                        }}</label>
+                        <label nz-radio-button [nzValue]="visibilities.Simple">{{
+                            'filter-visibility.' + visibilities[visibilities.Simple] | i18next
+                        }}</label>
+                        <label nz-radio-button [nzValue]="visibilities.Detailed">{{
+                            'filter-visibility.' + visibilities[visibilities.Detailed] | i18next
+                        }}</label>
+                    </nz-radio-group>
+                </nz-input-group>
+            </div>
+        </ng-template>
+        <!--Presets-->
+        <nz-select
+            class="preset-dropdown"
+            [(ngModel)]="selectedPreset"
+            nzAllowClear
+            [nzPlaceHolder]="presetsTemplate"
+            nzShowSearch="true"
+            (ngModelChange)="onChangeActivePreset()"
+        >
+            <nz-option *ngFor="let preset of userPresets" [nzValue]="preset" [nzLabel]="preset.name"></nz-option>
+        </nz-select>
+        <ng-template #presetsTemplate>
+            <i nz-icon nzType="filter" nzTheme="outline"> </i> {{ 'general-query-builder.presets' | i18next }}
+        </ng-template>
+        <!--        Manage Presets-->
+        <button nz-button nzType="default" nzSize="default" (click)="onManagePresets()">
+            <i nz-icon nzType="setting" nzTheme="outline"> </i> {{ 'general-query-builder.manage_presets' | i18next }}
+        </button>
+    </nz-col>
+</nz-row>
+<nz-row nzGutter="24" nz-form [formGroup]="filterForm">
+    <nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12" nzXXl="8" *ngFor="let filterKey of visibleFilters">
+        <nz-row
+            style="margin-top: 8px"
+            class="main-filter-container"
+            [formGroup]="filterForm.controls[filterKey.key]"
+            *ngIf="filterForm.controls[filterKey.key]"
+        >
+            <ng-container [ngSwitch]="filterKey.type">
+                <!--                    Date inputs-->
+                <ng-container *ngSwitchCase="filterTypes.Date">
+                    <ng-container *ngIf="getFormControl(filterKey.key, 'value')">
+                        <nz-input-group nzCompact [nzAddOnBefore]="dateBefore" style="width: 100%">
+                            <rp-general-date-range-input
+                                [isCompact]="true"
+                                [displayModifiers]="false"
+                                [formControl]="getFormControl(filterKey.key, 'value')"
+                            ></rp-general-date-range-input>
+                        </nz-input-group>
+                        <ng-template #dateBefore>{{ filterKey.display || filterKey.key | sentenceCase }} </ng-template>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="filterTypes.Number">
+                    <ng-container *ngIf="getFormControl(filterKey.key, 'value')">
+                        <nz-input-group nzCompact [nzAddOnBefore]="numberBefore" style="width: 100%">
+                            <rp-general-between-input
+                                [isCompact]="true"
+                                inputType="number"
+                                [formControl]="getFormControl(filterKey.key, 'value')"
+                            ></rp-general-between-input>
+                        </nz-input-group>
+                        <ng-template #numberBefore>{{ filterKey.display || filterKey.key | sentenceCase }} </ng-template>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="filterTypes.Dropdown">
+                    <ng-container>
+                        <nz-input-group nzCompact [nzAddOnBefore]="dropdownBefore" style="width: 100%">
+                            <nz-select
+                                style="width: 100%"
+                                [formControl]="getFormControl(filterKey.key, 'value')"
+                                [nzAllowClear]="true"
+                                [nzShowSearch]="true"
+                                nzMode="multiple"
+                            >
+                                <nz-option
+                                    *ngFor="let option of filterKey.options"
+                                    [nzValue]="option"
+                                    [nzLabel]="'filter-label.' + option | i18next"
+                                ></nz-option>
+                            </nz-select>
+                        </nz-input-group>
+                        <ng-template #dropdownBefore>
+                            {{ filterKey.display || filterKey.key | sentenceCase }}
+                        </ng-template>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="filterTypes.Boolean">
+                    <ng-container>
+                        <nz-input-group nzCompact [nzAddOnBefore]="booleanBefore" style="width: 100%">
+                            <nz-select
+                                style="width: 100%"
+                                [formControl]="getFormControl(filterKey.key, 'value')"
+                                [nzAllowClear]="true"
+                                [nzShowSearch]="true"
+                            >
+                                <nz-option [nzValue]="'true'" [nzLabel]="'Yes'"></nz-option>
+                                <nz-option [nzValue]="'false'" [nzLabel]="'No'"></nz-option>
+                            </nz-select>
+                        </nz-input-group>
+                        <ng-template #booleanBefore> {{ filterKey.display || filterKey.key | sentenceCase }} </ng-template>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="filterTypes.Existence">
+                    <ng-container>
+                        <nz-input-group nzCompact [nzAddOnBefore]="existenceBefore" style="width: 100%">
+                            <nz-select
+                                style="width: 100%"
+                                [formControl]="getFormControl(filterKey.key, 'operator')"
+                                [nzAllowClear]="true"
+                                [nzShowSearch]="true"
+                            >
+                                <nz-option [nzValue]="operators.NOT_NULL" [nzLabel]="'filter-label.Yes / Exists' | i18next"></nz-option>
+                                <nz-option
+                                    [nzValue]="operators.IS_NULL"
+                                    [nzLabel]="'filter-label.No / Does not exist' | i18next"
+                                ></nz-option>
+                            </nz-select>
+                        </nz-input-group>
+                        <ng-template #existenceBefore> {{ filterKey.display || filterKey.key | sentenceCase }} </ng-template>
+                    </ng-container>
+                </ng-container>
+
+                <!--                    Exact match String input-->
+                <ng-container *ngSwitchCase="filterTypes.ExactString">
+                    <!--Autocomplete strings-->
+                    <ng-container *ngIf="filterKey.enableSearch; else standard">
+                        <nz-input-group nzCompact [nzAddOnBefore]="textBefore" style="width: 100%">
+                            <rp-general-autocomplete-input
+                                [entity]="filterKey.searchEntity"
+                                [field]="filterKey.searchField"
+                                [formControl]="getFormControl(filterKey.key, 'value')"
+                            ></rp-general-autocomplete-input>
+                        </nz-input-group>
+                    </ng-container>
+                    <!--Standard-->
+                    <ng-template #standard>
+                        <nz-input-group nzCompact [nzAddOnBefore]="textBefore" style="width: 100%">
+                            <input type="text" nz-input [formControl]="getFormControl(filterKey.key, 'value')" style="width: 100%" />
+                        </nz-input-group>
+                    </ng-template>
+                    <ng-template #textBefore>{{ filterKey.display || filterKey.key | sentenceCase }} </ng-template>
+                </ng-container>
+
+                <!--                    Assuming String input-->
+                <ng-container *ngSwitchCase="filterTypes.String">
+                    <!--Autocomplete strings-->
+                    <ng-container *ngIf="filterKey.enableSearch; else standard">
+                        <nz-input-group nzCompact [nzAddOnBefore]="textBefore" style="width: 100%">
+                            <rp-general-autocomplete-input
+                                [entity]="filterKey.searchEntity"
+                                [field]="filterKey.searchField"
+                                [formControl]="getFormControl(filterKey.key, 'value')"
+                            ></rp-general-autocomplete-input>
+                        </nz-input-group>
+                    </ng-container>
+                    <!--Standard-->
+                    <ng-template #standard>
+                        <nz-input-group nzCompact [nzAddOnBefore]="textBefore" style="width: 100%">
+                            <input type="text" nz-input [formControl]="getFormControl(filterKey.key, 'value')" style="width: 100%" />
+                        </nz-input-group>
+                    </ng-template>
+                    <ng-template #textBefore>{{ filterKey.display || filterKey.key | sentenceCase }} </ng-template>
+                </ng-container>
+
+                <ng-container *ngSwitchDefault>
+                    <p>Filter not supported</p>
+                </ng-container>
+            </ng-container>
+        </nz-row>
+    </nz-col>
+</nz-row>
+<nz-row nzGutter="24" style="margin-top: 12px" nzJustify="space-between">
+    <nz-col>
+        <ng-container *ngIf="visibility !== visibilities.None">
+            <button
+                [disabled]="!filterForm.valid"
+                nz-button
+                nzType="primary"
+                nzSize="default"
+                (click)="onAddAllFilters()"
+                class="normal rp-space"
+            >
+                <i nz-icon nzType="search" nzTheme="outline"></i> {{ 'general-query-builder.search all' | i18next }}
+            </button>
+            <button nz-button nzType="default" nzSize="default" (click)="onClearAllFilters()" class="normal rp-space">
+                <i nz-icon nzType="close" nzTheme="outline"></i> {{ 'general-query-builder.clear' | i18next }}
+            </button>
+        </ng-container>
+        <!--            <ng-template #lessFilters>-->
+        <!--                <button nz-button nzType="default" nzSize="default" (click)="toggleFilterVisibility()" style="margin-left: 8px;"><i nz-icon nzType="eye-invisible" nzTheme="outline"></i></button>-->
+        <!--            </ng-template>-->
+
+        <!--            Extra actions from the table if needed-->
+        <ng-content select="[slot=main]"></ng-content>
+    </nz-col>
+    <nz-col>
+        <!--            Extra actions from the table if needed-->
+        <ng-content select="[slot=extra]"></ng-content>
+    </nz-col>
+    <!--Save Presets-->
+    <nz-col style="justify-content: flex-end" *ngIf="visibility !== visibilities.None">
+        <button nz-button nzType="primary" nzSize="default" class="normal rp-space" (click)="onSavePreset()">
+            <i nz-icon nzType="save" nzTheme="outline"> </i> {{ 'general-query-builder.save_as_preset' | i18next }}
+        </button>
+    </nz-col>
+</nz-row>

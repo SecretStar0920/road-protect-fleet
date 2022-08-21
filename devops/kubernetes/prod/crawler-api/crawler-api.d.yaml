@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: crawler-api
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: crawler-api
+            env: prod
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: crawler-api
+                env: prod
+        spec:
+            containers:
+                - image: eu.gcr.io/fleet-260107/crawler-api:stable
+                  name: crawler-api
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 20m
+                  ports:
+                      - containerPort: 3000
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      httpGet:
+                          path: /health
+                          port: 3000
+                      initialDelaySeconds: 15
+                      periodSeconds: 10
+                  readinessProbe:
+                      httpGet:
+                          path: /health
+                          port: 3000
+                      initialDelaySeconds: 15
+                      periodSeconds: 10
+                  volumeMounts:
+                      - name: storage
+                        mountPath: /tmp
+            volumes:
+                - name: storage
+                  persistentVolumeClaim:
+                      claimName: crawler-api-storage-pvc

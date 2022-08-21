@@ -1,0 +1,2854 @@
+{
+    "account":{
+       "Hybrid":"היברידי",
+       "Owner":"בעלים",
+       "User":"משתמש",
+       "account_details":"פרטי חשבון",
+       "account_metabase_reporting":"דיווח Metabase חשבון",
+       "account_reporting":"דיווח חשבון",
+       "active":"פעיל",
+       "address_line_one":"כתובת עיקרית",
+       "address_line_one_number":"מספר",
+       "address_line_one_street":"שם רחוב",
+       "address_line_two":"כתובת משנית",
+       "address_line_two_number":"מספר (משני)",
+       "address_line_two_street":"שם רחוב (משני)",
+       "atg_token":"ATG מפתח",
+       "can_send_information_request":"יכול לשלוח בקשה למידע",
+       "cancel":"בטל",
+       "city":"עיר",
+       "confirm":"אשר",
+       "contact_details":"פרטי קשר",
+       "contact_fax":"פקס (איש קשר)",
+       "contact_name":"שם (איש קשר)",
+       "contact_telephone":"טלפון (איש קשר)",
+       "count":"כמות",
+       "country":"מדינה",
+       "create":"צור",
+       "created":"נוצר",
+       "credit_card":"כרטיס אשראי",
+       "details":"תיאור",
+       "document":"מסמך",
+       "edit":"ערוך",
+       "fleet_manager_details":"פרטי מנהל צי",
+       "id":"תעודת זהות / ח.פ",
+       "location":"מיקום",
+       "location_postal":"כתובת למשלוח דואר",
+       "location_requirement":"* כתובת פיזית או כתובת למשלוח דואר נדרשת (או שניהם)",
+       "managed":"מנוהל",
+       "name":"שם",
+       "no_data":"אין מידע",
+       "pa":"ייפוי כוח",
+       "payment_method":"אמצעי תשלום",
+       "post_office_box":"תיבת דואר / רחוב",
+       "postal_code":"מיקוד",
+       "postal_location":"כתובת למשלוך דואר",
+       "power_of_attorny":"ייפוי כוח",
+       "power_of_attorny_add":"הוסף ייפוי כוח",
+       "power_of_attorny_missing":"חסר ייפוי כוח, אנו לא יכולים לאסוף מידע אודותיך בלי זה.",
+       "primary_contact":"דואר אלקטרוני (איש קשר)",
+       "primary_role":"תפקיד ראשי",
+       "request_information_details":"פרטי בקשת מידע",
+       "role":"תפקיד",
+       "rp_token":"Road Protect מפתח",
+       "send_information_request":"שלח בקשת מידע",
+       "sender_name":"שם השולח",
+       "sender_role":"תפקיד השולח",
+       "status":"סטאטוס",
+       "type":"סוג",
+       "update":"עדכן",
+       "verified":"מאומת"
+    },
+    "account-dropdown":{
+       "account_select_create":"לא מוצא את החשבון שאתה מחפש? צור אחד",
+       "create_account":"צור חשבון",
+       "select":"בחר חשבון"
+    },
+    "account-infringement-amounts":{
+       "message":"אלה סך הקנסות שהוסבו לחשבון זה. סך הקנסות לרכבים שאתה מנהל עלולים להיות שונים.",
+       "title":"סכומי קנסות"
+    },
+    "account-leading-vehicles":{
+       "chart-x":"סך עלות קנסות",
+       "chart-y":"מספר רישוי",
+       "number_of_infringements":"מספר קנסות",
+       "title":"10 הרכבים המובילים",
+       "total_infringements_value":"סך ערך קנסות"
+    },
+    "account-relation":{
+       "account":"מחובר לחשבון",
+       "custom_fields":"שדה מלל חופשי",
+       "filter_forward_identifier":"מספר מזהה (חפ /תז)",
+       "filter_forward_name":"שם",
+       "filter_reverse_identifier":"מספר מזהה (חפ /תז)",
+       "filter_reverse_name":"שם",
+       "forward":"מחובר לחשבון",
+       "reverse":"חשבון",
+       "summary":"תקציר",
+       "view_title":"זיקה לחשבון"
+    },
+    "account-relation-document":{
+       "document":"מסמך",
+       "type":"סוג"
+    },
+    "account-relation-documents":{
+       "create_title":"הוסף מסמך",
+       "title":"מסמכים"
+    },
+    "account-relations":{
+       "generate":"צור זיקות",
+       "view_page":"הצג זיקות בין חשבונות"
+    },
+    "account-reports-page":{
+       "title":"דיווחים"
+    },
+    "account-role-tag":{
+       "hybrid":"מנהל רכבים בבעלות או מושכרים",
+       "owner":"בעיקר בעלים או משכיר רכבים",
+       "user":"בעיקר משכיר / שוכר רכבים"
+    },
+    "account-user":{
+       "cancel":"בטל",
+       "create":"צור",
+       "edit":"ערוך",
+       "email":"דואר אלקטרוני",
+       "name":"שם",
+       "role":"תפקיד",
+       "roles":"תפקידים",
+       "save":"שמור",
+       "surname":"שם משפחה"
+    },
+    "account-user-page":{
+       "title":"משתמשים"
+    },
+    "account-user-role":{
+       "Account Relation Manager":"מנהל קשרי לקוחות",
+       "Administrator":"אדמיניסטרטור",
+       "Finance Manager":"מנהל כספים",
+       "Fleet Manager":"מנהל צי רכב",
+       "Manager":"מנהל"
+    },
+    "account-vehicle-counts":{
+       "title":"מספר רכבים"
+    },
+    "accounts-page":{
+       "title":"חשבונות"
+    },
+    "acknowledge-nomination":{
+       "appeal":"ערעור",
+       "cancel":"בטל",
+       "confirm":"אשר",
+       "payment":"תשלום",
+       "redirection":"הפנייה",
+       "submit":"שלח",
+       "text":"בחר פעולות חוקיות עבור הסבה זו"
+    },
+    "action":{
+       "add":"הוסף",
+       "close":"סגור",
+       "create":"צור",
+       "import":"ייבא",
+       "remove":"מחק",
+       "save":"שמור"
+    },
+    "actions":{
+       "add":"הוסף",
+       "create":"צור",
+       "download":"הורדה",
+       "update":"עדכן"
+    },
+    "add-contract-document":{
+       "label":"מסמך שכירות",
+       "ocr-error":{
+          "contract_end_date_not_match":"תאריכי סיום לא תואמים",
+          "contract_not_found":"הסכם לא נמצא",
+          "contract_owner_identifier_not_match":"מזהה בעלות לא תואם",
+          "contract_start_date_not_match":"תאריכי התחלה לא תואמים",
+          "contract_user_identifier_not_match":"מזהה משתמש לא תואם",
+          "contract_vehicle_registration_not_match":"רישום רכב לא תואם",
+          "force_create":"יצירה בכפיה",
+          "force_upload":"העלאה בכפיה"
+       }
+    },
+    "add-power-of-attorny":{
+       "message":"על ידי העלאת ייפוי כוח הנך מאשר לחברת רואד פרוטקט לאסוף מידע בשמך כגון קנסות והסבתות.",
+       "title":"העלה ייפוי כוח"
+    },
+    "address":{
+       "address":"כתובת",
+       "address_line_one_number":"מספר",
+       "address_line_one_street":"שם רחוב",
+       "city":"עיר",
+       "code":"קוד",
+       "country":"מדינה",
+       "location":"מיקום",
+       "post_office_box":"תיבת דואר / רחוב",
+       "postal_code":"מיקוד",
+       "proximity":"קרבה",
+       "street_name":"רחוב",
+       "street_number":"מספר בית",
+       "zip_code":"מיקוד"
+    },
+    "admin-reports-page":{
+       "export":"ייצא",
+       "title":"דיווחי מנהל"
+    },
+    "advanced-filter-table":{
+       "column_settings":"הגדרות שדות",
+       "columns":"שדות",
+       "export_to_excel":"יצוא לאקסל",
+       "filters":"סינון",
+       "no_result":"אין מידע לתצוגה",
+       "please_select":"אנא בחר",
+       "reset":"אפס",
+       "save_selection":"שמור בחירה",
+       "selected":"נבחר",
+       "total":"תוצאות"
+    },
+    "auth-guard":{
+       "content":"החיבור שלך למערכת פג תוקף או שהינך לא מורשה לצפות בדף זה. אנא התחבר מחדש.",
+       "title":"לא מחובר"
+    },
+    "batch-acknowledge-nominations":{
+       "acknowledge":"אשר",
+       "label":"בחר אילו פעולות חוקיות עבור הסבה זו",
+       "nominations":"הסבות",
+       "title":"אשר"
+    },
+    "batch-approve-for-payment":{
+       "approve":"אשר",
+       "infringements_for_payment":"קנסות לתשלום"
+    },
+    "batch-approve-nominations":{
+       "approve":"אשר",
+       "infringements_for_payment":"קנסות לתשלום"
+    },
+    "batch-digitally-redirect-nominations":{
+       "close":"סגור",
+       "confirm":"אשר",
+       "failed_redirections_count":"הסבות דיגיטליות שנכשלו",
+       "failed_redirections_heading":"בקשות להסבות דיגיטליות שנכשלו",
+       "infringements":"קנסות",
+       "label":"הסבה ל",
+       "owner":"בעלים",
+       "redirect":"הסבה דיגיטלית",
+       "successful_redirections_count":"הסבות דיגיטליות מוצלחות",
+       "successful_redirections_heading":"בקשות מוצלחות להסבות דיגיטליות",
+       "title":"הסבה דיגיטלית קבוצתית",
+       "user":"משתמש"
+    },
+    "batch-municipally-redirect-nominations":{
+       "detail_check":"וודא/י נתונים",
+       "failed":"בקשה להסבה נחשלה",
+       "failed_redirection_button_text":"הסבות שנכשלו",
+       "failed_redirections_count":"הסבה נחשלה",
+       "failed_redirections_heading":"בקשות הסבות נכשלו",
+       "failed_redirections_spreadsheet_description":"בבקשה תראו את האקסל המצורף עם פירוט הקנסות שנכשלו את תהליך ההסבה",
+       "has_drivers_contract_warning":"הקנסות שבחרת יוסבו לנהג",
+       "infringements":"קנסות",
+       "non_redirectable_heading":"לא ניתן להסב",
+       "non_redirectable_infringement_button_text":"קנסות שלא ניתן להסב",
+       "non_redirectable_infringement_count":"קנסות שלא ניתן להסב",
+       "non_redirectable_infringement_spreadsheet_description":"בבקשה תראו את האקסל המצורף עם פירוט הקנסות שנכשלו את תהליך ההסבה",
+       "redirect":"הסב",
+       "redirect_progress":"בתהליך בדיקות",
+       "redirect_these":"הסב",
+       "redirectable_heading":"קנס בר הסבה",
+       "redirectable_infringement_count":"קנסות בר הסבה",
+       "results":"תוצאה",
+       "successful":"בקשת הסבה נשלחה בהצלחה",
+       "successful_redirections_count":"קנס הוסב בהצלחה",
+       "successful_redirections_heading":"בקשות הסבות הצליחו",
+       "title":"ביצוע מספר הסבות",
+       "total":"סה\"ל להסבה"
+    },
+    "batch-pay-nomination":{
+       "cvv_placeholder":"CVV",
+       "total_payable":"יתרה"
+    },
+    "batch-pay-nominations":{
+       "amount":"סכום שולם",
+       "batch_transactions_warning":"לידיעתכם: כרטיס האשראי יחויב לפי קנס. קיים סיכוי שלא כל הקנסות יעברו את תהליך אימות התשלום. במקרים אילו, לא יהיה חיוב על קנסות שנכשלו את תהליך האימות.",
+       "cvv_placeholder":"CVV",
+       "enter_cvv_prompt":"לצרוך אבטחת התשלום - אנא להוסיף את 3 הספרות בגב הכרטיס (CVV) לסיים את תהליך התשלום",
+       "failure_title":"תשלומים שנכשלו",
+       "for_card":"כרטיס אשראי",
+       "infringements":"קנסות",
+       "not_payable_reason":"לא ניתן לתשלום מפני ש...",
+       "not_payable_title":"לא ניתן לתשלום",
+       "pay":"שלם",
+       "payable_title":"ניתן לתשלום",
+       "success_title":"תשלומים מוצלחים",
+       "total_not_payable":"לא ניתן לשלם את סכום זה",
+       "total_payable":"סכום זה ניתן לתשלום",
+       "with_method":"תהליך תשלום"
+    },
+    "batch-redirect-nominations":{
+       "cancel":"בטל",
+       "confirm":"אשר",
+       "infringements":"קנסות",
+       "label":"בחר לאן להפנות את הקנסות",
+       "owner":"בעלים",
+       "redirect":"הסב",
+       "title":"הסב",
+       "user":"משתמש"
+    },
+    "breadcrumb":{
+       "account":"חשבון",
+       "accountRelations":"זיקה לחשבון",
+       "accounts":"חשבונות",
+       "contracts":"חוזים",
+       "create":"צור",
+       "create_and_link":"הוסף מסמך",
+       "documents":"מסמכים",
+       "driver":"נהג",
+       "driver_upload":"העלה הסכמי נהג",
+       "generated-documents":"מסמכים שנוצרו",
+       "graphing-by-issuer-page":"גרפים לפי רשויות",
+       "graphing-by-status-page":"גרפים לפי סטטוס",
+       "home":"בית",
+       "infringements":"קנסות",
+       "integration-test":"בדיקות אינטגרציה",
+       "integration_request":"אינטגרציה - בקשה",
+       "issuers":"רשויות",
+       "job":"תהליך",
+       "lease_upload":"העלאת חוזה שכירות",
+       "logs":"לוגים",
+       "municipal-redirection":"הסבה עירונית",
+       "nominations":"הסבות",
+       "ownership_upload":"העלאת חוזה בעלות",
+       "partial_infringement":"קנסות חלקיים",
+       "payments":"תשלומים",
+       "payments_upload":"העלאת תשלומים",
+       "profile":"פרופיל",
+       "raw_infringement":"עבירה גולמית",
+       "reporting":"דיווחים",
+       "request_information":"בקשת מידע",
+       "upload":"העלה",
+       "upload_driver":"העלה נהג",
+       "upload_partial_infringement":"העלה קנסות חלקיים",
+       "upload_ocr_partial_infringement":"העלאת קנסות עם",
+       "users":"משתמשים",
+       "vehicle_contracts":"חוזי רכב",
+       "vehicles":"רכבים",
+       "view":"הצג הכל",
+       "view_account":"הצג חשבון",
+       "view_account_relation":"הצג",
+       "view_contract":"הצג חוזה",
+       "view_driver":"הצג נהג",
+       "view_infringement":"הצג קנסות",
+       "view_integration_request":"צפיה בבקשת אינטגרצה",
+       "view_issuer":"הצג מנפיק",
+       "view_job":"צפיה בתהליך",
+       "view_partial_infringement":"צפיה בקנסות חלקיים",
+       "view_raw_infringement":"צפיה בעבירה גולמית",
+       "view_request_information":"צפיה בבקשת מידע",
+       "view_user":"הצג משתמש",
+       "view_vehicle":"הצג רכב",
+       "generate-redirection-document":"צור מסמך הסבה"
+    },
+    "bulk-generate-lease-contract-documents":{
+       "fail":"יצירת הסכמי שכירות נכשלה",
+       "representative_details":"שם ותפקיד של נציג בעלי החשבון",
+       "success":"יצירת הסכמי שכירות עברה הסתיימה בהצלחה"
+    },
+    "change-current-account":{
+       "fail":"שינוי חשבון נכשל",
+       "select_account":"בחר חשבון",
+       "success":"חשבון שונה בהצלחה"
+    },
+    "change-password":{
+       "confirm":"אשר שינוי",
+       "confirm_password":"סיסמה",
+       "confirm_password_validation":"סיסמה לא תואמת",
+       "fail":"",
+       "new_password":"סיסמה",
+       "new_password_validation":"סיסמה שדה חובה",
+       "success":""
+    },
+    "change-to-account":{
+       "fail":"שגיאה בשינוי חשבון",
+       "login_as_account":"התחבר כחשבון הזה",
+       "success":"חשבון שונה בהצלחה",
+       "success_confirm":"עבור לפרופיל המלא?"
+    },
+    "changing-account-page":{
+       "please_wait":"אנא אמתן",
+       "title":"שינוי חשבון נוכחי"
+    },
+    "contract":{
+       "lease_contract":"הסכם שכירות"
+    },
+    "contract-ocr-status":{
+       "Failed":"משנה את החשבון הנוכחי",
+       "Incomplete":"לא שלם",
+       "Modified":"שונה",
+       "Success":"הצלחה"
+    },
+    "contract-status":{
+       "Expired":"לא בתוקף",
+       "Expiring soon":"עומד להסתיים",
+       "Missing":"חסר",
+       "Upcoming":"עתידי",
+       "Valid":"פעיל"
+    },
+    "contract-status-tag":{
+       "end_date":"תאריך סיום",
+       "start_date":"תאריך התחלה"
+    },
+    "contracts-page":{
+       "title":"חוזי רכב"
+    },
+    "create-account":{
+       "fail":"שגיאה ביצירת חשבון",
+       "success":"חשבון נוצר בהצלחה"
+    },
+    "create-account-relation":{
+       "field_title":"שדה",
+       "field_value":"ערך"
+    },
+    "create-account-user":{
+       "fail":"שגיאה ביצירת משתמש",
+       "success":"משתמש נוצר בהצלחה"
+    },
+    "create-account-user-page":{
+       "title":"צור משתמש"
+    },
+    "create-and-link-document":{
+       "click_here_to_close":"לחץ לסגירה",
+       "click_here_to_close_the_window":"סגור חלון",
+       "click_here_to_retry":"נסה שנית",
+       "failure_result":"העלאת המסמך נכשלה",
+       "finalise":"סיים",
+       "result":"תוצאה",
+       "success_result":"המסמך הועלה בהצלחה",
+       "upload":"העלה"
+    },
+    "create-contract":{
+       "create":"צור",
+       "details":"פרטים",
+       "document":"מסמך",
+       "driver":"נהג",
+       "end_date":"תאריך סיום",
+       "fail":"שגיאה ביצירת חוזה רכב",
+       "owner":"בעלים",
+       "reference":"אסמכתא",
+       "start_date":"תאריך התחלה",
+       "success":"חוזה רכב נוצר בהצלחה",
+       "user":"משתמש (שוכר)",
+       "vehicle":"רכב",
+       "vehicle_registration":"רישוי רכב"
+    },
+    "create-contract-page":{
+       "title":"צור חוזה"
+    },
+    "create-document":{
+       "error":"שגיאה בהעלאת קובץ",
+       "error_ts":"שגיאה ביצירת מסמך",
+       "fail_ts":"נכשל בגלל:",
+       "ocr":{
+          "error":"שגיאה"
+       },
+       "success":"הקובץ הועלה בהצלחה",
+       "success_ts":"מסמך נוצר בהצלחה",
+       "upload":"העלה"
+    },
+    "create-document-and-link-document-page":{
+       "title":"הוסף מסמך"
+    },
+    "create-document-page":{
+       "title":"צור מסמך"
+    },
+    "create-driver":{
+       "fail":"יצירת נהג נכשלה",
+       "success":"הנהג נוצר בהצלחה"
+    },
+    "create-driver-page":{
+       "title":"יצירת נהג"
+    },
+    "create-generated-document":{
+       "generate":"צור",
+       "upload":"העלה"
+    },
+    "create-infringement":{
+       "create":"צור",
+       "fail":"שגיאה ביצירת קנס",
+       "step_confirm":"אשר",
+       "step_details":"פרטים",
+       "step_document":"מסמך",
+       "step_location":"מיקום",
+       "step_optional":"(לא חובה)",
+       "success":"קנס נוצר בהצלחה"
+    },
+    "create-infringement-page":{
+       "title":"צור קנס"
+    },
+    "create-issuer":{
+       "fail":"שגיאה ביצירת מנפיק",
+       "success":"מנפיק נוצר בהצלחה"
+    },
+    "create-issuer-page":{
+       "title":"צור מנפיק"
+    },
+    "create-location":{
+       "fail":"שגיאה ביצירת מיקום",
+       "success":"מיקום נוצר בהצלחה"
+    },
+    "create-location-page":{
+       "title":"צור מיקום"
+    },
+    "create-nomination":{
+       "account":"חשבון",
+       "create":"צור",
+       "infringement":"קנס"
+    },
+    "create-nomination-page":{
+       "title":"צור הסבה"
+    },
+    "create-partial-infringement":{
+       "details":"פרטים",
+       "fail":"יצירת קנס חלקי נכשלה",
+       "invalid_json_format":"פורמט JSON לא תקין",
+       "success":"קנס חלקי נוצר בהצלחה"
+    },
+    "create-partial-infringement-page":{
+       "title":"יצירת קנס חלקי"
+    },
+    "create-payment":{
+       "fail":"שגיאה ביצירת תשלום",
+       "success":"תשלום נוצר בהצלחה"
+    },
+    "create-payment-page":{
+       "title":"צור תשלום"
+    },
+    "create-role-page":{
+       "fail":"שגיאה ביצירת תפקיד",
+       "success":"תפקיד נוצר בהצלחה",
+       "title":"צור תפקיד"
+    },
+    "create-user":{
+       "create":"צור",
+       "email":"דואר אלקטרוני",
+       "fail":"שגיאה ביצירת משתמש",
+       "name":"שם פרטי",
+       "number":"טלפון",
+       "save":"שמור",
+       "success":"משתמש נוצר בהצלחה",
+       "surname":"שם משפחה",
+       "type":"סוג"
+    },
+    "create-user-page":{
+       "title":"צור משתמש"
+    },
+    "create-vehicle":{
+       "category":"קטגוריה",
+       "color":"צבע",
+       "create":"צור רכב",
+       "create_lease":"צור חוזה שכירות",
+       "create_ownership":"צור חוזה בעלות",
+       "current_lease":"שכירות נוכחית",
+       "current_ownership":"בעלות נוכחית",
+       "done":"סיימנו",
+       "done_lease":"הוספת חוזה שכירות",
+       "done_msg":"סיימנו. ביצעת את הפעולות הבאות:",
+       "done_owner":"הוספת חוזה בעלות",
+       "done_vehicle":"יצרת רכב",
+       "fail":"שגיאה ביצירת רכב",
+       "infringements":"קנסות",
+       "infringements_status":"מצב קנסות",
+       "lease_end_date":"תאריך סיום שכירות",
+       "lease_start_date":"תאריך תחילת שכירות",
+       "manufacturer":"יצרן",
+       "model":"דגם",
+       "model_year":"שנת הדגם",
+       "optional":"(לא חובה)",
+       "owner":"בעלים",
+       "owner_end_date":"תאריך סיום בעלות",
+       "owner_start_date":"תאריך תחילת בעלות",
+       "registration":"רישוי רכב",
+       "step_1":"פרטים",
+       "step_2":"בעלות",
+       "step_3":"שכירות",
+       "step_4":"תוצאה",
+       "success":"רכב נוצר בהצלחה",
+       "success_lease":"חוזה שכירות נוצר בהצלחה",
+       "success_ownership":"חוזה בעלות נוצר בהצלחה",
+       "type":"סוג רכב",
+       "user":"משתמש",
+       "weight":"משקל",
+       "year":"שנה",
+       "year_placeholder":"בחר שנה"
+    },
+    "create-vehicle-document":{
+       "fail":"שגיאה ביצירת מסמך רכב",
+       "success":"מסמך רכב נוצר בהצלחה"
+    },
+    "create-vehicle-document-page":{
+       "title":"צור מסמך רכב"
+    },
+    "create-vehicle-page":{
+       "title":"צור רכב"
+    },
+    "current-account-contracts-page":{
+       "title":"חוזים"
+    },
+    "current-account-infringements-page":{
+       "all":"הכל",
+       "message":"אלה קנסות ששוייכו לחשבון זה באמצעות החוזה התקף בזמן העבירה.",
+       "nominated":"משוייכים אלי",
+       "title":"קנסות"
+    },
+    "current-account-nominations-page":{
+       "click_here":"לחץ כאן",
+       "message":"אלה קנסות שהוסבו לחשבון זה.",
+       "title":"הסבות"
+    },
+    "current-account-page":{
+       "title":"פרופיל חשבון"
+    },
+    "current-account-relations-page":{
+       "title":"זיקות לחשבונות"
+    },
+    "current-account-users-page":{
+       "title":"משתמשי חשבון"
+    },
+    "current-account-vehicles-page":{
+       "title":"רכבי חשבון"
+    },
+    "dates":{
+       "friday":"שישי",
+       "monday":"שני",
+       "saturday":"שבת",
+       "sunday":"ראשון",
+       "thursday":"חמישי",
+       "tuesday":"שלישי",
+       "wednesday":"רביעי"
+    },
+    "deactivate-account":{
+       "confirm_title":"האם אתה בטוח?",
+       "fail":"שגיאה בנטרול חשבון",
+       "success":"חשבון נוטרל בהצלחה"
+    },
+    "delete":{
+       "Address":"כתובת",
+       "Address Line One":"כתובת עיקרית",
+       "Address Line Two":"כתובת משנית",
+       "Administrator":"מנהל מערכת",
+       "Amount Due":"סכום החוב",
+       "Appeal approved":"ערעור אושר",
+       "Approved for payment":"אושר לתשלום",
+       "Brn":"תעודת זהות / ח.פ",
+       "City":"עיר",
+       "Closed":"סגור",
+       "Code":"מיקוד",
+       "Contact Person":"איש קשר",
+       "Country":"מדינה",
+       "Create":"צור",
+       "Due":"פתוח",
+       "Email":"דואר אלקטרוני",
+       "End Date":"תאריך סיום",
+       "Fax":"פקס",
+       "Finance Manager":"מנהל כספים",
+       "Fleet Manager":"מנהל צי",
+       "Issuer":"מנפיק",
+       "Issuer Status":"סטאטוס המנפיק",
+       "Issuer Status Description":"תיאור סטאטוס המנפיק",
+       "Latest Payment Date":"תאריך אחרון לתשלום",
+       "Manager":"מנהל",
+       "Nomination in process":"בתהליך הסבה",
+       "Notice Number":"מספר קנס",
+       "Offence Date":"תאריך עבירה",
+       "Original Amount":"סכום מקור",
+       "Outstanding":"בחריגה",
+       "Owner":"בעלים",
+       "Paid":"שולם",
+       "Pending":"ממתין",
+       "Provider":"ספק",
+       "Reason":"סיבה",
+       "Reason Code":"קוד סיבה",
+       "Reference Number":"אסמכתא",
+       "Start Date":"תאריך התחלה",
+       "Telephone":"טלפון",
+       "Type":"סוג",
+       "Update":"עדכן",
+       "Upload Manual Proof":"העלה הוכחה ידנית",
+       "User":"משתמש",
+       "Valid":"תקף",
+       "Vehicle":"רכב",
+       "input_required":"שדה חובה",
+       "optional":"אופציונלי"
+    },
+    "delete-account":{
+       "confirm_title":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת חשבון",
+       "success":"חשבון נמחק בהצלחה"
+    },
+    "delete-account-user":{
+       "confirmation":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת משתמש",
+       "success":"משתמש נמחק בהצלחה"
+    },
+    "delete-contract":{
+       "confirmation":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת חוזה שכירות",
+       "success":"חוזה שכירות נמחק בהצלחה"
+    },
+    "delete-document":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת מסמך",
+       "failure":"שגיאה במחיקת מסמך",
+       "success":"מסמך נמחק בהצלחה"
+    },
+    "delete-driver":{
+       "confirm_title":"האם אתה בטוח?",
+       "success":"נהג נמחק בהצלחה"
+    },
+    "delete-infringement":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת קנס",
+       "success":"קנס נמחק בהצלחה"
+    },
+    "delete-issuer":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת המנפיק",
+       "success":"מנפיק נמחק בהצלחה"
+    },
+    "delete-location":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת מיקום",
+       "success":"מיקום נמחק בהצלחה"
+    },
+    "delete-nomination":{
+       "confirm":"האם אתה בטוח?"
+    },
+    "delete-partial-infringement":{
+       "confirm_title":"האם אתה בטוח?",
+       "fail":"מחיקת קנס חלקי נכשלה",
+       "success":"קנס חלקי נמחק בהצלחה"
+    },
+    "delete-payment":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת תשלום",
+       "success":"תשלום נמחק בהצלחה"
+    },
+    "delete-role":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת תפקיד",
+       "success":"תפקיד נמחק בהצלחה"
+    },
+    "delete-user":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת משתמש",
+       "success":"משתמש נמחק בהצלחה"
+    },
+    "delete-vehicle":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת רכב",
+       "success":"רכב נמחק בהצלחה"
+    },
+    "delete-vehicle-document":{
+       "confirm":"האם אתה בטוח?",
+       "fail":"שגיאה במחיקת מסמך רכב",
+       "success":"מסמך רכב נמחק בהצלחה"
+    },
+    "divider":{
+       "or":"או"
+    },
+    "documents-page":{
+       "create":"צור",
+       "create_document":"צור מסמך",
+       "import":"ייבא",
+       "title":"מסמכים"
+    },
+    "driver":{
+       "cell":"נייד",
+       "cellphone":"מספר טלפון נייד",
+       "cellphoneNumber":"מספר טלפון נייד",
+       "city":"יישוב",
+       "contact_details":"פרטים ליצירת קשר",
+       "contact_fax":"מספר פקס ליצירת קשר",
+       "contact_name":"שם ליצירת קשר",
+       "contact_telephone":"מספר טלפון נייד",
+       "country":"מדינה",
+       "create":"יצירה",
+       "details":"פרטים",
+       "email":"אימייל",
+       "id_number":"מספר ת. ז.",
+       "license":"רשיון",
+       "location":"מיקום",
+       "location_requirement":"דרישת מיקום",
+       "name":"שם",
+       "post_office_box":"תיבת דואר",
+       "postal_code":"מיקוד",
+       "postal_location":"כתובת לשמשלוח דואר",
+       "surname":"שם משפחה",
+       "edit-driver":"עריכת נהג",
+       "update":"עדכן"
+    },
+    "driver-page":{
+       "title":"נהג"
+    },
+    "edit-generated-document":{
+       "check_document":"בדוק מסמך",
+       "check_document_prompt":"המסמך נוצר בהצלחה. נא להדפיס את הקובץ ולמלא את השדות החסרים וחתימה.",
+       "complete":"השלם",
+       "confirm":"אשר",
+       "generate":"ליצור",
+       "result_success":"מסמך נוצר בהצלחה",
+       "return":"מחזירים אותך בחזרה",
+       "return_prompt":"אם שמרת את הקישור הנ\"ל או העלית את הקובץ הרלוונטי, לחץ/י על הכפתור המשך כדי לחזור למסך הקודם",
+       "signature_disabled":"לא ניתן לבצע חתימות אלקטרוניות כרגע מסיבות משפטיות. מסמך זה חייב להיות מודפס, חתום ידנית ואז מועלה שנית למערכת.",
+       "take_me_back":"קח אותי חזרה",
+       "title":"ערוך מסמך",
+       "upload_link_prompt":"אחר מילוי המסמך, השתמש/י בקישור הנ\"ל כדי לעלות את המסמך בחזרה למערכת",
+       "verify_information":"וודא מידע"
+    },
+    "edit-status":{
+       "advanced":"מתקדם",
+       "change_to_due":"שנה סטטוס הקנס לחוב",
+       "edit_status":"עריכת סטטוס",
+       "failure":"כשל",
+       "infringement_status":"סטטוס העבירה",
+       "invalid_transition":"שגיאה במעבר",
+       "no":"לא",
+       "nomination_status":"סטטוס מועמדות",
+       "paid":"שולם",
+       "redirection_completed":"הסבה הושלמה",
+       "redirection_completion_date":"תאריך השלמת הסבה",
+       "redirection_identifier":"מזהה הסבה",
+       "redirection_send_date":"תאריך שליחת הסבה",
+       "reset":"איפוס",
+       "select_infringement_status":"בחר סטטוס הסבה",
+       "select_status":"בחר סטטוס",
+       "selected_infringement_status":"סטטוס הסבה נבחר",
+       "selected_nomination_status":"סטטוס מועמדות נבחר",
+       "submit":"שלח",
+       "success":"הצלחה",
+       "yes":"כן"
+    },
+    "excel-column-mapper":{
+       "match_columns":"התאם שדות",
+       "no_spreadsheet":"העלה קובץ גיליון אלקטרוני עם כותרות בשורה הראשונה",
+       "select":"בחר כותרות שדות"
+    },
+    "export-all-button":{
+       "export_all":"ייצא הכל כגיליון אלקטרוני",
+       "export_all_description":""
+    },
+    "failed-batch-redirects-spreadsheet":{
+       "error_heading":"הודעת שגיאה",
+       "infringement_url_heading":"URL",
+       "notice_number_heading":"מספר קנס",
+       "sheet_name":"קנסות שנכשלו הסבה",
+       "workbook_name":"קנסות שנכשלו הסבה"
+    },
+    "filter-field":{
+       "Active":"פעיל",
+       "Address":"כתובת",
+       "Amount Due":"סכום החוב",
+       "Approved Date":"תאריך אושר לתשלום",
+       "Authority":"רשות",
+       "Case Number":"מספר תיק",
+       "Category":"קטגוריה",
+       "Code":"קוד",
+       "Color":"צבע",
+       "Contact Person":"איש קשר",
+       "Contract Type":"סוג חוזה",
+       "Country":"מדינה",
+       "Current Lease":"שכירות נוכחית",
+       "Current Ownership":"בעלות נוכחית",
+       "Date Redirected":"תאריך הפנייה",
+       "Date Uploaded":"תאריך העלאה",
+       "Date of Offence":"תאריך עבירה",
+       "Email":"דואר אלקטרוני",
+       "End Date":"תאריך סיום",
+       "Fax":"פקס",
+       "Has Document?":"מסמך קיים?",
+       "Identification / BRN":"תעודת זהות / ח.פ",
+       "Infringements Status":"מצב קנס",
+       "Issuer":"מנפיק",
+       "Issuer Status":"סטאטוס המנפיק",
+       "Latest Payment Date":"תאריך אחרון לתשלום",
+       "Lease Contract PDF":"קיים מסמך חוזה ליסינג PDF ?",
+       "Managed":"מנוהל",
+       "Manufacturer":"יצרן",
+       "Model":"ודל",
+       "Name":"שם",
+       "Nominated Account":"חשבון משוייך",
+       "Nomination Status":"סטטוס מועמדויות",
+       "Nomination Type":"סוג הסבה",
+       "Notice Number":"מספר קנס",
+       "Original Amount":"סכום מקור",
+       "Owner Name":"שם בעלים",
+       "PA":"ייפוי כוח",
+       "Paid Date":"תאריך תשלום",
+       "Penalty Amount":"תוספת פיגורים",
+       "Postal code":"ת.ד",
+       "Power of Attorney PDF":"קיים מסמך ייפוי כוח PDF ?",
+       "Primary Contact (email)":"דואר אלקטרוני (איש קשר)",
+       "Primary Role":"תפקיד ראשוני",
+       "Provider":"ספק",
+       "Reason":"סיבה",
+       "Reason Code":"קוד סיבה",
+       "Reference":"אסמכתא",
+       "Registration":"רישוי רכב",
+       "Start Date":"תאריך התחלה",
+       "Status":"סטאטוס",
+       "System Status":"סטאטוס מערכת",
+       "Telephone":"טלפון",
+       "Type":"סוג",
+       "User Name":"שם משתמש",
+       "Vehicle Registration":"מספר רישוי",
+       "Verified":"מאומת",
+       "Weight":"משקל",
+       "Year":"שנה",
+       "issuer":{
+          "latestInfoDate":"תאריך עדכון מידע אחרון"
+       }
+    },
+    "infringement-tag":{
+       "InLegalCare":"בטיפול משפטי",
+       "FollowUp":"למעקב",
+       "Overdue":"בגביה"
+    },
+    "filter-label":{
+       "API":"ממשק",
+       "ATG":"חברה לאוטומציה החדשה",
+       "ATG Integration":"אינטגרציה ATG",
+       "AUTOMATION_ADD_VEHICLE":"אוטומציה הוסף רכב",
+       "AUTOMATION_REDIRECT_INFRINGEMENT":"אוטומציה הוסף עבירה",
+       "AUTOMATION_UPDATE_VEHICLE":"אטומציה עדכן רכב",
+       "AUTOMATION_VERIFY_INFRINGEMENT":"אוטומציה אימות עבירה",
+       "AUTOMATION_VERIFY_INFRINGEMENT_SUM":"אוטומציה אימות כמות עבירות",
+       "Acknowledged":"אושרו",
+       "Admin":"אדמיניסטרטור",
+       "Appeal approved":"ערעור אושר",
+       "Appealed":"הוגש ערעור",
+       "Approved for Payment":"תאריך אושר לתשלום",
+       "Approved for payment":"תאריך אושר לתשלום",
+       "AtgSyncSingleInfringementJob":"סנכרון תהליך עבירה אחד ATG",
+       "CONTRACT_OCR":"OCR הסכמים",
+       "Cancelled":"בוטל",
+       "Closed":"סגור",
+       "Completed":"הושלם",
+       "Developer":"מפתח",
+       "Digital":"דיגיטלי",
+       "DriverContract":"הסכם נהג",
+       "Due":"חוב",
+       "Environmental":"סיירת ירוקה",
+       "Expired":"לא בתוקף",
+       "Expiring soon":"עומד להסתיים",
+       "Failed":"נכשל",
+       "Hybrid":"היברידי",
+       "In Nomination Process":"בתהליך הסבה",
+       "In Redirection Process":"בתהליך הסבה",
+       "Redirection Error":"הסבה נכשלה",
+       "Redirected To Third Party":"הוסב לצד שלישי",
+       "Redirection Request Error":"בקשת הסבה נכשלה",
+       "Incomplete":"לא הושלם",
+       "JERUSALEM_REDIRECT_INFRINGEMENT":"הסבת קנסות ירושלים",
+       "JERUSALEM_VERIFY_INFRINGEMENT":"וידוא קנסות ירושלים",
+       "JerusalemSyncMultipleInfringementsJob":"סנכרון תהליך עבירות מרובות ירושלים",
+       "JerusalemSyncSingleInfringementJob":"סנכרון תהליך עבירה אחת ירושלים",
+       "LeaseContract":"חוזה שכירות",
+       "Local":"מקומית",
+       "METROPARK_VERIFY_INFRINGEMENT":"וידוא קנסות מילגם",
+       "MILEON_VERIFY_INFRINGEMENT":"וידוא קנסות מילאון",
+       "Manual":"יידני",
+       "Manual Email":"אימייל ידני",
+       "Manual Upload":"העלאה ידנית",
+       "Manually Paid":"שולם ידנית",
+       "MetroparkSyncSingleInfringementJob":"סנכרון תהליך עבירה מילגם",
+       "MileonSyncMultipleInfringementsJob":"סנכרון תהליך עבירות מרובות מלאון",
+       "MileonSyncSingleInfringementJob":"סנכרון תהליך עבירה אחת מלאון",
+       "Missing":"חסר",
+       "Missing Contract":"חוזה לא קיים",
+       "Missing Vehicle":"רכב לא קיים",
+       "Modified":"שונה",
+       "Municipal":"עירייה",
+       "New":"חדש",
+       "No / Does not exist":"לא / לא קיים",
+       "Nomination in process":"בתהליך הסבה",
+       "OLD_FLEET_INFRINGEMENT_DATA":"מידע דוחות צי ישנים",
+       "Other":"אחר",
+       "Outstanding":"בחריגה",
+       "Owner":"בעלים",
+       "OwnershipContract":"חזוה בעלות",
+       "POLICE_VERIFY_INFRINGEMENT":"וידוא קנסות משטרה",
+       "Paid":"שולם",
+       "Parking":"חנייה",
+       "Pending":"ממתין",
+       "PoliceSyncMultipleInfringementsJob":"סנכרון תהליך עבירות מרובות מלאון",
+       "PoliceSyncSingleInfringementJob":"סנכרון תהליך עבירה אחת מלאון",
+       "Private":"פרטיים",
+       "Processed":"הושלם",
+       "Processing":"מעבד",
+       "Queued":"בתור",
+       "Redirection Completed":"הסבה בוצע בהצלחה",
+       "Regional":"עזורית",
+       "SHOHAR_VERIFY_INFRINGEMENT":"וידוא קנסות שוחר",
+       "ShoharSyncSingleInfringementsJob":"סנכרון תהליך עבירה אחת שוחר",
+       "Standard":"סטנדרטי",
+       "Success":"הצליח",
+       "Successful":"השצליח",
+       "TELAVIV_REDIRECT_INFRINGEMENT":"הסבת קנסות TLV",
+       "TELAVIV_VERIFY_INFRINGEMENT":"וידוא קנסות TLV",
+       "TelavivSyncMultipleInfringementsJob":"סנכרון תהליך עבירות מרובות TLV",
+       "TelavivSyncSingleInfringementJob":"סנכרון תהליך עבירה אחת TLV",
+       "Traffic":"תנועה",
+       "Truck":"משאיות",
+       "Upcoming":"עתידי",
+       "User":"משתמש",
+       "Valid":"פעיל",
+       "Yes / Exists":"כן / קיים",
+       "atg":"ATG",
+       "atg-verification":"אימות ATG",
+       "manual-upload":"העלאה ידנית",
+       "old-israel-fleet":"צי ישראלי ישן",
+       "InLegalCare":"בטיפול משפטי",
+       "FollowUp":"למעקב",
+       "Overdue":"בגביה",
+       "Collection":"בגביה",
+       "Unmanaged":"לא מנוהל"
+    },
+    "filter-visibility":{
+       "Detailed":"מפורט",
+       "None":"בלי",
+       "Simple":"פשוט"
+    },
+    "filters":{
+       "!= (not equal)":"!= (לא שווה)",
+       "< (less than)":"< (קטן מ)",
+       "<= (less than equal to)":"<= (קטן שווה מ)",
+       "= (equals)":"= (שווה)",
+       "> (greater than)":"> (גדול מ)",
+       ">= (greater than equal to)":">= (גדול שווה מ)",
+       "Is in the range":"בטווח",
+       "Is not specified":"לא קיים ערך",
+       "Is specified":"קיים ערך",
+       "excludes / not equal":"אינו מכיל / לא שווה",
+       "includes / contains":"מכיל"
+    },
+    "first-login":{
+       "complete_profile":"לחץ להשלמת הפרופיל",
+       "password_prompt":"המערכת מזהה שזו ההתחברות הראשונה שלך, הגדר סיסמה",
+       "step_1":"עדכן את סיסמתך",
+       "step_2":"תנאי שימוש",
+       "step_3":"השלם את תהליך ההרשמה",
+       "thank_you":"תודה",
+       "welcome":"ברוך הבא"
+    },
+    "forgot-password-confirm":{
+       "confirm":"שנה סיסמה"
+    },
+    "forgot-password-request":{
+       "confirm":"שלח בקשה לשינוי סיסמה"
+    },
+    "general-between-input":{
+       "max":"מקסימום",
+       "min":"מינימום"
+    },
+    "general-date-range-input":{
+       "from":"מתאריך",
+       "last_month":"חודש אחרון",
+       "last_twelve_months":"12 חודשים אחרונים",
+       "last_week":"שבוע אחרון",
+       "last_year":"שנה אחרונה",
+       "to":"עד תאריך",
+       "current_month":"מתחילת החודש",
+       "current_year":"מתחילת השנה",
+       "from_account_activation":"מתאריך הרשמה"
+    },
+    "general-entity-spreadsheet-upload":{
+       "download":"הורד",
+       "fail":"אימות נכשל",
+       "fail_upload":"העלאה נכשלה",
+       "failed":"נכשל",
+       "invalid_for_upload":"אינו תקין להעלאה",
+       "items_failed":"פריטים נכשלו בהעלאה",
+       "note":"שים לב:",
+       "of":"מתוך הפריטים התקינים.",
+       "out_of":"מתוך",
+       "select":"בחר שיטת העלאה",
+       "select_method":"בחר שיטה",
+       "select_sheet":"בחר גיליון",
+       "select_sheet_desc":"בחר קובץ גיליון אלקטרוני ובחר את השדות",
+       "success":"אימות הושלם",
+       "successful":"הצליח",
+       "template":"תבנית (לא חובה)",
+       "upload":"העלה",
+       "upload_desc":"העלה את הקנסות",
+       "upload_desc_Driver":"העלה את הנהג",
+       "upload_desc_DriverContract":"העלה את הסכם הנהג",
+       "upload_desc_account":"העלה חשבונות",
+       "upload_desc_leaseContract":"העלה הסכמי שכירות",
+       "upload_desc_ownershipContract":"העלה הסכמי בעלות",
+       "upload_desc_partialInfringement":"העלה קנסות חלקיים",
+       "upload_desc_payment":"העלה תשלומים",
+       "upload_desc_vehicle":"העלה רכבים",
+       "upload_empty_spreadsheet":"הגליון ריק, אנא נסה גליון אחר",
+       "upload_note_1":"זה עלול לקחת זמן מה. בהתאם לגודל הקובץ.",
+       "upload_note_2":"רק פריטים שעברו את האימות בשלב הקודם ימשיכו להעלאה.",
+       "uploaded":"הועלה",
+       "valid_for_upload":"תקין להעלאה",
+       "verify":"אימות",
+       "verify-warning":"הגליון ריק, אנא נסה גליון אחר",
+       "verify_desc":"אימות",
+       "verify_note":"זה עלול לקחת זמן מה. בהתאם לגודל הקובץ."
+    },
+    "general-file-upload":{
+       "allowed_file_types":"סוגי קבצים מותרים",
+       "empty_file_uploaded":"הגליון ריק, אנא נסה גליון אחר",
+       "expected":"המערכת ציפתה ל:",
+       "failed":"שגיאה בהוסף קובץ",
+       "files":"קבצים",
+       "got":"קיבלה:",
+       "issue":"סיבה:",
+       "max_files":"מקסימום קבצים",
+       "upload_file":"העלה קובץ"
+    },
+    "general-form-dropdown":{
+       "select":"בחר אחד"
+    },
+    "general-form-error-display":{
+       "email":"כתובת דואר אלקטרוני לא חוקית",
+       "required":"שדה חובה, יש להזין ערך"
+    },
+    "general-image-input":{
+       "clear_image":"הסר תמונה",
+       "select_image":"בחר תמונה"
+    },
+    "general-query-builder":{
+       "add":"הוסף",
+       "asc":"עולה",
+       "clear":"נקה",
+       "current_filter":"סינון נוכחי",
+       "dsc":"יורד",
+       "end_date":"תאריך סיום",
+       "filter-visibility":"סינון נראות",
+       "filter_builder":"הרכב סינון",
+       "filter_by":"לפי מה תרצה לסנן?",
+       "filter_by_placeholder":"בחר שדה",
+       "filter_how":"איך זה צריך להיות מסונן?",
+       "filter_how_placeholder":"בחר איך לסנן",
+       "filter_how_value":"ועם איזה ערך?",
+       "invalid_operator":"אופרטור לא חוקי",
+       "max_value":"ערך מקסימלי",
+       "min_value":"ערך מינימלי",
+       "no_saved_filters":"אין סינונים שמורים",
+       "none":"בלי",
+       "order":"סדר",
+       "order_how":"באיזה סדר יש לסנן?",
+       "save":"שמור",
+       "save_filter":"שמור סינון",
+       "saved_filters":"סינונים שמורים",
+       "search":"חיפוש...",
+       "search all":"חפש הכל",
+       "select":"בחירה...",
+       "sorted_in":"מסודר לפי",
+       "start_date":"תאריך התחלה",
+       "presets":"מועדפים",
+       "manage_presets":" ניהול מועדפים",
+       "save_as_preset":"שמירה",
+       "edit_presets":"עריכת ערך מועדף"
+    },
+    "general-spreadsheet-upload":{
+       "select":"בחר גיליון"
+    },
+    "general-table":{
+       "additional":"מידע נוסף",
+       "enabled_columns":"עמודות מאופשרות",
+       "export":"ייצא",
+       "no_result":"אין מידע לתצוגה",
+       "reset":"אפס",
+       "search":"חיפוש"
+    },
+    "general-table-export":{
+       "all":"הכל",
+       "current_filters":"סינונים נוכחיים (בקרוב)",
+       "export":"ייצא"
+    },
+    "general-time-display":{
+       "never":"אף פעם"
+    },
+    "general-year-range-slider":{
+       "compare_to_previous_years":"השווה לשנים קודמות",
+       "year_range":"טווח שנים"
+    },
+    "generic-text":{
+       "done":"בוצע"
+    },
+    "graphing-by":{
+       "aggregated_table":"טבלת סיכומים",
+       "bar_graph":"גרף עמודות",
+       "comparison_description_comparing":"השוואה",
+       "comparison_description_years_back_from":"שנים לפני",
+       "comparison_information":"מידע להשוואה",
+       "count":"כמות",
+       "filter":"סינון",
+       "dates":"תאריכים",
+       "all":"כל הרכבים",
+       "owner":"רכבים בבעלות",
+       "user":"רכבים בשכירות",
+       "total_count":"סה״כ קנסות",
+       "infringements_table":"טבלת קנסות",
+       "line_graph":"גרף רציף",
+       "number_of_years_previous":"מספר שנים אחורה",
+       "show_comparison":"הצג השוואה",
+       "sum":"סכום",
+       "offence_month":"חודש העבירה",
+       "table_details":"פרטים",
+       "total_amount":"סה״כ",
+       "view_graph":"צפיה בגרף",
+       "view_infringements":"צפיה בקנסות",
+       "view_selected_infringements":"צפיה בקנסות נבחרים"
+    },
+    "graphing-by-issuer":{
+       "bar_graph":"גרף עמודות",
+       "compare_to_other_issuers":"השוואה ליתר הרשויות",
+       "grouped_issuers":"מספר רשויות להצגה לפני קיבוץ",
+       "issuer":"מנפיק",
+       "issuers":"רשויות",
+       "line_graph":"גרף רציף",
+       "no_data":"אין מידע",
+       "number_of_issuers":"מספר רשויות",
+       "total_number_of_unique_issuers":"סה״כ רשויות",
+       "number_of_years_previous":"מספר שנים שעברו",
+       "offence_date":"תאריך עבירה",
+       "other":"אחר",
+       "show_comparison":"הצג השוואה",
+       "table_details":"נתוני טבלה",
+       "total_amount":"סה״כ",
+       "view_graph":"צפיה בגרף",
+       "year_and_month":"שנה וחודש"
+    },
+    "graphing-by-issuer-page":{
+       "title":"גרפים לפי רשויות"
+    },
+    "graphing-by-issuer-page-vehicle-owner":{
+       "title":"גרפים לפי רשויות לבעלי רכבים"
+    },
+    "graphing-by-issuer-page-vehicle-user":{
+       "title":"גרפים לפי רשויות למשתמשי רכבים"
+    },
+    "graphing-by-status":{
+       "bar_graph":"גרף עמודות",
+       "end_date":"תאריך סיום",
+       "line_graph":"גרף רציף",
+       "no_data":"אין מידע",
+       "start_date":"תאריך התחלה",
+       "status":"סטטוס",
+       "total_amount":"סה״כ",
+       "view_graph":"צפיה בגרף",
+       "year_and_month":"שנה וחודש",
+       "infringement_status":"סטטוס קנסות"
+    },
+    "graphing-by-status-page":{
+       "title":"גרף לפי סטטוס"
+    },
+    "graphing-by-status-vehicle-owner-page":{
+       "title":"גרפים לפי סטטוס לבעלי רכבים"
+    },
+    "graphing-by-status-vehicle-user-page":{
+       "title":"גרפים לפי סטטוס למשתמשי רכבים"
+    },
+    "graphing-by-vehicle":{
+       "infringement_status":"סטטוס של הקנס",
+       "number_of_vehicles":"מספר רכבים להצגה",
+       "offence_date":"תאריך עבירה",
+       "total_amount":"סה״כ",
+       "vehicle_registration":"מספר רישוי"
+    },
+    "graphing-by-vehicle-vehicle-owner-page":{
+       "title":"גרפים לפי רכב לבעלי רכבים"
+    },
+    "graphing-by-vehicle-vehicle-user-page":{
+       "title":"גרפים לפי רכב למשתמשי רכבים"
+    },
+    "header":{
+       "notifications":"התראות",
+       "show_infringement":"הצג קנס"
+    },
+    "home":{
+       "account_profile":"הפרופיל שלי",
+       "account_profile_desc":"צפה בדיווחים ופרטי החשבון",
+       "acknowledged":"אושרו",
+       "approved":"מאושר",
+       "call_to_action_title":"מה תרצה לעשות?",
+       "create-account":"צור משתמש",
+       "create-contract-lease":"צור חוזה שכירות",
+       "create-contract-ownership":"צור חוזה בעלות",
+       "create-infringement":"צור קנס",
+       "create-vehicle":"צור רכב",
+       "current_account":"החשבון הנוכחי שלך הוא",
+       "expiring_soon":"מסתיים בקרוב",
+       "fleet":"בצי",
+       "logged_in_as":"אתה מחובר כ",
+       "my_contracts":"החוזים שלי",
+       "my_contracts_desc":"צפה בפרטי החוזים של הרכבים שלך",
+       "my_infringements":"הקנסות שלי",
+       "my_infringements_desc":"צפה בפרטי הקנסות של הרכבים שלך",
+       "my_nominations":"ההסבות שלי",
+       "my_nominations_desc":"צפה בהסבות הדיגטליות והעירוניות שלך",
+       "my_users":"המשתמשים שלי",
+       "my_users_desc":"צפה בתפקידים ופרטי הגישה של המשתמשים לחשבון זה",
+       "my_vehicles":"הרכבים שלי",
+       "my_vehicles_desc":"צפה ברכבים בבעלותך או שאתה משכיר",
+       "outstanding":"בחריגה",
+       "outstanding_infringements":"קנסות בחריגה",
+       "outstanding_soon_infringements":"קנסות בדרך לחריגה",
+       "owned":"בבעלות",
+       "pending":"ממתינים",
+       "reports":"דיווחים",
+       "reports_desc":"הצג את נתוני המערכת",
+       "role":"ואתה",
+       "title":"בית",
+       "users":"משתמשים",
+       "valid":"בתוקף",
+       "view_permissions_prompt":"לחץ לצפייה בהרשאות שלך",
+       "welcome":"ברוכים הבאים",
+       "totals":{
+          "infringementCount":"קנסות",
+          "infringementAvgCost":"סכום ממוצע לקנס",
+          "vehicleCount":"רכבים",
+          "vehicleAvgInfringement":"ממוצע קנסות לרכב",
+          "contractCount":"הסכמים",
+          "userCount":"משתמשים",
+          "leading_issuer":"מנפיק מוביל",
+          "leading_vehicle":"רכב מוביל"
+       },
+       "costs":{
+          "amountDue":"סה״כ לתשלום",
+          "penaltyAmount":"סה״כ כפל קנס לתשלום",
+          "totalPayments":"סה״כ שולם"
+       },
+       "costs_title":"עלויות",
+       "infringement-status":{
+          "Outstanding":"בחריגה",
+          "Paid":"שולם",
+          "Approved for Payment":"מאושר לתשלום",
+          "Closed":"סגור",
+          "Due":"לתשלום",
+          "outstandingSoon":"בדרך לחריגה",
+          "Unmanaged":"לא מנוהל",
+          "Collection":"בגבייה"
+       },
+       "nomination-status":{
+          "Acknowledged":"אושר",
+          "Appealed":"הוגש ערעור",
+          "Closed":"סגור",
+          "In Redirection Process":"בתהליך",
+          "Paid":"שולם",
+          "Redirection Completed":"הסבה בוצע בהצלחה",
+          "New":"חדש",
+          "Redirection Error":"הסבה נכשלה",
+          "Redirected To Third Party":"הוסב לצד שלישי",
+          "Redirection Request Error":"בקשת הסבה נכשלה"
+       },
+       "infringements":"קנסות",
+       "contracts":"הסכמים(לרכבים)",
+       "contract-status":{
+          "Expired":"פג תוקף",
+          "Expiring soon":"פג תוקף בקרוב",
+          "Valid":"בתוקף"
+       },
+       "vehicles_title":"רכבים",
+       "vehicles":{
+          "ownedVehicles":"רכבים בבעלות",
+          "leasedVehicles":"רכבים מושכרים",
+          "allVehicles":"סה״כ רכבים"
+       },
+       "issuers_title":"רשויות",
+       "issuers":{
+          "issuerTotal":"סה״כ רשויות"
+       },
+       "issuers_leading_title":"5 רשויות מובילים",
+       "dashboard":"דאשבורד",
+       "redirections":"הסבות",
+       "total_value":"סה״כ"
+    },
+    "general-graphing":{
+       "legend":"מקרא"
+    },
+    "infringement":{
+       "address":"כתובת",
+       "address_line_one":"כתובת עיקרית",
+       "address_line_one_number":"כתובות שורה אחת",
+       "address_line_one_street":"כתובות רחוב שורה אחת",
+       "address_line_two":"כתובת משנית",
+       "address_line_two_number":"מספר (משני)",
+       "address_line_two_street":"כתובות רחוב שורה שתיים",
+       "amount_due":"יתרת חוב",
+       "approved_date":"תאריך אישור",
+       "brn":"תעודת זהות / ח.פ",
+       "case":"תיק",
+       "case_number":"מספר תיק",
+       "city":"עיר",
+       "code":"מיקוד",
+       "contract":"הסכם",
+       "country":"מדינה",
+       "create_infringement":"צור קנס",
+       "date_of_offence":"תאריך עבירה",
+       "document":"מסמך (סרוק או העלה PDF)",
+       "external_change_date":"תאריך שינוי חיצוני",
+       "external_payment":"תשלום חיצוני",
+       "id":"מזהה Road Protect",
+       "issuer":"מנפיק",
+       "issuer_status":"סטאטוס המנפיק",
+       "issuer_status_description":"תיאור סטטוס המנפיק",
+       "last_infringement_status_change_date":"תאריך עדכון עבירה אחרון",
+       "last_nomination_status_change_date":"תאריך עדכון מועמדות אחרון",
+       "latest_payment_date":"ת. אחרון לתשלום",
+       "latest_status_change_date":"תאריך עדכון סטטוס אחרון",
+       "location":"מיקום",
+       "note":"הערה",
+       "notice-number":"מספר קנס",
+       "notice_number":"מספר קנס",
+       "infringement_id":"מספר קנס פנימי",
+       "offence_date":"תאריך הקנס",
+       "original_amount":"סכום מקור",
+       "original_amount_due":"יתרת חוב",
+       "ownership_from_issuer":"זהות החייב ברשות",
+       "payment_amount":"סכום התשלום",
+       "payment_date":"תאריך התשלום",
+       "payment_provider":"ספק תשלומים",
+       "payment_reference":"מזהה תשלום",
+       "payment_type":"סוג התשלום",
+       "penalty_amount":"תוספת פיגורים",
+       "postal_code":"מיקוד",
+       "proximity":"ליד",
+       "reason":"סיבה",
+       "reason_code":"קוד סיבה",
+       "redirection_completion_date":"תאריך סיום הסבה",
+       "redirection_identifier":"מזהה הסמה",
+       "redirection_letter_send_date":"תאריך שליחת מייל הסבה",
+       "status":"מצב קנס",
+       "street_name":"שם רחוב",
+       "street_number":"מספר",
+       "system_status":"מצב המערכת",
+       "total_amount":"סה״כ",
+       "total_payment_amount":"סה״כ שולם",
+       "total_payments":"סה״כ תשלומים",
+       "type":"סוג",
+       "vehicle":"רישוי רכב",
+       "vehicle_owner":"בעל הרכב",
+       "vehicle_registration":"רישוי רכב",
+       "vehicle_user":"משתמש ברכב",
+       "tags":"תגית",
+       "InLegalCare":"בטיפול משפטי",
+       "FollowUp":"למעקב",
+       "Overdue":"בגביה"
+    },
+    "infringement-due-reporting":{
+       "chart_x":"שבוע בשנה",
+       "chart_y":"יום בשבוע",
+       "select_end_date":"בחר תאריך סיום",
+       "title":"קנסות לפי תאריך"
+    },
+    "infringement-note":{
+       "create_button":"צור הערה",
+       "create_title":"צור הערה",
+       "admin_notes":"הערות אדמין",
+       "value_placeholder":"הזן הערה"
+    },
+    "infringement-projection":{
+       "compare_to_previous_years":"השוואה לשנים קודמות",
+       "details":"פרטים",
+       "end_date":"תאריך סיום",
+       "hide":"הסתר",
+       "infringement_count":"קנסות",
+       "infringements_without_contracts":"קנסות על רכבים ללא הסכמים",
+       "no_previous_data":"לא נמצא מידע מהעבר, התחזית מחושבת על סמך ממוצע",
+       "no_vehicle_contracts":"לא נמצאו הסכמי רכבים, לא ניתן לבצע תחזית",
+       "number_of_infringements":"מספר קנסות",
+       "offence_month":"חודש העברה",
+       "start_date":"תאריך התחלה",
+       "title":"תחזית עברות",
+       "total_amount":"סה״כ",
+       "total_vehicles":"רכבים עם הסכמים תקינים",
+       "value":"ערך",
+       "vehicle-via":{
+          "infringementProjectionsContracts":"רכבים עם הסכמים תקינים",
+          "infringementProjectionsInfringements":"רכבים עם קנסות",
+          "infringementProjectionsNoContracts":"רכבים ללא הסכמים",
+          "infringementProjectionsWithoutInfringements":"רכבים ללא קנסות"
+       },
+       "vehicle_count":"רכבים",
+       "vehicle_via":"סינון",
+       "vehicle_with_infringements_percentage":"אחוז רכבים עם קנסות",
+       "vehicles":"רכבים",
+       "vehicles_with_infringements":"רכבים עם קנסות",
+       "vehicles_without_contracts":"רכבים ללא הסכמים",
+       "vehicles_without_infringements":"רכבים ללא קנסות",
+       "view_infringement_data":"צפיה בקנסות נבחרים",
+       "view_infringements":"צפיה בקנסות",
+       "view_vehicle_data":"צפיה בנתוני רכב",
+       "view_vehicles":"צפיה ברכבים עם הסכמים תקינים"
+    },
+    "infringement-redirection-details":{
+       "address":"אימות כתובת להסבה",
+       "address_invalid":"הכתובת שגוי",
+       "address_success":"כתובת תקינה",
+       "check_address_prompt":"בבקשה לבדוק את הכתובת לפני שליחה",
+       "contract_allows_redirections":"הסכם מאשר הסבה",
+       "contract_prevent_redirections":"הסכם חוסם הסבה",
+       "contract_redirections":"הסבת הסכמים",
+       "drivers_contract":"הסכם נהגים",
+       "has_drivers_contract_warning":"יבצע הסבה לנהג",
+       "infringement_status":"סטטוס עבירה",
+       "infringement_status_success":"לעבירה קיים סטטוס הסבה תקין",
+       "invalid_infringement_status":"לעבירה לא קיים סטטוס עבירה תקין",
+       "invalid_nomination_status":"למועמדות לא קיים סטטוס עבירה תקין",
+       "lease":"מסמך חוזה שכירות",
+       "lease_missing":"חסר מסמך חוזה שכירות",
+       "lease_success":"קיים מסמך חוזה שכירות",
+       "nomination_status":"סטטוס מועמדות",
+       "nomination_status_success":"למועמדות לא קיים סטטוס עבירה תקין",
+       "not_ready":"לא מוכן",
+       "pa":"מסמך ייפוי כוח נוטוריוני",
+       "pa_missing":"חסר מסמך ייפוי כוח נוטוריוני",
+       "pa_success":"קיים אצל הבעלים מסמך ייפוי כוח נוטוריוני",
+       "popover":"האם הקנס מכיל את כל המסמכים הדרושים לביצוע הסבה עירונית?",
+       "ready":"מוכן",
+       "recheck_details":"אנא וודא/י את הנתונים שהוזנו",
+       "redirection":"מסמך הסבה לדו\"ח",
+       "redirection_missing":"חסר מסמך הסבה לדו\"ח",
+       "redirection_success":"קיים מסמך הסבה לדו\"ח",
+       "signature":"חתימה",
+       "signature_success":"אפשרות לחתימה מאומתת",
+       "signature_type_Natural":"חתימה מקורית",
+       "signature_type_RP":"חתימה של רואד פרוטקט: נשתמש בחתימה שלנו כדי להקל על תהליך",
+       "title":"מוכנות הסבה עירונית",
+       "type_ATG":"הסבה אוטומטית דרך שת\"פים של החברה",
+       "type_ATG Integration":"הסבה דרך אוטומציה ATG",
+       "type_ATG Integration_email":"הסבה אוטומטית דרך אימייל",
+       "type_Jerusalem":"הסבה דרך אוטומציה ירושלים",
+       "type_Manual":"הסבה דרך אימייל",
+       "type_Manual Email":"הסבה ידנית דרך אימייל",
+       "type_Mileon":"הסבה אוטומטית דרך מילאון",
+       "type_Police":"הסבה אוטומטית דרך משטרה",
+       "type_Telaviv":"הסבה דרך אוטומציה TLV",
+       "valid_infringements":"סטטוסים תקניים להסבה:",
+       "valid_nominations":"סטטוסים תקניים למועמדות:"
+    },
+    "infringement-spreadsheet-upload":{
+       "account_disclaimer":"שים לב - בחירת המשתמשים כאן לא תשפיע על העלאת המשתמשים, היא תשפיע אך ורק על העבירות שיוצגו בשלב 5.",
+       "missing_infringements_description":"העבירות מטה לא מופיעות בגליון, אנא עבור על הרשימה והמשך בתהליך במידה ותרצה לסמן אותם כהסבות שהושלמו.",
+       "no_issuer_disclaimer":"לא נבחר מנפיק לכן המערכת תדלג על שלב עבירות חסרות",
+       "no_issuer_selected_for_redirection":"לא נבחר מנפיק בשלב הראשון לכן לא ניתן למצוא הסבות חסרות",
+       "redirect_missing_infringements":"הסבת עבירות חסרות",
+       "redirection_process_complete":"תהליך הסבה הסתיים",
+       "select_customer":"בחירת לקוח",
+       "select_issuer":"בחר מנפיק",
+       "select_issuer_desc":"מנפיק העבירה",
+       "select_sheet":"גיליון",
+       "select_sheet_desc":"בחירת גליון",
+       "skip_redirections":"דלג על הסבות",
+       "summary":"סיכום",
+       "summary_desc":"מעבר על שינויים",
+       "total_created":"סה״כ נוצרו",
+       "total_missing_from_spreadsheet":"סה״כ חסרים בגליון",
+       "total_updated":"סה״כ עודכנו",
+       "total_uploaded":"סה״כ הועלו",
+       "upload":"העלה",
+       "upload_desc":"העלה גליון",
+       "verify":"אמת",
+       "verify_desc":"יש לאמת תקינות הנתונים",
+       "view_missing":"הצג",
+       "view_missing_desc":"הצג עבירות חסרות"
+    },
+    "infringement-status":{
+       "Appeal approved":"ערעור אושר",
+       "Approved for Payment":"אושר לתשלום",
+       "Approved for payment":"אושר לתשלום",
+       "Closed":"סגור",
+       "Due":"חוב",
+       "Nomination in process":"בתהליך הסבה",
+       "Outstanding":"בחריגה",
+       "Paid":"שולם",
+       "Pending":"ממתין",
+       "Unmanaged":"לא מנוהל",
+       "Collection":"בגבייה"
+    },
+    "infringement-status-reporting":{
+       "created_between":"נוצר בתאריכים",
+       "latest_payment_between":"תאריך אחרון לתשלום בתאריכים",
+       "no_result":"לא נמצאו תוצאות עבור הנתונים שהוזנו",
+       "title":"מצב קנסות"
+    },
+    "infringement-status-tag":{
+       "appeal_approved":"ערעור אושר",
+       "approved":"הקנס אושר",
+       "approved_for_payment":"הקנס אושר לתשלום",
+       "closed":"הקנס נסגר",
+       "due":"הקנס פתוח וממתין לתשלום",
+       "nomination_process":"הקנס בתהליך הסבה",
+       "outstanding":"הקנס טרם נפרע וייתכן כי לא ניתן לשלמו, אנא פנה למנפיק או לרשות העירונית.",
+       "paid":"הקנס שולם",
+       "pending":"הקנס ממתין לאישור או להוכחת תשלום",
+       "unmanaged":"הקנס לא מנוהל",
+       "collection":"הקנס בגבייה"
+    },
+    "infringement-system-status-tag":{
+       "missing_contract":"לא נמצא קנס שתקף לזמן העבירה על מנת לקשר קנס זה.",
+       "missing_vehicle":"לא נמצא רכב לקשר אליו קנס זה."
+    },
+    "infringements-page":{
+       "create":"צור קנס",
+       "title":"קנסות"
+    },
+    "integration-request-log":{
+       "integration_request_log_id":"מזהה של הלוג",
+       "request":"בקשה",
+       "response":"תשובה",
+       "success":"הצלחה",
+       "timestamp":"חותם זמן",
+       "type":"מקור"
+    },
+    "integration-request-log-page":{
+       "title":"לוג אינטגרציה"
+    },
+    "integration-testing":{
+       "title":"בדיקת אינטגרציה"
+    },
+    "issuer":{
+       "address":"כתובת",
+       "authority":"רשות",
+       "batch_request_information":"בקשת מידע בקבוצות",
+       "cancel":"בטל",
+       "code":"קוד",
+       "contactPerson":"איש קשר",
+       "contact_person":"איש קשר",
+       "edit":"ערוך",
+       "email":"דואר אלקטרוני",
+       "externalCode":"מזהה חיצוני",
+       "externalPaymebtLink":"אתר תשלום חיצוני",
+       "fax":"פקס",
+       "integration_details":"פרטי אינטגרציה",
+       "latestInfoDate":"תאריך עדכון מידע אחרון",
+       "latest_info_date":"תאריך עדכון מידע אחרון",
+       "name":"שם",
+       "provider":"ספק",
+       "save":"שמור",
+       "telephone":"טלפון",
+       "type":"סוג",
+       "redirectionEmail":"מייל להסבות",
+       "externalPaymentLink":"אתר העירייה לתשלום"
+    },
+    "issuer-dropdown":{
+       "placeholder":"בחר מנפיק"
+    },
+    "issuer-infringement-reporting":{
+       "legend_title":"מצב קנס",
+       "title":"רשויות המובילים"
+    },
+    "issuer-page":{
+       "create":"צור",
+       "create_issuer":"צור מנפיק",
+       "title":"רשויות"
+    },
+    "issuer-providers-dropdown":{
+       "placeholder":"בחר את הספק"
+    },
+    "job-log":{
+       "data":"מידע",
+       "end_time":"תהליך הושלם",
+       "error":"שגיאה",
+       "job_id":"מזהה של התהליך",
+       "job_type":"שם של התהליך",
+       "notice_number":"מספר קנס",
+       "queue_name":"שם התור",
+       "queued_time":"זמן התור",
+       "start_time":"תהליך התחיל",
+       "status":"סטטוס",
+       "success":"הצלחה",
+       "timestamp":"חותם זמן",
+       "uuid":"מזהה"
+    },
+    "job-log-page":{
+       "title":"לוג תהליכים"
+    },
+    "lease-contracts-page":{
+       "title":"חוזי שכירות"
+    },
+    "locations-page":{
+       "create":"צור",
+       "create_location":"צור מיקום",
+       "import":"ייבא",
+       "title":"מיקומים"
+    },
+    "log":{
+       "data":"מידע",
+       "issuer_code":"מזהה מנפיק",
+       "log_id":"מזהה לןג",
+       "notice_number":"מספר קנס",
+       "request":"בקשה",
+       "response":"תשובה",
+       "result":"תוצאה",
+       "source":"מקור",
+       "status":"סטטוס",
+       "successful":"הצלחה",
+       "timestamp":"חותם זמן"
+    },
+    "login":{
+       "email":"דואר אלקטרוני",
+       "email_validation":"דואר אלקטרוני הינו שדה חובה",
+       "fail":"שגיאה בהתחברות",
+       "forgot_password_prompt":"שכחת סיסמה?",
+       "password":"סיסמה",
+       "password_validation":"סיסמה הינו שדה חובה",
+       "sign_in":"התחבר",
+       "success":"התחברת בהצלחה"
+    },
+    "municipally-redirect-nomination":{
+       "Contacting the municipality":"יצירת קשר עם הרשות",
+       "Emailing the redirection document to you":"מעביר אליך את מסמך ההסבה במייל",
+       "Failed to make the redirection request, request to the integration partner was unsuccessful":"תהליך בקשת הסבה נכשל, קריאה לספק אינטגרציה נכשלה",
+       "Files are ready":"הקבצים מוכנים",
+       "Generated redirection document":"מייצר קובץ הסבה",
+       "Generated redirection documentation":"מייצר תיעוד הסבה",
+       "Generating redirection PDF document":"מייצר קובץ הסבה PDF",
+       "Generating redirection PDF document for you to send to the municipality":"יוצר עבורך מסמך הסבה בפורמט PDF לשליחה לרשות",
+       "Generating redirection PDF documentation":"מייצר תיעוד הסבה PDF",
+       "Getting the files ready":"מכין את הקבצים הנדרשים",
+       "Invalid redirection data, please contact support":"פרטי הסבה לא תקינים, נא ליצור קשר עם שירות לקוחות",
+       "Made request":"בקשה נוצרה",
+       "Making a request to the municipality":"יוצר בקשה לרשות",
+       "Municipality contacted":"נוצר קשר עם הרשות",
+       "Re-checking readiness":"מוודא מוכנות",
+       "Re-checking redirectionDetails":"בדיקה חוזרת של נתוני ההסבה",
+       "Redirection complete":"הסבה מוכנה",
+       "Redirection ready":"הסבה מוכנה לשליחה",
+       "Saving the details":"שומר נתונים",
+       "Sending the email":"שולח אימייל",
+       "account":"חשבון",
+       "advice":"ברגע שכל המידע הושלם, לחץ על הפנייה לביצוע הפנייה.",
+       "check_details":"וודא/י נתונים",
+       "check_readiness":"בדוק אם ההפרה מוכנה להפניה מחדש",
+       "contract":"חוזה שכירות",
+       "generate_pa_prompt":"אנא צור ייפוי כוח באמצעות המערכת לייצור מסמכים",
+       "generate_redirection_prompt":"אנא צור מסמך הפנייה על ידי לחיצה כאן",
+       "lease_contract_valid":"חוזה שיכורת תקין",
+       "lease_document_temp_friendly_name":"מסמך שכירות (זמני)",
+       "missing_lease":"חסר מסמך שכירות או הפנייה",
+       "missing_lease_fix":"תקן זאת על ידי העלאת חוזה שכירות לכאן",
+       "missing_pa":"חסר ייפוי כוח",
+       "missing_pa_rectify":"תקן זאת על ידי העלאת מסמך ייפוי כוח לכאן",
+       "not_ready_1":"הקנס",
+       "not_ready_2":"לא מוכן להפנייה",
+       "not_ready_3":"נדרש ממך מידע נוסף",
+       "null":"הודעת עדכון",
+       "pa_friendly_name":"ייפוי כוח",
+       "pa_valid":"ייפוי כוח תקין",
+       "proceed":"המשך",
+       "proceed_with_redirection":"המשך עם ההפנייה",
+       "prompt":"לחץ על הכפתור למטה על מנת לאשר שהקנס מוכן להפנייה",
+       "redirection_failure":"הסבת קנס נכשלה",
+       "redirection_friendly_name":"הפנייה",
+       "redirection_ready":"ההפרה מוכנה להפניה מחדש",
+       "redirection_successful":"בקשת הפנייה נוצרה בהצלחה",
+       "return_to_infringement":"חזור לקנס",
+       "step_1":"אשר",
+       "step_2":"הסב",
+       "step_3":"השלם",
+       "title":"הפניית קנס"
+    },
+    "nomination":{
+       "redirection_completion_date":"תאריך סיום הסבה",
+       "redirection_identifier":"מזהה הסבה (לדוגמה ח.פ.)",
+       "redirection_letter_send_date":"תאריך שליחת דואר הסבה",
+       "redirection_reference":"הפניית הסבה"
+    },
+    "nomination-status":{
+       "Acknowledged":"אושר",
+       "Appealed":"הוגש ערעור",
+       "Approved for Payment":"אושר לתשלום",
+       "Closed":"סגור",
+       "In Nomination Process":"בתהליך הסבה",
+       "In Redirection Process":"בתהליך הסבה",
+       "Manually Paid":"שולם ידנית",
+       "Paid":"שולם",
+       "Pending":"ממתין",
+       "Redirection Completed":"הסבה בוצע בהצלחה",
+       "new":"חדש",
+       "Redirection Error":"הסבה נכשלה",
+       "Redirection Request Error":"בקשת הסבה נכשלה",
+       "Redirected To Third Party":"הוסב לצד שלישי"
+    },
+    "nomination-status-tag":{
+       "acknowledged":"הקנס אושר וחייב להיות משולם, מופנה או מעורער.",
+       "appealed":"הוגש ערעור",
+       "approved":"הקנס הוכן לתשלום על ידי החשבון המסב",
+       "closed":"סגור",
+       "in_process":"בתהליך הסבה",
+       "error":"הסבה נכשלה",
+       "request_error":"בקשת הסבה נכשלה",
+       "manually_paid":"הסבה זו שולמה ידנית",
+       "new":"חדש",
+       "paid":"שולם",
+       "pending":"הקנס חייב להיות מאושר על ידי החשבון המסב"
+    },
+    "nominations-page":{
+       "create":"צור",
+       "create_nomination":"צור הסבה",
+       "import":"ייבא",
+       "title":"הסבות"
+    },
+    "notifications":{
+       "over250":"שים לב! התקבל קנס מעל 250 ₪"
+    },
+    "ownership-contracts-page":{
+       "create":"צור",
+       "import":"ייבא",
+       "title":"חוזי בעלות"
+    },
+    "partial-infringement":{
+       "created_at":"חותם זמן",
+       "details":"פרטים",
+       "failed":"נכשל",
+       "id":"מזהה",
+       "notice_number":"מספר התראה",
+       "pending":"בהמתנה",
+       "processed":"בוצע",
+       "processed_date":"תאריך ביצוע",
+       "queued":"בתור",
+       "response":"תשובה",
+       "save":"שמירה",
+       "status":"סטטוס",
+       "successful":"הצלחה"
+    },
+    "partial-infringement-page":{
+       "title":"קנסות חלקיים"
+    },
+    "pay-nomination":{
+       "additional_information":"מידע נוסף (לא חובה)",
+       "confirm":"אשר",
+       "confirm_manual":"האם אתה מאשר שקנס זה שולם ידנית ושלא נדרשות שום פעולות נוספות?",
+       "document":"מסמך (לא חובה)",
+       "enter_cvv_prompt":"לצרוך אבטחת התשלום - אנא להוסיף את 3 הספרות בגב הכרטיס (CVV) לסיים את תהליך התשלום",
+       "for_card":"כרטיס אשראי",
+       "infringement_has_been_paid":"הקנס קבר שולם!",
+       "manual":"העלה הוכחה ידנית",
+       "pay_all_now":"לשלם הכל עכשיו",
+       "pay_now":"שלם עכשיו",
+       "payment_failure_title":"התשלום נחשל",
+       "payment_success_title":"התשלום בוצע בהצלחה",
+       "reference_number":"מספר הפניה",
+       "step_optional":"(לא חובה)",
+       "step_proof":"הוכחה",
+       "verification":"אימות",
+       "verify_now":"אמת עכשיו",
+       "with_method":"תהליך"
+    },
+    "pay-nomination-manual":{
+       "amount_paid":"סכום ששולם"
+    },
+    "payment-method":{
+       "failure_description":"בבקשה לנסות שוב, במידה והבעיה עדיין קיימת אנא צרו איתנו קשר",
+       "failure_title":"עדכון פרטי התשלום נחשל",
+       "success_description":"פרטי התשלום נשמרו בהצלחה וישומשו לתשלומים עתידים לרשויות",
+       "success_title":"פרטי תשלום הוסף בהצלחה"
+    },
+    "payment-methods":{
+       "add_payment_method":"להוסיף פרטי תשלום",
+       "atg":"תשלום לעיריות מחוברות",
+       "change_payment_method":"עדכון פרטי תשלום",
+       "credit_card":"כרטיס אשראי",
+       "rp":"תשלום לעיריות שאינם מחוברות",
+       "title":"שיטות תשלום"
+    },
+    "payments-page":{
+       "create":"צור",
+       "create_payment":"צור תשלום",
+       "import":"ייבא",
+       "title":"תשלומים"
+    },
+    "permission-guard":{
+       "content_1":"הרשאות נדרשות:",
+       "content_2":"צור קשר עם מנהל החשבון שלך על מנת לקבל גישה",
+       "title":"חסרה לך הרשאה על מנת לצפות במידע זה"
+    },
+    "permissions":{
+       "Account Reporting":"ניתוח נתונים",
+       "Acknowledge Infringement":"אישור לקבלת קנס",
+       "Appeal Infringement":"ערעור קנס",
+       "Approve Infringement":"אישור קנס לתשלום",
+       "Create Account Relation":"הוספה זיקת לחשבון",
+       "Create Contract":"צור חוזה",
+       "Create Document":"צור מסמך",
+       "Create Infringement":"יצירת קנס",
+       "Create Infringement Note":"צור פתק",
+       "Create Profile":"ייצור",
+       "Create Users":"יצירת משתמשים",
+       "Create Vehicle":"יצירת רכב",
+       "Delete Account Relation":"מחיקת זיקה",
+       "Delete Contract":"מחיקת חוזה",
+       "Delete Document":"מחיכת מסמך",
+       "Delete Infringement":"מחיקת קנס",
+       "Delete Infringement Note":"מחיקת הערת קנס",
+       "Delete Profile":"מחיקת פרופיל",
+       "Delete User":"מחיקת משתמש",
+       "Delete Vehicle":"מחיקת רכב",
+       "Edit Account Relation":"ערוך פרטי זיקה",
+       "Edit Contract":"ערוך  פרטי חוזה",
+       "Edit Document":"ערוך מסמך",
+       "Edit Infringement":"עריכת קנס",
+       "Edit Infringement Note":"ערוך  הערה על הקנס",
+       "Edit Infringement Status":"עריכת סטטוס הזמנה",
+       "Edit Profile":"עריכת פרופיל",
+       "Edit Users":"עריכת משתמשים",
+       "Edit Vehicle":"עריכת רכב",
+       "Finance Reporting":"דיווחי כספים",
+       "Infringement Reporting":"דיווחי קנסות",
+       "Link Document":"קישור למסמך",
+       "Manual Pay Infringement":"תשלום קנס ידני",
+       "Pay Infringement":"תשלום קנס",
+       "Redirect Infringement":"הפניית קנס",
+       "Unapprove Infringement":"לא לאשר עבירה",
+       "Vehicle Reporting":"דיווחי רכב",
+       "View Account Relation":"הצגת זיקות לחשבון",
+       "View Contract":"הצגת פרטי חוזה",
+       "View Contracts":"הצגת פרטי חוזים",
+       "View Document":"הצגת מסמך",
+       "View Infringement":"צפיה בקנס",
+       "View Infringement Logs":"צפייה בהיסטוריית קנס",
+       "View Infringement Note":"הצגת הערה על הקנס",
+       "View Infringement Notes":"הצגת הערות על קנסות",
+       "View Infringements":"צפייה בקנסות",
+       "View Past Payments":"צפייה בהיסטוריית תשלומים",
+       "View Profile":"צפייה בפרופיל",
+       "View Profile Logs":"צפייה בהיסטוריית פרופיל",
+       "View User":"צפייה במשתמש",
+       "View Users":"צפייה במשתמשים",
+       "View Vehicle":"צפייה ברכב",
+       "View Vehicle Logs":"צפייה בהיסטוריית רכב",
+       "View Vehicles":"צפייה ברכבים"
+    },
+    "permissions-groups":{
+       "Account Relation":"זיקות משויכים לחשבון",
+       "Contracts":"חוזים",
+       "Document":"מסמכים",
+       "Infringements":"קנסות",
+       "Profile":"פרופיל",
+       "Reporting":"דיווחים",
+       "Users":"משתמשים",
+       "Vehicles":"רכבים"
+    },
+    "raw-infringement-log":{
+       "data":"מידע",
+       "issuer":"מנפיק",
+       "notice_number":"מספר קנס",
+       "raw_infringement_id":"מזהה לוג",
+       "result":"תוצאה",
+       "source":"מקור",
+       "status":"סטטוס",
+       "success":"הצלחה",
+       "timestamp":"חותם זמן"
+    },
+    "raw-infringement-log-page":{
+       "title":"לוג הסבות גולמי"
+    },
+    "redirect-nomination":{
+       "cancel":"בטל",
+       "confirm":"אשר",
+       "document":"מסמך (לא חובה)",
+       "na":"לא זמין",
+       "optional":"(לא חובה)",
+       "owner":"בעלים",
+       "reason":"סיבה (לא חובה)",
+       "redirection-complete":"הסבה הושלמה",
+       "redirection_complete":"הסבה הושלמה",
+       "select_label":"בחר לאן להפנות את הקנסות",
+       "step_1":"בחר חשבון",
+       "step_2":"העלה מסמך הפנייה",
+       "step_3":"ציין סיבה",
+       "user":"משתמש"
+    },
+    "reporting":{
+       "No Current Lease":"בלי שכירות נוכחית",
+       "No Current Ownership":"בלי בעלות נוכחית",
+       "Owned":"שהיו בבעלות",
+       "Total":"סך הכל",
+       "Used":"בשימוש",
+       "With Infringements":"עם קנסות"
+    },
+    "request-information-log-page":{
+       "title":"בקשת מידע"
+    },
+    "request_information_log":{
+       "account":"חשבון",
+       "issuer":"מנפיק",
+       "log_response":"לוג תשובות",
+       "request_send_date":"תאריך שליחת בקשה",
+       "response_received":"תשובה התקבלה",
+       "response_received_date":"תאריך קבלת תשובה",
+       "sender_account":"חשבון של השולח"
+    },
+    "reset-user-login":{
+       "fail":"",
+       "success":""
+    },
+    "role-dropdown":{
+       "placeholder":"בחר תפקיד"
+    },
+    "roles-page":{
+       "create":"צור",
+       "create_role":"צור תפקיד",
+       "import":"ייבא",
+       "title":"תפקידים"
+    },
+    "send-user-forgot-password":{
+       "fail":"",
+       "success":""
+    },
+    "sidebar":{
+       "account_users":"משתמשים",
+       "account_users_desc":"המשתמשים שמנוהלים תחת חשבון זה",
+       "admin":"תפריט מנהל",
+       "contracts":"חוזים",
+       "contracts_desc":"חוזי שכירות או בעלות",
+       "graphing":"גרפים",
+       "graphing_by_issuer":"עבירות לפי מנפיק",
+       "graphing_by_status":"עבירות לפי סטטוס",
+       "graphing_by_vehicle":"קנסות לפי רכב",
+       "graphing_for_vehicle_owner":"בעל הרכב",
+       "graphing_for_vehicle_user":"משתמש הרכב",
+       "infringement-projection":"תחזית קנסות",
+       "my_account":"החשבון שלי",
+       "my_account_desc":"החשבון / העסק שאתה מייצג",
+       "nominated_to_me":"משוייכים אלי",
+       "nominated_to_me_desc":"קנסות רכב שבאחריות חשבון זה לטפל בהם",
+       "relations":"זיקות לחשבונות",
+       "relations_desc":"חשבונות עם זיקה לחשבון הנוכחי",
+       "reporting":"ניתוח נתונים",
+       "reporting_desc":"תצוגת נתוני המערכת",
+       "summary-indicators":"נתוני סיכום",
+       "vehicles":"רכבים",
+       "vehicles_contracts":"חוזי רכב",
+       "vehicles_desc":"רכבים שבבעלות או בשימוש על ידי חשבון זה",
+       "vehicles_infringements":"קנסות רכבים",
+       "vehicles_infringements_desc":"קנסות על הרכבים שלך"
+    },
+    "sidebar-admin":{
+       "accounts":"חשבונות",
+       "create":"צור",
+       "driver":"נהגים",
+       "infringements":"קנסות",
+       "integration-request-logs":"בקשות אינטגרציה",
+       "integration-test":"בדיקת אינטגרציה",
+       "issuers":"רשויות",
+       "job-logs":"תהליכים",
+       "logs":"לוגים",
+       "partial_infringements":"קנסות חלקיים",
+       "payments":"תשלומים",
+       "raw-infringement-logs":"לוג עבירות גולמי",
+       "reporting":"דיווחים",
+       "request_information":"בקשת מידע",
+       "upload":"העלה",
+       "upload_driver_contracts":"העלאת הסכמי נהג",
+       "upload_lease_contracts":"העלה חוזי שכירות",
+       "upload_ownership_contracts":"העלה חוזי בעלות",
+       "upload_proof_of_payments":"העלה הוכחת תשלום",
+       "users":"משתמשים",
+       "vehicles":"רכבים",
+       "vehicles_contracts":"חוזי רכב",
+       "view":"הצג",
+       "partial-infringements":{
+          "upload-ocr":"העלאת קנסות עם"
+       }
+    },
+    "stepper":{
+       "cancel":"בטל",
+       "next":"הבא",
+       "previous":"הקודם"
+    },
+    "summary-indicators":{
+       "compare_years":"השוואה בין שנים",
+       "encountered_error":"אירעה שגיאה בזמן החישוב",
+       "end_date":"תאריך סיום",
+       "export":"יצוא",
+       "filter":"סינון",
+       "hide":"הסתר",
+       "infringement-cost":{
+          "count":"כמות",
+          "penalty_amount":"סה״כ עבירות",
+          "total_amount":"סה״כ סכום לתשלום בגין העבירות"
+       },
+       "infringement_cost":"עלות הקנס",
+       "infringement_cost_description":"עלות הקנסות המקושרים לחשבון/ח.פ./ע.מ. שלך",
+       "infringement_count":"כמות קנסות",
+       "infringement_count_description":"מספר הקנסות המקושרים לחשבון/ח.פ./ע.מ. שלך",
+       "infringements":"קנסות",
+       "managed-vehicles":{
+          "LeaseContract":"הסכם שכירות",
+          "OwnershipContract":"הסכם בעלות",
+          "count":"כמות",
+          "leased":"מושכר",
+          "leased_description":"סטטוסים של הסכם שכירות המקושרים לחשבון שלך",
+          "owned":"בבעלות",
+          "owned_description":"סטטוסים של הסכם בעלות המקושרים לחשבון שלך",
+          "status":"סטטוס",
+          "type":"סוג"
+       },
+       "managed_vehicles":"רכבים מנוהלים",
+       "managed_vehicles_description":"סטטוסים של ההסכם המקושרים לחשבון שלך",
+       "more-details":{
+          "infringement-cost":"כל הקנסות",
+          "managed-vehicles":"הסכמי רכבים מנוהלים",
+          "redirection-information":"מידה על ההסבה",
+          "unmanaged-vehicles":"רכבים לא מנוהלים"
+       },
+       "redirection-information":{
+          "count":"כמות",
+          "status":"סטטוס מועמדות"
+       },
+       "redirection_information":"מידע על ההסבה",
+       "redirection_information_description":"סטטוס המועמדות של הקנס מקושר לחשבון/ח.פ./ע.מ. שלך",
+       "start_date":"תאריך התחלה",
+       "this_year":"השנה הנוכחית",
+       "title":"נתוני סיכום",
+       "unmanaged-vehicles":{
+          "count":"כמות",
+          "status":"סטטוס קנס"
+       },
+       "unmanaged_vehicles":"רכבים לא מנוהלים",
+       "unmanaged_vehicles_description":"סטטוס קנסות לפי ח.פ/ע.מ. ללא הסכם רכב",
+       "vehicles":"רכבים",
+       "view_more_details":"מידע נוסף",
+       "year-comparison-keys":{
+          "Acknowledged":"הוכר",
+          "Approved for Payment":"אושר לתשלום",
+          "Closed":"סגור",
+          "Due":"חוב",
+          "Expired":"פג תוקף",
+          "Expiring soon":"פג תוקף בקרוב",
+          "In Redirection Process":"בתהליך הסבה",
+          "Missing":"חסר",
+          "Outstanding":"עדיין לא טופל",
+          "Paid":"שולם",
+          "Pending":"בהמתנה",
+          "Redirection Completed":"הסבה הסתיימה",
+          "Upcoming":"מתקרב",
+          "Valid":"תקין",
+          "amountDue":"סכום החוב",
+          "count":"כמות",
+          "originalAmount":"סכום מקור",
+          "penaltyAmount":"סכום כפל קנס",
+          "totalAmount":"סה״כ",
+          "totalPayments":"סה״כ תשלומים"
+       }
+    },
+    "summary-reporting":{
+       "title":"סיכום"
+    },
+    "unready-batch-redirects-spreadsheet":{
+       "has_lease_document_heading":"קיים מסמך ליסינג ?",
+       "has_lease_substitute_document_heading":"קיים מסמך ליסינג חלופי ?",
+       "has_power_of_attorney_document_heading":"קיים מסמך ייפוי כוח ?",
+       "has_signature_available_heading":"קיים חתימה ?",
+       "has_valid_redirection_address_heading":"קיים כתובת מאומת לביצוע הסבה ?",
+       "has_valid_status_heading":"קיים אימות להסבה ?",
+       "infringement_url_heading":"URL",
+       "message_heading":"הודעה",
+       "no":"לא",
+       "notice_number_heading":"מספר קנס",
+       "redirection_type_heading":"סוג הסבה",
+       "sheet_name":"גליון 1",
+       "workbook_name":"קנסות לא מוכנים לביצוע הסבה",
+       "yes":"כן"
+    },
+    "update-account":{
+       "fail":"שגיאה בעדכון חשבון",
+       "success":"חשבון עודכן בהצלחה"
+    },
+    "update-account-user":{
+       "fail":"שגיאה בעדכון משתמש",
+       "success":"משתמש עודכן בהצלחה"
+    },
+    "update-contract":{
+       "create":"צור",
+       "details":"פרטים",
+       "document":"מסמך",
+       "end_date":"תאריך סיום",
+       "fail":"שגיאה בעדכון חוזה",
+       "owner":"בעלים",
+       "reference":"אסמכתא",
+       "start_date":"תאריך התחלה",
+       "success":"חוזה עודכן בהצלחה",
+       "user":"משתמש (שוכר)",
+       "vehicle":"רכב",
+       "vehicle_registration":"רישוי רכב"
+    },
+    "update-contract-dates":{
+       "end_date":"תאריך סיום",
+       "fail":"שגיאה בעדכון תאריכים",
+       "prevent_redirections":"מנע הסבות",
+       "start_date":"תאריך התחלה",
+       "success":"תאריכים עודכנו בהצלחה",
+       "update":"עדכן"
+    },
+    "update-document":{
+       "fail":"שגיאה בעדכון מסמך",
+       "success":"מסמך עודכן בהצלחה"
+    },
+    "update-infringement":{
+       "documentation":"תיעוד (לא חובה)",
+       "fail":"שגיאה בעדכון קנס",
+       "general_details":"פרטים כלליים",
+       "location":"מיקום",
+       "success":"קנס עודכן בהצלחה",
+       "update":"עדכן"
+    },
+    "update-issuer":{
+       "fail":"שגיאה בעדכון מנפיק",
+       "success":"מנפיק עודכן בהצלחה"
+    },
+    "update-location":{
+       "fail":"שגיאה בעדכון מיקום",
+       "success":"מיקום עודכן בהצלחה"
+    },
+    "update-nomination":{
+       "account":"חשבון",
+       "create":"צור",
+       "infringement":"קנס"
+    },
+    "update-payment":{
+       "fail":"שגיאה בעדכון תשלום",
+       "success":"תשלום עודכן בהצלחה"
+    },
+    "update-redirection-status":{
+       "approved":"אושר",
+       "denied":"נדחה",
+       "title":"מעדכן סטטוס הסבה"
+    },
+    "update-request-information-log":{
+       "fail":"כישלון",
+       "success":"הצלחה"
+    },
+    "update-role":{
+       "fail":"שגיאה בעדכון תפקיד",
+       "success":"תפקיד עודכן בהצלחה"
+    },
+    "update-user":{
+       "change_password":"",
+       "fail":"שגיאה בעדכון משתמש",
+       "reset_login_attempts":"",
+       "save":"עדכן",
+       "send_forgot_password_email":"",
+       "success":"משתמש עודכן בהצלחה"
+    },
+    "update-vehicle":{
+       "fail":"שגיאה בעדכון רכב",
+       "success":"רכב עודכן בהצלחה",
+       "update":"עדכן"
+    },
+    "update-vehicle-document":{
+       "fail":"שגיאה בעדכון מסמך רכב",
+       "success":"מסמך רכב עודכן בהצלחה"
+    },
+    "upload-accounts-page":{
+       "title":"העלאת חשבונות"
+    },
+    "upload-action":{
+       "create":"צור",
+       "manualRedirection":"הסבה ידנית",
+       "update":"עדכן",
+       "uploadManualProof":"העלה הוכחה ידנית",
+       "upsert":"הוספה ועריכה"
+    },
+    "upload-driver-contracts-page":{
+       "title":"העלה הסכמי נהג"
+    },
+    "upload-driver-page":{
+       "title":"העלה נהג"
+    },
+    "upload-infringement-page":{
+       "title":"העלה קנסות"
+    },
+    "upload-issuers-page":{
+       "title":"העלה רשויות"
+    },
+    "upload-lease-contracts-page":{
+       "title":"העלאת חוזי שכירות"
+    },
+    "upload-ownership-contracts-page":{
+       "title":"העלאת חוזי בעלות"
+    },
+    "upload-partial-infringement":{
+       "amount_due":"סכום החוב",
+       "brn":"מזהה/ח.פ./ע.מ.",
+       "case_number":"מספר אירוע",
+       "issuer_code":"קוד המנפיק",
+       "issuer_name":"שם המנפיק",
+       "issuer_status":"סטטוס מנפיק",
+       "issuer_status_description":"תיאור סטטוס מנפיק",
+       "latest_payment_date":"תאריך תשלום אחרון",
+       "notice_number":"מספר התראה",
+       "offence_date":"תאריך עבירה",
+       "original_amount":"סכום מקור",
+       "provider":"ספק",
+       "reason":"סיבה",
+       "reason_code":"קוד סיבה",
+       "type":"סוג",
+       "vehicle_registration":"רישום רכב"
+    },
+    "upload-partial-infringement-page":{
+       "title":"העלה קנס חלקי"
+    },
+    "upload-ocr-partial-infringement-page":{
+       "title":"העלאת קנסות עם",
+       "select_issuer_step":{
+          "title":"בחירת רשות",
+          "description":"יש לבחור רשות כדי להעלות קנסות",
+          "select_issuer":"בחר/י רשות",
+          "select_number_of_documents":"כמות דוחות צפויה",
+          "select_is_complete_list":"זוהי רשימה של כל הדוחות הפתוחים לנמנפיק"
+       },
+       "upload_file_step":{
+          "title":"העלאת קבצים",
+          "description":"העלה/י קובץ עם קנסות",
+          "upload":"העלאה"
+       },
+       "view_infringements_step":{
+          "title":"קנסות",
+          "description":"הקנסות נוצרו בהצלחה"
+       }
+    },
+    "upload-payments-page":{
+       "title":"העלה תשלומים"
+    },
+    "upload-vehicle-documents-page":{
+       "constraints":"אילוצים",
+       "invalid":"לא תקין",
+       "invalid_columns":"שורות לא תקינות",
+       "invalid_registration":"!אין רישוי!",
+       "note":"שים לב:",
+       "out_of":"מתוך",
+       "registration":"רישוי רכב",
+       "step_1":"בחר גיליון",
+       "step_1_desc":"בחר גיליון אלקטרוני ואת השדות",
+       "step_2":"אמת מסמכי רכב",
+       "step_2_desc":"בקש אימות על מסמכי הרכב להעלאה",
+       "step_3":"העלה מסמכי רכב",
+       "step_3_desc":"העלאת מסמכי רכב",
+       "success_1":"מסמכי רכב",
+       "success_2":"הועלו בהצלחה",
+       "success_verify":"מסמכי רכב אומתו בהצלחה",
+       "title":"העלאת מסמכי רכב",
+       "upload":"העלה",
+       "upload_note":"זה עלול לקחת זמן תלוי בכמות המסמכים שברצונך לאמת. אתה רשאי לדלג לשלב ההעלאה ישירות.",
+       "verify":"אמת",
+       "verify_note":"זה עלול לקחת זמן תלוי בכמות המסמכים שברצונך לאמת. אתה רשאי לדלג לשלב ההעלאה ישירות."
+    },
+    "upload-vehicles-page":{
+       "title":"העלה רכבים"
+    },
+    "upsert-infringement":{
+       "no_missing_infringements":"אין עבירות חסרות"
+    },
+    "user":{
+       "accounts":"חשבונות",
+       "email":"אימייל",
+       "name":"שם",
+       "surname":"שם משפחה",
+       "type":"סוג"
+    },
+    "user-type-guard":{
+       "title":"חסרה לך הרשאה על מנת לצפות במידע זה"
+    },
+    "users-page":{
+       "title":"משתמשים"
+    },
+    "vehicle-documents-page":{
+       "create":"צור",
+       "create_vehicle_document":"צור מסמך רכב",
+       "import":"ייבא",
+       "title":"מסמכי רכב"
+    },
+    "vehicle-dropdown":{
+       "select":"סוג רכב"
+    },
+    "vehicles-page":{
+       "title":"רכבים"
+    },
+    "vehicles-reporting":{
+       "title":"רכבים"
+    },
+    "view-account-page":{
+       "title":"צפה בחשבון"
+    },
+    "view-account-relation-advanced":{
+       "create":"צור",
+       "upload":"העלה",
+       "create_account-relation":"הצג זיקות בין חשבונות"
+    },
+    "view-account-reports":{
+       "overview":"מבט כללי",
+       "refresh":"מבט כללי"
+    },
+    "view-account-user-page":{
+       "title":"הצג משתמש"
+    },
+    "view-account-users":{
+       "add":"הוסך משתמש",
+       "fail":"שגיאה בהשגת משתמשים",
+       "roles":"תפקידים",
+       "success":"משתמשים הושגו בהצלחה",
+       "view":"צפה במתשמש"
+    },
+    "view-account-vehicles":{
+       "fleet":"רכבים בשכירות",
+       "less":"פחות",
+       "more":"עוד",
+       "owned":"רכבים בבעלות",
+       "show":"הצג",
+       "all":"הכל"
+    },
+    "view-accounts-advanced":{
+       "create_account":"צור חשבון",
+       "import":"ייבא",
+       "missing":"חסר",
+       "toggle_active":"שנה מצב"
+    },
+    "view-admin-reports":{
+       "refresh":"רענן",
+       "title":"סיכום מנהל"
+    },
+    "view-contract":{
+       "add_document":"הוסף מסמך",
+       "add_document_warning":"מסמך חסר.",
+       "add_document_warning_desc":"מסמך זה חשוב להסבת קנסות.",
+       "change_contract_dates":"ערוך חוזה",
+       "document":"מסמך",
+       "edit_contract":"עריכת הסכם",
+       "status":"סטאטוס",
+       "type":"סוג"
+    },
+    "view-contract-page":{
+       "title":"צפה בחוזה"
+    },
+    "view-contracts":{
+       "add_lease_contract":"הוסף חוזה שכירות",
+       "add_ownership_contract":"הוסף חוזה בעלות"
+    },
+    "view-contracts-advanced":{
+       "create":"צור אחד",
+       "create_driver_contract":"יצירת הסכם נהג",
+       "create_lease_contract":"צור חוזה שכירות",
+       "create_ownership_contract":"צור חוזה בעלות",
+       "document":"מסמך קיים?",
+       "driver":"נהג",
+       "end_date":"תאריך סיום",
+       "generate_lease_contract_documents":"יצירת מסמך הסכם שכירות",
+       "is_current":"נוכחי?",
+       "lease":"שכירות",
+       "lease_contract":"חוזה שכירות",
+       "na":"לא זמין",
+       "no":"לא",
+       "ocr-status":"מצב OCR",
+       "owner":"בעלים",
+       "owner_brn":"ח.פ. בעלים",
+       "owner_name":"שם בעלים",
+       "ownership":"בעלות",
+       "ownership_contract":"חזוה בעלות",
+       "prevent_redirections":"מנע הסבות",
+       "reference":"אסמכתא",
+       "start_date":"תאריך התחלה",
+       "status":"סטאטוס",
+       "true":"",
+       "type":"סוג חוזה",
+       "upload":"העלה",
+       "user":"משתמש",
+       "user_brn":"ח.פ. משתמש",
+       "user_name":"שם משתמש",
+       "vehicle":"רכב",
+       "vehicle_registration":"רישוי רכב",
+       "yes":"כן"
+    },
+    "view-current-account-user-permissions":{
+       "button":"ההרשאות שלי",
+       "ok":"סגור",
+       "your_permissions":"ההרשאות שלך",
+       "your_permissions_desc":"לפניך ההרשאות הקיימות לחשבון זה."
+    },
+    "view-document-page":{
+       "title":"צפה במסמך"
+    },
+    "view-documents":{
+       "fail":"שגיאה בהשגת מסמכים",
+       "success":"מסמכים הושגו בהצלחה"
+    },
+    "view-driver-contract":{
+       "driver":"נהג",
+       "end_date":"תאריך סיום",
+       "start_date":"תאריך התחלה"
+    },
+    "view-driver-page":{
+       "title":"צפיה בנהג"
+    },
+    "view-infringement":{
+       "approve":"אשר לתשלום",
+       "approve_text":"אשר לתשלום",
+       "cancel":"בטל",
+       "contract":"הסכם",
+       "document":"מסמך",
+       "edit":"ערוך",
+       "infringement_approval":"אישור קנס לתשלום",
+       "infringement_ownership":"בעלות עבירה",
+       "location":"מיקום",
+       "more_details":"מידע נוסף",
+       "no_contract":"אין חוזה",
+       "nominated_by_contract":"מועמדות לפי הסכם",
+       "nomination":"הסבה",
+       "notes":"הערות",
+       "payment":"תשלום",
+       "redirection":"הסבה",
+       "title":"פרטי קנס",
+       "unapprove":"לא לאשר לתשלום לתשלום",
+       "unapprove_text":"אי מתן אישור לקנס יגרור חסימה לאפשרות תשלום עד שהקנס יאושר",
+       "upload_date":"תאריך העלאה"
+    },
+    "view-infringement-advanced":{
+       "approved_date":"תאריך אושר לתשלום",
+       "brn":"ח.פ.",
+       "brn_account":"שם חשבון ממנפיק",
+       "contract_owner":"בעלים של הרכב",
+       "contract_pdf":"מסמך הסכם קיים",
+       "contract_pdf_created":"יצירת מסמך הסכם",
+       "contract_user":"משתמש",
+       "create":"צור",
+       "create_infringement":"צור קנס",
+       "date_uploaded":"תאריך העלאה",
+       "external_change_date":"תאריך אימות סטטוס",
+       "external_identifier":"מזהה חיצוני",
+       "external_payment_reference":"מזהה תשלום",
+       "external_redirection_reference":"מזהה הסבה חיצוני",
+       "import":"ייבא",
+       "invalid_redirection":"הסבה לא תקינה",
+       "last_infringement_status_change_date":"תאריך אחרון לשינוי סטטוס העבירה",
+       "last_nomination_status_change_date":"תאריך אחרון לשינוי סטטוס המועמדות",
+       "lease_contract_pdf":"חוזה ליסינג PDF",
+       "location":"מיקום",
+       "missing":"לא מוקצה, אנא הוסף חוזה לתקופה זו.",
+       "nominated_account":"חשבון משוייך",
+       "nomination_status":"סטטוס הסבה",
+       "nomination_type":"סוג הסבה",
+       "notes":"הערות",
+       "ocr_status":"מצב OCR",
+       "paid_date":"תאריך תשלום",
+       "power_of_attorney_pdf":"ייפוי כוח PDF",
+       "prevent_redirections":"מנע הסבות",
+       "raw_redirection_identifier":"מזהה הסבה גולמי",
+       "raw_redirection_identifier_exists":"מזהה הסבה גולמי קיים",
+       "redirected_date":"תאריך הסבה נשלחה",
+       "redirection_document_update_date":"תאריך עדכון מסמך הסבה",
+       "redirection_error_description":"סיבת כישלון",
+       "redirection_letter_send_date":"תאריך תחילת הסבה",
+       "redirection_status":"סטטוס הסבה",
+       "redirection_type":"סוג הסבה",
+       "system_status":"סטאטוס מערכת",
+       "valid_redirection":"הסבה תקינה",
+       "vehicle_type":"סוג רכב",
+       "tags":"תגית",
+       "redirection_error":"שגיאה בתהליך הסבה"
+    },
+    "view-infringement-approval":{
+       "Approve For Payment":"לאשר לתשלום",
+       "Unapprove for Payment":"לא לאשר לתשלום",
+       "account":"חשבון",
+       "action":"פעולה",
+       "action_date":"תאריך פעולה",
+       "amount_due":"סכום החוב",
+       "user":"משתמש"
+    },
+    "view-infringement-page":{
+       "title":"צפה בקנסות"
+    },
+    "view-infringement-payment":{
+       "amount_paid":"הסכום ששולם",
+       "external_reference":"מזהה חיצוני",
+       "infringement_payments_received":"תשלום הקנס התקבל",
+       "no_payments_made":"לא קיים תשלום לקנס זה",
+       "payment_date":"תאריך תשלום",
+       "payment_provider":"ספק תשלום",
+       "payment_status":"סטטוס תשלום",
+       "payment_type":"סוג תשלום",
+       "reference_number":"מספר מזהה"
+    },
+    "view-infringements-advanced":{
+       "all":"הכל",
+       "me":"אלי",
+       "no":"לא",
+       "nominated_to":"משוייך",
+       "vehicle_owner":"בעלים של הרכב",
+       "vehicle_user":"משתמש הרכב",
+       "withBRN":"עבירות עם ח.פ./ע.מ.",
+       "withoutBRN":"עבירות ללא ח.פ./ע.מ.",
+       "no_owner_defined":"לא קיים חוזה בעלות",
+       "owner_infringements": "דוחות על שם הבעלים",
+       "no_lease_document":"חסר מסמך שכירות",
+       "yes":"כן"
+    },
+    "view-integration-request-log-page":{
+       "title":"צפיה בלוג בקשות אינטגרציה"
+    },
+    "view-issuer-advanced":{
+       "create_issuer":"צור מנפיק"
+    },
+    "view-issuer-page":{
+       "title":"צפה במנפיק"
+    },
+    "view-issuers":{
+       "fail":"שגיאה בהשגת רשויות",
+       "success":"רשויות הושגו בהצלחה"
+    },
+    "view-job-log-page":{
+       "title":"צפיה בלוג תהליכים"
+    },
+    "view-lease-contract":{
+       "end_date":"תאריך סיום שכירות",
+       "ocr_result":"תוצאת OCR",
+       "ocr_status":"מצב OCR",
+       "owner":"בעלים",
+       "redirection_document":"מסמך הפנייה",
+       "start_date":"תאריך תחילת שכירות",
+       "user":"משתמש"
+    },
+    "view-lease-contracts":{
+       "fail":"שגיאה בהשגת חוזי שכירות",
+       "success":"חוזי שכירות הושגו בהצלחה"
+    },
+    "view-location":{
+       "note1":"שים לב: המיקום אינו נמצא על ידי גוגל והוא כנראה לא תקין",
+       "note2":"שים לב: המיקום עדיין לא עובד על ידי גוגל, אנא רענן עמוד זה בעוד מספר דקות לכתובת המלאה"
+    },
+    "view-location-page":{
+       "title":"הצג מיקום"
+    },
+    "view-locations":{
+       "message":"רק מיקומים שנמצאו בגוגל מופיעים כאן"
+    },
+    "view-logs":{
+       "after":"אחרי",
+       "before":"לפני",
+       "by_user":"לפי משתמש",
+       "changes_made":"נעשו שינויים",
+       "fail":"שגיאה בהשגת היסטוריה",
+       "for_vehicle":"לרכב",
+       "history":"היסטוריה",
+       "no_high_priority_logs_found":"לא נמצאו לוגים בעלי עדיפות גבוהה",
+       "no_logs_found":"לא נמצאו לוגים",
+       "none":"אף אחד",
+       "relating_to_account":"מתייחס לחשבון",
+       "relating_to_infringement":"מתייחס לקנס",
+       "show_all":"הצג הכל",
+       "success":"היסטוריה הושגה בהצלחה",
+       "title":"היסטוריה - 10 אחרונים"
+    },
+    "view-nomination":{
+       "account":"מוסב לחשבון",
+       "account_not_on_system":"חשבון לא קיים במערכת",
+       "acknowledge":"אשר",
+       "appeal":"ערעור",
+       "appeal_text":"בקרוב. באמצעות שימוש במערכת הערעורים תוכל להגיש ערעור למנפיק הקנס.",
+       "approve":"אשר לתשלום",
+       "approve_text":"על ידי אישור הסבת קנס זה אתה מסכים שהחשבון לעיל הוא האחראי לתשלום הקנס. לא יהיה ניתן להעביר את הקנס אחרי האישור.",
+       "approved_date":"תאריך אושר לתשלום",
+       "current_status":"מצב נוכחי",
+       "date":"תאריך הסבה",
+       "date_letter_sent":"תאריך שליחת מכתב הסבה",
+       "document":"מסמך הפנייה",
+       "external_redirection_reference":"מזהה הסבה חיצוני",
+       "missing_account":"שגיאה: חשבון חסר",
+       "missing_account_tooltip":"אנא הסב לחשבון תקין",
+       "paid_date":"תאריך תשלום",
+       "pay":"שלם",
+       "previously":"בעבר הוסב ל",
+       "redirect":"הסב",
+       "redirect_by_mail":"הסב במייל העירייה",
+       "redirect_text_1":"על ידי הפניית קנס זה אתה מצהיר שהחשבון המוסב הנוכחי אינו אחראי לתשלום ושחשבון אחר, ",
+       "redirect_text_2":"משתמש / נהג / בעלים",
+       "redirect_text_3":"כפי במצויין ברכב",
+       "redirect_text_4":"הוא אחראי לתשלום.",
+       "redirected_date":"תאריך הפנייה",
+       "redirection":"הפנייה",
+       "redirection_completion_date":"תהליך השלמת הסבה",
+       "redirection_document_update_date":"תאריך עדכון מסמך הסבה",
+       "redirection_error_description":"סיבת כישלון",
+       "redirection_identifier":"מזהה הסבה",
+       "redirection_target":"חשבון יעד",
+       "generate_documents_only":"צור מסמך הסבה",
+       "type":"סוג הסבה",
+       "unapprove":"ביטול אישור לתשלום",
+       "unapprove_text":"אי מתן אישור למועמדות יגרום לחסימת החשבון לביצוע תשלום בגין העבירה הנוכחית עד שהמועמדות תאושר.",
+       "update_redirection_status":"עדכון הסבה",
+       "update_redirection_status_description":"לחץ/י כאן על מנת לעדכן סטטוס הסבה ע\"י אישור או דחייה של הבקשה. אנא בצע/י פעולה זו רק אם הרשות שלחה עדכון לגבי מצב ההסבה ישירות אליך.",
+       "verify_text":"אימות קנס",
+       "generate_redirection_document":"צור מסמך הסבה"
+    },
+    "view-nomination-page":{
+       "title":"הצג הסבה"
+    },
+    "view-nominations-advanced":{
+       "account":"חשבון משוייך",
+       "account_name":"שם חשבון",
+       "amount_due":"סכום החוב",
+       "approved_date":"תאריך אושר לתשלום",
+       "infringement_status":"מצב קנס",
+       "issuer_name":"שם המנפיק",
+       "issuer_status":"סטטוס המנפיק",
+       "latest_payment_date":"תאריך אחרון לתשלום",
+       "location":"מיקום",
+       "notice_number":"מספר קנס",
+       "offence_date":"תאריך עבירה",
+       "paid_date":"תאריך תשלום",
+       "reason":"סיבה",
+       "reason_code":"קוד סיבה",
+       "reference":"אסמכתא",
+       "status":"סטטוס שיוך",
+       "type":"סוג הסבה",
+       "vehicle_owner":"בעל הרכב",
+       "vehicle_registration":"רישוי רכב",
+       "vehicle_user":"משתמש ברכב",
+       "view_map":"מפת קנס",
+       "view_selected":"הצג נבחרים במפה"
+    },
+    "view-ocr-result":{
+       "contract_name":"שם ההסכם",
+       "end_date":"תאריך סיום",
+       "owner_brn":"ח.פ./ע.מ. של הבעלים",
+       "start_date":"תאריך התחלה",
+       "user_brn":"ח.פ./ע.מ. של המשתמש",
+       "vehicle":"רכב"
+    },
+    "view-ownership-contract":{
+       "end_date":"תאריך סיום בעלות",
+       "owner":"בעלים",
+       "start_date":"תאריך תחילת בעלות"
+    },
+    "view-ownership-contracts":{
+       "fail":"שגיאה בהשגת חוזי בעלות",
+       "success":"חוזי בעלות הושגו בהצלחה"
+    },
+    "view-partial-infringement-page":{
+       "title":"צפיה בקנסות חלקיים"
+    },
+    "view-payment":{
+       "details":"פרטים",
+       "document":"מסמך",
+       "payment_id":"מזהה תשלום (לא יושם)",
+       "payment_type_not_supported":"סוג תשלום לא נתמך. אנא פנה לתמיכה.",
+       "reference":"הפניה",
+       "type":"סוג"
+    },
+    "view-payment-page":{
+       "title":"הצג תשלום"
+    },
+    "view-payments":{
+       "fail":"שגיאה בהשגת תשלומים",
+       "success":"תשלומים הושגו בהצלחה"
+    },
+    "view-payments-advanced":{
+       "create_payment":"צור תשלום",
+       "import":"ייבא",
+       "notice_number":"מספר קנס"
+    },
+    "view-raw-infringement-log-page":{
+       "title":"צפיה בלוג עבירות גולמי"
+    },
+    "view-request-information-log-page":{
+       "title":"צפיה בבקשות מידע"
+    },
+    "view-role":{
+       "cancel":"בטל",
+       "edit":"ערוך",
+       "insert_value":"הזן ערך",
+       "key_insert_value":"מפתח: הזן ערך"
+    },
+    "view-role-page":{
+       "title":"הצג תפקיד"
+    },
+    "view-roles":{
+       "fail":"שגיאה בהשגת תפקידים",
+       "success":"תפקידים הושגו בהצלחה"
+    },
+    "view-user":{
+       "accounts":"חשבונות",
+       "cancel":"בטל",
+       "edit":"ערוך"
+    },
+    "view-user-advanced":{
+       "edit_user":""
+    },
+    "view-user-page":{
+       "title":"הצג משתמש"
+    },
+    "view-users":{
+       "accounts":"חשבונות",
+       "create":"צור",
+       "create_user":"צור",
+       "fail":"שגיאה בהשגת משתמשים",
+       "success":"משתמשים הושגו בהצלחה"
+    },
+    "view-vehicle":{
+       "auto_assign":"שייך קנסות בצורה אוטומטית: ",
+       "cancel":"בטל",
+       "category":"קטגוריה",
+       "color":"צבע",
+       "contracts":"חוזים",
+       "current_lease":"חוזה שכירות נוכחי",
+       "current_ownership":"חוזה בעלות נוכחי",
+       "edit":"ערוך",
+       "infringements":"קנסות",
+       "manufacturer":"יצרן",
+       "model":"סוג",
+       "no_lease":"אין חוזה שכירות עבור רכב זה.",
+       "no_ownership":"אין חוזה בעלות עבור רכב זה.",
+       "type":"סוג רכב",
+       "weight":"משקל",
+       "year":"שנה",
+       "year_placeholder":"בחר שנה"
+    },
+    "view-vehicle-advanced":{
+       "current_lease":"סטאטוס חוזה שכירות נוכחי",
+       "current_ownership":"סטאטוס חוזה בעלות נוכחי",
+       "infringements":"קנסוצ",
+       "infringements_status":"יש קנס בסטאטוס"
+    },
+    "view-vehicle-document-page":{
+       "title":"צפה במסמך רכב"
+    },
+    "view-vehicle-documents":{
+       "fail":"שגיאה בהשגת מסמכי רכב",
+       "success":"מסמכי רכב הושגו בהצלחה"
+    },
+    "view-vehicle-page":{
+       "title":"הצג רכב"
+    },
+    "view-vehicles-advanced":{
+       "create":"צור",
+       "create_vehicle":"צור רכב",
+       "import":"ייבא"
+    },
+    "edit-presets":{
+       "description":"יצירת ערך מועדף תשמור את בחירת הסינון והשדות הנוכחית.",
+       "name":"שם",
+       "save":"שמירה",
+       "cancel":"ביטול",
+       "max_length_exceeded":"האורך המקסימלי לשדה שם 25 תווים",
+       "default":"ברירת מחדל?"
+    },
+    "manage-presets":{
+       "name":"שם",
+       "cancel":"ביטול",
+       "save":"שמירה",
+       "delete_confirm_title":"האם אתה בטוח?",
+       "default":"ברירת מחדל"
+    },
+    "account-reporting-page":{
+       "title":"דיווח חשבון",
+       "status":"סטטוס",
+       "issuer":"רשות",
+       "vehicle":"רכב"
+    }
+ }

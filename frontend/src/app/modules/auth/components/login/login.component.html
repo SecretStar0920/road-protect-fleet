@@ -1,0 +1,64 @@
+<rp-login-page>
+    <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
+        <div class="logo">
+            <div class="image"></div>
+        </div>
+        <!--    <nz-divider></nz-divider>-->
+        <nz-form-item>
+            <nz-form-control>
+                <nz-input-group [nzPrefix]="prefixUser">
+                    <input type="text" nz-input nzSize="large" formControlName="email" [placeholder]="'login.email' | i18next" />
+                </nz-input-group>
+                <nz-form-explain *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.errors">
+                    <ng-container *ngIf="loginForm.get('email')?.errors.required">
+                        {{ 'login.email_validation' | i18next }}
+                    </ng-container>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control>
+                <nz-input-group [nzPrefix]="prefixLock">
+                    <input type="password" nz-input nzSize="large" formControlName="password" [placeholder]="'login.password' | i18next" />
+                </nz-input-group>
+                <nz-form-explain *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.errors">
+                    <ng-container *ngIf="loginForm.get('password')?.errors.required">
+                        {{ 'login.password_validation' | i18next }}
+                    </ng-container>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control class="recaptcha-block">
+                <re-captcha [siteKey]="siteKey" (resolved)="onRecaptchaResolved($event)"></re-captcha>
+            </nz-form-control>
+        </nz-form-item>
+        <div style="text-align: center">
+            <a [routerLink]="['/forgot-password']">{{ 'login.forgot_password_prompt' | i18next }}</a>
+            <br /><br />
+        </div>
+        <nz-form-item>
+            <nz-form-control>
+                <button
+                    nz-button
+                    nzType="primary"
+                    [disabled]="!loginForm.valid || !recaptchaKey"
+                    nzBlock
+                    [nzLoading]="loginState.isLoading()"
+                    nzSize="large"
+                >
+                    <i nz-icon nzType="login" nzTheme="outline"></i> {{ 'login.sign_in' | i18next }}
+                </button>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-alert nzType="success" *ngIf="loginState?.hasSucceeded()" [nzMessage]="loginState?.successResult().message"> </nz-alert>
+        <nz-alert
+            nzType="info"
+            *ngIf="loginState?.hasFailed()"
+            [nzMessage]="loginState?.failedResult().message"
+            [nzDescription]="loginState?.failedResult().context.message"
+        ></nz-alert>
+    </form>
+    <ng-template #prefixUser><i nz-icon nzType="user"></i></ng-template>
+    <ng-template #prefixLock><i nz-icon nzType="lock"></i></ng-template>
+</rp-login-page>

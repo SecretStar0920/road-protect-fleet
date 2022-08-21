@@ -1,0 +1,24 @@
+<rp-general-page [icon]="'bar-chart'" [title]="'account-reporting-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <nz-tabset [nzAnimated]="false" nzNoAnimation nzLinkRouter>
+            <nz-tab>
+                <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'status' }" queryParamsHandling="merge">
+                    {{ 'account-reporting-page.status' | i18next }}
+                </a>
+                <rp-graphing-by-status-page></rp-graphing-by-status-page>
+            </nz-tab>
+            <nz-tab>
+                <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'issuer' }" queryParamsHandling="merge">
+                    {{ 'account-reporting-page.issuer' | i18next }}
+                </a>
+                <rp-graphing-by-issuer-page></rp-graphing-by-issuer-page>
+            </nz-tab>
+            <nz-tab>
+                <a *nzTabLink nz-tab-link [routerLink]="['.']" [queryParams]="{ tab: 'vehicle' }" queryParamsHandling="merge">
+                    {{ 'account-reporting-page.vehicle' | i18next }}
+                </a>
+                <rp-graphing-by-vehicle-page></rp-graphing-by-vehicle-page>
+            </nz-tab>
+        </nz-tabset>
+    </div>
+</rp-general-page>

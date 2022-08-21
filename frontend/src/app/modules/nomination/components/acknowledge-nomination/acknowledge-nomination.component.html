@@ -1,0 +1,23 @@
+<form nz-form [formGroup]="acknowledgeNominationForm">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label>{{ 'acknowledge-nomination.text' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <div style="display: flex">
+                        <label nz-checkbox formControlName="payment">{{ 'acknowledge-nomination.payment' | i18next }}</label>
+                        <label nz-checkbox formControlName="redirection">{{ 'acknowledge-nomination.redirection' | i18next }}</label>
+                        <label nz-checkbox formControlName="appeal">{{ 'acknowledge-nomination.appeal' | i18next }}</label>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+</form>
+
+<nz-row>
+    <button nz-button (click)="onConfirm()" nzType="primary" [disabled]="!acknowledgeNominationForm.valid" style="margin: 8px">
+        {{ 'acknowledge-nomination.submit' | i18next }}
+    </button>
+    <button nz-button (click)="onCancel()" style="margin: 8px">{{ 'acknowledge-nomination.cancel' | i18next }}</button>
+</nz-row>

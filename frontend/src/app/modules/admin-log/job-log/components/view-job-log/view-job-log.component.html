@@ -1,0 +1,90 @@
+<ng-container *ngIf="jobLog">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <table class="rp-basic-data-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">{{ jobLog.uuid }}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>{{ 'job-log.job_id' | i18next }}:</td>
+                        <td>{{ jobLog.jobId }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'job-log.queued_time' | i18next }}:</td>
+                        <td>
+                            <rp-general-time-display [time]="jobLog.createdAt"></rp-general-time-display>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'job-log.start_time' | i18next }}:</td>
+                        <td>
+                            <rp-general-time-display [time]="jobLog.startTime"></rp-general-time-display>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'job-log.end_time' | i18next }}:</td>
+                        <td>
+                            <rp-general-time-display [time]="jobLog.endTime"></rp-general-time-display>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'job-log.job_type' | i18next }}:</td>
+                        <td>{{ 'filter-label.' + jobLog.type | i18next }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'job-log.queue_name' | i18next }}:</td>
+                        <td>{{ jobLog.queue | lowercase | sentenceCase }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'job-log.status' | i18next }}:</td>
+                        <td>
+                            <span>
+                                {{ jobLog.status }}
+                                <i
+                                    nz-icon
+                                    nzType="check-circle"
+                                    nzTheme="twotone"
+                                    nzTwotoneColor="green"
+                                    *ngIf="isCompleted(jobLog.status)"
+                                ></i>
+                                <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red" *ngIf="isFailed(jobLog.status)"></i>
+                                <i
+                                    nz-icon
+                                    nzType="exclamation-circle"
+                                    nzTheme="twotone"
+                                    nzTwotoneColor="yellow"
+                                    *ngIf="isQueued(jobLog.status)"
+                                ></i>
+                                <i nz-icon nzType="sync" [nzSpin]="true" *ngIf="isProcessing(jobLog.status)"></i>
+                            </span>
+                        </td>
+                    </tr>
+                    <nz-divider></nz-divider>
+                    <tr>
+                        <td>{{ 'job-log.data' | i18next }}:</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <rp-json [data]="jobLog.details?.data"></rp-json>
+                        </td>
+                    </tr>
+                    <nz-divider></nz-divider>
+                    <ng-container *ngIf="jobLog.error">
+                        <tr>
+                            <td>{{ 'job-log.error' | i18next }}:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <rp-json [data]="jobLog.error"></rp-json>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </nz-col>
+    </nz-row>
+</ng-container>

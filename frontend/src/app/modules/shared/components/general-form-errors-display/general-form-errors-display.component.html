@@ -1,0 +1,29 @@
+<ng-container *ngIf="!form.valid">
+    <div id="container">
+        <nz-alert nzType="warning" [nzMessage]="alertContent"> </nz-alert>
+    </div>
+
+    <ng-template #alertContent>
+        <ng-container *ngTemplateOutlet="formGroupErrors; context: { $implicit: form }"></ng-container>
+    </ng-template>
+
+    <ng-template #formGroupErrors let-data>
+        <ul>
+            <ng-container *ngFor="let control of data.controls | keyvalue">
+                <ng-container *ngIf="isFormGroup(control.value); else errorList">
+                    <ng-container *ngIf="!control.value.valid">
+                        <li>
+                            <span nz-text nzType="secondary">{{ control.key | sentenceCase }}:</span>
+                        </li>
+                        <ng-container *ngTemplateOutlet="formGroupErrors; context: { $implicit: control.value }"></ng-container>
+                    </ng-container>
+                </ng-container>
+                <ng-template #errorList>
+                    <li *ngIf="control.value.errors">
+                        <rp-general-form-error-display [control]="control.value" [key]="control.key"></rp-general-form-error-display>
+                    </li>
+                </ng-template>
+            </ng-container>
+        </ul>
+    </ng-template>
+</ng-container>

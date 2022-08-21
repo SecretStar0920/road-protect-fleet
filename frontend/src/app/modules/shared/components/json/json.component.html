@@ -1,0 +1,5 @@
+<div class="wrapper" [style]="{ maxHeight: maxHeight }">
+    <pre *ngIf="isObject(data)">{{ data | json }}</pre>
+    <!--For in case the data is not actually json-->
+    <pre *ngIf="isString(data)">{{ data | xml }}</pre>
+</div>

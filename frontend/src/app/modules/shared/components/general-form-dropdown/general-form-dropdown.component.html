@@ -1,0 +1,5 @@
+<div>
+    <nz-select [(ngModel)]="selected" nzAllowClear [nzPlaceHolder]="'general-form-dropdown.select' | i18next">
+        <nz-option *ngFor="let item of items" [nzValue]="item[valueKey]" [nzLabel]="item[labelKey]"></nz-option>
+    </nz-select>
+</div>

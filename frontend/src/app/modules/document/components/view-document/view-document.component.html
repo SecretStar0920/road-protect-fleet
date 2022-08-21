@@ -1,0 +1,27 @@
+<ng-container *ngIf="document">
+    <!--    <div class="remove" *ngIf="enableDelete">-->
+    <!--        <rp-delete-document [documentId]="documentId || document.documentId" (delete)="onDelete($event)" nz-col></rp-delete-document>-->
+    <!--    </div>-->
+    <div class="document">
+        <div class="icon">
+            <i nz-icon nzType="file" nzTheme="twotone" [nzSpin]="downloadDocumentState.isLoading()"></i>
+        </div>
+        <div class="name">
+            {{ document.fileName }} {{ documentDate | date:'yyyy.MM.dd, H:mm:ss'  }}
+        </div>
+        <div class="actions">
+            <div class="download" (click)="onDownloadFile()">
+                <i nz-icon nzType="download" nzTheme="outline" [nzSpin]="downloadDocumentState.isLoading()"></i>
+                <!--                <span>download</span>-->
+            </div>
+            <div class="delete" *ngIf="enableDelete || enableCustomDelete" (click)="deleteDocument()">
+                <rp-delete-document
+                    [documentId]="documentId || document.documentId"
+                    (delete)="onDelete($event)"
+                    [customDelete]="enableCustomDelete"
+                    #deleteDocumentComponent
+                ></rp-delete-document>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,150 @@
+<ng-container *ngIf="advanced">
+    <rp-general-stepper [stepper]="stepper" [size]="'small'">
+        <div [rpShow]="stepper.isStep(1)">
+            <div [ngSwitch]="currentSelection">
+                <div *ngFor="let questionId of questionIds">
+                    <div *ngSwitchCase="questionId">
+                        <p *ngIf="questions[questionId].text">{{ questions[questionId].text }}</p>
+                        <div *ngIf="questions[questionId].selectedNominationStatus">
+                            <p>{{ 'edit-status.selected_nomination_status' | i18next }}</p>
+                            <rp-nomination-status-tag [status]="questions[questionId].selectedNominationStatus"></rp-nomination-status-tag>
+                        </div>
+                        <button
+                            nz-button
+                            nzType="primary"
+                            class="rp-space"
+                            (click)="selectOption(questions[questionId].yesId)"
+                            *ngIf="questions[questionId].yesId"
+                        >
+                            {{ 'edit-status.yes' | i18next }}
+                        </button>
+                        <button
+                            nz-button
+                            nzType="primary"
+                            (click)="selectOption(questions[questionId].noId)"
+                            *ngIf="questions[questionId].noId"
+                        >
+                            {{ 'edit-status.no' | i18next }}
+                        </button>
+                    </div>
+                </div>
+
+                <br />
+            </div>
+
+            <ng-container *ngTemplateOutlet="extraDetailsForm"></ng-container>
+
+            <button nz-button nzType="default" (click)="resetNominationStatusSelection()">{{ 'edit-status.reset' | i18next }}</button>
+        </div>
+
+        <div [rpShow]="stepper.isStep(2)">
+            <div>
+                <p>{{ 'edit-status.select_infringement_status' | i18next }}</p>
+                <button
+                    nz-button
+                    nzType="primary"
+                    class="rp-space"
+                    (click)="selectInfringementStatus(infringementStatus)"
+                    *ngFor="let infringementStatus of infringementOptions"
+                >
+                    {{ infringementStatus }}
+                </button>
+            </div>
+            <br />
+            <div *ngIf="selectedInformation.infringementStatus">
+                <p>{{ 'edit-status.selected_infringement_status' | i18next }}</p>
+                <rp-infringement-status-tag [status]="selectedInformation.infringementStatus"></rp-infringement-status-tag>
+            </div>
+        </div>
+        <div [rpShow]="stepper.isStep(3)">
+            <ng-container *ngTemplateOutlet="submission"></ng-container>
+        </div>
+    </rp-general-stepper>
+</ng-container>
+
+<ng-container *ngIf="!advanced">
+    <div style="margin: 10px 0px" *ngIf="!updateInfringementStatusState.hasCompleted()">
+        <p>{{ 'edit-status.select_status' | i18next }}</p>
+        <button nz-button class="rp-space" nzType="primary" (click)="selectPaid()" [disabled]="!canSelectPaid()" style="clear: both">
+            {{ 'edit-status.paid' | i18next }}
+        </button>
+        <button
+            nz-button
+            class="rp-space"
+            nzType="primary"
+            (click)="selectRedirectionComplete()"
+            [disabled]="!canSelectRedirectionComplete()"
+        >
+            {{ 'edit-status.redirection_completed' | i18next }}
+        </button>
+        <ng-container *ngTemplateOutlet="extraDetailsForm"></ng-container>
+    </div>
+
+    <ng-container *ngTemplateOutlet="submission"></ng-container>
+    <nz-divider></nz-divider>
+    <button nz-button class="rp-space" nzType="default" (click)="toggleAdvanced()" style="margin-top: 8px">
+        {{ 'edit-status.advanced' | i18next }}
+    </button>
+</ng-container>
+
+<ng-template #submission>
+    <ng-container *ngIf="canSubmit()">
+        <div *ngIf="selectedInformation.nominationStatus">
+            <p>{{ 'edit-status.selected_nomination_status' | i18next }}</p>
+            <rp-nomination-status-tag [status]="selectedInformation.nominationStatus"></rp-nomination-status-tag>
+        </div>
+        <div *ngIf="selectedInformation.infringementStatus">
+            <p>{{ 'edit-status.selected_infringement_status' | i18next }}</p>
+            <rp-infringement-status-tag [status]="selectedInformation.infringementStatus"></rp-infringement-status-tag>
+        </div>
+        <br />
+        <button nz-button nzType="primary" (click)="submitChanges()" [disabled]="updateInfringementStatusState.isLoading()">
+            {{ 'edit-status.submit' | i18next }}
+        </button>
+    </ng-container>
+
+    <ng-container *ngIf="updateInfringementStatusState.hasCompleted()">
+        <ng-container *ngIf="updatedInfringement">
+            <p>{{ 'edit-status.success' | i18next }}</p>
+        </ng-container>
+        <ng-container *ngIf="!updatedInfringement">
+            <p>{{ 'edit-status.failure' | i18next }}</p>
+            <p>{{ errorMessage }}</p>
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #extraDetailsForm>
+    <form nz-form [formGroup]="selectedInformation.nominationForm" nzLayout="vertical">
+        <div *ngIf="selectedInformation.nominationStatus === nominationStatuses.InRedirectionProcess" formGroupName="inRedirection">
+            <nz-form-item>
+                <nz-form-label>{{ 'edit-status.redirection_identifier' | i18next }} </nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="redirectionIdentifier" type="text" pattern="[0-9]*" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzRequired> {{ 'edit-status.redirection_send_date' | i18next }} </nz-form-label>
+                <nz-date-picker formControlName="redirectionLetterSendDate"></nz-date-picker>
+            </nz-form-item>
+        </div>
+        <div *ngIf="selectedInformation.nominationStatus === nominationStatuses.RedirectionCompleted" formGroupName="redirectionComplete">
+            <nz-form-item>
+                <nz-form-label> {{ 'edit-status.redirection_identifier' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="redirectionIdentifier" type="text" pattern="[0-9]*" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label>{{ 'edit-status.redirection_send_date' | i18next }} </nz-form-label>
+                <nz-date-picker formControlName="redirectionLetterSendDate"></nz-date-picker>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzRequired>
+                    {{ 'edit-status.redirection_completion_date' | i18next }}
+                </nz-form-label>
+                <nz-date-picker formControlName="dateRedirectionCompleted"></nz-date-picker>
+            </nz-form-item>
+        </div>
+    </form>
+</ng-template>

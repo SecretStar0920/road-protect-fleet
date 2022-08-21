@@ -1,0 +1,6 @@
+<ng-container *ngIf="!isInfinite; else infinite">
+    <a class="non-linkable" nz-popover [nzPopoverContent]="time.fromNow()">{{ time.format(short ? formats.short : formats.long) }}</a>
+</ng-container>
+<ng-template #infinite>
+    <span>{{ 'general-time-display.never' | i18next }}</span>
+</ng-template>

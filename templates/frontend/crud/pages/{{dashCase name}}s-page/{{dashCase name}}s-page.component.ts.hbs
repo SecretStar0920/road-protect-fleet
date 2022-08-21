@@ -1,0 +1,45 @@
+import { Component, OnInit } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { Create{{pascalCase name}}ModalComponent } from '@modules/{{dashCase name}}/components/create-{{dashCase name}}/create-{{dashCase name}}-modal/create-{{dashCase name}}-modal.component';
+import { Router } from '@angular/router';
+import i18next from 'i18next';
+
+@Component({
+    selector: 'rp-{{dashCase name}}s-page',
+    templateUrl: './{{dashCase name}}s-page.component.html',
+    styleUrls: ['./{{dashCase name}}s-page.component.less'],
+})
+export class {{pascalCase name}}sPageComponent implements OnInit {
+    view{{pascalCase name}}Modal: NzModalRef<any>;
+    create{{pascalCase name}}Modal: NzModalRef<any>;
+
+    constructor(private logger: NGXLogger, private modalService: NzModalService, private router: Router) {}
+
+    ngOnInit() {}
+
+    onView{{pascalCase name}}({{camelCase name}}Id: number) {
+        if (!{{camelCase name}}Id) {
+            this.logger.warn('Tried to view an {{pascalCase name}} without an {{camelCase name}} id');
+            return;
+        }
+        this.router.navigate(['/home', '{{dashCase name}}', 'view', {{camelCase name}}Id]);
+        // Modal version
+        // this.view{{pascalCase name}}Modal = this.modalService.create({
+        //     nzTitle: 'View {{pascalCase name}}',
+        //     nzContent: View{{pascalCase name}}ModalComponent,
+        //     nzComponentParams: {
+        //         {{camelCase name}}Id
+        //     },
+        //     nzFooter: null
+        // });
+    }
+
+    onCreate{{pascalCase name}}() {
+        this.create{{pascalCase name}}Modal = this.modalService.create({
+            nzTitle: i18next.t('{{dashCase name}}-page.create_{{camelCase name}}'),
+            nzContent: Create{{pascalCase name}}ModalComponent,
+            nzFooter: null,
+        });
+    }
+}

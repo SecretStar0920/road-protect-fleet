@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: documentation
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: documentation
+            env: prod
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: documentation
+                env: prod
+        spec:
+            containers:
+                - image: eu.gcr.io/fleet-260107/documentation:stable
+                  name: documentation
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 20m
+                  ports:
+                      - containerPort: 3123
+                        name: entry
+                        protocol: TCP
+                  envFrom:
+                      - secretRef:
+                            name: documentation

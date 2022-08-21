@@ -1,0 +1,8 @@
+<rp-create-location (complete)="onComplete($event)"></rp-create-location>
+<nz-alert
+    nzType="error"
+    *ngIf="createLocationState?.hasFailed()"
+    [nzMessage]="createLocationState?.failedResult().message"
+    [nzDescription]="createLocationState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

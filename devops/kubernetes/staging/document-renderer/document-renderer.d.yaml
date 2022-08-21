@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: document-renderer
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: document-renderer
+            env: staging
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: document-renderer
+                env: staging
+        spec:
+            containers:
+                - image: eu.gcr.io/fleet-260107/document-renderer:beta
+                  name: document-renderer
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 10m
+                  ports:
+                      - containerPort: 4300
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      httpGet:
+                          path: /health
+                          port: 4300
+                      initialDelaySeconds: 15
+                      periodSeconds: 10
+                  readinessProbe:
+                      httpGet:
+                          path: /health
+                          port: 4300
+                      initialDelaySeconds: 15
+                      periodSeconds: 10

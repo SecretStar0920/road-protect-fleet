@@ -1,0 +1,71 @@
+<rp-general-page [icon]="'profile'" [title]="'upload-ocr-partial-infringement-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <rp-general-stepper [stepper]="stepper">
+            <!-- Select Issuer -->
+            <div [rpShow]="stepper.isStep(1)">
+                <div nz-row>
+                    <div nz-col>
+                        <p>{{ 'upload-ocr-partial-infringement-page.select_issuer_step.select_issuer' | i18next }}</p>
+                        <rp-issuer-dropdown class="issuer-select" (selectedIssuerEntity)="onSelectIssuer($event)"></rp-issuer-dropdown>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div nz-row>
+                    <div nz-col>
+                        <p>{{ 'upload-ocr-partial-infringement-page.select_issuer_step.select_number_of_documents' | i18next }}</p>
+                        <input nz-input type="number" [(ngModel)]="totalDocuments"/>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div nz-row nzJustify="start">
+                    <div nz-col>
+                        <p>{{ 'upload-ocr-partial-infringement-page.select_issuer_step.select_is_complete_list' | i18next }}</p>
+                        <input nz-input type="checkbox" [(ngModel)]="isCompleteList" style="width: auto"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Select File -->
+            <div [rpShow]="stepper.isStep(2)">
+
+                <div nz-row>
+                    <div nz-col>
+                        <ocr-file-upload
+                            (onUploadChange)="onFileSelected($event)"
+                        ></ocr-file-upload>
+                    </div>
+                </div>
+
+                <div style="text-align: center">
+                    <button nz-button nzType="primary"
+                            (click)="onUpload()"
+                            nzSize="large"
+                            [nzLoading]="data.isUploading || data.hasUploaded"
+                            [disabled]="!data.hasSelectedFile">
+                        <i nz-icon nzType="upload"></i> {{ 'upload-ocr-partial-infringement-page.upload_file_step.upload' | i18next }}
+                    </button>
+                </div>
+
+                <nz-row *ngIf="data.isUploading">
+                    <nz-divider></nz-divider>
+                    <nz-col nzSpan="24" style="text-align: center">
+                        <nz-progress [nzPercent]="getProgressPercentage()" [nzSuccessPercent]="getSuccessPercentage()"></nz-progress>
+                    </nz-col>
+                </nz-row>
+
+            </div>
+
+            <!-- Upload results -->
+            <div [rpShow]="stepper.isStep(3)">
+                <view-ocr-partial-infringements #viewOcrPartialInfringements></view-ocr-partial-infringements>
+            </div>
+        </rp-general-stepper>
+
+    </div>
+</rp-general-page>
+
+
+

@@ -1,0 +1,6 @@
+.idea
+documentation/.~lock*
+/documentation/database-backups/
+node_modules
+.gitsecret/keys/random_seed
+!*.secret

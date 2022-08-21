@@ -1,0 +1,54 @@
+import * as from{{pascalCase name}} from '@modules/{{dashCase name}}/ngrx/{{dashCase name}}.reducer';
+import { {{pascalCase name}}sPageComponent } from '@modules/{{dashCase name}}/pages/{{dashCase name}}s-page/{{dashCase name}}s-page.component';
+import { CommonModule } from '@angular/common';
+import { Create{{pascalCase name}}Component } from '@modules/{{dashCase name}}/components/create-{{dashCase name}}/create-{{dashCase name}}.component';
+import { Create{{pascalCase name}}ModalComponent } from '@modules/{{dashCase name}}/components/create-{{dashCase name}}/create-{{dashCase name}}-modal/create-{{dashCase name}}-modal.component';
+import { Create{{pascalCase name}}PageComponent } from '@modules/{{dashCase name}}/pages/create-{{dashCase name}}-page/create-{{dashCase name}}-page.component';
+import { Delete{{pascalCase name}}Component } from './components/delete-{{dashCase name}}/delete-{{dashCase name}}.component';
+import { NgModule } from '@angular/core';
+import { SharedModule } from '@modules/shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { Update{{pascalCase name}}Component } from '@modules/{{dashCase name}}/components/update-{{dashCase name}}/update-{{dashCase name}}.component';
+import { View{{pascalCase name}}Component } from '@modules/{{dashCase name}}/components/view-{{dashCase name}}/view-{{dashCase name}}.component';
+import { View{{pascalCase name}}ModalComponent } from '@modules/{{dashCase name}}/components/view-{{dashCase name}}/view-{{dashCase name}}-modal/view-{{dashCase name}}-modal.component';
+import { View{{pascalCase name}}PageComponent } from '@modules/{{dashCase name}}/components/view-{{dashCase name}}/view-{{dashCase name}}-page/view-{{dashCase name}}-page.component';
+import { View{{pascalCase name}}sComponent } from '@modules/{{dashCase name}}/components/view-{{dashCase name}}s/view-{{dashCase name}}s.component';
+import { {{pascalCase name}}Effects } from '@modules/{{dashCase name}}/ngrx/{{dashCase name}}.effects';
+import { InfringementModule } from '@modules/infringement/infringement.module';
+import { Upload{{pascalCase name}}sPageComponent } from '@modules/{{dashCase name}}/pages/upload-{{dashCase name}}s-page/upload-{{dashCase name}}s-page.component';
+import { I18NextModule } from 'angular-i18next';
+import { View{{pascalCase name}}sAdvancedComponent } from '@modules/{{dashCase name}}/components/view-{{dashCase name}}s-advanced/view-{{dashCase name}}s-advanced.component';
+
+@NgModule({
+    declarations: [
+        View{{pascalCase name}}Component,
+        View{{pascalCase name}}sComponent,
+        Create{{pascalCase name}}Component,
+        Update{{pascalCase name}}Component,
+        Create{{pascalCase name}}ModalComponent,
+        Create{{pascalCase name}}PageComponent,
+        View{{pascalCase name}}PageComponent,
+        View{{pascalCase name}}ModalComponent,
+        {{pascalCase name}}sPageComponent,
+        Delete{{pascalCase name}}Component,
+        Upload{{pascalCase name}}sPageComponent,
+        View{{pascalCase name}}sAdvancedComponent,
+    ],
+    imports: [CommonModule, SharedModule, StoreModule.forFeature('{{camelCase name}}', from{{pascalCase name}}.reducer), EffectsModule.forFeature([{{pascalCase name}}Effects]), InfringementModule, I18NextModule],
+    exports: [
+        View{{pascalCase name}}Component,
+        View{{pascalCase name}}sComponent,
+        Create{{pascalCase name}}Component,
+        Update{{pascalCase name}}Component,
+        Create{{pascalCase name}}ModalComponent,
+        Create{{pascalCase name}}PageComponent,
+        View{{pascalCase name}}PageComponent,
+        View{{pascalCase name}}ModalComponent,
+        {{pascalCase name}}sPageComponent,
+        Delete{{pascalCase name}}Component,
+        Upload{{pascalCase name}}sPageComponent,
+    ],
+    entryComponents: [Create{{pascalCase name}}ModalComponent, View{{pascalCase name}}ModalComponent],
+})
+export class {{pascalCase name}}Module {}

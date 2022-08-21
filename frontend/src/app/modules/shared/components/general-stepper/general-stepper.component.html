@@ -1,0 +1,37 @@
+<nz-steps [nzCurrent]="stepper.currentStepIndex - 1" [nzSize]="size" [nzProgressDot]="dot">
+    <nz-step *ngFor="let step of stepper.steps" [nzTitle]="step.title" [nzDescription]="step.description"> </nz-step>
+</nz-steps>
+<nz-divider class="counter-margin" style="margin-top: 30px; margin-bottom: 30px"></nz-divider>
+<ng-content></ng-content>
+<nz-divider
+    class="counter-margin"
+    style="margin-top: 30px; margin-bottom: 30px"
+    *ngIf="showControls && stepper.shouldShowControls()"
+></nz-divider>
+<nz-row style="margin-bottom: 10px" *ngIf="showControls && stepper.shouldShowControls()">
+    <nz-col nzSpan="8" class="previous-stepper" style="text-align: left">
+        <button nz-button nzType="default" nzSize="large" *ngIf="stepper.hasPrevious()" (click)="stepper.previous()">
+            {{ 'stepper.previous' | i18next }}
+        </button>
+    </nz-col>
+    <nz-col nzSpan="8"></nz-col>
+    <nz-col nzSpan="8" class="next-stepper" style="text-align: right">
+        <ng-container *ngIf="stepper.data; else noData">
+            <button
+                nz-button
+                nzType="primary"
+                nzSize="large"
+                *ngIf="stepper.hasNext()"
+                [disabled]="!stepper.currentStep().validatorFunction(stepper.data)"
+                (click)="stepper.next()"
+            >
+                {{ 'stepper.next' | i18next }}
+            </button>
+        </ng-container>
+        <ng-template #noData>
+            <button nz-button nzType="primary" nzSize="large" *ngIf="stepper.hasNext()" (click)="stepper.next()">
+                {{ 'stepper.next' | i18next }}
+            </button>
+        </ng-template>
+    </nz-col>
+</nz-row>

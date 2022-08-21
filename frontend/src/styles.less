@@ -1,0 +1,76 @@
+@import 'less/rtl';
+@import 'less/variables';
+@import 'less/responsive-classes';
+@import 'less/mixins';
+@import 'less/fonts';
+@import 'less/zorro-overrides-v2';
+
+body {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif !important;
+}
+
+// No focus effect
+ul[nz-menu] {
+    li[nz-menu-item] {
+        &:focus {
+            outline: none !important;
+        }
+    }
+}
+
+.ant-select-selection__rendered {
+    line-height: 28px;
+}
+
+.ant-tabs-bar {
+    border-width: 1px;
+}
+
+.ant-modal-body {
+    padding: 30px;
+}
+
+.ant-table-placeholder {
+    border: none;
+}
+.ant-table-tbody > tr:hover > td {
+    background: white !important;
+}
+
+.ant-table-thead > tr > th {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.ant-tag {
+    min-width: 80px;
+    text-align: center;
+    a {
+        color: inherit;
+        &:hover {
+        }
+    }
+}
+
+.ant-btn {
+    &:not(.ant-btn-sm):not(.ant-btn-circle):not(.normal) {
+        min-width: 80px;
+    }
+}
+
+.ant-calendar-picker {
+    width: 100%;
+}
+
+thead {
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.standard-dropdown {
+    min-width: 150px;
+}

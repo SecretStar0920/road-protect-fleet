@@ -1,0 +1,40 @@
+<h1>Account relations spreadsheet generate result for account with id {{accountId}}</h1>
+<br/>
+<br/>
+
+<h2>New clients</h2>
+
+{{#if newClients.length }}
+    {{#each newClients}}
+        <li>{{this}}</li>
+    {{/each}}
+{{else}}
+    <span> No new clients </span>
+{{/if}}
+
+<br/>
+<br/>
+
+<h2>Clients to delete</h2>
+
+{{#if deleteClients.length }}
+    {{#each deleteClients}}
+        <li>{{this}}</li>
+    {{/each}}
+{{else}}
+    <span> No relations to delete </span>
+{{/if}}
+
+<br/>
+<br/>
+<h2>Errors</h2>
+{{#if errors.length }}
+    {{#each errors}}
+        <li>{{this}}</li>
+    {{/each}}
+{{else}}
+    <span> No errors </span>
+{{/if}}
+
+<br/>
+<br/>

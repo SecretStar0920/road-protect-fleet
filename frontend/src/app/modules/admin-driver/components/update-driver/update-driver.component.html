@@ -1,0 +1,186 @@
+<div>
+
+    <nz-spin *ngIf="state.loading" nzSimple [nzSize]="'large'"></nz-spin>
+
+    <form nz-form *ngIf="!!state.driver" [formGroup]="updateDriverForm" nzLayout="vertical" (ngSubmit)="onCreateDriver()">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <h3 class="rp-primary-color">{{ 'driver.details' | i18next }}</h3>
+            </nz-col>
+            <!--        name -->
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="name">{{ 'driver.name' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="name" id="name" />
+                        <nz-form-explain *ngIf="updateDriverForm.get('name')?.dirty && updateDriverForm.get('name')?.errors">
+                            <rp-general-form-error-display [form]="updateDriverForm" key="name"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <!--        surname -->
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="name">{{ 'driver.surname' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="surname" id="surname" />
+                        <nz-form-explain *ngIf="updateDriverForm.get('surname')?.dirty && updateDriverForm.get('surname')?.errors">
+                            <rp-general-form-error-display [form]="updateDriverForm" key="surname"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <!--        idNumber -->
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="idNumber">{{ 'driver.id_number' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="idNumber" id="idNumber" />
+                        <nz-form-explain *ngIf="updateDriverForm.get('idNumber')?.dirty && updateDriverForm.get('idNumber')?.errors">
+                            <rp-general-form-error-display [form]="updateDriverForm" key="idNumber"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <!--        licenseNumber -->
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="licenseNumber">{{ 'driver.license' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="licenseNumber" id="licenseNumber" />
+                        <nz-form-explain *ngIf="updateDriverForm.get('licenseNumber')?.dirty && updateDriverForm.get('licenseNumber')?.errors">
+                            <rp-general-form-error-display [form]="updateDriverForm" key="licenseNumber"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <!--        cellphoneNumber -->
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="cellphoneNumber">{{ 'driver.cell' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="cellphoneNumber" id="cellphoneNumber" />
+                        <nz-form-explain
+                            *ngIf="updateDriverForm.get('cellphoneNumber')?.dirty && updateDriverForm.get('cellphoneNumber')?.errors"
+                        >
+                            <rp-general-form-error-display [form]="updateDriverForm" key="cellphoneNumber"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <!--        email -->
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="email">{{ 'driver.email' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="email" id="email" />
+                        <nz-form-explain *ngIf="updateDriverForm.get('email')?.dirty && updateDriverForm.get('email')?.errors">
+                            <rp-general-form-error-display [form]="updateDriverForm" key="email"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+
+        <nz-divider></nz-divider>
+        <rp-street-address-autocomplete [initialAddress]="state?.driver?.physicalLocation"></rp-street-address-autocomplete>
+        <nz-divider></nz-divider>
+
+        <nz-row nzGutter="24" formGroupName="postalLocation">
+            <nz-col nzSpan="24">
+                <h3 class="rp-primary-color">{{ 'driver.postal_location' | i18next }}</h3>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="postOfficeBox">{{ 'driver.post_office_box' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="postOfficeBox" id="postOfficeBox" />
+                        <nz-form-explain
+                            *ngIf="
+                            updateDriverForm.get('postalLocation.postOfficeBox')?.dirty &&
+                            updateDriverForm.get('postalLocation.postOfficeBox')?.errors
+                        "
+                        >
+                            <rp-general-form-error-display
+                                [form]="updateDriverForm.controls['postalLocation']"
+                                key="postOfficeBox"
+                            ></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="city">{{ 'driver.city' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="city" id="city" />
+                        <nz-form-explain
+                            *ngIf="updateDriverForm.get('postalLocation.city')?.dirty && updateDriverForm.get('postalLocation.city')?.errors"
+                        >
+                            <rp-general-form-error-display
+                                [form]="updateDriverForm.controls['postalLocation']"
+                                key="city"
+                            ></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="country">{{ 'driver.country' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="country" id="country" />
+                        <nz-form-explain *ngIf="updateDriverForm.get('country')?.dirty && updateDriverForm.get('country')?.errors">
+                            <rp-general-form-error-display
+                                [form]="updateDriverForm.controls['postalLocation']"
+                                key="country"
+                            ></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="code">{{ 'driver.postal_code' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="code" id="code" />
+                        <nz-form-explain
+                            *ngIf="updateDriverForm.get('postalLocation.code')?.dirty && updateDriverForm.get('postalLocation.code')?.errors"
+                        >
+                            <rp-general-form-error-display
+                                [form]="updateDriverForm.controls['postalLocation']"
+                                key="code"
+                            ></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+
+        <nz-divider></nz-divider>
+
+        <nz-form-item>
+            <nz-form-control>
+                <button nz-button nzType="primary" [disabled]="!isValid()" nzSize="large" [nzLoading]="state.updating">
+                    <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                    {{ 'driver.update' | i18next }}
+                </button>
+            </nz-form-control>
+
+            <rp-general-form-errors-display [form]="updateDriverForm"></rp-general-form-errors-display>
+        </nz-form-item>
+    </form>
+
+
+    <nz-alert
+        nzType="error"
+        *ngIf="!!state.error"
+        [nzMessage]="state.error.message"
+        [nzDescription]="state.error.description"
+        nzShowIcon
+    ></nz-alert>
+</div>
+
+
+

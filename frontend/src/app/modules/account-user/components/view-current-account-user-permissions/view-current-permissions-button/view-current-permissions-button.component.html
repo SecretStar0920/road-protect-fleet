@@ -1,0 +1,16 @@
+<button nz-button nzType="primary" (click)="toggleViewPermissions()" class="normal currentPermissions">
+    <i nz-icon nzType="security-scan" nzTheme="outline"></i> {{ 'view-current-account-user-permissions.button' | i18next }}
+</button>
+
+<nz-modal
+    [(nzVisible)]="viewPermissions"
+    [nzTitle]="null"
+    (nzOnOk)="toggleViewPermissions()"
+    [nzClosable]="true"
+    [nzOkText]="'view-current-account-user-permissions.ok' | i18next"
+    [nzCancelText]="null"
+    (nzOnCancel)="toggleViewPermissions()"
+    [nzWidth]="'50vw'"
+>
+    <rp-view-current-account-user-permissions></rp-view-current-account-user-permissions>
+</nz-modal>

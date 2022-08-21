@@ -1,0 +1,239 @@
+<div class="custom-filters" *ngIf="useCustomFilters">
+    <nz-radio-group [(ngModel)]="customFilter">
+       <!--
+        <label nz-radio nzValue="withBRN"
+            ><i nz-icon nzType="user-delete" nzTheme="outline"></i>
+            {{ 'view-infringements-advanced.withBRN' | i18next }}
+        </label>
+        <label nz-radio nzValue="noBRN">
+            <i nz-icon nzType="user" nzTheme="outline"></i> {{ 'view-infringements-advanced.withoutBRN' | i18next }}
+        </label>
+    -->
+        <label nz-radio nzValue="ownerInfringements">
+            <i nz-icon nzType="user" nzTheme="outline"></i> {{ 'view-infringements-advanced.owner_infringements' | i18next }}
+        </label>
+        <label nz-radio nzValue="vehicleUserWithoutBrn">
+            <i nz-icon nzType="car" nzTheme="outline"></i> {{ 'view-infringements-advanced.vehicle_user' | i18next }}
+        </label>
+        <label nz-radio nzValue="vehicleOwnerWithoutBrn">
+            <i nz-icon nzType="car" nzTheme="outline"></i> {{ 'view-infringements-advanced.vehicle_owner' | i18next }}
+        </label>
+        <label nz-radio nzValue="onVehicles">
+            <i nz-icon nzType="car" nzTheme="outline"></i> {{ 'view-infringements-advanced.all' | i18next }}
+        </label>
+        <label nz-radio nzValue="noLeaseDocument">
+            <i nz-icon nzType="user" nzTheme="outline"></i> {{ 'view-infringements-advanced.no_lease_document' | i18next }}
+        </label>
+        <label nz-radio nzValue="noOwner">
+            <i nz-icon nzType="owner" nzTheme="outline"></i> {{ 'view-infringements-advanced.no_owner_defined' | i18next }}
+        </label>
+    </nz-radio-group>
+</div>
+<nz-divider></nz-divider>
+
+<rp-advanced-filter-table>
+    <nz-row nzGutter="24" nzJustify="start">
+        <nz-col>
+            <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateInfringement()">
+                <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'view-infringement-advanced.create' | i18next }}
+            </button>
+            <button nz-button [nzType]="'default'" [routerLink]="['/home', 'infringements', 'upload']">
+                <i nz-icon nzType="upload" nzTheme="outline"></i>
+                {{ 'view-infringement-advanced.import' | i18next }}
+            </button>
+        </nz-col>
+        <nz-col *ngIf="showBatchActions">
+            <ng-content select=".batch-actions"></ng-content>
+        </nz-col>
+    </nz-row>
+</rp-advanced-filter-table>
+
+<ng-template #offenceDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.offenceDate" [short]="true"></rp-general-time-display>
+</ng-template>
+
+<ng-template #reason let-data>
+    <span nz-text [nzEllipsis]="true" style="max-width: 100px">
+        <a nz-popover nzPopoverTrigger="click" [nzPopoverContent]="reasonPopover">{{ data.reason }}</a>
+    </span>
+    <ng-template #reasonPopover>
+        <span>{{ data.reason }}</span>
+    </ng-template>
+</ng-template>
+
+<ng-template #notes let-data>
+    <span nz-text [nzEllipsis]="true" style="max-width: 250px">
+        <a nz-popover nzPopoverTrigger="click" [nzPopoverContent]="notePopover">{{ getMostRecentNote(data.notes) }}</a>
+    </span>
+    <ng-template #notePopover>
+        <span>{{ getMostRecentNote(data.notes) }}</span>
+    </ng-template>
+</ng-template>
+
+<ng-template #tags let-data>
+    <rp-infringement-tags [tags]="data.tags"></rp-infringement-tags>
+</ng-template>
+
+<ng-template #approvedDate let-data>
+    <rp-general-time-display *ngIf="data.approvedDate" [time]="data.approvedDate"></rp-general-time-display>
+</ng-template>
+
+<ng-template #paidDate let-data>
+    <rp-general-time-display *ngIf="data.nomination?.paidDate" [time]="data.nomination.paidDate"></rp-general-time-display>
+</ng-template>
+
+<ng-template #uploadDate let-data>
+    <rp-general-time-display *ngIf="data.createdAt" [time]="data.createdAt"></rp-general-time-display>
+</ng-template>
+
+<ng-template #externalChangeDate let-data>
+    <rp-general-time-display *ngIf="data.externalChangeDate" [time]="data.externalChangeDate"></rp-general-time-display>
+</ng-template>
+
+<ng-template #latestPaymentDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.latestPaymentDate" [short]="true"></rp-general-time-display>
+</ng-template>
+
+<ng-template #redirectedDate let-data>
+    <rp-general-time-display *ngIf="data.nomination?.redirectedDate" [time]="data.nomination.redirectedDate"></rp-general-time-display>
+</ng-template>
+
+<ng-template #redirectionLetterSendDate let-data>
+    <rp-general-time-display
+        *ngIf="data.nomination?.redirectionLetterSendDate"
+        [time]="data.nomination.redirectionLetterSendDate"
+    ></rp-general-time-display>
+</ng-template>
+<ng-template #issuer let-data>
+    <rp-issuer-tag [issuer]="data.issuer"></rp-issuer-tag>
+</ng-template>
+
+<ng-template #vehicle let-data>
+    <rp-vehicle-tag [vehicle]="data.vehicle"></rp-vehicle-tag>
+</ng-template>
+
+<ng-template #amountDue let-data> <rp-general-currency-display [value]="data.amountDue"></rp-general-currency-display> </ng-template>
+
+<ng-template #originalAmount let-data>
+    <rp-general-currency-display [value]="data.originalAmount"></rp-general-currency-display>
+</ng-template>
+
+<ng-template #penaltyAmount let-data>
+    <rp-general-currency-display [value]="data.penaltyAmount"></rp-general-currency-display>
+</ng-template>
+
+<ng-template #totalAmount let-data>
+    <rp-general-currency-display [value]="data.totalAmount"></rp-general-currency-display>
+</ng-template>
+
+<ng-template #totalPayments let-data>
+    <rp-general-currency-display [value]="data.totalPayments"></rp-general-currency-display>
+</ng-template>
+
+<ng-template #status let-data>
+    <span nz-text [nzEllipsis]="true" style="max-width: 100px">
+        <rp-infringement-status-tag *ngIf="data" [status]="data.status"></rp-infringement-status-tag>
+    </span>
+</ng-template>
+
+<ng-template #lastStatusChangeDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.lastStatusChangeDate"></rp-general-time-display>
+</ng-template>
+
+<ng-template #systemStatus let-data>
+    <rp-infringement-system-status-tag *ngIf="data" [status]="data.systemStatus"></rp-infringement-system-status-tag>
+</ng-template>
+
+<ng-template #nominationStatus let-data>
+    <span nz-text [nzEllipsis]="true" style="max-width: 100px">
+        <rp-nomination-status-tag [status]="data.nomination?.status"></rp-nomination-status-tag>
+    </span>
+</ng-template>
+
+<ng-template #redirectionError let-data>
+    <span nz-text [nzEllipsis]="true" style="max-width: 100px">
+        {{ data.nomination?.redirectionError }}
+    </span>
+</ng-template>
+
+<ng-template #mergedDocumentUpdatedDate let-data>
+    <rp-general-time-display
+        *ngIf="data.nomination?.mergedDocumentUpdatedDate"
+        [time]="data.nomination?.mergedDocumentUpdatedDate"
+    ></rp-general-time-display>
+</ng-template>
+
+<ng-template #lastNominationStatusChangeDate let-data>
+    <rp-general-time-display *ngIf="data" [time]="data.nomination?.lastStatusChangeDate"></rp-general-time-display>
+</ng-template>
+<ng-template #nominationAccount let-data>
+    <ng-container *ngIf="data.nomination?.account">
+        <rp-account-tag [account]="data.nomination?.account"></rp-account-tag>
+    </ng-container>
+    <span *ngIf="!data.nomination?.account && data.nomination?.rawRedirectionIdentifier" nz-text nzType="warning">{{
+        data.nomination?.rawRedirectionIdentifier
+    }}</span>
+    <span *ngIf="!data.nomination?.account && !data.nomination?.rawRedirectionIdentifier" nz-text nzType="warning">{{
+        'view-infringement-advanced.missing' | i18next
+    }}</span>
+</ng-template>
+
+<ng-template #userAccount let-data>
+    <ng-container *ngIf="data.contract?.user; else missing">
+        <rp-account-tag [account]="data.contract?.user"></rp-account-tag>
+    </ng-container>
+    <ng-template #missing> -- </ng-template>
+</ng-template>
+
+<ng-template #ownerAccount let-data>
+    <ng-container *ngIf="data.contract?.owner; else missing">
+        <rp-account-tag [account]="data.contract?.owner"></rp-account-tag>
+    </ng-container>
+    <ng-template #missing> -- </ng-template>
+</ng-template>
+
+<ng-template #contractDocumentCreationDate let-data>
+    <rp-general-time-display
+        *ngIf="data.contract?.document?.createdAt"
+        [time]="data.contract?.document?.createdAt"
+    ></rp-general-time-display>
+</ng-template>
+
+<ng-template let-data #contractDocument>
+    {{ data.contract?.document ? ('view-infringements-advanced.yes' | i18next) : ('view-infringements-advanced.no' | i18next) }}
+</ng-template>
+
+<ng-template let-data #creationMethod>
+    {{ 'view-infringements-advanced.creationMethod.' + data.creationMethod | i18next }}
+</ng-template>
+
+<ng-template let-data #action>
+    <button nz-button nzSize="small" nzType="primary" *ngIf="data" (click)="onViewInfringement(data.infringementId)">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    <button nz-button nzType="primary" nzSize="small" (click)="onEditInfringement(data)">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+    </button>
+    <rp-check-redirection-details *ngIf="data" [infringementId]="data.infringementId"></rp-check-redirection-details>
+</ng-template>
+
+<ng-template let-data #delete>
+    <rp-delete-infringement *ngIf="data" [infringementId]="data.infringementId"></rp-delete-infringement>
+</ng-template>
+
+<ng-template let-data #location>
+    <rp-view-short-location [location]="data.location" [reason]="data.reason"></rp-view-short-location>
+</ng-template>
+
+<ng-template let-data #brnAccount>
+    <rp-account-tag *ngIf="data.brnAccount" [account]="data.brnAccount"></rp-account-tag>
+    <ng-container *ngIf="!data.brnAccount"> -- </ng-container>
+</ng-template>
+
+<ng-template let-data #ocrStatus>
+    <ng-container *ngIf="data.contract; else missing">
+        <rp-contract-ocr-status-tag [contract]="data.contract"></rp-contract-ocr-status-tag>
+    </ng-container>
+    <ng-template #missing> -- </ng-template>
+</ng-template>
+<!--<nz-divider></nz-divider>-->

@@ -1,0 +1,5 @@
+<rp-general-page [title]="'view-vehicle-page.title' | i18next" [icon]="'car'">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-vehicle [vehicleId]="vehicleId" (delete)="onDelete()"></rp-view-vehicle>
+    </div>
+</rp-general-page>

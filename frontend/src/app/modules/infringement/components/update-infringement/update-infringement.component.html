@@ -1,0 +1,307 @@
+<form nz-form [formGroup]="updateInfringementForm" nzLayout="vertical" (ngSubmit)="onUpdateInfringement()">
+    <nz-row nzGutter="24">
+        <h3 class="rp-primary-color">{{ 'update-infringement.general_details' | i18next }}</h3>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="noticeNumber">{{ 'infringement.notice_number' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="noticeNumber" id="noticeNumber" />
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('noticeNumber')?.dirty && updateInfringementForm.get('noticeNumber')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="noticeNumber"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzFor="reason">{{ 'infringement.reason' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <textarea nz-input formControlName="reason" id="reason"></textarea>
+                    <nz-form-explain *ngIf="updateInfringementForm.get('reason')?.dirty && updateInfringementForm.get('reason')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="reason"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzFor="reasonCode">{{ 'infringement.reason_code' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="reasonCode" id="reasonCode" />
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('reasonCode')?.dirty && updateInfringementForm.get('reasonCode')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="reasonCode"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzFor="type">Type</nz-form-label>
+                <nz-form-control>
+                    <rp-infringement-type-dropdown formControlName="type"></rp-infringement-type-dropdown>
+                    <nz-form-explain *ngIf="updateInfringementForm.get('type')?.dirty && updateInfringementForm.get('type')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="type"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+    <div nz-row nzGutter="24">
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="vehicle">{{ 'infringement.vehicle_registration' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input disabled nz-input formControlName="vehicle" id="vehicle" />
+                    <nz-form-explain *ngIf="updateInfringementForm.get('vehicle')?.dirty && updateInfringementForm.get('vehicle')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="vehicle"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="issuer">{{ 'infringement.issuer' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-issuer-dropdown formControlName="issuer" [disable]="true"></rp-issuer-dropdown>
+                    <nz-form-explain *ngIf="updateInfringementForm.get('issuer')?.dirty && updateInfringementForm.get('issuer')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="issuer"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="issuerStatus">{{ 'infringement.issuer_status' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="issuerStatus" id="issuerStatus" />
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('issuerStatus')?.dirty && updateInfringementForm.get('issuerStatus')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="issuerStatus"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="issuerStatusDescription">{{ 'infringement.issuer_status_description' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="issuerStatusDescription" id="issuerStatusDescription" />
+                    <nz-form-explain
+                        *ngIf="
+                            updateInfringementForm.get('issuerStatusDescription')?.dirty &&
+                            updateInfringementForm.get('issuerStatusDescription')?.errors
+                        "
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateInfringementForm"
+                            key="issuerStatusDescription"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </div>
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="offenceDate">{{ 'infringement.date_of_offence' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <nz-date-picker [nzShowTime]="true" formControlName="offenceDate" id="offenceDate" disabled></nz-date-picker>
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('offenceDate')?.dirty && updateInfringementForm.get('offenceDate')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="offenceDate"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="latestPaymentDate">{{ 'infringement.latest_payment_date' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <nz-date-picker [nzShowTime]="false" formControlName="latestPaymentDate" id="latestPaymentDate"></nz-date-picker>
+                    <nz-form-explain
+                        *ngIf="
+                            updateInfringementForm.get('latestPaymentDate')?.dirty &&
+                            updateInfringementForm.get('latestPaymentDate')?.errors
+                        "
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateInfringementForm"
+                            key="latestPaymentDate"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+    <nz-row>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="amountDue">{{ 'infringement.amount_due' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="amountDue" id="amountDue" />
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('amountDue')?.dirty && updateInfringementForm.get('amountDue')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="amountDue"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzFor="caseNumber">{{ 'infringement.case_number' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="caseNumber" id="caseNumber" />
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('caseNumber')?.dirty && updateInfringementForm.get('caseNumber')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="caseNumber"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzFor="brn">{{ 'infringement.brn' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="brn" id="brn" />
+                    <nz-form-explain *ngIf="updateInfringementForm.get('brn')?.dirty && updateInfringementForm.get('brn')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="brn"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+
+        <nz-col nzSpan="12" *ngIf="tagsAreAvailable">
+            <nz-form-item>
+                <nz-form-label nzFor="tags">{{ 'infringement.tags' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-infringement-tags-dropdown formControlName="tags"></rp-infringement-tags-dropdown>
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('tags')?.dirty && updateInfringementForm.get('tags')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="tags"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <h3 class="rp-primary-color">{{ 'update-infringement.location' | i18next }}</h3>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="streetName">{{ 'infringement.address_line_one_street' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="streetName" id="streetName" />
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('streetName')?.dirty && updateInfringementForm.get('streetName')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="streetName"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="streetNumber">{{ 'infringement.address_line_one_number' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="streetNumber" id="streetNumber" />
+                    <nz-form-explain
+                        *ngIf="updateInfringementForm.get('streetNumber')?.dirty && updateInfringementForm.get('streetNumber')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="streetNumber"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="city">{{ 'infringement.city' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="city" id="city" />
+                    <nz-form-explain *ngIf="updateInfringementForm.get('city')?.dirty && updateInfringementForm.get('city')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="city"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="country">{{ 'infringement.country' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="country" id="country" />
+                    <nz-form-explain *ngIf="updateInfringementForm.get('country')?.dirty && updateInfringementForm.get('country')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="country"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="code">{{ 'infringement.postal_code' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="code" id="code" />
+                    <nz-form-explain *ngIf="updateInfringementForm.get('code')?.dirty && updateInfringementForm.get('code')?.errors">
+                        <rp-general-form-error-display [form]="updateInfringementForm" key="code"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+    <nz-row>
+        <nz-col nzSpan="24">
+            <h3 class="rp-primary-color">{{ 'update-infringement.documentation' | i18next }}</h3>
+
+            <tr *ngFor="let document of infringementDocuments">
+                <rp-view-document [documentId]="document.documentId" [enableCustomDelete]="true" (customDelete)="onDeleteDocument($event)"></rp-view-document>
+            </tr>
+
+            <nz-form-item>
+                <nz-form-label nzFor="documentId">{{ 'infringement.document' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-create-documents-form-control formControlName="documentIds" [maxNumberOfDocuments]="20"></rp-create-documents-form-control>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+    <nz-form-item>
+        <nz-form-control>
+            <button
+                nz-button
+                nzType="primary"
+                [disabled]="!updateInfringementForm.valid"
+                nzSize="large"
+                [nzLoading]="updateInfringementState.isLoading()"
+            >
+                <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                {{ 'update-infringement.update' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="updateInfringementForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateInfringementState?.hasSucceeded()"
+    [nzMessage]="updateInfringementState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateInfringementState?.hasFailed()"
+    [nzMessage]="updateInfringementState?.failedResult().message"
+    [nzDescription]="updateInfringementState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

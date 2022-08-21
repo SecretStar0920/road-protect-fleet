@@ -1,0 +1,10 @@
+<rp-general-page [icon]="'pie-chart'" [title]="'admin-reports-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-admin-reports></rp-view-admin-reports>
+    </div>
+    <div class="rp-round-card rp-page-section" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+        <h2>{{ 'admin-reports-page.export' | i18next }}</h2>
+        <nz-divider></nz-divider>
+        <rp-export-all-button></rp-export-all-button>
+    </div>
+</rp-general-page>

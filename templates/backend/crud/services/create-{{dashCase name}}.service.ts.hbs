@@ -1,0 +1,28 @@
+import { Injectable } from '@nestjs/common';
+import { Create{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/controllers/{{dashCase name}}.controller';
+import { Logger } from '@logger';
+import { {{pascalCase name}}, {{constantCase name}}_CONSTRAINTS } from '@entities';
+import { isNil, omitBy } from 'lodash';
+import { databaseExceptionHelper } from '@modules/shared/helpers/database-exception-catcher.helper';
+import { Transactional } from 'typeorm-transactional-cls-hooked';
+
+@Injectable()
+export class Create{{pascalCase name}}Service {
+    constructor(private logger: Logger) {}
+
+    @Transactional()
+    async create{{pascalCase name}}(dto: Create{{pascalCase name}}Dto): Promise<{{pascalCase name}}> {
+        this.logger.debug({ message: 'Creating {{pascalCase name}}', detail: dto, fn: this.create{{pascalCase name}}.name });
+        const data = omitBy(dto, isNil);
+        data.dump = dto;
+        let {{camelCase name}};
+
+        try {
+            {{camelCase name}} = await {{pascalCase name}}.create(data).save();
+        } catch (e) {
+            databaseExceptionHelper(e, {{constantCase name}}_CONSTRAINTS, 'Failed to create {{camelCase name}}, please contact the developers.');
+        }
+        this.logger.debug({ message: 'Created {{pascalCase name}}', detail: {{camelCase name}}, fn: this.create{{pascalCase name}}.name });
+        return {{camelCase name}};
+    }
+}

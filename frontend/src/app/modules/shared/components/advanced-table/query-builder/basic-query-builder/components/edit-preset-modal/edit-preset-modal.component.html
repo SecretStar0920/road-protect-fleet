@@ -1,0 +1,51 @@
+<ng-container>
+    <nz-row *ngIf="!preset">
+        <p>{{ 'edit-presets.description' | i18next }}</p>
+    </nz-row>
+    <form nz-form [formGroup]="editPresetsForm" nzLayout="vertical" (ngSubmit)="onSavePresets()">
+        <nz-form-item>
+            <nz-form-label nzRequired nzFor="name">{{ 'edit-presets.name' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="name" id="name" />
+                <nz-form-explain *ngIf="editPresetsForm.get('name')?.dirty && editPresetsForm.get('name')?.errors">
+                    <ng-container
+                        *ngIf="editPresetsForm.get('name')?.dirty && editPresetsForm.get('name')?.errors?.maxlength; else otherErrorMessage"
+                    >
+                        <span nz-text nzType="secondary">{{ 'edit-presets.name' | i18next }}:</span>
+                        <span>{{ 'edit-presets.max_length_exceeded' | i18next }}</span>
+                    </ng-container>
+                    <ng-template #otherErrorMessage>
+                        <rp-general-form-error-display key="name" [form]="editPresetsForm"> </rp-general-form-error-display>
+                    </ng-template>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control>
+                <label nz-checkbox formControlName="default" id="default">
+                    {{ 'edit-presets.default' | i18next }}
+                </label>
+                <nz-form-explain *ngIf="editPresetsForm.get('default')?.dirty && editPresetsForm.get('default')?.errors">
+                    <rp-general-form-error-display key="default" [form]="editPresetsForm"> </rp-general-form-error-display>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+    <nz-row>
+        <button nz-button nzType="default" (click)="onCancel()" class="normal rp-space">
+            <i nz-icon nzType="close" nzTheme="outline"></i>
+            {{ 'edit-presets.cancel' | i18next }}
+        </button>
+        <button
+            nz-button
+            nzType="primary"
+            [disabled]="!editPresetsForm.valid"
+            [nzLoading]="isLoading > 0"
+            class="normal rp-space"
+            (click)="onSavePresets()"
+        >
+            <i nz-icon nzType="save" nzTheme="outline"></i>
+            {{ 'edit-presets.save' | i18next }}
+        </button>
+    </nz-row>
+</ng-container>

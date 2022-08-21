@@ -1,0 +1,6 @@
+backend/node_modules
+frontend/node_modules
+frontend/dist
+document-api/node_modules
+document-renderer/node_modules
+crawler-api/node_modules

@@ -1,0 +1,17 @@
+<h3 class="rp-primary-color">{{ 'add-power-of-attorny.title' | i18next }}</h3>
+
+<nz-alert nzType="info" [nzCloseable]="true" [nzMessage]="alertMessage"></nz-alert>
+<ng-template #alertMessage>
+    <p>{{ 'add-power-of-attorny.message' | i18next }}</p>
+</ng-template>
+
+<br />
+<form nz-form [formGroup]="form" nzLayout="vertical">
+    <nz-form-item>
+        <!--        <nz-form-label nzRequired nzFor="documentId">Upload the PDF document</nz-form-label>-->
+        <nz-form-control>
+            <rp-create-document-form-control formControlName="documentId" [mimeTypes]="[allowedTypes.pdf]" (uploaded)="onAddPA()">
+            </rp-create-document-form-control>
+        </nz-form-control>
+    </nz-form-item>
+</form>

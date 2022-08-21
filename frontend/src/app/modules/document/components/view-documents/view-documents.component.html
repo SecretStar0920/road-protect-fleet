@@ -1,0 +1,7 @@
+<rp-general-table [table]="table"></rp-general-table>
+<nz-alert
+    *ngIf="getDocumentsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getDocumentsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

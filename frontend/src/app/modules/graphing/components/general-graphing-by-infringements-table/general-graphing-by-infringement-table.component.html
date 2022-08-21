@@ -1,0 +1,31 @@
+<ng-container *ngIf="selectedParameters">
+    <nz-row>
+        <table class="rp-basic-data-table">
+            <tbody>
+                <tr *ngIf="selectedParameters.infringementStatus">
+                    <td>{{ 'graphing-by.status' | i18next }}</td>
+                    <td>
+                        <rp-infringement-status-tag [status]="selectedParameters.infringementStatus"></rp-infringement-status-tag>
+                    </td>
+                </tr>
+                <tr *ngIf="selectedParameters.startDate">
+                    <td>{{ 'graphing-by.start_date' | i18next }}</td>
+                    <td><rp-general-time-display [short]="true" [time]="selectedParameters.startDate"></rp-general-time-display></td>
+                </tr>
+                <tr *ngIf="selectedParameters.endDate">
+                    <td>{{ 'graphing-by.end_date' | i18next }}</td>
+                    <td><rp-general-time-display [short]="true" [time]="selectedParameters.endDate"></rp-general-time-display></td>
+                </tr>
+                <tr *ngIf="selectedParameters.issuers && selectedParameters.issuers.length > 0">
+                    <td>{{ 'graphing-by.issuers' | i18next }}</td>
+                    <td>{{ selectedParameters.issuers }}</td>
+                </tr>
+                <tr *ngIf="selectedParameters.vehicleRegistration">
+                    <td>{{ 'graphing-by.registration' | i18next }}</td>
+                    <td>{{ selectedParameters.vehicleRegistration }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </nz-row>
+    <rp-view-infringements-advanced [filterVisibility]="filterKeyVisibility"></rp-view-infringements-advanced>
+</ng-container>

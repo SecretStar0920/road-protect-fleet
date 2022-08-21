@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: document-api
+    labels:
+        app: fleet
+        type: document-api
+        env: prod
+spec:
+    ports:
+        - port: 8080
+          name: entry
+          protocol: TCP
+    selector:
+        app: fleet
+        type: document-api
+        env: prod

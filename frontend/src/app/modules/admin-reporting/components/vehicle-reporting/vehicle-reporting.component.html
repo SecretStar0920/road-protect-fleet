@@ -1,0 +1,10 @@
+<h3 class="rp-primary-color"><i nz-icon nzType="car" nzTheme="outline"></i> {{ 'vehicles-reporting.title' | i18next }}</h3>
+
+<rp-general-chart-container>
+    <ngx-charts-number-card
+        [results]="vehicleData"
+        [labelFormatting]="boundFormatDataLabel"
+        cardColor="#FAFAFA"
+        [scheme]="colors"
+    ></ngx-charts-number-card>
+</rp-general-chart-container>

@@ -1,0 +1,107 @@
+@import 'less/variables';
+@import 'less/mixins';
+
+//#name {
+//    color: @color1;
+//}
+
+.document {
+    display: flex;
+    position: relative;
+    flex-grow: 0;
+    min-width: 100px;
+    //max-width: 2*@height;
+    max-width: 400px;
+    //height: @height;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    padding: 10px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+
+    //border: 1px solid #fafafa;
+    border-radius: 2px;
+    background-color: white;
+    cursor: pointer;
+
+    transition: border 100ms linear;
+
+    //.rp-left-colored;
+    border-left: 2px solid @color1;
+    border-top: 2px solid hsv(0, 0, 96%);
+    border-right: 2px solid hsv(0, 0, 96%);
+    border-bottom: 2px solid hsv(0, 0, 96%);
+
+    &:hover {
+        border-left: 2px solid @color1;
+        //border-top: 2px solid @color1;
+        //border-right: 2px solid @color1;
+        //border-bottom: 2px solid @color1;
+        .actions {
+            opacity: 1;
+        }
+    }
+
+    .actions {
+        background-color: white;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+
+        transition: opacity 100ms linear;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        flex-direction: row;
+
+        .download,
+        .delete {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            flex-grow: 1;
+            background-color: white;
+
+            transition: background-color 100ms linear;
+
+            &:hover {
+                background-color: #cacaca;
+            }
+        }
+
+        .download {
+            color: @color1;
+        }
+
+        .delete {
+            color: @error-color;
+            border-left: 1px solid #cacaca;
+        }
+
+        i[nz-icon] {
+            font-size: 20px;
+        }
+    }
+
+    .remove {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+
+    .icon {
+        font-size: 15pt;
+        margin-right: 8px;
+    }
+
+    .name {
+        font-size: 9pt;
+        text-align: center;
+    }
+}

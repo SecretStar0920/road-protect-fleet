@@ -1,0 +1,22 @@
+<form nz-form [formGroup]="create{{pascalCase name}}Form" nzLayout="vertical" (ngSubmit)="onCreate{{pascalCase name}}()">
+    <nz-row nzGutter="24">
+<!--        Create form-->
+    </nz-row>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button
+                nz-button
+                nzType="primary"
+                [disabled]="!create{{pascalCase name}}Form.valid"
+                nzSize="large"
+                [nzLoading]="create{{pascalCase name}}State.isLoading()"
+            >
+                <i nz-icon nzType="save" nzTheme="outline"></i>
+                \{{ '{{camelCase name}}.save' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="create{{pascalCase name}}Form"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>

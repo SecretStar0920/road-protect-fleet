@@ -1,0 +1,36 @@
+<div class="select group">
+    <nz-form-label><strong>Select the integration to test</strong></nz-form-label>
+    <nz-select class="select" [(ngModel)]="selectedIntegration" (ngModelChange)="onIntegrationSelected(selectedIntegration)">
+        <nz-option
+            *ngFor="let integration of availableIntegrations"
+            [nzValue]="integration"
+            [nzLabel]="integration | sentenceCase"
+        ></nz-option>
+    </nz-select>
+</div>
+<div class="integration" *ngIf="selectedIntegration">
+    <h2>
+        <strong>{{ selectedIntegration | sentenceCase }}</strong>
+    </h2>
+    <div class="request">
+        <h2>Request:</h2>
+        <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+            <nz-form-item *ngFor="let control of controls">
+                <nz-form-label nzSpan="4" [nzFor]="control">{{ selectedIntegrationControlLabels[control] }}</nz-form-label>
+                <nz-form-control nzSpan="10">
+                    <input nz-input [formControlName]="control" [id]="control" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control>
+                    <button nz-button nzType="primary" [nzLoading]="loading">Submit</button>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </div>
+    <br />
+    <div *ngIf="response" class="response">
+        <h2>Response:</h2>
+        <pre>{{ response | json }}</pre>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<rp-create-driver (complete)="onComplete($event)"></rp-create-driver>
+<nz-alert
+    nzType="error"
+    *ngIf="createDriverState?.hasFailed()"
+    [nzMessage]="createDriverState?.failedResult().message"
+    [nzDescription]="createDriverState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

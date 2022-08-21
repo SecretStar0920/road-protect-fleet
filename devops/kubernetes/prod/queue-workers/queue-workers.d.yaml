@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: queue-workers
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: queue-workers
+            env: prod
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: queue-workers
+                env: prod
+        spec:
+            priorityClassName: low-priority
+            containers:
+                - image: eu.gcr.io/fleet-260107/backend:stable
+                  name: backend
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 50m
+                      limits:
+                          memory: 4096Mi
+                  ports:
+                      - containerPort: 8080
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      httpGet:
+                          path: api/v1/health
+                          port: 8080
+                      initialDelaySeconds: 60
+                      periodSeconds: 60
+                      timeoutSeconds: 180
+                  readinessProbe:
+                      httpGet:
+                          path: api/v1/health
+                          port: 8080
+                      initialDelaySeconds: 60
+                      periodSeconds: 180
+                  envFrom:
+                      - secretRef:
+                            name: backend
+                  volumeMounts:
+                      - name: storage
+                        mountPath: /app/storage
+                        subPath: storage
+                  env:
+                      - name: DEFAULT_CONCURRENT_JOBS
+                        value: '5'
+                      - name: QUEUE_WORKERS
+                        value: '2'
+                      - name: CRON_ENABLED
+                        value: '0'
+                      - name: QUEUE_ENABLED
+                        value: '1'
+                      - name: CRAWLER_SCHEDULER_ENABLED
+                        value: '0'
+                      - name: QUEUE_NAMES
+                        value: 'DEFAULT,JERUSALEM_SYNC,TELAVIV_SYNC,MILEON_SYNC,POLICE_SYNC,MELGAM_SYNC,SHOHAR_SYNC,ATG_SYNC,INFRINGEMENT_LOG,CITY4U_SYNC'
+            volumes:
+                - name: storage
+                  persistentVolumeClaim:
+                      claimName: backend-storage-pvc

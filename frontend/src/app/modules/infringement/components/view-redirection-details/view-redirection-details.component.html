@@ -1,0 +1,223 @@
+<ng-container [ngTemplateOutlet]="detailsViewComponent"></ng-container>
+
+<ng-template #detailsViewComponent>
+    <div *ngIf="details" class="details">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24" style="text-align: center">
+                <!--                MAIN READINESS CHECK-->
+                <h2>{{ 'infringement-redirection-details.title' | i18next }}</h2>
+                <ng-container *ngIf="details.ready; else notReady">
+                    <nz-result
+                        nzStatus="success"
+                        [nzTitle]="'infringement-redirection-details.ready' | i18next"
+                        [nzSubTitle]="generateSubtitle()"
+                    >
+                    </nz-result>
+                </ng-container>
+                <ng-template #notReady>
+                    <nz-result
+                        nzStatus="warning"
+                        [nzTitle]="'infringement-redirection-details.not_ready' | i18next"
+                        [nzSubTitle]="generateSubtitle()"
+                        [nzExtra]="retry"
+                    ></nz-result>
+                    <ng-template #retry>
+                        <button nz-button (click)="onCheck()">
+                            <i nz-icon nzType="redo" nzTheme="outline"></i>
+                            {{ 'infringement-redirection-details.recheck_details' | i18next }}
+                        </button>
+                    </ng-template>
+                </ng-template>
+            </nz-col>
+
+            <!--            DRIVERS CONTRACT -->
+            <nz-col nzSpan="24" style="text-align: center" *ngIf="details.hasDriverContract">
+                <nz-divider [nzText]="'infringement-redirection-details.drivers_contract' | i18next"></nz-divider>
+                <p>
+                    <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                    <span>{{ 'infringement-redirection-details.has_drivers_contract_warning' | i18next }}</span>
+                </p>
+            </nz-col>
+
+            <!--            POWER OF ATTORNEY -->
+            <nz-col nzSpan="24" style="text-align: center">
+                <nz-divider [nzText]="'infringement-redirection-details.pa' | i18next"></nz-divider>
+                <ng-container *ngIf="details.hasPowerOfAttorneyDocument?.status; else invalidPowerOfAttorney">
+                    <p>
+                        <i nz-icon nzType="check-circle" nzTheme="fill" class="rp-success-color"></i>
+                        <span>{{ 'infringement-redirection-details.pa_success' | i18next }}</span>
+                    </p>
+                </ng-container>
+                <ng-template #invalidPowerOfAttorney>
+                    <p>
+                        <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                        <span>{{ 'infringement-redirection-details.pa_missing' | i18next }}</span>
+                    </p>
+                    <rp-create-generated-document
+                        [documentTemplate]="'Power of Attorney'"
+                        friendlyName="{{ 'municipally-redirect-nomination.pa_friendly_name' | i18next }}"
+                        [target]="'account'"
+                        [accountId]="details.hasPowerOfAttorneyDocument.accountId"
+                        targetId="{{ details.hasPowerOfAttorneyDocument.accountId }}"
+                    ></rp-create-generated-document>
+                </ng-template>
+            </nz-col>
+
+            <!--            LEASE CONTRACT -->
+            <nz-col nzSpan="24" style="text-align: center">
+                <nz-divider [nzText]="'infringement-redirection-details.lease' | i18next"></nz-divider>
+                <ng-container *ngIf="details.hasLeaseDocument?.status; else invalidLeaseContractDocument">
+                    <p>
+                        <i nz-icon nzType="check-circle" nzTheme="fill" class="rp-success-color"></i>
+                        <span>{{ 'infringement-redirection-details.lease_success' | i18next }}</span>
+                    </p>
+                </ng-container>
+                <ng-template #invalidLeaseContractDocument>
+                    <p>
+                        <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                        <span>{{ 'infringement-redirection-details.lease_missing' | i18next }}</span>
+                    </p>
+                    <rp-create-generated-document
+                        [documentTemplate]="'LeaseSubstitute'"
+                        friendlyName="{{ 'municipally-redirect-nomination.lease_document_temp_friendly_name' | i18next }}"
+                        [target]="'contract'"
+                        [accountId]="details.hasPowerOfAttorneyDocument.accountId"
+                        [contractId]="details.hasLeaseDocument.contractId"
+                        targetId="{{ details.hasLeaseDocument.contractId }}"
+                    ></rp-create-generated-document>
+                </ng-template>
+            </nz-col>
+
+            <!--            Signature -->
+            <nz-col nzSpan="24" style="text-align: center">
+                <nz-divider [nzText]="'infringement-redirection-details.signature' | i18next"></nz-divider>
+                <ng-container *ngIf="details.hasSignatureAvailable?.status; else invalidSignature">
+                    <p>
+                        <i nz-icon nzType="check-circle" nzTheme="fill" class="rp-success-color"></i>
+                        <span>{{ 'infringement-redirection-details.signature_success' | i18next }}</span>
+                    </p>
+                    <div>
+                        <p>{{ 'infringement-redirection-details.signature_type_' + details.hasSignatureAvailable.type | i18next }}</p>
+                        <img *ngIf="details.hasSignatureAvailable?.status" [src]="signatureUrl" alt="" width="300px" height="150px" />
+                        <p>
+                            {{ details.hasSignatureAvailable?.details.name }}
+                        </p>
+                    </div>
+                </ng-container>
+                <ng-template #invalidSignature>
+                    <p>
+                        <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                        <span>{{ 'infringement-redirection-details.signature_missing' | i18next }}</span>
+                    </p>
+                </ng-template>
+            </nz-col>
+
+            <!--            Address -->
+            <!--                Validity is only REALLY important for ATG, we only request that they double check it for the email one-->
+            <ng-container *ngIf="details.type === redirectionTypes.ATG">
+                <nz-col nzSpan="24" style="text-align: center">
+                    <nz-divider [nzText]="'infringement-redirection-details.address' | i18next"></nz-divider>
+                    <ng-container *ngIf="details.hasValidRedirectionUserAddress?.status; else invalidUserAddress">
+                        <p>
+                            <i nz-icon nzType="check-circle" nzTheme="fill" class="rp-success-color"></i>
+                            <span>{{ 'infringement-redirection-details.address_success' | i18next }}</span>
+                        </p>
+                        <rp-view-short-location
+                            [truncate]="false"
+                            [location]="details.hasValidRedirectionUserAddress?.details.location"
+                        ></rp-view-short-location>
+                    </ng-container>
+                    <ng-template #invalidUserAddress>
+                        <p>
+                            <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                            <span>{{ 'infringement-redirection-details.address_invalid' | i18next }}</span>
+                        </p>
+                        <p>
+                            <span>{{ details.hasValidRedirectionUserAddress?.details?.message }}</span>
+                        </p>
+                        <rp-view-short-location
+                            [truncate]="false"
+                            *ngIf="details.hasValidRedirectionUserAddress?.details?.location"
+                            [location]="details.hasValidRedirectionUserAddress?.details?.location"
+                        ></rp-view-short-location>
+                    </ng-template>
+                </nz-col>
+
+                <nz-col nzSpan="24" style="text-align: center">
+                    <nz-divider [nzText]="'infringement-redirection-details.address' | i18next"></nz-divider>
+                    <ng-container *ngIf="details.hasValidRedirectionOwnerAddress?.status; else invalidOwnerAddress">
+                        <p>
+                            <i nz-icon nzType="check-circle" nzTheme="fill" class="rp-success-color"></i>
+                            <span>{{ 'infringement-redirection-details.address_success' | i18next }}</span>
+                        </p>
+                        <rp-view-short-location
+                            [truncate]="false"
+                            [location]="details.hasValidRedirectionOwnerAddress?.details.location"
+                        ></rp-view-short-location>
+                    </ng-container>
+                    <ng-template #invalidOwnerAddress>
+                        <p>
+                            <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                            <span>{{ 'infringement-redirection-details.address_invalid' | i18next }}</span>
+                        </p>
+                        <p>
+                            <span>{{ details.hasValidRedirectionOwnerAddress?.details?.message }}</span>
+                        </p>
+                        <rp-view-short-location
+                            [truncate]="false"
+                            *ngIf="details.hasValidRedirectionOwnerAddress?.details?.location"
+                            [location]="details.hasValidRedirectionOwnerAddress?.details?.location"
+                        ></rp-view-short-location>
+                    </ng-template>
+                </nz-col>
+            </ng-container>
+
+            <!--            VALID NOMINATION STATUS  -->
+            <nz-col nzSpan="24" style="text-align: center">
+                <nz-divider [nzText]="'infringement-redirection-details.nomination_status' | i18next"></nz-divider>
+                <ng-container *ngIf="details.hasValidStatus.nominationStatus; else invalidNominationStatus">
+                    <p>
+                        <i nz-icon nzType="check-circle" nzTheme="fill" class="rp-success-color"></i>
+                        <span> {{ 'infringement-redirection-details.nomination_status_success' | i18next }}</span>
+                    </p>
+                </ng-container>
+                <ng-template #invalidNominationStatus>
+                    <p>
+                        <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                        <span>{{ 'infringement-redirection-details.invalid_nomination_status' | i18next }}</span>
+                    </p>
+                    <p>
+                        {{ 'infringement-redirection-details.valid_nominations' | i18next }}
+                        <span
+                            >{{ 'nomination-status.new' | i18next }}, {{ 'nomination-status.Approved for Payment' | i18next }},
+                            {{ 'nomination-status.Redirection Completed' | i18next }}</span
+                        >
+                    </p>
+                </ng-template>
+            </nz-col>
+
+            <!--            VALID INFRINGEMENT STATUS  -->
+            <nz-col nzSpan="24" style="text-align: center">
+                <nz-divider [nzText]="'infringement-redirection-details.infringement_status' | i18next"></nz-divider>
+                <ng-container *ngIf="details.hasValidStatus.infringementStatus; else invalidInfringementStatus">
+                    <p>
+                        <i nz-icon nzType="check-circle" nzTheme="fill" class="rp-success-color"></i>
+                        <span>{{ 'infringement-redirection-details.infringement_status_success' | i18next }}</span>
+                    </p>
+                </ng-container>
+                <ng-template #invalidInfringementStatus>
+                    <p>
+                        <i nz-icon nzType="warning" nzTheme="fill" class="rp-warn-color"></i>
+                        <span>{{ 'infringement-redirection-details.invalid_infringement_status' | i18next }}</span>
+                    </p>
+                    <p>
+                        {{ 'infringement-redirection-details.valid_infringements' | i18next }}
+                        <span *ngFor="let validInfringementStatus of validInfringementStatuses; let isLast = last">
+                            {{ 'infringement-status.' + validInfringementStatus | i18next }}{{ isLast ? '' : ', ' }}
+                        </span>
+                    </p>
+                </ng-template>
+            </nz-col>
+        </nz-row>
+    </div>
+</ng-template>

@@ -1,0 +1,14 @@
+<ng-container *ngIf="infringementNote">
+    <p class="value">{{ infringementNote.value }}</p>
+    <div class="createdBy" *ngIf='infringementNote.createdBy; else noAuthor'>
+        <span nz-text nzType="secondary">{{ infringementNote.createdBy.name }} @ {{ getDate() }}</span>
+    </div>
+    <ng-template #noAuthor>
+        <div class="createdBy" >
+            <span nz-text nzType="secondary">{{ getDate() }}</span>
+        </div>
+    </ng-template>
+    <div class="delete">
+        <button nz-button nzType="danger" nzSize="small" (click)="onDelete()"><i nz-icon nzType="close" nzTheme="outline"></i></button>
+    </div>
+</ng-container>

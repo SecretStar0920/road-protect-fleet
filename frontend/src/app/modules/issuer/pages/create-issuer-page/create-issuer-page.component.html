@@ -1,0 +1,19 @@
+<rp-general-page [title]="'create-issuer-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-issuer (complete)="onComplete($event)"></rp-create-issuer>
+        <nz-alert
+            nzType="success"
+            *ngIf="createIssuerState?.hasSucceeded()"
+            [nzMessage]="createIssuerState?.successResult().message"
+            nzShowIcon
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="createIssuerState?.hasFailed()"
+            [nzMessage]="createIssuerState?.failedResult().message"
+            [nzDescription]="createIssuerState?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </div>
+</rp-general-page>

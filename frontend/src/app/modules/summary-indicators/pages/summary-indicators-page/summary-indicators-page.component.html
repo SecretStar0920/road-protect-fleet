@@ -1,0 +1,18 @@
+<rp-general-page [icon]="'bar-chart'" [title]="'summary-indicators.title' | i18next" [enableBreadcrumb]="false">
+    <div class="rp-round-card rp-page-section">
+        <nz-tabset [nzAnimated]="false" nzNoAnimation>
+            <nz-tab [nzTitle]="'summary-indicators.this_year' | i18next" (nzSelect)="getSummaryIndicators()">
+                <ng-template nz-tab>
+                    <rp-summary-indicators></rp-summary-indicators>
+                </ng-template>
+            </nz-tab>
+            <nz-tab [nzTitle]="'summary-indicators.compare_years' | i18next">
+                <ng-template nz-tab>
+                    <rp-general-year-range-slider (updatedDateRange)="getSummaryIndicators($event)"></rp-general-year-range-slider>
+                    <nz-divider></nz-divider>
+                    <rp-summary-indicators></rp-summary-indicators>
+                </ng-template>
+            </nz-tab>
+        </nz-tabset>
+    </div>
+</rp-general-page>

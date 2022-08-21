@@ -1,0 +1,6 @@
+<a nz-col nz-popconfirm [nzPopconfirmTitle]="'delete-role.confirm' | i18next" [nzIcon]="deleteConfirm" (nzOnConfirm)="onDelete()">
+    <i nz-icon nzType="delete" nzTheme="outline"></i>
+</a>
+<ng-template #deleteConfirm>
+    <i nz-icon nzType="question-circle-o" style="color: #f5222d"></i>
+</ng-template>

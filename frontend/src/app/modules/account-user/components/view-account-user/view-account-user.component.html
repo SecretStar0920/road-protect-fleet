@@ -1,0 +1,52 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <ng-container *ngIf="accountUser">
+        <table class="rp-basic-data-table">
+            <thead>
+                <tr>
+                    <th colspan="2">{{ accountUser.user.email }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ 'account-user.name' | i18next }}</td>
+                    <td>{{ accountUser.user.name }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'account-user.surname' | i18next }}</td>
+                    <td>{{ accountUser.user.surname }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'account-user.roles' | i18next }}</td>
+                    <td>
+                        <div *ngFor="let role of accountUser.roles">
+                            <span
+                                ><i nz-icon nzType="tag" nzTheme="twotone"></i> {{ 'account-user-role.' + role.role.name | i18next }}</span
+                            >
+                            <br />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-account-user [accountUser]="accountUser" (complete)="onUpdateComplete($event)"></rp-update-account-user>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<div nz-row nzAlign="middle" nzJustify="space-between">
+    <button
+        nz-button
+        [nzType]="!isUpdating ? 'primary' : 'default'"
+        nz-col
+        class="rp-space"
+        (click)="onUpdate()"
+        *rpHasPermission="[permissions.EditUsers]"
+    >
+        {{ isUpdating ? ('account-user.cancel' | i18next) : ('account-user.edit' | i18next) }}
+    </button>
+    <rp-delete-account-user [accountUserId]="accountUserId" (delete)="onDelete($event)" nz-col></rp-delete-account-user>
+</div>

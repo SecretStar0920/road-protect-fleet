@@ -1,0 +1,59 @@
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { {{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/{{dashCase name}}.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
+import { ElementStateModel } from '@modules/shared/models/element-state.model';
+import { {{pascalCase name}}, {{pascalCase name}}Type } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import i18next from 'i18next';
+
+@Component({
+    selector: 'rp-create-{{dashCase name}}',
+    templateUrl: './create-{{dashCase name}}.component.html',
+    styleUrls: ['./create-{{dashCase name}}.component.less'],
+})
+export class Create{{pascalCase name}}Component implements OnInit {
+    create{{pascalCase name}}Form: FormGroup;
+    create{{pascalCase name}}State: ElementStateModel<{{pascalCase name}}> = new ElementStateModel();
+    @Output() complete: EventEmitter<ElementStateModel> = new EventEmitter();
+
+    {{camelCase name}}Types = Object.values({{pascalCase name}}Type);
+
+    get f() {
+        return this.create{{pascalCase name}}Form.controls;
+    }
+
+    constructor(private {{camelCase name}}Service: {{pascalCase name}}Service, private fb: FormBuilder, private logger: NGXLogger) {}
+
+    ngOnInit() {
+        this.create{{pascalCase name}}Form = this.fb.group({
+            name: new FormControl(null, Validators.required),
+            code: new FormControl(null, Validators.required),
+            type: new FormControl({{pascalCase name}}Type.Municipal, Validators.required),
+            address: new FormControl(null),
+            email: new FormControl(null, [Validators.email]),
+            fax: new FormControl(null),
+            telephone: new FormControl(null),
+            contactPerson: new FormControl(null),
+            redirectionEmail: new FormControl(null),
+            externalPaymentLink: new FormControl(null),
+            provider: new FormControl(null),
+            authority: new FormControl(null),
+        });
+    }
+
+    onCreate{{pascalCase name}}() {
+        this.create{{pascalCase name}}State.submit();
+        this.{{camelCase name}}Service.create{{pascalCase name}}(this.create{{pascalCase name}}Form.value).subscribe(
+            result => {
+                this.logger.info('Successfully created {{pascalCase name}}', result);
+                this.create{{pascalCase name}}State.onSuccess(i18next.t('create-{{dashCase name}}.success'), result);
+                this.complete.emit(this.create{{pascalCase name}}State);
+            },
+            error => {
+                this.logger.error('Failed to create {{pascalCase name}}', error);
+                this.create{{pascalCase name}}State.onFailure(i18next.t('create-{{dashCase name}}.fail'), error.error);
+                this.complete.emit(this.create{{pascalCase name}}State);
+            },
+        );
+    }
+}

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="flex-chart">
+        <ngx-charts-line-chart
+            [scheme]="colors"
+            [legend]="legend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [legendTitle]="'graphing-by-status.infringement_status' | i18next"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [timeline]="timeline"
+            [results]="lineGraphData"
+            (select)="onSelect($event)"
+            [tooltipDisabled]="tooltipDisabled"
+        ></ngx-charts-line-chart>
+    </div>
+</div>

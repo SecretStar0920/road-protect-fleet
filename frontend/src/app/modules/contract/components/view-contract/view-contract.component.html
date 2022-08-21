@@ -1,0 +1,111 @@
+<div [ngClass]="{ 'contract-card': isCard }" *ngIf="contract">
+    <nz-row nzGutter="24" nzAlign="middle">
+        <nz-col nzSpan="24">
+            <table class="rp-basic-data-table">
+                <tbody>
+                    <tr>
+                        <td>{{ 'view-contract.type' | i18next }}</td>
+                        <td>{{ contract.type }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'view-contract.status' | i18next }}</td>
+                        <td>
+                            <rp-contract-status-tag [contract]="contract"></rp-contract-status-tag>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ 'view-contracts-advanced.vehicle' | i18next }}</td>
+                        <td>
+                            <rp-vehicle-tag *ngIf="contract.vehicle" [vehicle]="contract.vehicle"></rp-vehicle-tag>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <rp-view-lease-contract
+                *ngIf="contract.type === contractTypes.Lease"
+                [leaseContract]="asLeaseContract()"
+            ></rp-view-lease-contract>
+            <rp-view-ownership-contract
+                *ngIf="contract.type === contractTypes.Ownership"
+                [ownershipContract]="asOwnershipContract()"
+            ></rp-view-ownership-contract>
+            <rp-view-driver-contract
+                *ngIf="contract.type === contractTypes.Driver"
+                [driverContract]="asDriverContract()"
+            ></rp-view-driver-contract>
+            <table class="rp-basic-data-table">
+                <tbody>
+                    <tr>
+                        <td>{{ 'view-contract.document' | i18next }}</td>
+                        <td>
+                            <ng-container *ngIf="contract.document; else addDocument">
+                                <rp-view-document
+                                    [document]="contract.document"
+                                    [enableDelete]="true"
+                                    (delete)="onDocumentDelete()"
+                                ></rp-view-document>
+                                <ng-container *ngIf="contract.type === contractTypes.Lease" class="ocr-button">
+                                    <button nz-button nzType="primary" (click)="runOCR()" [nzLoading]="contractOcrState.isLoading()">
+                                        <i nz-icon nzType="tag" nzTheme="outline"></i> {{ 'view-contract.run_ocr' | i18next }}
+                                    </button>
+                                </ng-container>
+                            </ng-container>
+                            <ng-template #addDocument>
+                                <p>
+                                    <span nz-text nzType="warning">{{ 'view-contract.add_document_warning' | i18next }}</span>
+                                    <span>{{ 'view-contract.add_document_warning_desc' | i18next }}</span>
+                                </p>
+                                <ng-container *ngIf="contract.type === contractTypes.Lease; else ManualCreation">
+                                    <rp-create-generated-document
+                                        [documentTemplate]="'LeaseSubstitute'"
+                                        [friendlyName]="'contract.lease_contract' | i18next"
+                                        [target]="'contract'"
+                                        [targetId]="contractId"
+                                        [contractId]="contractId"
+                                        [orUpload]="true"
+                                    ></rp-create-generated-document>
+                                </ng-container>
+                                <ng-template #ManualCreation>
+                                    <button
+                                        nz-button
+                                        nzType="primary"
+                                        nz-popover
+                                        nzPopoverPlacement="right"
+                                        [nzPopoverContent]="addPdf"
+                                        nzPopoverTrigger="click"
+                                    >
+                                        <i nz-icon nzType="plus" nzTheme="outline"></i> {{ 'view-contract.add_document' | i18next }}
+                                    </button>
+                                    <ng-template #addPdf>
+                                        <div style="min-width: 600px">
+                                            <rp-add-contract-document
+                                                [contract]="contract"
+                                                (refresh)="getContract()"
+                                            ></rp-add-contract-document>
+                                        </div>
+                                    </ng-template>
+                                </ng-template>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button nz-button [nzType]="'primary'" nz-col class="rp-space" (click)="onUpdateContract()">
+                {{ 'view-contract.change_contract_dates' | i18next }}
+            </button>
+            <div style="display: flex; justify-content: flex-end">
+                <rp-delete-contract [contractId]="contractId" (delete)="onDelete($event)" style="margin-left: 15px"></rp-delete-contract>
+            </div>
+        </nz-col>
+    </nz-row>
+</div>
+
+<nz-modal
+    [(nzVisible)]="updateContractDatesVisible"
+    nzTitle="{{ 'view-contract.edit_contract' | i18next }}"
+    [nzFooter]="null"
+    (nzOnCancel)="updateContractDatesVisible = false"
+    [nzClosable]="true"
+>
+    <rp-update-contract-dates [contract]="contract" (updated)="onUpdateComplete($event)" *ngIf="contract"></rp-update-contract-dates>
+</nz-modal>

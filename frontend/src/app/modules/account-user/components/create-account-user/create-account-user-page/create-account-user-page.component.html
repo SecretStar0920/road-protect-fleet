@@ -1,0 +1,19 @@
+<rp-general-page [title]="'create-account-user-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-account-user (complete)="onComplete($event)"></rp-create-account-user>
+        <nz-alert
+            nzType="success"
+            *ngIf="createAccountUserState?.hasSucceeded()"
+            [nzMessage]="createAccountUserState?.successResult().message"
+            nzShowIcon
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="createAccountUserState?.hasFailed()"
+            [nzMessage]="createAccountUserState?.failedResult().message"
+            [nzDescription]="createAccountUserState?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </div>
+</rp-general-page>

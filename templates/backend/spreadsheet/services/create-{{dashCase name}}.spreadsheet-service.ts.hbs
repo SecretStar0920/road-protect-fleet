@@ -1,0 +1,130 @@
+import { catchError, mergeMap, tap } from 'rxjs/operators';
+import { Create{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/controllers/create-infringement.dto';
+import { Create{{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/create-{{dashCase name}}.service';
+import { EMPTY, from } from 'rxjs';
+import { chunk, isEmpty, keyBy, merge, remove } from 'lodash';
+import { {{pascalCase name}} } from '@entities/entities';
+import { Injectable } from '@nestjs/common';
+import { Logger } from '@logger/logger.service';
+import { plainToClass } from 'class-transformer';
+import { SpreadsheetService } from '@modules/shared/services/spreadsheet-service';
+import { SpreadsheetUploadDto } from '@modules/shared/dtos/spreadsheet-upload.dto';
+import { SpreadsheetUploadCompleteResponse, UploadSpreadsheetResult } from '@modules/shared/dtos/spreadsheet-upload-response.dto';
+import { validate, ValidationError } from 'class-validator';
+import { CreateDocumentService } from '@modules/document/services/create-document.service';
+import { CreateDataSpreadsheetService } from '@modules/shared/modules/spreadsheet/services/create-data-spreadsheet.service';
+import { validatorExceptionFactoryString } from '@modules/shared/helpers/validator-exception-factory.helper';
+import { Namespace } from 'socket.io';
+
+@Injectable()
+export class Create{{pascalCase name}}SpreadsheetService extends SpreadsheetService<Create{{pascalCase name}}Dto> {
+    constructor(
+        protected logger: Logger,
+        private create{{pascalCase name}}Service: Create{{pascalCase name}}Service,
+        protected createDataSpreadsheetService: CreateDataSpreadsheetService,
+        protected createDocumentService: CreateDocumentService,
+    ) {
+        super(createDataSpreadsheetService, createDocumentService);
+    }
+
+    async getSpreadsheetData(dto: SpreadsheetUploadDto): Promise<any[]> {
+        return dto.toJSONArray();
+    }
+
+    async checkValidity(spreadsheetData: any[], timezone?: string): Promise<UploadSpreadsheetResult<Create{{pascalCase name}}Dto>> {
+        const results: UploadSpreadsheetResult<Create{{pascalCase name}}Dto> = new UploadSpreadsheetResult<Create{{pascalCase name}}Dto>();
+        await this.checkDtoValid(spreadsheetData, results, timezone);
+        await this.checkDatabaseValid(results);
+        return results;
+    }
+
+    async checkDtoValid(data: any[], results: UploadSpreadsheetResult<Create{{pascalCase name}}Dto>, timezone?: string): Promise<void> {
+        this.logger.debug('Checking Dto valid', undefined, this.checkDtoValid.name);
+        // Check row by row
+        for (const row of data) {
+            const item = plainToClass(Create{{pascalCase name}}Dto, { ...row, timezone });
+
+            const errors: ValidationError[] = await validate(item);
+            if (!isEmpty(errors)) {
+                results.invalid.push(merge(item, { error: validatorExceptionFactoryString(errors) })); // Store invalid
+            } else {
+                results.valid.push(item); // Store valid
+            }
+        }
+        this.logger.debug('Dto validity counts: ', results.counts, this.verify.name);
+    }
+
+    async checkDatabaseValid(results: UploadSpreadsheetResult<Create{{pascalCase name}}Dto>): Promise<void> {
+        // Check database valid
+        this.logger.debug('Checking database valid', undefined, this.checkDatabaseValid.name);
+        // Only check if there are valid results so far
+        if (!isEmpty(results.valid)) {
+            // TODO find on DB via unique
+
+            // TODO for each not unique we need to remove it from the valid array and move it to the invalid array
+        }
+        this.logger.debug('Database validity counts: ', results.counts, this.verify.name);
+    }
+
+    async verify(dto: SpreadsheetUploadDto): Promise<SpreadsheetUploadCompleteResponse> {
+        const spreadsheetData = await this.getSpreadsheetData(dto);
+
+        this.logger.debug('Verifying', spreadsheetData.length, this.verify.name);
+
+        const results = await this.checkValidity(spreadsheetData);
+
+        return SpreadsheetUploadCompleteResponse.fromResults(results, await this.generateValidDocument(results.valid), await this.generateInvalidDocument(results.invalid));
+    }
+
+    async upload(dto: SpreadsheetUploadDto, socket: Namespace, timezone?: string) {
+        // Use verification function so we only try create valid items
+        const spreadsheetData = await this.getSpreadsheetData(dto);
+        const verifyResults = await this.checkValidity(spreadsheetData, timezone);
+        const results: UploadSpreadsheetResult<Create{{pascalCase name}}Dto> = new UploadSpreadsheetResult<Create{{pascalCase name}}Dto>();
+
+        this.logger.log('Uploading valid {{sentenceCase name}}s', verifyResults.valid.length, this.upload.name);
+
+        this.startNotify({ socket });
+        const total = verifyResults.valid.length;
+        /**
+         * Using a mixture of observables and promises to achieve
+         * concurrent creates
+         */
+        const jobs = from(verifyResults.valid).pipe(
+            // For each valid result attempt to concurrently perform an action
+            mergeMap(item => {
+                return from(this.create{{pascalCase name}}Service.create(item)).pipe(
+                    // If the job fails push to invalid results
+                    catchError(e => {
+                        this.logger.warn('Failed to upload {{sentenceCase name}}', e, this.upload.name);
+                        results.invalid.push(this.createErrorItem(item, e));
+                        this.progressNotify({ socket, counts: { ...results.counts, total } });
+
+                        return EMPTY;
+                    }),
+                    // If no errors, push to valid results
+                    tap(saved{{pascalCase name}} => {
+                        results.valid.push(item);
+                        this.progressNotify({ socket, counts: { ...results.counts, total } });
+                    }),
+                );
+                // Concurrency
+            }, 1),
+        );
+
+        await jobs.toPromise();
+
+        this.logger.log('Uploaded {{sentenceCase name}}s', results.valid.length, this.upload.name);
+        const finalResult = SpreadsheetUploadCompleteResponse.fromResults(results, await this.generateValidDocument(results.valid), await this.generateInvalidDocument(results.invalid));
+
+        this.endNotify({ socket, result: finalResult });
+    }
+
+    async generateValidDocument(data: any): Promise<number> {
+        return super.generateValidDocument(data, 'valid-{{dashCase name}}s', '{{dashCase name}}-uploads');
+    }
+
+    async generateInvalidDocument(data: any): Promise<number> {
+        return super.generateInvalidDocument(data, 'invalid-{{dashCase name}}s', '{{dashCase name}}-uploads');
+    }
+}

@@ -1,0 +1,114 @@
+<!-- Single Year-->
+<ng-container *ngIf="!isComparingDates; else yearComparison">
+    <ng-container *ngIf="singleGraphingData?.length > 0 || singleCountData; else noResult">
+        <nz-row>
+            <nz-col nzSpan="4">
+                <h2 class="rp-primary-color">
+                    <button nz-button nzSize="small" nzType="primary" (click)="onViewInfringements()" class="rp-space">
+                        <i nz-icon nzType="eye" nzTheme="outline"></i>
+                    </button>
+                    {{ 'summary-indicators.infringement_count' | i18next }}
+                </h2>
+                <p>{{ 'summary-indicators.infringement_count_description' | i18next }}</p>
+                <rp-graphing [graphingType]="graphingNumberCards" [dataPoints]="singleCountData" [translateLabels]="true"></rp-graphing>
+            </nz-col>
+            <nz-col nzSpan="18" class="infringement-cost">
+                <h2 class="rp-primary-color">
+                    <button nz-button nzSize="small" nzType="primary" (click)="onViewInfringements()" class="rp-space">
+                        <i nz-icon nzType="eye" nzTheme="outline"></i>
+                    </button>
+                    {{ 'summary-indicators.infringement_cost' | i18next }}
+                </h2>
+                <p>{{ 'summary-indicators.infringement_cost_description' | i18next }}</p>
+                <ng-container *ngIf="errorsFromCalculation">
+                    <p *ngFor="let errorItem of errorsFromCalculation">
+                        <nz-alert
+                            nzType="warning"
+                            nzMessage=" {{ errorItem | i18next }}{{ 'summary-indicators.encountered_error' | i18next }}"
+                        ></nz-alert>
+                    </p>
+                </ng-container>
+                <rp-graphing
+                    [graphingType]="singleGraphing"
+                    [dataPoints]="singleGraphingData"
+                    [showXAxis]="false"
+                    [showLegend]="false"
+                    [translateYAxis]="true"
+                    [customTooltipTemplate]="singleGraphTooltips"
+                ></rp-graphing>
+            </nz-col>
+        </nz-row>
+    </ng-container>
+</ng-container>
+<!-- Year Comparison -->
+<ng-template #yearComparison>
+    <ng-container *ngIf="comparisonGraphingData?.length > 0 || comparisonCountData; else noResult">
+        <nz-row>
+            <nz-col nzSpan="4">
+                <h2 class="rp-primary-color">
+                    <button nz-button nzSize="small" nzType="primary" (click)="onViewInfringements()" class="rp-space">
+                        <i nz-icon nzType="eye" nzTheme="outline"></i>
+                    </button>
+                    {{ 'summary-indicators.infringement_count' | i18next }}
+                </h2>
+                <p>{{ 'summary-indicators.infringement_count_description' | i18next }}</p>
+                <rp-graphing
+                    [graphingType]="graphingNumberCards"
+                    [dataPoints]="comparisonCountData"
+                    [translateLabels]="false"
+                ></rp-graphing>
+            </nz-col>
+            <ng-container *ngIf="comparisonGraphingData?.length > 0">
+                <nz-col nzSpan="18" class="infringement-cost">
+                    <h2 class="rp-primary-color">
+                        <button nz-button nzSize="small" nzType="primary" (click)="onViewInfringements()" class="rp-space">
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </button>
+                        {{ 'summary-indicators.infringement_cost' | i18next }}
+                    </h2>
+                    <p>{{ 'summary-indicators.infringement_cost_description' | i18next }}</p>
+                    <ng-container *ngIf="errorsFromCompareYearsCalculation">
+                        <p *ngFor="let errorItem of errorsFromCompareYearsCalculation">
+                            <nz-alert
+                                nzType="warning"
+                                nzMessage=" {{ errorItem | i18next }}{{ 'summary-indicators.encountered_error' | i18next }}"
+                            ></nz-alert>
+                        </p>
+                    </ng-container>
+                    <rp-graphing
+                        [graphingType]="comparisonGraphing"
+                        [dataSeries]="comparisonGraphingData"
+                        [customTooltipTemplate]="multiGraphTooltips"
+                    ></rp-graphing>
+                </nz-col>
+            </ng-container>
+        </nz-row>
+    </ng-container>
+</ng-template>
+
+<ng-template #singleGraphTooltips let-data>
+    <ng-row>
+        <strong> {{ data.name | i18next }} </strong>
+    </ng-row>
+    <nz-row>
+        <rp-general-currency-display [value]="data.value"></rp-general-currency-display>
+    </nz-row>
+</ng-template>
+
+<ng-template #multiGraphTooltips let-data>
+    <ng-container *ngIf="data.series">
+        <ng-row>
+            <strong> {{ data.series | i18next }} </strong>
+        </ng-row>
+    </ng-container>
+    <ng-row>
+        <i> {{ data.name }} </i>
+    </ng-row>
+    <nz-row>
+        <rp-general-currency-display [value]="data.value"></rp-general-currency-display>
+    </nz-row>
+</ng-template>
+
+<ng-template #noResult>
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-template>

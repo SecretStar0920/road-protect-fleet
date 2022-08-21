@@ -1,0 +1,31 @@
+<ng-container *ngIf="availableAccounts?.length > 1">
+    <button
+        nz-button
+        nzType="primary"
+        nz-popover
+        [(nzVisible)]="changeAccountVisible"
+        nzPopoverTrigger="click"
+        [nzPopoverContent]="changeAccount"
+        nzPopoverPlacement="bottom"
+        nzSize="small"
+        [nzLoading]="changeAccountState.isLoading()"
+    >
+        <i nz-icon nzType="swap" nzTheme="outline"></i>
+    </button>
+
+    <ng-template #changeAccount>
+        <span nz-text nzType="secondary">{{ 'change-current-account.select_account' | i18next }}</span> <br />
+        <nz-select
+            style="width: 300px"
+            [(ngModel)]="accountId"
+            (ngModelChange)="onChangeAccount($event)"
+            [nzPlaceHolder]="'change-current-account.select_account' | i18next"
+            nzShowSearch
+        >
+            <nz-option *ngFor="let account of availableAccounts" [nzValue]="account.accountId" [nzLabel]="account.name" nzCustomContent>
+                {{ account.name }} <br />
+                <span nz-text nzType="secondary">{{ account.identifier }}</span>
+            </nz-option>
+        </nz-select>
+    </ng-template>
+</ng-container>

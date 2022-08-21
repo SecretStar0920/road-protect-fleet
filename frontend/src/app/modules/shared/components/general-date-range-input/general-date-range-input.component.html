@@ -1,0 +1,55 @@
+<nz-row nzGutter="24" *ngIf="!isCompact; else compact">
+    <nz-col nzSpan="12">
+        <div>{{ 'general-date-range-input.from' | i18next }}</div>
+        <nz-date-picker [(ngModel)]="value.min" (ngModelChange)="writeValue(value)"></nz-date-picker>
+    </nz-col>
+    <nz-col nzSpan="12">
+        <div>{{ 'general-date-range-input.to' | i18next }}</div>
+        <nz-date-picker [(ngModel)]="value.max" (ngModelChange)="writeValue(value)"></nz-date-picker>
+    </nz-col>
+</nz-row>
+
+<ng-template #compact>
+    <nz-input-group nzCompact>
+        <nz-date-picker
+            [(ngModel)]="value.min"
+            (ngModelChange)="writeCompactValue(value)"
+            style="width: 50%"
+            [nzPlaceHolder]="'general-date-range-input.from' | i18next"
+            [nzShowTime]="false"
+        ></nz-date-picker>
+        <nz-date-picker
+            [(ngModel)]="value.max"
+            (ngModelChange)="writeCompactValue(value)"
+            style="width: 50%"
+            [nzPlaceHolder]="'general-date-range-input.to' | i18next"
+            [nzShowTime]="false"
+        ></nz-date-picker>
+    </nz-input-group>
+</ng-template>
+
+<nz-row style="margin-top: 8px" *ngIf="displayModifiers">
+    <nz-col nzSpan="24">
+        <button nz-button class="rp-space" (click)="modify(1, 'year')" *ngIf="displayLastYearModifier">
+            {{ 'general-date-range-input.last_twelve_months' | i18next }}
+        </button>
+        <button nz-button class="rp-space" (click)="modify(1, 'month')" *ngIf="displayLastMonthModifier">
+            {{ 'general-date-range-input.current_month' | i18next }}
+        </button>
+        <button nz-button class="rp-space" (click)="modify(1, 'week')" *ngIf="displayLastWeekModifier">
+            {{ 'general-date-range-input.last_week' | i18next }}
+        </button>
+        <button nz-button class="rp-space" (click)="modifyPeriod(0, 'month')" *ngIf="displayCurrentMonthModifier">
+            {{ 'general-date-range-input.current_month' | i18next }}
+        </button>
+        <button nz-button class="rp-space" (click)="modifyPeriod(0, 'year')" *ngIf="displayCurrentYearModifier">
+            {{ 'general-date-range-input.current_year' | i18next }}
+        </button>
+        <button nz-button class="rp-space" (click)="modifyPeriod(1, 'year')" *ngIf="displayPreviousYearModifier">
+            {{ previousYear }}
+        </button>
+        <button nz-button class="rp-space" (click)="setPeriodToAll()" *ngIf="displayAllModifier">
+            {{ 'general-date-range-input.from_account_activation' | i18next }}
+        </button>
+    </nz-col>
+</nz-row>

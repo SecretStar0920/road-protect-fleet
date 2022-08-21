@@ -1,0 +1,148 @@
+<div id="table">
+    <ng-container *ngIf="table.options.enableGlobalSearch || table.options.enableColumnFilter">
+        <div class="table-search" nz-row nzJustify="end">
+            <ng-container *ngIf="table.options.enableGlobalSearch">
+                <nz-input-group nz-col nzSpan="4" nzSize="default" style="max-width: 300px" class="rp-space">
+                    <input type="text" nz-input [placeholder]="'general-table.search' | i18next" (keyup)="table.onSearch($event)" />
+                </nz-input-group>
+            </ng-container>
+            <ng-container *ngIf="table.options.enableColumnFilter">
+                <button nz-button nzType="default" nzSize="default" (click)="table.onOpenConfiguration()" class="rp-space">
+                    <i nz-icon nzType="setting" nzTheme="outline"></i>
+                </button>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <!--    Multi Column Table-->
+    <nz-table
+        #generalTable
+        [nzData]="table.filteredData"
+        [nzScroll]="scroll"
+        [nzNoResult]="noResult"
+        [nzLoading]="loading"
+        nzBordered
+        [nzPageSize]="pageSize"
+        nzShowSizeChanger
+        [nzPageSizeOptions]="pageSizeOptions"
+    >
+        <thead (nzSortOrderChange)="table.onSort($event)" nzSingleSort>
+            <!-- Main headings and Single headings-->
+            <tr>
+                <ng-container *ngFor="let column of table.filteredColumns">
+                    <!-- Single Column Heading-->
+                    <ng-container *ngIf="!column.subColumns; else multiColumn">
+                        <th nzShowSort [nzColumnKey]="column.key" [rowSpan]="rowSpan" [ngClass]="column.sticky ? 'sticky-column' : ''">
+                            {{ column.title }}
+                        </th>
+                    </ng-container>
+                    <!-- Multi-column Heading-->
+                    <ng-template #multiColumn>
+                        <th
+                            [nzColumnKey]="column.key"
+                            [colSpan]="column.subColumns.length"
+                            [ngClass]="column.sticky ? 'sticky-column multi-column' : 'multi-column'"
+                        >
+                            {{ column.title }}
+                        </th>
+                    </ng-template>
+                </ng-container>
+            </tr>
+            <!-- Grouped Subheadings -->
+            <tr>
+                <ng-container *ngFor="let column of table.filteredColumns">
+                    <ng-container *ngIf="column.subColumns">
+                        <ng-container *ngFor="let subColumn of column.subColumns; let i = index">
+                            <th
+                                nzShowSort
+                                [nzColumnKey]="subColumn.key"
+                                [ngClass]="column.sticky ? 'sticky-column sticky-column-' + i : ''"
+                            >
+                                {{ subColumn.title }}
+                            </th>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of generalTable.data">
+                <ng-container *ngFor="let column of table.filteredColumns">
+                    <!-- Sub-Column -->
+                    <ng-container *ngIf="column.subColumns; else singleColumnEntry">
+                        <ng-container *ngFor="let subColumn of column.subColumns; let i = index">
+                            <td [ngClass]="calculateClass(data, column)">
+                                <ng-container *ngIf="table.templateColumns[subColumn.key]; else standardColumn">
+                                    <!-- Template Override-->
+                                    <ng-container
+                                        *ngTemplateOutlet="
+                                            table.templateColumns[subColumn.key];
+                                            context: { $implicit: { data: data, column: subColumn } }
+                                        "
+                                    >
+                                    </ng-container>
+                                </ng-container>
+                                <!-- Basic Data-->
+                                <ng-template #standardColumn>
+                                    {{ table.getCellBasicValue(column.key, data) || '' }}
+                                </ng-template>
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                    <!-- Single Column -->
+                    <ng-template #singleColumnEntry>
+                        <!-- Template Override-->
+                        <td [ngClass]="calculateClass(data, column)">
+                            <ng-container *ngIf="table.templateColumns[column.key]; else standardColumn">
+                                <ng-container
+                                    *ngTemplateOutlet="
+                                        table.templateColumns[column.key];
+                                        context: { $implicit: { data: data, column: column } }
+                                    "
+                                >
+                                </ng-container>
+                            </ng-container>
+                            <!-- Basic Data-->
+                            <ng-template #standardColumn>
+                                {{ table.getCellBasicValue(column.key, data) || '' }}
+                            </ng-template>
+                        </td>
+                    </ng-template>
+                </ng-container>
+            </tr>
+        </tbody>
+    </nz-table>
+    <div class="extra">
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<ng-template #noResult>
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-template>
+
+<nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="table.viewMore"
+    nzPlacement="right"
+    [nzTitle]="'general-table.additional' | i18next"
+    (nzOnClose)="table.onCloseConfiguration()"
+    [nzWidth]="500"
+>
+    <div class="drawer">
+        <div id="column-filter" class="drawer-section" *ngIf="table.options.enableColumnFilter">
+            <nz-divider [nzText]="'general-table.enabled_columns' | i18next"></nz-divider>
+            <div class="checkboxes">
+                <label
+                    nz-checkbox
+                    [nzChecked]="true"
+                    (nzCheckedChange)="table.toggleColumn(column.title, $event)"
+                    *ngFor="let column of table.columns"
+                    style="display: block; margin: 0 !important"
+                >
+                    {{ column.title }}
+                </label>
+            </div>
+        </div>
+    </div>
+</nz-drawer>

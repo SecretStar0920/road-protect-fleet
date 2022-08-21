@@ -1,0 +1,32 @@
+<ng-container *rpHasPermission="[permissions.AcknowledgeInfringement]">
+    <button nz-button nzType="primary" (click)="showModal()" *ngIf="acknowledgeable.length > 0" [nzLoading]="isLoading$ | async">
+        <i nz-icon nzType="check" nzTheme="outline"></i> {{ 'batch-acknowledge-nominations.acknowledge' | i18next }}
+        {{ acknowledgeable.length }}
+        {{ 'batch-acknowledge-nominations.nominations' | i18next }}
+    </button>
+</ng-container>
+
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'batch-acknowledge-nominations.title' | i18next" [nzFooter]="null">
+    <form nz-form [formGroup]="acknowledgeNominationForm" (ngSubmit)="batchAcknowledgeNominations()">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-label>{{ 'batch-acknowledge-nominations.label' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <div style="display: flex">
+                            <label nz-checkbox formControlName="payment">{{ 'acknowledge-nominations.payment' | i18next }}</label>
+                            <label nz-checkbox formControlName="redirection">{{ 'acknowledge-nominations.redirection' | i18next }}</label>
+                            <label nz-checkbox formControlName="appeal">{{ 'acknowledge-nominations.appeal' | i18next }}</label>
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="24" style="text-align: center">
+                <button nz-button nzType="primary" class="rp-space" [disabled]="!acknowledgeNominationForm.valid">
+                    {{ 'acknowledge-nominations.confirm' | i18next }}
+                </button>
+                <button nz-button (click)="onCancel()">{{ 'acknowledge-nominations.cancel' | i18next }}</button>
+            </nz-col>
+        </nz-row>
+    </form>
+</nz-modal>

@@ -1,0 +1,186 @@
+<!--Actions-->
+<!--        Actions-->
+<ng-container *ngIf="nomination">
+    <nz-row *ngIf="!isNominatedToCurrentAccount">
+        <nz-col nzSpan="24">
+            <p nz-paragraph nzType="warning">
+                {{ 'This infringement is not nominated to the account you are representing, you cannot perform all actions on it' }}
+            </p>
+            <p>
+                {{ 'The infringement is nominated to: ' }} <span><rp-account-tag [account]="nomination.account"></rp-account-tag></span>
+            </p>
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="6" nzAlign="top" nzJustify="start">
+        <!--        Acknowledge-->
+        <ng-container *rpHasPermission="[permissions.AcknowledgeInfringement]">
+            <ng-container>
+                <nz-col>
+                    <button
+                        nz-button
+                        nzSize="default"
+                        nzType="primary"
+                        (click)="onAcknowledge()"
+                        [disabled]="!canPerformAction(nominationActions.Acknowledge)"
+                    >
+                        <i nz-icon nzType="like" nzTheme="outline"></i> {{ 'view-nomination.acknowledge' | i18next }}
+                    </button>
+                </nz-col>
+            </ng-container>
+        </ng-container>
+
+        <!--        Redirect-->
+        <ng-container *rpHasPermission="[permissions.RedirectInfringement]">
+            <ng-container>
+                <nz-col>
+                    <button
+                        nz-button
+                        nzSize="default"
+                        nzType="primary"
+                        (click)="onRedirect()"
+                        nz-popover
+                        [nzPopoverContent]="redirectPopover"
+                        [disabled]="!this.canPerformAction(nominationActions.Redirect)"
+                    >
+                        <i nz-icon nzType="retweet" nzTheme="outline"></i> {{ 'view-nomination.redirect' | i18next }}
+                    </button>
+                    <ng-template #redirectPopover>
+                        {{ 'view-nomination.redirect_text_1' | i18next }}
+                        <a nz-tooltip [nzTooltipTitle]="'view-nomination.redirect_text_2' | i18next">{{
+                            'view-nomination.redirect_text_3' | i18next
+                        }}</a
+                        >, {{ 'view-nomination.redirect_text_4' | i18next }}
+                    </ng-template>
+                </nz-col>
+            </ng-container>
+        </ng-container>
+
+                <!--        Redirect by mail-->
+                <ng-container *rpHasPermission="[permissions.RedirectInfringement]">
+                    <ng-container>
+                        <nz-col>
+                            <button
+                                nz-button
+                                nzSize="default"
+                                nzType="primary"
+                                (click)="onRedirectByMail()"
+                                nz-popover
+                                [nzPopoverContent]="redirectPopover"
+                                [disabled]="!this.canPerformAction(nominationActions.Redirect)"
+                            >
+                                <i nz-icon nzType="retweet" nzTheme="outline"></i> {{ 'view-nomination.redirect_by_mail' | i18next }}
+                            </button>
+                            <ng-template #redirectPopover>
+                                {{ 'view-nomination.redirect_text_1' | i18next }}
+                                <a nz-tooltip [nzTooltipTitle]="'view-nomination.redirect_text_2' | i18next">{{
+                                    'view-nomination.redirect_text_3' | i18next
+                                }}</a
+                                >, {{ 'view-nomination.redirect_text_4' | i18next }}
+                            </ng-template>
+                        </nz-col>
+                    </ng-container>
+                </ng-container>
+        
+        <!--        Generate Documents-->
+        <ng-container *rpHasPermission="[permissions.RedirectInfringement]">
+            <ng-container>
+                <nz-col>
+                    <button
+                        nz-button
+                        nzSize="default"
+                        nzType="primary"
+                        (click)="onGenerateRedirectionDocument()"
+                      >
+                        <i nz-icon nzType="like" nzTheme="outline"></i> {{ 'view-nomination.generate_redirection_document' | i18next }}
+        
+                    </button>
+                </nz-col>
+            </ng-container>
+        </ng-container>
+
+        <!--        Update redirection status-->
+        <ng-container *rpHasPermission="[permissions.RedirectInfringement]">
+            <ng-container>
+                <nz-col>
+                    <button
+                        nz-button
+                        nzSize="default"
+                        nzType="primary"
+                        (click)="onUpdateRedirectionStatus()"
+                        nz-popover
+                        nzPopoverContent="{{ 'view-nomination.update_redirection_status_description' | i18next }}"
+                        [disabled]="!canPerformAction(nominationActions.UpdateRedirectionStatus)"
+                    >
+                        <i nz-icon nzType="retweet" nzTheme="outline"></i> {{ 'view-nomination.update_redirection_status' | i18next }}
+                    </button>
+                </nz-col>
+            </ng-container>
+        </ng-container>
+
+        <!--        Appeal-->
+        <ng-container>
+            <nz-col>
+                <button
+                    nz-button
+                    nzSize="default"
+                    nzType="primary"
+                    [disabled]="!canPerformAction(nominationActions.Appeal)"
+                    nz-popover
+                    [nzPopoverContent]="appealPopover"
+                >
+                    <i nz-icon nzType="rollback" nzTheme="outline"></i> {{ 'view-nomination.appeal' | i18next }}
+                </button>
+                <ng-template #appealPopover>
+                    <span nz-text nzType="secondary">{{ 'view-nomination.appeal_text' | i18next }}</span>
+                </ng-template>
+            </nz-col>
+        </ng-container>
+
+        <!--        Pay-->
+        <ng-container *ngIf="canPerformAction(nominationActions.Pay)">
+            <nz-col>
+                <button nz-button nzSize="default" nzType="primary" (click)="onPay()">
+                    <i nz-icon nzType="credit-card" nzTheme="outline"></i> {{ 'view-nomination.pay' | i18next }}
+                </button>
+            </nz-col>
+        </ng-container>
+    </nz-row>
+</ng-container>
+
+<ng-template #noActions>
+    <nz-row nzGutter="24" nzAlign="top" nzJustify="start">
+        <nz-col>
+            <p nz-paragraph nzType="secondary">{{ 'No actions to perform' }}</p>
+        </nz-col>
+    </nz-row>
+</ng-template>
+
+<!--Modals-->
+<nz-modal
+    [(nzVisible)]="showRedirectionUpdateModal"
+    [nzContent]="updateRedirectionStatus"
+    (nzOnCancel)="showRedirectionUpdateModal = false"
+    [nzFooter]="null"
+    nzTitle="{{ 'update-redirection-status.title' | i18next }}"
+>
+    <ng-template #updateRedirectionStatus>
+        <rp-update-redirect-status [nomination]="nomination" (close)="showRedirectionUpdateModal = false"> </rp-update-redirect-status>
+    </ng-template>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="showPaymentModal" [nzContent]="pay" (nzOnCancel)="showPaymentModal = false" [nzFooter]="null" [nzWidth]="700">
+    <ng-template #pay>
+        <rp-pay-nomination [nomination]="nomination" (close)="showPaymentModal = false"> </rp-pay-nomination>
+    </ng-template>
+</nz-modal>
+
+<nz-modal
+    [(nzVisible)]="showAcknowledgmentModal"
+    [nzContent]="acknowledge"
+    (nzOnCancel)="showAcknowledgmentModal = false"
+    [nzFooter]="null"
+>
+    <ng-template #acknowledge>
+        <rp-acknowledge-nomination [nomination]="nomination" (close)="showAcknowledgmentModal = false"> </rp-acknowledge-nomination>
+    </ng-template>
+</nz-modal>

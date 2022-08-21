@@ -1,0 +1,8 @@
+<rp-create-partial-infringement (complete)="onComplete($event)"></rp-create-partial-infringement>
+<nz-alert
+    nzType="error"
+    *ngIf="createPartialInfringementState?.hasFailed()"
+    [nzMessage]="createPartialInfringementState?.failedResult().message"
+    [nzDescription]="createPartialInfringementState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

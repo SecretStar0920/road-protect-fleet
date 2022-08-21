@@ -1,0 +1,24 @@
+<rp-general-table [table]="table"></rp-general-table>
+<nz-alert *ngIf="getUsersState.hasFailed()" nzType="error" [nzMessage]="getUsersState.failedResult().context.message" nzShowIcon></nz-alert>
+
+<ng-template #accountsTemplate let-data>
+    <ng-container *ngIf="(data.accounts?.length || 0) > 3; else showTags">
+        <a nz-popover [nzPopoverTitle]="'view-users.accounts' | i18next" [nzPopoverContent]="showTags"
+            >{{ data.accounts?.length }} {{ 'view-users.accounts' | i18next }}</a
+        >
+    </ng-container>
+    <ng-template #showTags>
+        <ng-container *ngFor="let userAccount of data.accounts">
+            <nz-tag nzColor="blue">
+                <a [routerLink]="['/home', 'accounts', 'view', userAccount.account.accountId]">{{ userAccount.account.name }}</a>
+            </nz-tag>
+        </ng-container>
+    </ng-template>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateUser()">
+    <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'view-users.create' | i18next }}
+</button>
+<!--<button nz-button [nzType]="'default'"><i nz-icon nzType="upload" nzTheme="outline"></i> Import</button>-->

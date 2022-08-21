@@ -1,0 +1,12 @@
+<h3>
+    {{ reportDetails.name }}
+</h3>
+<span nz-text nzType="secondary">{{ reportDetails.description || 'Description' }}</span>
+
+<br />
+
+<br />
+
+<div *ngIf="reportDetails.embeddedUrl">
+    <iframe [src]="transform(reportDetails.embeddedUrl)" frameborder="0" allowtransparency class="reporting-embed"></iframe>
+</div>

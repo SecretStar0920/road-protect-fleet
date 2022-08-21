@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: frontend
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: frontend
+            env: staging
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: frontend
+                env: staging
+        spec:
+            containers:
+                - image: eu.gcr.io/fleet-260107/frontend:beta
+                  name: frontend
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 10m
+                  ports:
+                      - containerPort: 3000
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      httpGet:
+                          path: /health
+                          port: 3000
+                      initialDelaySeconds: 15
+                      periodSeconds: 10
+                  readinessProbe:
+                      httpGet:
+                          path: /health
+                          port: 3000
+                      initialDelaySeconds: 15
+                      periodSeconds: 10

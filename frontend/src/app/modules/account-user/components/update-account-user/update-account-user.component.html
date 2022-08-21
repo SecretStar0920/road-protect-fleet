@@ -1,0 +1,51 @@
+<form nz-form [formGroup]="updateAccountUserForm" nzLayout="vertical" (ngSubmit)="onUpdateAccountUser()">
+    <nz-form-item>
+        <nz-form-label nzFor="email">{{ 'account-user.email' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="email" id="email" disabled />
+            <nz-form-explain *ngIf="updateAccountUserForm.get('email')?.dirty && updateAccountUserForm.get('email')?.errors">
+                {{ 'input_required' | i18next }}
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="name">{{ 'account-user.name' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <input nz-input formControlName="name" id="name" disabled />
+            <nz-form-explain *ngIf="updateAccountUserForm.get('name')?.dirty && updateAccountUserForm.get('name')?.errors">
+                {{ 'input_required' | i18next }}
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzRequired nzFor="roleNames">{{ 'account-user.role' | i18next }}</nz-form-label>
+        <nz-form-control>
+            <rp-role-dropdown formControlName="roleNames"></rp-role-dropdown>
+            <nz-form-explain *ngIf="updateAccountUserForm.get('roleNames')?.dirty && updateAccountUserForm.get('roleNames')?.errors">
+                <rp-general-form-error-display [form]="updateAccountUserForm" key="roleNames"></rp-general-form-error-display>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary" [disabled]="!updateAccountUserForm.valid" [nzLoading]="updateAccountUserState.isLoading()">
+                <i nz-icon nzType="save" nzTheme="outline"></i>
+                {{ 'account-user.save' | i18next }}
+            </button>
+        </nz-form-control>
+    </nz-form-item>
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateAccountUserState?.hasSucceeded()"
+    [nzMessage]="updateAccountUserState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateAccountUserState?.hasFailed()"
+    [nzMessage]="updateAccountUserState?.failedResult().message"
+    [nzDescription]="updateAccountUserState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

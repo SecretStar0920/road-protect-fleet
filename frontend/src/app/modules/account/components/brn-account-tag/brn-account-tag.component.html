@@ -1,0 +1,8 @@
+<ng-container *ngIf="brn; else noBrn">
+    <ng-container *ngIf="brnAccount"> {{ brn }}: <rp-account-tag [account]="brnAccount"></rp-account-tag> </ng-container
+    ><ng-container *ngIf="!brnAccount">
+        {{ brn }}
+    </ng-container>
+</ng-container>
+
+<ng-template #noBrn> -- </ng-template>

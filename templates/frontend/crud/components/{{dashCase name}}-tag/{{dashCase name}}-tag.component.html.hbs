@@ -1,0 +1,5 @@
+<nz-tag nzColor="orange" *ngIf="{{camelCase name}}">
+    <a [routerLink]="['/home', '{{dashCase name}}', 'view', {{camelCase name}}.{{camelCase name}}Id]">
+        <span><i nz-icon nzType="database" nzTheme="outline"></i> \{{ {{camelCase name}}.name | truncate: false:15 }}</span>
+    </a>
+</nz-tag>

@@ -1,0 +1,48 @@
+<rp-general-page [title]="'view-infringement-page.title' | i18next" [icon]="'exception'">
+    <div class="rp-round-card rp-page-section">
+        <nz-row>
+            <!--            Approve for payment-->
+            <ng-container *rpHasPermission="[permissions.ApproveInfringement]">
+                <ng-container>
+                    <nz-col>
+                        <button
+                            nz-button
+                            nzSize="default"
+                            nzType="primary"
+                            (click)="onApprove()"
+                            nz-tooltip
+                            nzContent="{{ 'view-infringement.approve_text' | i18next }}"
+                            [disabled]="!showApproveForPayment"
+                        >
+                            <i nz-icon nzType="check" nzTheme="outline"></i> {{ 'view-infringement.approve' | i18next }}
+                        </button>
+                    </nz-col>
+                </ng-container>
+            </ng-container>
+
+            <!--            Unapprove for payment-->
+            <ng-container *rpHasPermission="[permissions.UnapproveInfringement]">
+                <ng-container>
+                    <nz-col>
+                        <button
+                            nz-button
+                            nzSize="default"
+                            nzType="primary"
+                            (click)="onUnapprove()"
+                            nz-tooltip
+                            nzContent="{{ 'view-infringement.unapprove_text' | i18next }}"
+                            [disabled]="!showUnapproveForPayment"
+                        >
+                            <i nz-icon nzType="close" nzTheme="outline"></i> {{ 'view-infringement.unapprove' | i18next }}
+                        </button>
+                    </nz-col>
+                </ng-container>
+            </ng-container>
+        </nz-row>
+        <rp-view-nomination-actions [nominationId]="infringement?.nomination?.nominationId"></rp-view-nomination-actions>
+    </div>
+
+    <div class="rp-round-card rp-page-section">
+        <rp-view-infringement [infringementId]="infringementId" (delete)="onDelete()"></rp-view-infringement>
+    </div>
+</rp-general-page>

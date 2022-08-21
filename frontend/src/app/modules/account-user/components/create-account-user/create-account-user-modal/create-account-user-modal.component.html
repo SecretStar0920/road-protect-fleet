@@ -1,0 +1,8 @@
+<rp-create-account-user (complete)="onComplete($event)" [accountId]="accountId"></rp-create-account-user>
+<nz-alert
+    nzType="error"
+    *ngIf="createAccountUserState?.hasFailed()"
+    [nzMessage]="createAccountUserState?.failedResult().message"
+    [nzDescription]="createAccountUserState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

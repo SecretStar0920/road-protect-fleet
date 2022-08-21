@@ -1,0 +1,19 @@
+<rp-general-page [title]="'create-{{dashCase name}}-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-{{dashCase name}} (complete)="onComplete($event)"></rp-create-{{dashCase name}}>
+        <nz-alert
+            nzType="success"
+            *ngIf="create{{pascalCase name}}State?.hasSucceeded()"
+            [nzMessage]="create{{pascalCase name}}State?.successResult().message"
+            nzShowIcon
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="create{{pascalCase name}}State?.hasFailed()"
+            [nzMessage]="create{{pascalCase name}}State?.failedResult().message"
+            [nzDescription]="create{{pascalCase name}}State?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </div>
+</rp-general-page>

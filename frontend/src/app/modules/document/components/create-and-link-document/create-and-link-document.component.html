@@ -1,0 +1,65 @@
+<rp-general-stepper [stepper]="stepper" [showControls]="false">
+    <nz-row nzGutter="24" [rpShow]="stepper.isStep(1)">
+        <nz-col nzSpan="24">
+            <rp-create-document
+                [mimeTypes]="['application/pdf']"
+                (ocr)="onOCR($event)"
+                [performOCR]="performOCR"
+                (complete)="onDocumentUploaded($event)"
+            ></rp-create-document>
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="24" [rpShow]="stepper.isStep(2)" class="finalise-feedback">
+        <ng-container *ngIf="!ocrFail; else ocrFailed">
+            <nz-col nzSpan="24">
+                <button nz-button nzType="primary" nzSize="large" (click)="onLink()">
+                    {{ 'create-and-link-document.finalise' | i18next }}
+                </button>
+            </nz-col>
+            <nz-alert
+                nzType="success"
+                [nzShowIcon]="true"
+                [nzMessage]="'create-document.success' | i18next"
+                *ngIf="linkState.hasSucceeded()"
+            ></nz-alert>
+        </ng-container>
+        <ng-template #ocrFailed>
+            <nz-alert nzType="error" [nzShowIcon]="true" [nzMessage]="ocrError"></nz-alert>
+            <nz-row class="force-upload-button">
+                <button nz-button nzType="primary" (click)="onLink()">
+                    <i nz-icon nzType="exclamation-circle" nzTheme="outline"></i>
+                    {{ 'add-contract-document.ocr-error.force_upload' | i18next }}
+                </button>
+            </nz-row>
+            <ng-template #ocrError>
+                <strong>{{ 'create-document.ocr.error' | i18next }}:</strong>
+                <div *ngFor="let message of ocrErrorMessage">
+                    <li>{{ message }}</li>
+                </div>
+            </ng-template>
+        </ng-template>
+    </nz-row>
+    <nz-row nzGutter="24" [rpShow]="stepper.isStep(3)" class="upload-result">
+        <nz-col nzSpan="24">
+            <ng-container *ngIf="linkState.hasFailed()">
+                <nz-result
+                    nzStatus="error"
+                    nzTitle="{{ 'create-and-link-document.failure_result' | i18next }}"
+                    nzSubTitle="{{ linkState.failedResult().message }}"
+                >
+                </nz-result>
+
+                <button nz-button (click)="onRetry()">
+                    {{ 'create-and-link-document.click_here_to_retry' | i18next }}
+                </button>
+            </ng-container>
+            <ng-container *ngIf="linkState.hasSucceeded()">
+                <nz-result nzStatus="success" nzTitle="{{ 'create-and-link-document.success_result' | i18next }}"> </nz-result>
+
+                <button nz-button (click)="onClose()">
+                    {{ 'create-and-link-document.click_here_to_close' | i18next }}
+                </button>
+            </ng-container>
+        </nz-col>
+    </nz-row>
+</rp-general-stepper>

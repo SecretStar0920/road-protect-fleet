@@ -1,0 +1,70 @@
+<nz-row nzGutter="24" formGroupName="physicalLocation">
+    <nz-col nzSpan="24">
+        <h3 class="rp-primary-color">{{ 'address.location' | i18next }}</h3>
+    </nz-col>
+    <nz-col nzSpan="12">
+        <nz-form-item>
+            <nz-form-label nzFor="city">{{ 'account.city' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <nz-select nzShowSearch nzAllowClear formControlName="city" (ngModelChange)="getStreets()">
+                    <nz-option *ngFor="let city of filteredCities" [nzValue]="city" [nzLabel]="city"></nz-option>
+                </nz-select>
+                <nz-form-explain *ngIf="addressForm.get('city')?.dirty && addressForm.get('city')?.errors">
+                    <rp-general-form-error-display [form]="addressForm" key="city"></rp-general-form-error-display>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+        <nz-form-item>
+            <nz-form-label nzFor="street">{{ 'address.address_line_one_street' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <nz-select
+                    nzShowSearch
+                    nzAllowClear
+                    formControlName="street"
+                    (nzOnSearch)="getStreets($event)"
+                    (ngModelChange)="filterCities()"
+                >
+                    <nz-option *ngFor="let street of streets" [nzValue]="street" [nzLabel]="street.name"></nz-option>
+                </nz-select>
+                <nz-form-explain *ngIf="addressForm.get('street')?.dirty && addressForm.get('streetName')?.errors">
+                    <rp-general-form-error-display [form]="addressForm" key="streetName"></rp-general-form-error-display>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+        <nz-form-item>
+            <nz-form-label nzFor="streetNumber">{{ 'account.address_line_one_number' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="streetNumber" id="streetNumber" />
+                <nz-form-explain *ngIf="addressForm.get('streetNumber')?.dirty && addressForm.get('streetNumber')?.errors">
+                    <rp-general-form-error-display [form]="addressForm" key="streetNumber"></rp-general-form-error-display>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+        <nz-form-item>
+            <nz-form-label nzFor="country">{{ 'account.country' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="country" id="country" />
+                <nz-form-explain *ngIf="addressForm.get('country')?.dirty && addressForm.get('country')?.errors">
+                    <rp-general-form-error-display [form]="addressForm" key="country"></rp-general-form-error-display>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+        <nz-form-item>
+            <nz-form-label nzFor="code">{{ 'account.postal_code' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <rp-general-autocomplete-input entity="street" field="code" formControlName="code"></rp-general-autocomplete-input>
+                <nz-form-explain *ngIf="addressForm.get('code')?.dirty && addressForm.get('code')?.errors">
+                    <rp-general-form-error-display [form]="addressForm" key="code"></rp-general-form-error-display>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+    </nz-col>
+</nz-row>

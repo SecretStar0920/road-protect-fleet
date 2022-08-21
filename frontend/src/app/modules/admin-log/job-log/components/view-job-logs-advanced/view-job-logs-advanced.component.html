@@ -1,0 +1,30 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+
+<ng-template #queuedTime let-data>
+    <rp-general-time-display [time]="data.createdAt"></rp-general-time-display>
+</ng-template>
+<ng-template #endTime let-data>
+    <rp-general-time-display [time]="data.endTime"></rp-general-time-display>
+</ng-template>
+<ng-template #jobType let-data>
+    <span>{{ data.type | sentenceCase }}</span>
+</ng-template>
+<ng-template #status let-data>
+    <span nz-popover [nzPopoverContent]="data.status">
+        <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green" *ngIf="isCompleted(data.status)"></i>
+        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red" *ngIf="isFailed(data.status)"></i>
+        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="orange" *ngIf="isCancelled(data.status)"></i>
+        <i nz-icon nzType="exclamation-circle" nzTheme="twotone" nzTwotoneColor="yellow" *ngIf="isQueued(data.status)"></i>
+        <i nz-icon nzType="sync" [nzSpin]="true" *ngIf="isProcessing(data.status)"></i>
+    </span>
+</ng-template>
+
+<ng-template #noticeNumber let-data>
+    <span>{{ data.details?.data?.noticeNumber }}</span>
+</ng-template>
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewJobLog(data.uuid)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+</ng-template>

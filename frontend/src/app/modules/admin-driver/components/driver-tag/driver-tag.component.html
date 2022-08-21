@@ -1,0 +1,5 @@
+<!--<nz-tag nzColor="blue" *ngIf="account">-->
+<a [routerLink]="['/home', 'driver', 'view', driver?.driverId]" *ngIf="driver?.driverId">
+    <span><i nz-icon nzType="profile" nzTheme="outline"></i> {{ driver?.licenseNumber | truncate: false:15 }}</span>
+</a>
+<!--</nz-tag>-->

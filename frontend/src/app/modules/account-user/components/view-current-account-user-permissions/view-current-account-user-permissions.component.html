@@ -1,0 +1,18 @@
+<h2 class="rp-primary-color">
+    <i nz-icon nzType="security-scan" nzTheme="outline"></i> {{ 'view-current-account-user-permissions.your_permissions' | i18next }}
+</h2>
+<p>{{ 'view-current-account-user-permissions.your_permissions_desc' | i18next }}</p>
+
+<div class="permissions-groups">
+    <ng-container *ngFor="let group of groupedPermissions | keyvalue; let i = index">
+        <div class="permission-group">
+            <h3>{{ 'permissions-groups.' + group.key | i18next }}</h3>
+
+            <p style="line-height: 30px">
+                <nz-tag *ngFor="let permission of group.value" [nzColor]="antColors.ant[i % antColors.ant.length]" style="min-width: 150px">
+                    {{ 'permissions.' + permission.name | i18next }}
+                </nz-tag>
+            </p>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,64 @@
+<form nz-form [formGroup]="updateAccountRelationForm" nzLayout="vertical">
+    <!--    Data-->
+    <nz-row nzGutter="24" formGroupName="data">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="summary">Summary</nz-form-label>
+                <nz-form-control>
+                    <textarea nz-input formControlName="summary"></textarea>
+                    <nz-form-explain *ngIf="updateAccountRelationForm.get('name')?.dirty && updateAccountRelationForm.get('name')?.errors">
+                        {{ 'input_required' | i18next }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+
+        <nz-col nzSpan="24">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{ 'create-account-relation.field_title' | i18next }}</th>
+                        <th>{{ 'create-account-relation.field_value' | i18next }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let field of customFields | keyvalue">
+                        <td>{{ field.key }}</td>
+                        <td>{{ field.value }}</td>
+                        <td><button nz-button nzType="danger" (click)="onRemoveCustomField(field.key)">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td><input nz-input type="text" #keyInput /></td>
+                        <td><input nz-input type="text" #valueInput /></td>
+                        <td>
+                            <button nz-button style="width: 100%" (click)="onAddCustomField(keyInput.value, valueInput.value)">Add</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </nz-col>
+    </nz-row>
+
+    <nz-row nzGutter="24" style="margin-top: 14px">
+        <nz-col>
+            <button nz-button nzType="primary" (click)="onUpdateAccountRelation()" [disabled]="!updateAccountRelationForm.valid">
+                {{ 'action.save' | i18next }}
+            </button>
+        </nz-col>
+    </nz-row>
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateAccountRelationState?.hasSucceeded()"
+    [nzMessage]="updateAccountRelationState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateAccountRelationState?.hasFailed()"
+    [nzMessage]="updateAccountRelationState?.failedResult().message"
+    [nzDescription]="updateAccountRelationState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

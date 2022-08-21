@@ -1,0 +1,60 @@
+<table class="rp-basic-data-table">
+    <thead>
+        <tr>
+            <th colspan="2">{{ 'payment-methods.title' | i18next }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ 'payment-methods.atg' | i18next }}</td>
+            <td>
+                <div *ngIf="account.atgCreditGuard; else createPaymentATG">
+                    {{ 'account.credit_card' | i18next }}
+                    <span nz-text>{{ account.atgCreditGuard?.cardMask | slice: -4 }}</span>
+                    <button
+                        nz-button
+                        (click)="onAddPaymentMethod(creditGuardIntegrationTypes.ATG)"
+                        *rpHasPermission="[permissions.EditProfile]"
+                    >
+                        <i nz-icon nzType="credit-card" nzTheme="outline"></i>{{ 'payment-methods.change_payment_method' | i18next }}
+                    </button>
+                </div>
+                <ng-template #createPaymentATG>
+                    <button
+                        nz-button
+                        (click)="onAddPaymentMethod(creditGuardIntegrationTypes.ATG)"
+                        *rpHasPermission="[permissions.EditProfile]"
+                    >
+                        <i nz-icon nzType="credit-card" nzTheme="outline"></i>{{ 'payment-methods.add_payment_method' | i18next }}
+                    </button>
+                </ng-template>
+            </td>
+        </tr>
+        <!--    NON-PCI ATG PAYMENTS DISABLED-->
+        <tr *ngIf="false">
+            <td>{{ 'payment-methods.rp' | i18next }}</td>
+            <td>
+                <div *ngIf="account.rpCreditGuard; else createPaymentRP">
+                    {{ 'account.credit_card' | i18next }}
+                    <span nz-text>{{ account.rpCreditGuard?.cardMask | slice: -4 }}</span>
+                    <button
+                        nz-button
+                        (click)="onAddPaymentMethod(creditGuardIntegrationTypes.RP)"
+                        *rpHasPermission="[permissions.EditProfile]"
+                    >
+                        <i nz-icon nzType="credit-card" nzTheme="outline"></i>{{ 'payment-methods.change_payment_method' | i18next }}
+                    </button>
+                </div>
+                <ng-template #createPaymentRP>
+                    <button
+                        nz-button
+                        (click)="onAddPaymentMethod(creditGuardIntegrationTypes.RP)"
+                        *rpHasPermission="[permissions.EditProfile]"
+                    >
+                        <i nz-icon nzType="credit-card" nzTheme="outline"></i>{{ 'payment-methods.add_payment_method' | i18next }}
+                    </button>
+                </ng-template>
+            </td>
+        </tr>
+    </tbody>
+</table>

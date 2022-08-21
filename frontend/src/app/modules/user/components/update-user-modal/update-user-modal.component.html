@@ -1,0 +1,8 @@
+<rp-update-user [userId]="userId" (complete)="onComplete($event)"></rp-update-user>
+<nz-alert
+    nzType="error"
+    *ngIf="updateUserState?.hasFailed()"
+    [nzMessage]="updateUserState?.failedResult().message"
+    [nzDescription]="updateUserState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

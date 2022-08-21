@@ -1,0 +1,19 @@
+<nz-row nzGutter="24" nzAlign="middle" id="page-heading" nzJustify="space-between">
+    <nz-col>
+        <h1 class="rp-primary-color"><i nz-icon [nzType]="icon" [nzTheme]="'outline'" *ngIf="icon"></i> {{ title | uppercase }}</h1>
+    </nz-col>
+
+    <nz-col *ngIf="enableBreadcrumb" id="breadcrumb">
+        <rp-general-breadcrumb></rp-general-breadcrumb>
+    </nz-col>
+
+    <nz-col *ngIf="subtitle" nzSpan="24">
+        <h3>{{ subtitle }}</h3>
+    </nz-col>
+
+    <nz-divider style="margin-bottom: 0px"></nz-divider>
+</nz-row>
+
+<div id="page-body">
+    <ng-content></ng-content>
+</div>

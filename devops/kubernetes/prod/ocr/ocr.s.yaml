@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: ocr
+    labels:
+        app: fleet
+        type: ocr
+        env: prod
+spec:
+    ports:
+        - port: 3000
+          name: entry
+          protocol: TCP
+    selector:
+        app: fleet
+        type: ocr
+        env: prod

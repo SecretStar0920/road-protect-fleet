@@ -1,0 +1,40 @@
+<nz-row nzGutter="24" *rpHasPermission="[permissions.ViewDocument]">
+    <nz-col nzSpan="24">
+        <h2 class="rp-primary-color">{{ 'account-relation-documents.title' | i18next }}</h2>
+    </nz-col>
+    <nz-col nzSpan="8" *ngFor="let doc of accountRelationDocuments">
+        <div class="card">
+            <rp-view-account-relation-document
+                [accountRelationDocumentId]="doc.accountRelationDocumentId"
+            ></rp-view-account-relation-document>
+        </div>
+    </nz-col>
+    <nz-col nzSpan="8">
+        <div class="rp-center-block">
+            <button nz-button nzType="primary" (click)="onShowAddDocument()" *rpHasPermission="[permissions.CreateDocument]">
+                {{ 'action.add' | i18next }}
+            </button>
+        </div>
+    </nz-col>
+</nz-row>
+
+<nz-modal [nzTitle]="null" [nzFooter]="null" [(nzVisible)]="showAddDocument" [nzClosable]="true" (nzOnCancel)="toggleShowAddDocument()">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <h3 class="rp-primary-color">{{ 'account-relation-documents.create_title' | i18next }}</h3>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <rp-create-account-relation-document
+                [accountRelationId]="accountRelationId"
+                (complete)="toggleShowAddDocument()"
+            ></rp-create-account-relation-document>
+        </nz-col>
+    </nz-row>
+</nz-modal>
+
+<nz-alert
+    *ngIf="getAccountRelationDocumentsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getAccountRelationDocumentsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

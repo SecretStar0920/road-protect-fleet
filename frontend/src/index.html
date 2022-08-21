@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <style>
+        html {
+            font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif !important;
+        }
+    </style>
+    <head>
+        <meta charset="utf-8" />
+        <title>Road Protect</title>
+        <base href="/" />
+        <link rel="shortcut icon" href="assets/fav-icon/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="assets/fav-icon/favicon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="thepentestfac-verification" content="" />
+    </head>
+    <body>
+        <rp-root>
+            <style>
+                rp-root,
+                html {
+                    font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif !important;
+                }
+                body {
+                    font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    flex-direction: column;
+
+                    background-color: #fafafa;
+                }
+
+                h3 {
+                    font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif !important;
+                    color: #399bff;
+                    text-align: center;
+                    margin-bottom: 0;
+                }
+
+                .lds-ellipsis {
+                    display: inline-block;
+                    position: relative;
+                    width: 64px;
+                    height: 64px;
+                }
+
+                .lds-ellipsis div {
+                    position: absolute;
+                    top: 27px;
+                    width: 11px;
+                    height: 11px;
+                    border-radius: 50%;
+                    background: #399bff;
+                    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+                }
+
+                .lds-ellipsis div:nth-child(1) {
+                    left: 6px;
+                    animation: lds-ellipsis1 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(2) {
+                    left: 6px;
+                    animation: lds-ellipsis2 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(3) {
+                    left: 26px;
+                    animation: lds-ellipsis2 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(4) {
+                    left: 45px;
+                    animation: lds-ellipsis3 0.6s infinite;
+                }
+
+                @keyframes lds-ellipsis1 {
+                    0% {
+                        transform: scale(0);
+                    }
+                    100% {
+                        transform: scale(1);
+                    }
+                }
+
+                @keyframes lds-ellipsis3 {
+                    0% {
+                        transform: scale(1);
+                    }
+                    100% {
+                        transform: scale(0);
+                    }
+                }
+
+                @keyframes lds-ellipsis2 {
+                    0% {
+                        transform: translate(0, 0);
+                    }
+                    100% {
+                        transform: translate(19px, 0);
+                    }
+                }
+            </style>
+
+            <!--            <h3>Loading</h3>-->
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </rp-root>
+    </body>
+</html>

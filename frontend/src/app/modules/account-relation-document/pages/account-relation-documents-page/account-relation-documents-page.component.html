@@ -1,0 +1,25 @@
+<rp-general-page [icon]="'profile'" [title]="'Account Relation Documents'" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-account-relation-documents class="rp-round-card" [action]="tableAction"></rp-view-account-relation-documents>
+        <ng-template let-data #tableAction>
+            <button
+                nz-button
+                nzType="primary"
+                nzSize="small"
+                (click)="onViewAccountRelationDocument(data.accountRelationDocumentId)"
+                class="rp-space"
+            >
+                <i nz-icon nzType="eye" nzTheme="outline"></i>
+            </button>
+            <rp-delete-account-relation-document
+                [accountRelationDocumentId]="data.accountRelationDocumentId"
+            ></rp-delete-account-relation-document>
+        </ng-template>
+    </div>
+    <div class="rp-round-card rp-page-section">
+        <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateAccountRelationDocument()">
+            <i nz-icon nzType="plus-circle" nzTheme="outline"></i> Create
+        </button>
+        <button nz-button [nzType]="'default'"><i nz-icon nzType="upload" nzTheme="outline"></i> Import</button>
+    </div>
+</rp-general-page>

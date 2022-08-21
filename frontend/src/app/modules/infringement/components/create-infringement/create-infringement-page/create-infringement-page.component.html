@@ -1,0 +1,19 @@
+<rp-general-page [title]="'create-infringement-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-infringement (complete)="onComplete($event)"></rp-create-infringement>
+        <nz-alert
+            nzType="success"
+            *ngIf="createInfringementState?.hasSucceeded()"
+            [nzMessage]="createInfringementState?.successResult().message"
+            nzShowIcon
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="createInfringementState?.hasFailed()"
+            [nzMessage]="createInfringementState?.failedResult().message"
+            [nzDescription]="createInfringementState?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </div>
+</rp-general-page>

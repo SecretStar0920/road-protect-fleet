@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flex-chart {
+    display: flex;
+    width: 90%;
+    min-height: 500px;
+}
+
+.horizontal-scroll{
+    overflow: auto;
+    white-space: nowrap;
+}
+
+
+.vehicle-chart {
+    ::ng-deep {
+        .bar {
+            min-width: 40px !important;
+        }
+    }
+}

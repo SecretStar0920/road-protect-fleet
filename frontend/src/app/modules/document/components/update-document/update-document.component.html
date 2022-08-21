@@ -1,0 +1,43 @@
+<form nz-form [formGroup]="updateDocumentForm" nzLayout="vertical" (ngSubmit)="onUpdateDocument()">
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-label nzRequired nzFor="name">Name</nz-form-label>-->
+    <!--        <nz-form-control>-->
+    <!--            <input nz-input formControlName="name" id="name">-->
+    <!--            <nz-form-explain *ngIf="updateDocumentForm.get('name')?.dirty && updateDocumentForm.get('name')?.errors">-->
+    <!--                {{ 'input_required' | i18next }}-->
+    <!--            </nz-form-explain>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-label nzRequired nzFor="identifier">Identifier</nz-form-label>-->
+    <!--        <nz-form-control>-->
+    <!--            <input nz-input formControlName="identifier" id="identifier">-->
+    <!--            <nz-form-explain-->
+    <!--                *ngIf="updateDocumentForm.get('identifier')?.dirty && updateDocumentForm.get('identifier')?.errors">-->
+    <!--                {{ 'input_required' | i18next }}-->
+    <!--            </nz-form-explain>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+    <!--    <nz-form-item>-->
+    <!--        <nz-form-control>-->
+    <!--            <button nz-button nzType="primary" [disabled]="!updateDocumentForm.valid"-->
+    <!--                    [nzLoading]="updateDocumentState.isLoading()"><i nz-icon nzType="save" nzTheme="outline"></i>-->
+    <!--                Save-->
+    <!--            </button>-->
+    <!--        </nz-form-control>-->
+    <!--    </nz-form-item>-->
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateDocumentState?.hasSucceeded()"
+    [nzMessage]="updateDocumentState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateDocumentState?.hasFailed()"
+    [nzMessage]="updateDocumentState?.failedResult().message"
+    [nzDescription]="updateDocumentState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

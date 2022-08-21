@@ -1,0 +1,11 @@
+<div class="report-list">
+    <div class="report-item">
+        <div (click)="onViewReport()" class="rp-round-card rp-metabase-card">
+            <i nz-icon [nzType]="icon" nzTheme="outline"></i>
+            <h3>
+                {{ reportDetails.name }}
+            </h3>
+            <span nz-text nzType="secondary">{{ reportDetails.description || 'Description' }}</span>
+        </div>
+    </div>
+</div>

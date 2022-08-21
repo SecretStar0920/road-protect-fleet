@@ -1,0 +1,55 @@
+<rp-general-stepper [stepper]="stepper" [size]="'small'">
+    <form nz-form [formGroup]="redirectNominationForm" nzLayout="vertical" (ngSubmit)="onConfirm()">
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(1)">
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="to">{{ 'digitally-redirect-nomination.select_label' | i18next }} </nz-form-label>
+                    <nz-form-control>
+                        <nz-radio-group formControlName="to">
+                            <label nz-radio [nzValue]="nominationTarget.Owner" [nzDisabled]="!infringement.contract?.owner"
+                                >{{ 'digitally-redirect-nomination.owner' | i18next }} -
+                                {{ infringement.contract?.owner?.name || ('digitally-redirect-nomination.na' | i18next) }}</label
+                            >
+                            <ng-container *ngIf="nomination.infringement.contract.type === contractType.Lease"></ng-container>
+                            <label nz-radio [nzValue]="nominationTarget.User" [nzDisabled]="!asLeaseContract().user"
+                                >{{ 'digitally-redirect-nomination.user' | i18next }} -
+                                {{ asLeaseContract().user.name || ('digitally-redirect-nomination.na' | i18next) }}</label
+                            >
+                        </nz-radio-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24" [rpShow]="stepper.isStep(2)">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="documentId">{{ 'digitally-redirect-nomination.document' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <rp-create-document-form-control formControlName="documentId"></rp-create-document-form-control>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(3)">
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="reason">{{ 'digitally-redirect-nomination.reason' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <textarea rows="4" nz-input formControlName="reason" id="reason"></textarea>
+                        <nz-form-explain
+                            *ngIf="redirectNominationForm.get('reason')?.dirty && redirectNominationForm.get('reason')?.errors"
+                        >
+                            <rp-general-form-error-display [form]="redirectNominationForm" key="reason"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="24" style="text-align: center">
+                <button nz-button nzType="primary" class="rp-space" [disabled]="!selectedAccount && !redirectNominationForm.valid">
+                    {{ 'digitally-redirect-nomination.confirm' | i18next }}
+                </button>
+                <button nz-button (click)="onCancel()">{{ 'digitally-redirect-nomination.cancel' | i18next }}</button>
+            </nz-col>
+        </nz-row>
+    </form>
+</rp-general-stepper>

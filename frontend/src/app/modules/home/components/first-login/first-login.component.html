@@ -1,0 +1,23 @@
+<nz-modal
+    [(nzVisible)]="showModal"
+    [nzTitle]="null"
+    (nzOnOk)="toggleModal()"
+    [nzOkText]="null"
+    [nzCancelText]="null"
+    [nzFooter]="null"
+    [nzClosable]="false"
+>
+    <rp-general-stepper [stepper]="stepper" [size]="'small'">
+        <div [rpShow]="stepper.isStep(1)">
+            <h1 class="rp-primary-color">
+                <i nz-icon nzType="info-circle" nzTheme="outline"></i> {{ 'first-login.welcome' | i18next }}, {{ user.name }}
+            </h1>
+            <p>{{ 'first-login.password_prompt' | i18next }}:</p>
+            <rp-change-password (changedPassword)="onChangedPassword($event)"></rp-change-password>
+        </div>
+        <div [rpShow]="stepper.isStep(2)" style="text-align: center">
+            <h1>{{ 'first-login.thank_you' | i18next }}</h1>
+            <button nz-button nzType="primary" (click)="onCompleteProfile()">{{ 'first-login.complete_profile' | i18next }}</button>
+        </div>
+    </rp-general-stepper>
+</nz-modal>

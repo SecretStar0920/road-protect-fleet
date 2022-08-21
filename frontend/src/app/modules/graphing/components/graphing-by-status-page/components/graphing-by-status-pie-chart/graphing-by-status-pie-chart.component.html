@@ -1,0 +1,35 @@
+<nz-row class="pie-chart-row">
+    <rp-graphing
+        class="pie-chart"
+        [graphingType]="graphingType"
+        [dataPoints]="pieChartData"
+        [colors]="colors"
+        [showDataLabel]="showDataLabel"
+        [customTooltipTemplate]="tooltips"
+        [legendTitle]="legendTitle"
+        [showLegend]="showLegend"
+        [translateLabels]="false"
+    ></rp-graphing>
+</nz-row>
+
+<ng-template #tooltips let-data>
+    <table class="tooltip-table">
+        <thead>
+            <tr>
+                <th colspan="2">{{ data.name }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="min-width: 100px">{{ 'graphing-by.total_count' | i18next }}</td>
+                <td>{{ data.value }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'graphing-by.total_amount' | i18next }}</td>
+                <td>
+                    <rp-general-currency-display [value]="data.extra.cost"> </rp-general-currency-display>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>

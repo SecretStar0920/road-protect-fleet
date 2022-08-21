@@ -1,0 +1,54 @@
+<ng-container *ngIf="driver">
+    <table class="rp-basic-data-table">
+        <tbody>
+            <tr>
+                <td>{{ 'driver.name' | i18next }}:</td>
+                <td>
+                    {{ driver.name }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'driver.surname' | i18next }}:</td>
+                <td>
+                    {{ driver.surname }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'driver.id_number' | i18next }}:</td>
+                <td>
+                    {{ driver.idNumber }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'driver.license' | i18next }}:</td>
+                <td>
+                    {{ driver.licenseNumber }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'driver.email' | i18next }}:</td>
+                <td>
+                    {{ driver.email }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'driver.cellphone' | i18next }}:</td>
+                <td>
+                    {{ driver.cellphoneNumber }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'driver.location' | i18next }}</td>
+                <td>
+                    <rp-view-short-location *ngIf="driver.physicalLocation" [location]="driver.physicalLocation"></rp-view-short-location>
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'driver.postal_location' | i18next }}</td>
+                <td>
+                    <rp-view-short-location *ngIf="driver.postalLocation" [location]="driver.postalLocation"></rp-view-short-location>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

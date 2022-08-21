@@ -1,0 +1,105 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <ng-container *ngIf="vehicle">
+        <rp-view-logs [vehicleId]="vehicle.vehicleId"></rp-view-logs>
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <table class="rp-basic-data-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">{{ vehicle.registration }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ 'view-vehicle.manufacturer' | i18next }}</td>
+                            <td>{{ vehicle.manufacturer }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'view-vehicle.model' | i18next }}</td>
+                            <td>{{ vehicle.model }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'view-vehicle.year' | i18next }}</td>
+                            <td>{{ vehicle.modelYear }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'view-vehicle.color' | i18next }}</td>
+                            <td>{{ vehicle.color }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'view-vehicle.category' | i18next }}</td>
+                            <td>{{ vehicle.category }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'view-vehicle.weight' | i18next }}</td>
+                            <td>{{ vehicle.weight }} kg</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'view-vehicle.type' | i18next }}</td>
+                            <td>{{ vehicle.type }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div nz-row nzAlign="middle" nzJustify="space-between">
+                    <button
+                        nz-button
+                        [nzType]="!isUpdating ? 'primary' : 'default'"
+                        nz-col
+                        class="rp-space"
+                        (click)="onUpdate()"
+                        *rpHasPermission="[permissions.EditVehicles]"
+                    >
+                        {{ isUpdating ? ('view-vehicle.cancel' | i18next) : ('view-vehicle.edit' | i18next) }}
+                    </button>
+                    <rp-delete-vehicle [vehicleId]="vehicleId" (delete)="onDelete($event)" nz-col></rp-delete-vehicle>
+                </div>
+            </nz-col>
+        </nz-row>
+
+        <nz-divider></nz-divider>
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24" style="margin-top: 10px">
+                <h3 class="rp-primary-color">{{ 'view-vehicle.current_lease' | i18next }}</h3>
+                <ng-container *ngIf="vehicle.currentLeaseContract; else missingLeaseContract">
+                    <rp-view-contract [contractId]="vehicle.currentLeaseContract?.contractId" [isCard]="true"></rp-view-contract>
+                </ng-container>
+                <ng-template #missingLeaseContract>
+                    <p>
+                        <span nz-text nzType="warning">{{ 'view-vehicle.no_lease' | i18next }}</span>
+                    </p>
+                </ng-template>
+            </nz-col>
+            <nz-col nzSpan="24" style="margin-top: 10px">
+                <h3 class="rp-primary-color">{{ 'view-vehicle.current_ownership' | i18next }}</h3>
+                <ng-container *ngIf="vehicle.currentOwnershipContract; else missingOwnershipContract">
+                    <rp-view-contract [contractId]="vehicle.currentOwnershipContract?.contractId" [isCard]="true"></rp-view-contract>
+                </ng-container>
+                <ng-template #missingOwnershipContract>
+                    <p>
+                        <span nz-text nzType="warning">{{ 'view-vehicle.no_ownership' | i18next }}</span>
+                    </p>
+                </ng-template>
+            </nz-col>
+        </nz-row>
+    </ng-container>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-vehicle [vehicle]="vehicle" (complete)="onUpdateComplete($event)"></rp-update-vehicle>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<nz-tabset *ngIf="vehicle?.vehicleId" [nzAnimated]="false" nzNoAnimation>
+    <nz-tab [nzTitle]="infringementTab">
+        <ng-template #infringementTab><i nz-icon nzType="exception"></i>{{ 'view-vehicle.infringements' | i18next }}</ng-template>
+        <rp-view-infringements-advanced [vehicleId]="vehicleId" [showBatchActions]="false"></rp-view-infringements-advanced>
+    </nz-tab>
+    <nz-tab [nzTitle]="documentTab">
+        <ng-template #documentTab
+            ><i nz-icon nzType="file-protect" nzTheme="outline"></i>{{ 'view-vehicle.contracts' | i18next }}</ng-template
+        >
+        <rp-view-contracts-advanced [vehicleId]="vehicleId"></rp-view-contracts-advanced>
+    </nz-tab>
+</nz-tabset>

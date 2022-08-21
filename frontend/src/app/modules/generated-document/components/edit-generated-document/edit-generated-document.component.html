@@ -1,0 +1,125 @@
+<rp-general-stepper [stepper]="stepper" [size]="'small'" *ngIf="generatedDocument">
+    <nz-row [rpShow]="stepper.isStep(1)" nz-form [formGroup]="form" *ngIf="!generatedDocument.complete" nzGutter="24" nzLayout="vertical">
+        <nz-col nzSpan="24" *ngFor="let field of generatedDocument.form.fieldOrder">
+            <ng-container [ngSwitch]="getField(field).type">
+                <ng-container *ngSwitchCase="fieldTypes.Text">
+                    <nz-form-item>
+                        <nz-form-label [nzRequired]="getField(field).required" nzFor="{{ field }}">{{
+                            getField(field).label || field | sentenceCase
+                        }}</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input [formControl]="form.controls[field]" id="{{ field }}" />
+                            <nz-form-explain *ngIf="form.get(field)?.dirty && form.get(field)?.errors">
+                                <rp-general-form-error-display [form]="form" key="{{ field }}"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+                <ng-container *ngSwitchCase="fieldTypes.Date">
+                    <nz-form-item>
+                        <nz-form-label [nzRequired]="getField(field).required" nzFor="{{ field }}">{{
+                            getField(field).label || field | sentenceCase
+                        }}</nz-form-label>
+                        <nz-form-control>
+                            <nz-date-picker [formControl]="form.controls[field]"></nz-date-picker>
+                            <nz-form-explain *ngIf="form.get(field)?.dirty && form.get(field)?.errors">
+                                <rp-general-form-error-display [form]="form" key="{{ field }}"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+                <ng-container *ngSwitchCase="fieldTypes.Signature">
+                    <div class="disabled">
+                        <nz-form-item>
+                            <nz-form-label [nzRequired]="getField(field).required" nzFor="{{ field }}">{{
+                                getField(field).label || field | sentenceCase
+                            }}</nz-form-label>
+                            <nz-form-control>
+                                <rp-general-signature-input [formControl]="form.controls[field]"></rp-general-signature-input>
+                                <nz-form-explain *ngIf="form.get(field)?.dirty && form.get(field)?.errors">
+                                    <rp-general-form-error-display [form]="form" key="{{ field }}"></rp-general-form-error-display>
+                                </nz-form-explain>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <div class="message">
+                            <span nz-text nzType="warning">{{ 'edit-generated-document.signature_disabled' | i18next }}</span>
+                        </div>
+                    </div>
+                    <!--                        <nz-form-item>-->
+                    <!--                            <nz-form-label [nzRequired]="getField(field).required" nzFor="{{ field }}">{{ getField(field).label || field | sentenceCase }}</nz-form-label>-->
+                    <!--                            <nz-form-control>-->
+                    <!--                                <rp-general-signature-input [formControl]="form.controls[field]"></rp-general-signature-input>-->
+                    <!--                                <nz-form-explain *ngIf="form.get(field)?.dirty && form.get(field)?.errors">-->
+                    <!--                                    <rp-general-form-error-display [form]="form" key="{{ field }}"></rp-general-form-error-display>-->
+                    <!--                                </nz-form-explain>-->
+                    <!--                            </nz-form-control>-->
+                    <!--                        </nz-form-item>-->
+                </ng-container>
+                <ng-container *ngSwitchCase="fieldTypes.Image">
+                    <nz-form-item>
+                        <nz-form-label [nzRequired]="getField(field).required" nzFor="{{ field }}">{{
+                            getField(field).label || field | sentenceCase
+                        }}</nz-form-label>
+                        <nz-form-control>
+                            <rp-general-image-data-object-input [formControl]="form.controls[field]"></rp-general-image-data-object-input>
+                            <nz-form-explain *ngIf="form.get(field)?.dirty && form.get(field)?.errors">
+                                <rp-general-form-error-display [form]="form" key="{{ field }}"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+            </ng-container>
+        </nz-col>
+
+        <nz-col nzSpan="24" style="text-align: center">
+            <div style="text-align: center">
+                <button
+                    nz-button
+                    nzType="primary"
+                    nzSize="large"
+                    (click)="onGenerate()"
+                    [disabled]="!form.valid"
+                    [nzLoading]="generateState.isLoading()"
+                >
+                    {{ 'edit-generated-document.generate' | i18next }}
+                </button>
+            </div>
+        </nz-col>
+    </nz-row>
+
+    <nz-row [rpShow]="stepper.isStep(2)">
+        <nz-col nzSpan="24" style="text-align: center">
+            <p>{{ 'edit-generated-document.check_document_prompt' | i18next }}</p>
+            <rp-view-document
+                [documentId]="generatedDocument.document?.documentId"
+                style="display: inline-block; max-width: 500px"
+            ></rp-view-document>
+        </nz-col>
+
+        <nz-col nzSpan="24" style="text-align: center" *ngIf="target && targetId">
+            <p nz-paragraph>{{ 'edit-generated-document.upload_link_prompt' | i18next }}</p>
+            <p nz-paragraph nzCopyable [nzCopyText]="getUploadLink()">
+                <a (click)="onUploadLinkClick()">{{ getUploadLink() }}</a>
+            </p>
+        </nz-col>
+
+        <nz-col nzSpan="24" style="text-align: center" *ngIf="returnTo">
+            <p>{{ 'edit-generated-document.return_prompt' | i18next }}</p>
+            <button nz-button nzType="primary" (click)="takeBack()">
+                <i nz-icon nzType="rollback" nzTheme="outline"></i> {{ 'edit-generated-document.take_me_back' | i18next }}
+            </button>
+        </nz-col>
+        <!--        <nz-col nzSpan="24" style="text-align: center;">-->
+        <!--            <div style="text-align: center">-->
+        <!--                <button nz-button nzType="primary" nzSize="large" (click)="onConfirm()">{{ 'edit-generated-document.confirm' | i18next }}</button>-->
+        <!--            </div>-->
+        <!--        </nz-col>-->
+    </nz-row>
+
+    <nz-row [rpShow]="stepper.isStep(3)" style="text-align: center">
+        <nz-result nzStatus="success" [nzTitle]="'edit-generated-document.result_success' | i18next"></nz-result>
+        <p *ngIf="returnTo">
+            {{ 'edit-generated-document.return' | i18next }} <strong>{{ 3 - (returnTimer | async) }}s</strong>
+        </p>
+    </nz-row>
+</rp-general-stepper>

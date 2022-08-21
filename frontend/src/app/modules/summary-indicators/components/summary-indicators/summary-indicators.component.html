@@ -1,0 +1,47 @@
+<ng-container *ngIf="isLoading | async; else summaryIndicators">
+    <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+</ng-container>
+
+<ng-template #summaryIndicators>
+    <nz-row class="reports">
+        <nz-col [nzMd]="24" [nzLg]="24" class="report-item"> <rp-infringement-cost></rp-infringement-cost></nz-col>
+        <nz-divider></nz-divider>
+        <nz-col [nzMd]="24" [nzLg]="24" class="report-item"> <rp-redirection-information></rp-redirection-information></nz-col>
+        <nz-divider></nz-divider>
+        <nz-col [nzMd]="24" [nzLg]="24" class="report-item"> <rp-managed-vehicles></rp-managed-vehicles></nz-col>
+        <nz-divider></nz-divider>
+        <nz-col [nzMd]="24" [nzLg]="24" class="report-item"> <rp-unmanaged-vehicles></rp-unmanaged-vehicles></nz-col
+    ></nz-row>
+</ng-template>
+
+<ng-container *ngIf="infringementTableData !== summaryIndicatorTypes.None">
+    <nz-divider></nz-divider>
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="22">
+            <h2>{{ 'summary-indicators.view_more_details' | i18next }}</h2>
+        </nz-col>
+        <nz-col nzSpan="2">
+            <button nz-button nzType="default" (click)="toggleInfringementCollapsed()" class="rp-space">
+                <i nz-icon [nzType]="'up'"></i>{{ 'summary-indicators.hide' | i18next }}
+            </button>
+        </nz-col>
+    </nz-row>
+    <nz-row>
+        <table class="rp-basic-data-table">
+            <tbody>
+                <tr>
+                    <td>{{ 'summary-indicators.filter' | i18next }}</td>
+                    <td>
+                        {{ 'summary-indicators.more-details.' + infringementTableData | i18next }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </nz-row>
+    <ng-container *ngIf="infringementTableData !== summaryIndicatorTypes.ManagedVehicles; else showContracts">
+        <rp-view-infringements-advanced [filterVisibility]="filterVisibility"></rp-view-infringements-advanced>
+    </ng-container>
+    <ng-template #showContracts>
+        <rp-view-contracts-advanced [filterVisibility]="filterVisibility"></rp-view-contracts-advanced>
+    </ng-template>
+</ng-container>

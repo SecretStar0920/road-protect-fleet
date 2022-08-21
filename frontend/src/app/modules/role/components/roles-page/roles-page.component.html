@@ -1,0 +1,17 @@
+<rp-general-page [icon]="'profile'" [title]="'roles-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-roles class="rp-round-card" [action]="tableAction"></rp-view-roles>
+        <ng-template let-data #tableAction>
+            <a (click)="onViewRole(data.roleId)" class="rp-space"><i nz-icon nzType="eye" nzTheme="outline"></i></a>
+            <rp-delete-role [roleId]="data.roleId"></rp-delete-role>
+        </ng-template>
+    </div>
+    <div class="rp-round-card rp-page-section">
+        <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateRole()">
+            <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'roles-page.create' | i18next }}
+        </button>
+        <button nz-button [nzType]="'default'">
+            <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'roles-page.import' | i18next }}
+        </button>
+    </div>
+</rp-general-page>

@@ -1,0 +1,31 @@
+<ng-container [ngSwitch]="contract?.status || leaseStatus.Missing">
+    <span *ngSwitchCase="leaseStatus.Expired" nz-tooltip [nzTooltipTitle]="dates"
+        ><i nz-icon nzType="schedule" nzTheme="twotone" nzTwotoneColor="red"></i>
+        {{ 'contract-status.' + leaseStatus.Expired | i18next }}</span
+    >
+
+    <span *ngSwitchCase="leaseStatus.ExpiringSoon" nz-tooltip [nzTooltipTitle]="dates"
+        ><i nz-icon nzType="clock-circle" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'contract-status.' + leaseStatus.ExpiringSoon | i18next }}</span
+    >
+
+    <span *ngSwitchCase="leaseStatus.Valid" nz-tooltip [nzTooltipTitle]="dates"
+        ><i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green"></i>
+        {{ 'contract-status.' + leaseStatus.Valid | i18next }}</span
+    >
+
+    <span *ngSwitchCase="leaseStatus.Missing" nz-tooltip [nzTooltipTitle]="dates"
+        ><i nz-icon nzType="warning" nzTheme="twotone" nzTwotoneColor="orange"></i>
+        {{ 'contract-status.' + leaseStatus.Missing | i18next }}</span
+    >
+
+    <span *ngSwitchCase="leaseStatus.Upcoming" nz-tooltip [nzTooltipTitle]="dates"
+        ><i nz-icon nzType="calendar" nzTheme="twotone"></i> {{ 'contract-status.' + leaseStatus.Upcoming | i18next }}</span
+    >
+</ng-container>
+<ng-template #dates>
+    <p>{{ 'contract-status-tag.start_date' | i18next }}:</p>
+    <rp-general-time-display [time]="contract?.startDate"></rp-general-time-display>
+    <p>{{ 'contract-status-tag.end_date' | i18next }}:</p>
+    <rp-general-time-display [time]="contract?.endDate"></rp-general-time-display>
+</ng-template>

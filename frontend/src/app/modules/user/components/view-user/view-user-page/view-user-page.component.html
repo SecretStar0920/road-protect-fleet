@@ -1,0 +1,5 @@
+<rp-general-page [title]="'view-user-page.title' | i18next" [icon]="'user'">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-user [userId]="userId" (delete)="onDelete()"></rp-view-user>
+    </div>
+</rp-general-page>

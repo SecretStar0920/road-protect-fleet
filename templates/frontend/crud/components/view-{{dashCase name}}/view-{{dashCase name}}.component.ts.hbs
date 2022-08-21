@@ -1,0 +1,71 @@
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { {{camelCase name}}NgrxHelper, {{pascalCase name}}State } from '@modules/{{dashCase name}}/ngrx/{{dashCase name}}.reducer';
+import { select, Store } from '@ngrx/store';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { takeUntil, tap } from 'rxjs/operators';
+import { NGXLogger } from 'ngx-logger';
+import { {{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/{{dashCase name}}.service';
+import { ElementStateModel } from '@modules/shared/models/element-state.model';
+import { Subject } from 'rxjs';
+import { UserType } from '@modules/shared/models/entities/user.model';
+
+@Component({
+    selector: 'rp-view-{{dashCase name}}',
+    templateUrl: './view-{{dashCase name}}.component.html',
+    styleUrls: ['./view-{{dashCase name}}.component.less'],
+})
+export class View{{pascalCase name}}Component implements OnInit, OnDestroy {
+    isUpdating: boolean = false;
+
+    @Input() {{camelCase name}}Id: number;
+    {{camelCase name}}: {{pascalCase name}};
+
+    update{{pascalCase name}}State: ElementStateModel<{{pascalCase name}}> = new ElementStateModel();
+    @Output() delete: EventEmitter<ElementStateModel<{{pascalCase name}}>> = new EventEmitter();
+
+    private destroy$ = new Subject();
+
+    userTypes = UserType;
+
+    constructor(private store: Store<{{pascalCase name}}State>, private logger: NGXLogger, private {{camelCase name}}Service: {{pascalCase name}}Service) {}
+
+    ngOnInit() {
+        this.get{{pascalCase name}}();
+    }
+
+    get{{pascalCase name}}() {
+        this.store
+            .pipe(
+                select({{camelCase name}}NgrxHelper.selectEntityById(this.{{camelCase name}}Id), takeUntil(this.destroy$)),
+                tap(({{camelCase name}}) => {
+                    if (!{{camelCase name}}) {
+                        this.logger.debug('{{pascalCase name}} not found on store, querying for it');
+                        this.{{camelCase name}}Service.get{{pascalCase name}}(this.{{camelCase name}}Id).subscribe();
+                    }
+                }),
+            )
+            .subscribe((result) => {
+                this.{{camelCase name}} = result;
+            });
+    }
+
+    onUpdate() {
+        this.isUpdating = !this.isUpdating;
+    }
+
+    onUpdateComplete(state: ElementStateModel<{{pascalCase name}}>) {
+        this.onUpdate();
+        this.update{{pascalCase name}}State = state;
+    }
+
+    onDelete(deleteState: ElementStateModel<{{pascalCase name}}>) {
+        this.destroy$.next();
+        if (deleteState.hasSucceeded()) {
+            this.delete.emit(deleteState);
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+    }
+}

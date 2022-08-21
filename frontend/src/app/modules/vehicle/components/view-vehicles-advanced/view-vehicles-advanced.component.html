@@ -1,0 +1,44 @@
+<rp-advanced-filter-table></rp-advanced-filter-table>
+
+<ng-template #userTemplate let-data>
+    <rp-account-tag [account]="data.currentLeaseContract?.user"></rp-account-tag>
+</ng-template>
+
+<ng-template #ownerTemplate let-data>
+    <rp-account-tag [account]="data.currentLeaseContract?.owner"></rp-account-tag>
+</ng-template>
+
+<ng-template #leaseContractStatus let-data>
+    <rp-contract-status-tag [contract]="data.currentLeaseContract"></rp-contract-status-tag>
+</ng-template>
+
+<ng-template #ownershipContractStatus let-data>
+    <rp-contract-status-tag [contract]="data.currentOwnershipContract"></rp-contract-status-tag>
+</ng-template>
+
+<ng-template #infringementsTemplate let-data>
+    <rp-infringement-count-by-status [infringements]="data?.infringements"></rp-infringement-count-by-status>
+</ng-template>
+
+<ng-template #action let-data>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewVehicle(data.vehicleId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    <button nz-button nzType="primary" nzSize="small" (click)="onEditVehicle(data)" class="rp-space">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+    </button>
+</ng-template>
+
+<ng-template #delete let-data>
+    <rp-delete-vehicle [vehicleId]="data.vehicleId"></rp-delete-vehicle>
+</ng-template>
+
+<!--<nz-divider></nz-divider>-->
+
+<button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateVehicle()" *rpHasPermission="[permissions.CreateVehicle]">
+    <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'view-vehicles-advanced.create' | i18next }}
+</button>
+<button nz-button [nzType]="'default'" [routerLink]="['/home', 'vehicles', 'upload']" *rpHasPermission="[permissions.CreateVehicle]">
+    <i nz-icon nzType="upload" nzTheme="outline"></i>
+    {{ 'view-vehicles-advanced.import' | i18next }}
+</button>

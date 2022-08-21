@@ -1,0 +1,17 @@
+import { Module } from '@nestjs/common';
+import { {{pascalCase name}}Controller } from './controllers/{{dashCase name}}.controller';
+import { Create{{pascalCase name}}Service } from './services/create-{{dashCase name}}.service';
+import { Update{{pascalCase name}}Service } from './services/update-{{dashCase name}}.service';
+import { Get{{pascalCase name}}Service } from './services/get-{{dashCase name}}.service';
+import { Get{{pascalCase name}}sService } from './services/get-{{dashCase name}}s.service';
+import { Delete{{pascalCase name}}Service } from './services/delete-{{dashCase name}}.service';
+import { {{pascalCase name}}SpreadsheetService } from '@modules/{{dashCase name}}/services/{{dashCase name}}-spreadsheet.service';
+import { {{pascalCase name}}SpreadsheetController } from '@modules/{{dashCase name}}/controllers/{{dashCase name}}-spreadsheet.controller';
+import { {{pascalCase name}}QueryController } from '@modules/{{dashCase name}}/controllers/{{dashCase name}}-query.controller';
+
+@Module({
+    controllers: [{{pascalCase name}}Controller, {{pascalCase name}}SpreadsheetController, {{pascalCase name}}QueryController],
+    providers: [Create{{pascalCase name}}Service, Update{{pascalCase name}}Service, Get{{pascalCase name}}Service, Get{{pascalCase name}}sService, Delete{{pascalCase name}}Service, {{pascalCase name}}SpreadsheetService],
+    imports: [],
+})
+export class {{pascalCase name}}Module {}

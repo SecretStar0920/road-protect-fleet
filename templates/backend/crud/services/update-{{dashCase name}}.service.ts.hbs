@@ -1,0 +1,26 @@
+import { Injectable } from '@nestjs/common';
+import { Update{{pascalCase name}}Dto } from '@modules/{{dashCase name}}/controllers/{{dashCase name}}.controller';
+import { merge } from 'lodash';
+import { Logger } from '@logger';
+import { {{pascalCase name}}, {{constantCase name}}_CONSTRAINTS } from '@entities';
+import { databaseExceptionHelper } from '@modules/shared/helpers/database-exception-catcher.helper';
+import { Transactional } from 'typeorm-transactional-cls-hooked';
+
+@Injectable()
+export class Update{{pascalCase name}}Service {
+    constructor(private logger: Logger) {}
+
+    @Transactional()
+    async update{{pascalCase name}}(id: number, dto: Update{{pascalCase name}}Dto): Promise<{{pascalCase name}}> {
+        this.logger.log({ message: 'Updating {{pascalCase name}}: ', detail: merge({ id }, dto), fn: this.update{{pascalCase name}}.name });
+        let {{camelCase name}} = await {{pascalCase name}}.findOne(id);
+        {{camelCase name}} = merge({{camelCase name}}, dto);
+        try {
+            await {{camelCase name}}.save();
+        } catch (e) {
+            databaseExceptionHelper(e, {{constantCase name}}_CONSTRAINTS, 'Failed to update {{camelCase name}}, please contact the developers.');
+        }
+        this.logger.log({ message: 'Updated {{pascalCase name}}: ', detail: id, fn: this.update{{pascalCase name}}.name });
+        return {{camelCase name}};
+    }
+}

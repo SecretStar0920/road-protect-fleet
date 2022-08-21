@@ -1,0 +1,10 @@
+<rp-create-nomination (complete)="onComplete($event)"></rp-create-nomination>
+<nz-alert
+    nzType="error"
+    *ngIf="createNominationState?.hasFailed()"
+    [nzMessage]="createNominationState?.failedResult().message"
+    [nzDescription]="createNominationState?.failedResult().context.message"
+    nzShowIcon
+    style="margin-top: 10px"
+>
+</nz-alert>

@@ -1,0 +1,38 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ElementStateModel } from '@modules/shared/models/element-state.model';
+import { {{pascalCase name}} } from '@modules/shared/models/entities/{{dashCase name}}.model';
+import { {{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/{{dashCase name}}.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import i18next from 'i18next';
+
+@Component({
+    selector: 'rp-delete-{{dashCase name}}',
+    templateUrl: './delete-{{dashCase name}}.component.html',
+    styleUrls: ['./delete-{{dashCase name}}.component.less'],
+})
+export class Delete{{pascalCase name}}Component implements OnInit {
+    @Input() {{camelCase name}}Id: number;
+
+    delete{{pascalCase name}}State: ElementStateModel<{{pascalCase name}}> = new ElementStateModel();
+    @Output() delete: EventEmitter<ElementStateModel<{{pascalCase name}}>> = new EventEmitter();
+
+    constructor(private {{camelCase name}}Service: {{pascalCase name}}Service, private message: NzMessageService) {}
+
+    ngOnInit() {}
+
+    onDelete() {
+        this.delete{{pascalCase name}}State.submit();
+        this.delete.emit(this.delete{{pascalCase name}}State);
+        this.{{camelCase name}}Service.delete{{pascalCase name}}(this.{{camelCase name}}Id).subscribe(
+            {{camelCase name}} => {
+                this.delete{{pascalCase name}}State.onSuccess(i18next.t('delete-{{dashCase name}}.success'), {{camelCase name}});
+                this.message.success(this.delete{{pascalCase name}}State.successResult().message);
+                this.delete.emit(this.delete{{pascalCase name}}State);
+            },
+            error => {
+                this.delete{{pascalCase name}}State.onFailure(i18next.t('delete-{{dashCase name}}.fail'), error);
+                this.message.error(this.delete{{pascalCase name}}State.failedResult().message);
+            },
+        );
+    }
+}

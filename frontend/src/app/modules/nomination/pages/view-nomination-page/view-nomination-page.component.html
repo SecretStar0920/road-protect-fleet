@@ -1,0 +1,5 @@
+<rp-general-page [title]="'view-nomination-page.title' | i18next" [icon]="'exception'" [iconTheme]="'outline'" [enableBreadcrumb]="false">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-nomination [nominationId]="nominationId" (delete)="onDelete()"></rp-view-nomination>
+    </div>
+</rp-general-page>

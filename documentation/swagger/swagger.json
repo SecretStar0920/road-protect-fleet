@@ -1,0 +1,4593 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "description": "",
+        "title": "Road Protect API",
+        "version": "1.4.1"
+    },
+    "paths": {
+        "/api/v1/account": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccountV1Dto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "400": {
+                        "description": "E117: No valid locations were provided, neither Postal nor Physical"
+                    },
+                    "500": {
+                        "description": "Database error. Failed to perform that action, please contact support."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "description": "Create an account on the system that represents a leasing company, vehicle user or hybrid account. We also need basic contact and address information",
+                "operationId": "AccountController_createAccountV1",
+                "summary": "Create account [Deprecating - V1]"
+            }
+        },
+        "/api/v1/account/brn/{identifier}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "identifier",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "operationId": "AccountController_getAccountByIdentifier",
+                "summary": "Get an account by identifier"
+            }
+        },
+        "/api/v1/account/dropdown": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Account"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "operationId": "AccountController_getAccountDropdownData",
+                "summary": "Get short system account list"
+            }
+        },
+        "/api/v1/account/me": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "400": {
+                        "description": "E026: Could not find Account with id: accountId"
+                    },
+                    "403": {
+                        "description": "E057: Identity missing or expired, please re-login"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "operationId": "AccountController_getCurrentAccount",
+                "summary": "Get current [logged in] account details"
+            }
+        },
+        "/api/v1/account/v2": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccountV2Dto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "400": {
+                        "description": "E117: No valid locations were provided, neither Postal nor Physical"
+                    },
+                    "500": {
+                        "description": "Database error. Failed to perform that action, please contact support."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "description": "Create an account on the system that represents a leasing company, vehicle user or hybrid account. We also need basic contact and address information",
+                "operationId": "AccountController_createAccountV2",
+                "summary": "Create account [Phasing In - V2]"
+            }
+        },
+        "/api/v1/account/v2/{accountId}": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAccountV2Dto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "400": {
+                        "description": " * E026: Could not find Account with id: accountId\n * E065: No existing Postal Location and insufficient information to create complete address"
+                    },
+                    "403": {
+                        "description": "E064: We have disabled the ability to update account BRNs to prevent data corruption. Please contact us so that we can make this change for you if it is intended"
+                    },
+                    "500": {
+                        "description": "Failed to update account, please contact the developers."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "description": "Update account information by accountId",
+                "operationId": "AccountController_updateAccountV2",
+                "summary": "Update account by accountId [Phasing In - V2]"
+            }
+        },
+        "/api/v1/account/{accountId}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "operationId": "AccountController_getAccount",
+                "summary": "Get an account by accountId"
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "accountId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAccountV1Dto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "400": {
+                        "description": "E026: Could not find Account with id: accountId"
+                    },
+                    "403": {
+                        "description": "E064: We have disabled the ability to update account BRNs to prevent data corruption. Please contact us so that we can make this change for you if it is intended"
+                    },
+                    "500": {
+                        "description": "Failed to update account, please contact the developers."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "description": "Update account information by accountId",
+                "operationId": "AccountController_updateAccountV1",
+                "summary": "Update account by accountId [Deprecating - V1]"
+            }
+        },
+        "/api/v1/contract/ocr/file": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/RawContractOcrDto"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "400": {
+                        "description": " * E025: Received an error from the Contract OCR\n * E041: No file uploaded to OCR"
+                    },
+                    "500": {
+                        "description": "Malicious file detected!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "operationId": "ContractOcrController_ocrByFile",
+                "summary": "Create document and perform OCR"
+            }
+        },
+        "/api/v1/contract/reference/{reference}/end-date": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "reference",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateContractEndDateDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Contract"
+                        }
+                    },
+                    "400": {
+                        "description": " * E051: More than one contract found with the same reference (reference), please ensure your contract reference is unique\n * E052: No contract found relating to your current account with that reference"
+                    },
+                    "500": {
+                        "description": "Failed to update contract, please contact support"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "operationId": "ContractController_updateContractEndDateByReference",
+                "summary": "Update contract end date by reference"
+            }
+        },
+        "/api/v1/contract/vehicle/{vehicleId}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "vehicleId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Contract"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "operationId": "ContractController_getContractsForVehicle",
+                "summary": "Get contracts for a vehicle by vehicleId"
+            }
+        },
+        "/api/v1/contract/{contractId}": {
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contractId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Contract"
+                        }
+                    },
+                    "400": {
+                        "description": "E035: Could not find the Contract to delete"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "operationId": "ContractController_deleteContract",
+                "summary": "Delete contract by contractId"
+            },
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contractId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Contract"
+                        }
+                    },
+                    "400": {
+                        "description": "E126: Could not find the Contract with id: contractId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "operationId": "ContractController_getContract",
+                "summary": "Get contract (either lease / ownership) by contractId"
+            }
+        },
+        "/api/v1/contract/{contractId}/end-date": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contractId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateContractEndDateDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Contract"
+                        }
+                    },
+                    "400": {
+                        "description": "E050: Contract with id contractId not found"
+                    },
+                    "500": {
+                        "description": "Failed to update contract, please contact support"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "operationId": "ContractController_updateContractEndDate",
+                "summary": "Update contract end date"
+            }
+        },
+        "/api/v1/contract/{contractId}/reference": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contractId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateContractReferenceDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Contract"
+                        }
+                    },
+                    "400": {
+                        "description": "E050: Contract with id contractId not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "description": "Your account has to be on the contract you are editing",
+                "operationId": "ContractController_updateContractReferenceById",
+                "summary": "Update contract reference by contractId"
+            }
+        },
+        "/api/v1/document": {
+            "post": {
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "file",
+                        "type": "file"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateDocumentDto"
+                        }
+                    },
+                    {
+                        "in": "formData",
+                        "name": "ocr",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Document"
+                        }
+                    },
+                    "400": {
+                        "description": " * E025: Received an error from the Contract OCR\n * E043: Failed to add document"
+                    },
+                    "500": {
+                        "description": "E122: The CreateDocumentDto does not have a fileName: CreateDocumentDto"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Documents & Files"
+                ],
+                "operationId": "DocumentController_createDocumentOcr",
+                "summary": "Create document"
+            }
+        },
+        "/api/v1/document/{documentId}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "documentId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Document"
+                        }
+                    },
+                    "400": {
+                        "description": "E044: Could not find Document with id: documentId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Documents & Files"
+                ],
+                "operationId": "DocumentController_getDocument",
+                "summary": "Get document by DocumentId"
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "documentId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateDocumentDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Document"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Documents & Files"
+                ],
+                "operationId": "DocumentController_updateDocument",
+                "summary": "Update document by DocumentId"
+            }
+        },
+        "/api/v1/infringement-report/account": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AccountInfringementReportDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "operationId": "InfringementReportController_sendAccountInfringementReport"
+            }
+        },
+        "/api/v1/infringement-report/account-relation": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AccountRelationInfringementReportDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "operationId": "InfringementReportController_sendAccountRelationInfringementReport"
+            }
+        },
+        "/api/v1/infringement-report/bulk-account-relation": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "operationId": "InfringementReportController_sendBulkAccountRelationsInfringementReports"
+            }
+        },
+        "/api/v1/infringement/batch/approve": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BatchApproveInfringementDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Infringement"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementController_batchApproveInfringementForPayment",
+                "summary": "Batch infringement approval for payment"
+            }
+        },
+        "/api/v1/infringement/batch/redirection-readiness": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetRedirectionDetailsBatchDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/BatchMunicipalRedirectionDetails"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementController_getManyRedirectionDetails",
+                "summary": "Check if infringements have required documentation for municipal redirection"
+            }
+        },
+        "/api/v1/infringement/fix/invalid-status-transitions": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "from",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Infringement"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "operationId": "FixInvalidStatusTransitionsController_fix"
+            }
+        },
+        "/api/v1/infringement/{infringementId}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "infringementId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Infringement"
+                        }
+                    },
+                    "400": {
+                        "description": "E037: Could not find Infringement with id: infringementId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementController_getInfringement",
+                "summary": "Get infringement by Infringement Id"
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "infringementId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateInfringementDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Infringement"
+                        }
+                    },
+                    "400": {
+                        "description": " * Invalid infringement status update. Cannot go from current to next.\n * E037: Could not find Infringement with id: infringementId"
+                    },
+                    "500": {
+                        "description": "Database Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementController_updateInfringement",
+                "summary": "Update infringement"
+            }
+        },
+        "/api/v1/infringement/{infringementId}/approve": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "infringementId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Infringement"
+                        }
+                    },
+                    "400": {
+                        "description": "E037: Could not find Infringement with id: infringementId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementController_approveInfringementForPayment",
+                "summary": "Approve nomination for payment"
+            }
+        },
+        "/api/v1/infringement/{infringementId}/redirection-readiness": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "infringementId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/MunicipalRedirectionDetails"
+                        }
+                    },
+                    "400": {
+                        "description": "E037: Could not find Infringement with id: infringementId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementController_getRedirectionDetails",
+                "summary": "Check if infringement has required documentation for municipal redirection"
+            }
+        },
+        "/api/v1/infringement/{infringementId}/unapprove": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "infringementId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Infringement"
+                        }
+                    },
+                    "400": {
+                        "description": "E037: Could not find Infringement with id: infringementId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementController_unapprovedInfringementForPayment",
+                "summary": "Unapproved infringement for payment"
+            }
+        },
+        "/api/v1/lease-contract": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateLeaseContractDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/LeaseContract"
+                        }
+                    },
+                    "400": {
+                        "description": " * E026: Account with identifier accountIdentifier not found\n * E038: Provided contract dates overlap with existing contract(s)\n * E044: Could not find Document with id: documentId\n * E049: Could not find Vehicle with registration registration\n * E050: Contract with id contractId not found"
+                    },
+                    "500": {
+                        "description": "Failed to create lease contract, please contact the developers."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Lease Contracts"
+                ],
+                "operationId": "LeaseContractController_createLeaseContract",
+                "summary": "Create lease contract"
+            }
+        },
+        "/api/v1/lease-contract/{contractId}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contractId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/LeaseContract"
+                        }
+                    },
+                    "400": {
+                        "description": "E126: Could not find the Contract with id: contractId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Lease Contracts"
+                ],
+                "operationId": "LeaseContractController_getLeaseContract",
+                "summary": "Get lease contract"
+            }
+        },
+        "/api/v1/nomination/batch/redirect/digital": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BatchDigitalRedirectionDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationController_batchDigitallyRedirectNomination",
+                "summary": "Batch digital redirection of nominations"
+            }
+        },
+        "/api/v1/nomination/batch/redirect/municipal": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BatchMunicipalRedirectionDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/BatchRedirectionsResult"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationController_batchMunicipallyRedirectNomination",
+                "summary": "Batch municipally redirect infringement"
+            }
+        },
+        "/api/v1/nomination/{nominationId}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "nominationId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Nomination"
+                        }
+                    },
+                    "400": {
+                        "description": "E020: Could not find Nomination with id: nominationId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationController_getNomination",
+                "summary": "Get Nomination by NominationId"
+            }
+        },
+        "/api/v1/nomination/{nominationId}/redirect/approve": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "The nominationId of the nomination to redirect",
+                        "in": "path",
+                        "name": "nominationId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateRedirectionStatusDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Nomination"
+                        }
+                    },
+                    "400": {
+                        "description": " * E020: Could not find Nomination with id: nominationId\n * E091: The infringement is not currently in the redirection process and cannot be manually approved or denied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationController_updateRedirection",
+                "summary": "Manually update the status of the redirection"
+            }
+        },
+        "/api/v1/nomination/{nominationId}/redirect/digital": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "The nominationId of the nomination to redirect",
+                        "in": "path",
+                        "name": "nominationId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DigitalRedirectionDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Nomination"
+                        }
+                    },
+                    "400": {
+                        "description": " * E021: The vehicle with id vehicleId is not related to account with id accountId\n * E162: No to on this infringement (infringementId) for nomination nominationId when doing a digital nomination."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationController_digitallyRedirectNomination",
+                "summary": "Digitally redirect of nomination"
+            }
+        },
+        "/api/v1/nomination/{nominationId}/redirect/municipal": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "The nominationId of the nomination to redirect",
+                        "in": "path",
+                        "name": "nominationId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Nomination"
+                        }
+                    },
+                    "400": {
+                        "description": " * E020: Could not find Nomination with id: nominationId\n * E037: Could not find Infringement with id: infringementId\n * E044: Could not find Document with id: documentId\n * E082: The nomination can not be made because the required documents are not present\n * E084: This infringement is not ready for redirection\n * E085: This nomination has the following status; which means we cannot redirect it: nominationStatus\n * E086: Redirection can only occur on infringements linked to Lease Contracts, we need these details for the redirection\n * E087: There is no currently nominated account on this redirection, please contact support\n * E088: Only redirection from owner to user is supported currently\n * E140: We do not have fax or email contact details for the user running this request\n * E164: Faild to merge documents: error"
+                    },
+                    "500": {
+                        "description": " * E045: Failed to load the document requested\n * E046: Failed to create a generated document\n * E083: Something went wrong retrieving the documents"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationController_municipallyRedirectNomination",
+                "summary": "Municipally redirect infringement"
+            }
+        },
+        "/api/v1/ownership-contract": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateOwnershipContractDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/OwnershipContract"
+                        }
+                    },
+                    "400": {
+                        "description": " * E026: Account with identifier accountIdentifier not found\n * E038: Provided contract dates overlap with existing contract(s)\n * E044: Could not find Document with id: documentId\n * E049: Could not find Vehicle with registration registration\n * E050: Contract with id contractId not found\n * E118: Owner must be defined when creating contract"
+                    },
+                    "500": {
+                        "description": "Failed to create ownership contract, please contact the developers."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Ownership Contracts"
+                ],
+                "operationId": "OwnershipContractController_createOwnershipContract",
+                "summary": "Create ownership contract"
+            }
+        },
+        "/api/v1/ownership-contract/{contractId}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contractId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/OwnershipContract"
+                        }
+                    },
+                    "400": {
+                        "description": "E126: Could not find the Contract with id: contractId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Ownership Contracts"
+                ],
+                "operationId": "OwnershipContractController_getOwnershipContract",
+                "summary": "Get ownership contract by Id"
+            }
+        },
+        "/api/v1/public-document/fax/{documentId}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "documentId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Public Documents & Files"
+                ],
+                "operationId": "PublicDocumentController_getDocumentFile",
+                "summary": "Get document file by DocumentId"
+            }
+        },
+        "/api/v1/query/account": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Account"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "operationId": "AccountQueryController_getMany",
+                "summary": "Query and filter accounts"
+            }
+        },
+        "/api/v1/query/account/spreadsheet": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/AdvancedTableColumn"
+                            },
+                            "type": "array"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "title":"Buffer"
+                        }
+                    },
+                    "400": {
+                        "description": "E112: No data to export to spreadsheet"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "operationId": "AccountQueryController_getManyAsSpreadsheet",
+                "summary": "Query and filter accounts as a spreadsheet"
+            }
+        },
+        "/api/v1/query/contract": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "mine",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "startDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "endDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "managedVehicles"
+                        ],
+                        "in": "query",
+                        "name": "via",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": "false",
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "in": "query",
+                        "name": "graphing",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Contract"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "operationId": "ContractQueryController_getMany",
+                "summary": "Query and filter contracts"
+            }
+        },
+        "/api/v1/query/contract/spreadsheet": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "mine",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/AdvancedTableColumn"
+                            },
+                            "type": "array"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "title":"Buffer"
+                        }
+                    },
+                    "400": {
+                        "description": "E112: No data to export to spreadsheet"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Query and filter contracts as a spreadsheet",
+                "operationId": "ContractQueryController_getManyAsSpreadsheet"
+            }
+        },
+        "/api/v1/query/infringement": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "default": "true",
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "in": "query",
+                        "name": "mine",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": "false",
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "in": "query",
+                        "name": "graphing",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": "withBRN",
+                        "enum": [
+                            "withBRN",
+                            "onVehicles",
+                            "noBRN",
+                            "vehicleUser",
+                            "vehicleOwner",
+                            "vehicleUserWithoutBrn",
+                            "vehicleOwnerWithoutBrn",
+                            "onVehiclesOrMine",
+                            "noContracts"
+                        ],
+                        "in": "query",
+                        "name": "via",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "startDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "endDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "collectionFormat": "multi",
+                        "in": "query",
+                        "name": "issuers",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicleRegistration",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "Due",
+                            "Outstanding",
+                            "Paid",
+                            "Closed",
+                            "Approved for Payment"
+                        ],
+                        "in": "query",
+                        "name": "infringementStatus",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Infringement"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementQueryController_getMany",
+                "summary": "Query and filter infringements"
+            }
+        },
+        "/api/v1/query/infringement/spreadsheet": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "default": "true",
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "in": "query",
+                        "name": "mine",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": "false",
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "in": "query",
+                        "name": "graphing",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": "withBRN",
+                        "enum": [
+                            "withBRN",
+                            "onVehicles",
+                            "noBRN",
+                            "vehicleUser",
+                            "vehicleOwner",
+                            "vehicleUserWithoutBrn",
+                            "vehicleOwnerWithoutBrn",
+                            "onVehiclesOrMine",
+                            "noContracts"
+                        ],
+                        "in": "query",
+                        "name": "via",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "startDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "endDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "collectionFormat": "multi",
+                        "in": "query",
+                        "name": "issuers",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "vehicleRegistration",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "Due",
+                            "Outstanding",
+                            "Paid",
+                            "Closed",
+                            "Approved for Payment"
+                        ],
+                        "in": "query",
+                        "name": "infringementStatus",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/AdvancedTableColumn"
+                            },
+                            "type": "array"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "title":"Buffer"
+                        }
+                    },
+                    "400": {
+                        "description": "E112: No data to export to spreadsheet"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Infringements"
+                ],
+                "operationId": "InfringementQueryController_getManyAsSpreadsheet",
+                "summary": "Query and filter infringements as a spreadsheet"
+            }
+        },
+        "/api/v1/query/nomination": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Nomination"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationQueryController_getMany",
+                "summary": "Query and filter nominations"
+            }
+        },
+        "/api/v1/query/nomination/spreadsheet": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/AdvancedTableColumn"
+                            },
+                            "type": "array"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "title":"Buffer"
+                        }
+                    },
+                    "400": {
+                        "description": "E112: No data to export to spreadsheet"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Nominations"
+                ],
+                "operationId": "NominationQueryController_getManyAsSpreadsheet",
+                "summary": "Query and filter nominations as a spreadsheet"
+            }
+        },
+        "/api/v1/query/vehicle": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "mine",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "all",
+                            "owned",
+                            "using",
+                            "infringementProjectionsContracts",
+                            "infringementProjectionsInfringements",
+                            "infringementProjectionsWithoutInfringements",
+                            "infringementProjectionsNoContracts"
+                        ],
+                        "in": "query",
+                        "name": "via",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": "false",
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "in": "query",
+                        "name": "graphing",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "owner",
+                            "user",
+                            "hybrid"
+                        ],
+                        "in": "query",
+                        "name": "accountRole",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "startDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "endDate",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Vehicle"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Vehicles"
+                ],
+                "operationId": "VehicleQueryController_getMany",
+                "summary": "Query and filter vehicles"
+            }
+        },
+        "/api/v1/query/vehicle/spreadsheet": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "mine",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "all",
+                            "owned",
+                            "using",
+                            "infringementProjectionsContracts",
+                            "infringementProjectionsInfringements",
+                            "infringementProjectionsWithoutInfringements",
+                            "infringementProjectionsNoContracts"
+                        ],
+                        "in": "query",
+                        "name": "via",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": "false",
+                        "enum": [
+                            "true",
+                            "false"
+                        ],
+                        "in": "query",
+                        "name": "graphing",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "owner",
+                            "user",
+                            "hybrid"
+                        ],
+                        "in": "query",
+                        "name": "accountRole",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "startDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "endDate",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/AdvancedTableColumn"
+                            },
+                            "type": "array"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "title":"Buffer"
+                        }
+                    },
+                    "400": {
+                        "description": "E112: No data to export to spreadsheet"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Invalid query parameters"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Vehicles"
+                ],
+                "operationId": "VehicleQueryController_getManyAsSpreadsheet",
+                "summary": "Query and filter vehicles as a spreadsheet"
+            }
+        },
+        "/api/v1/vehicle": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateVehicleDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    },
+                    "400": {
+                        "description": "Vehicle not found"
+                    },
+                    "500": {
+                        "description": "Failed to create vehicle, please contact the developers."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Vehicles"
+                ],
+                "operationId": "VehicleController_createVehicle",
+                "summary": "Create vehicle"
+            }
+        },
+        "/api/v1/vehicle/{vehicleId}": {
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "vehicleId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    },
+                    "400": {
+                        "description": "E157: Could not find the Vehicle to delete"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Vehicles"
+                ],
+                "operationId": "VehicleController_deleteVehicle",
+                "summary": "Delete vehicle"
+            },
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "vehicleId",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    },
+                    "400": {
+                        "description": "E049: Could not find Vehicle with id: vehicleId"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Vehicles"
+                ],
+                "operationId": "VehicleController_getVehicle",
+                "summary": "Get vehicle"
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "vehicleId",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateVehicleDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    },
+                    "400": {
+                        "description": "Vehicle not found"
+                    },
+                    "500": {
+                        "description": "Failed to update the vehicle - please contact the developers"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "tags": [
+                    "Vehicles"
+                ],
+                "operationId": "VehicleController_updateVehicle",
+                "summary": "Edit vehicle"
+            }
+        }
+    },
+    "definitions": {
+        "Account": {
+            "title": "Account",
+            "properties": {
+                "accountId": {
+                    "type": "number"
+                },
+                "accountMetabaseReporting": {
+                    "description": "AccountMetabaseReporting",
+                    "title": "AccountMetabaseReporting",
+                    "type": "object"
+                },
+                "accountReporting": {
+                    "description": "AccountReporting",
+                    "title": "AccountReporting",
+                    "type": "object"
+                },
+                "accountRequestInformationLog": {
+                    "description": "RequestInformationLog",
+                    "type": "object"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "asOwner": {
+                    "description": "OwnershipContract[]",
+                    "type": "object"
+                },
+                "asUser": {
+                    "description": "LeaseContract[]",
+                    "type": "object"
+                },
+                "atgCreditGuard": {
+                    "description": "CreditGuardToken",
+                    "type": "object"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "details": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/AccountDetails"
+                        },
+                        {
+                            "default": {},
+                            "title": "AccountDetails"
+                        }
+                    ]
+                },
+                "fleetManagerDetails": {
+                    "description": "FleetManagerDetails",
+                    "title": "FleetManagerDetails",
+                    "type": "object"
+                },
+                "forwardRelations": {
+                    "description": "AccountRelation[]",
+                    "type": "object"
+                },
+                "identifier": {
+                    "type": "string"
+                },
+                "infringementApproval": {
+                    "description": "InfringementApproval[]",
+                    "type": "object"
+                },
+                "infringementNotes": {
+                    "description": "RequestInformationLog",
+                    "type": "object"
+                },
+                "isVerified": {
+                    "type": "boolean"
+                },
+                "logs": {
+                    "description": "Log",
+                    "type": "object"
+                },
+                "managed": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nominations": {
+                    "description": "Nomination[]",
+                    "type": "object"
+                },
+                "notifications": {
+                    "description": "Notification",
+                    "type": "object"
+                },
+                "physicalLocation": {
+                    "description": "PhysicalLocation",
+                    "title": "PhysicalLocation",
+                    "type": "object"
+                },
+                "postalLocation": {
+                    "description": "PostalLocation",
+                    "type": "object"
+                },
+                "powerOfAttorney": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "previouslyNominated": {
+                    "description": "Nomination[]",
+                    "type": "object"
+                },
+                "primaryContact": {
+                    "type": "string"
+                },
+                "requestInformationDetails": {
+                    "description": "RequestInformationDetails",
+                    "title": "RequestInformationDetails",
+                    "type": "object"
+                },
+                "reverseRelations": {
+                    "description": "AccountRelation[]",
+                    "type": "object"
+                },
+                "role": {
+                    "default": "Hybrid",
+                    "enum": [
+                        "Owner",
+                        "User",
+                        "Hybrid"
+                    ],
+                    "type": "string"
+                },
+                "rpCreditGuard": {
+                    "description": "CreditGuardToken",
+                    "type": "object"
+                },
+                "toBeNominated": {
+                    "description": "Nomination[]",
+                    "type": "object"
+                },
+                "type": {
+                    "default": "Standard",
+                    "enum": [
+                        "Individual",
+                        "Standard"
+                    ],
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "userAuditLogs": {
+                    "description": "AuditLog",
+                    "type": "object"
+                },
+                "users": {
+                    "description": "AccountUser[]",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "accountId",
+                "identifier",
+                "name",
+                "primaryContact",
+                "active",
+                "isVerified",
+                "type",
+                "role",
+                "details",
+                "managed",
+                "accountReporting",
+                "accountMetabaseReporting",
+                "fleetManagerDetails",
+                "requestInformationDetails",
+                "physicalLocation",
+                "postalLocation",
+                "powerOfAttorney",
+                "users",
+                "atgCreditGuard",
+                "rpCreditGuard",
+                "asUser",
+                "asOwner",
+                "nominations",
+                "previouslyNominated",
+                "toBeNominated",
+                "notifications",
+                "logs",
+                "userAuditLogs",
+                "accountRequestInformationLog",
+                "infringementNotes",
+                "forwardRelations",
+                "reverseRelations",
+                "infringementApproval"
+            ],
+            "type": "object"
+        },
+        "AccountDetails": {
+            "title": "AccountDetails",
+            "properties": {
+                "fax": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reportingEmbedUrl": {
+                    "type": "string"
+                },
+                "telephone": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "telephone",
+                "fax",
+                "reportingEmbedUrl"
+            ],
+            "type": "object"
+        },
+        "AccountInfringementReportDto": {
+            "title": "AccountInfringementReportDto",
+            "properties": {
+                "accountId": {
+                    "type": "number"
+                },
+                "queryDate": {
+                    "default": "2021-06-01T08:17:37.532Z",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "queryDate"
+            ],
+            "type": "object"
+        },
+        "AccountRelationInfringementReportDto": {
+            "title": "AccountRelationInfringementReportDto",
+            "properties": {
+                "accountRelationId": {
+                    "type": "number"
+                },
+                "queryDate": {
+                    "default": "2021-06-01T08:17:37.533Z",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountRelationId",
+                "queryDate"
+            ],
+            "type": "object"
+        },
+        "AdvancedTableColumn": {
+            "title":"AdvancedTableColumn",
+            "properties": {
+                "isDisplaying": {
+                    "default": true,
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "spreadsheetFormat": {
+                    "default": "default",
+                    "enum": [
+                        "currency",
+                        "date",
+                        "number",
+                        "default"
+                    ],
+                    "type": "string"
+                },
+                "spreadsheetKey": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "key",
+                "title",
+                "isDisplaying",
+                "spreadsheetKey",
+                "spreadsheetFormat"
+            ],
+            "type": "object"
+        },
+        "BatchApproveInfringementDto": {
+            "title": "BatchApproveInfringementDto",
+            "properties": {
+                "infringementIds": {
+                    "description": "An array of infringementIds to approve for payment",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "infringementIds"
+            ],
+            "type": "object"
+        },
+        "BatchDigitalRedirectionDto": {
+            "title": "BatchDigitalRedirectionDto",
+            "properties": {
+                "nominationIds": {
+                    "description": "An array of nominationIds to redirect",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "to": {
+                    "description": "The target of the redirections",
+                    "enum": [
+                        "Owner",
+                        "User"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "nominationIds",
+                "to"
+            ],
+            "type": "object"
+        },
+        "BatchMunicipalRedirectionDetails": {
+            "title": "BatchMunicipalRedirectionDetails",
+            "properties": {
+                "ready": {
+                    "type": "object"
+                },
+                "unready": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "ready",
+                "unready"
+            ],
+            "type": "object"
+        },
+        "BatchMunicipalRedirectionDto": {
+            "title": "BatchMunicipalRedirectionDto",
+            "properties": {
+                "nominationIds": {
+                    "description": "An array of nominationIds to redirect",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "nominationIds"
+            ],
+            "type": "object"
+        },
+        "BatchRedirectionsResult": {
+            "title": "BatchRedirectionsResult",
+            "properties": {
+                "failedRedirections": {
+                    "$ref": "#/definitions/FailedRedirectionResult"
+                },
+                "successfulRedirections": {
+                    "$ref": "#/definitions/SuccessfulRedirectionResult"
+                }
+            },
+            "required": [
+                "successfulRedirections",
+                "failedRedirections"
+            ],
+            "type": "object"
+        },
+        "Contract": {
+            "title": "Contract",
+            "properties": {
+                "contractId": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "document": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "infringements": {
+                    "description": "Infringement[]",
+                    "type": "object"
+                },
+                "owner": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "redirectionTargetAddress": {
+                    "description": "This is a calculated field",
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "enum": [
+                        "Upcoming",
+                        "Expired",
+                        "Expiring soon",
+                        "Valid"
+                    ],
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "vehicle": {
+                    "description": "Vehicle",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "contractId",
+                "type",
+                "startDate",
+                "endDate",
+                "status",
+                "reference",
+                "document",
+                "owner",
+                "vehicle",
+                "infringements",
+                "redirectionTargetAddress"
+            ],
+            "type": "object"
+        },
+        "CreateAccountV1Dto": {
+            "title": "CreateAccountV1Dto",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "contactFax": {
+                    "description": "The fax number of the primary contact for this account",
+                    "example": "+1 323 555 1234",
+                    "type": "string"
+                },
+                "contactName": {
+                    "description": "The given name of the primary contact for this account",
+                    "example": "John Doe",
+                    "type": "string"
+                },
+                "contactTelephone": {
+                    "description": "The phone number of the primary contact for this account",
+                    "example": "(410) 282-9236",
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "identifier": {
+                    "description": "The identifier or business registration of the account",
+                    "example": "721360279",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the group / business / company",
+                    "example": "Road Protect",
+                    "type": "string"
+                },
+                "postOfficeBox": {
+                    "type": "string"
+                },
+                "primaryContact": {
+                    "description": "The email address of the primary contact for this account",
+                    "example": "admin@roadprotect.co.il",
+                    "type": "string"
+                },
+                "proximity": {
+                    "type": "string"
+                },
+                "role": {
+                    "description": "The primary role of the account, whether it functions primarily as a vehicle owner [Owner], user [User] or both [Hybrid]",
+                    "enum": [
+                        "Owner",
+                        "User",
+                        "Hybrid"
+                    ],
+                    "example": "Owner",
+                    "type": "string"
+                },
+                "streetName": {
+                    "type": "string"
+                },
+                "streetNumber": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "city",
+                "country",
+                "name",
+                "identifier",
+                "primaryContact",
+                "role"
+            ],
+            "type": "object"
+        },
+        "CreateAccountV2Dto": {
+            "title": "CreateAccountV2Dto",
+            "properties": {
+                "details": {
+                    "$ref": "#/definitions/AccountDetails"
+                },
+                "identifier": {
+                    "description": "The identifier or business registration of the account",
+                    "example": "721360279",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the group / business / company",
+                    "example": "Road Protect",
+                    "type": "string"
+                },
+                "physicalLocation": {
+                    "$ref": "#/definitions/CreatePhysicalLocationDto"
+                },
+                "postalLocation": {
+                    "$ref": "#/definitions/CreatePostalLocationDto"
+                },
+                "primaryContact": {
+                    "description": "The email address of the primary contact for this account",
+                    "example": "admin@roadprotect.co.il",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "The primary role of the account, whether it functions primarily as a vehicle owner [Owner], user [User] or both [Hybrid]",
+                    "enum": [
+                        "Owner",
+                        "User",
+                        "Hybrid"
+                    ],
+                    "example": "Owner",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "identifier",
+                "primaryContact",
+                "role",
+                "details",
+                "physicalLocation",
+                "postalLocation"
+            ],
+            "type": "object"
+        },
+        "CreateDocumentBodyDto": {
+            "title":"CreateDocumentBodyDto",
+            "properties": {
+                "body": {
+                    "$ref": "#/definitions/CreateDocumentDto",
+                    "in": "formData",
+                    "name": "body"
+                },
+                "file": {
+                    "in": "formData",
+                    "name": "file",
+                    "type": "file"
+                },
+                "ocr": {
+                    "in": "formData",
+                    "name": "ocr",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "file",
+                "body",
+                "ocr"
+            ],
+            "type": "object"
+        },
+        "CreateDocumentDto": {
+            "title":"CreateDocumentDto",
+            "properties": {
+                "fileDirectory": {
+                    "type": "string"
+                },
+                "fileName": {
+                    "type": "string"
+                },
+                "ocr": {
+                    "$ref": "#/definitions/OcrDetails"
+                },
+                "storageName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "storageName",
+                "fileName",
+                "fileDirectory",
+                "ocr"
+            ],
+            "type": "object"
+        },
+        "CreateLeaseContractDto": {
+            "title": "CreateLeaseContractDto",
+            "properties": {
+                "document": {
+                    "description": "The lease contract documentId",
+                    "example": 1,
+                    "type": "number"
+                },
+                "endDate": {
+                    "description": "The lease contract end date",
+                    "example": "2021-06-22T08:17:36.409Z",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "The lease contract owner BRN",
+                    "example": "57283819237",
+                    "type": "string"
+                },
+                "reference": {
+                    "description": "An optional reference Id for linking to batch file upload or your system Id",
+                    "example": "Doc123471",
+                    "type": "string"
+                },
+                "startDate": {
+                    "description": "The lease contract start date",
+                    "example": "2021-06-08T08:17:36.409Z",
+                    "type": "string"
+                },
+                "user": {
+                    "description": "The lease contract user BRN",
+                    "example": "37283819237",
+                    "type": "string"
+                },
+                "vehicle": {
+                    "description": "The lease contract vehicle registration",
+                    "example": "37178283",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "startDate",
+                "user",
+                "owner",
+                "vehicle"
+            ],
+            "type": "object"
+        },
+        "CreateOwnershipContractDto": {
+            "title": "CreateOwnershipContractDto",
+            "properties": {
+                "document": {
+                    "description": "The documentId for the license document",
+                    "type": "number"
+                },
+                "endDate": {
+                    "description": "The ownership end date",
+                    "example": "2021-06-22T08:17:36.006Z",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "The lease contract owner BRN",
+                    "example": "57283819237",
+                    "type": "string"
+                },
+                "reference": {
+                    "description": "An optional reference Id for linking to batch file upload or your system Id",
+                    "type": "string"
+                },
+                "startDate": {
+                    "description": "The ownership start date",
+                    "example": "2021-06-08T08:17:36.006Z",
+                    "type": "string"
+                },
+                "vehicle": {
+                    "description": "The vehicle registration",
+                    "example": "37178283",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "startDate",
+                "owner",
+                "vehicle"
+            ],
+            "type": "object"
+        },
+        "CreatePhysicalLocationDto": {
+            "title": "CreatePhysicalLocationDto",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "proximity": {
+                    "type": "string"
+                },
+                "streetName": {
+                    "type": "string"
+                },
+                "streetNumber": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "city",
+                "country"
+            ],
+            "type": "object"
+        },
+        "CreatePostalLocationDto": {
+            "title": "CreatePostalLocationDto",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "postOfficeBox": {
+                    "type": "string"
+                },
+                "proximity": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "city",
+                "country",
+                "postOfficeBox"
+            ],
+            "type": "object"
+        },
+        "CreateVehicleDto": {
+            "title": "CreateVehicleDto",
+            "properties": {
+                "category": {
+                    "description": "The vehicle category class",
+                    "example": "car 1-5",
+                    "type": "string"
+                },
+                "color": {
+                    "description": "The vehicle color",
+                    "example": "gold",
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "default": "Unknown",
+                    "description": "The vehicle manufacturer",
+                    "example": "Ford",
+                    "type": "string"
+                },
+                "model": {
+                    "description": "The vehicle model",
+                    "example": "F40",
+                    "type": "string"
+                },
+                "modelYear": {
+                    "description": "The year the vehicle was manufactured",
+                    "example": "2012",
+                    "type": "string"
+                },
+                "registration": {
+                    "description": "The vehicle registration number",
+                    "example": "51729193",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of vehicle in the fleet",
+                    "enum": [
+                        "Private",
+                        "Truck"
+                    ],
+                    "example": "Private",
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "The vehicle weight in tonnes",
+                    "example": "1.9",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "registration",
+                "manufacturer"
+            ],
+            "type": "object"
+        },
+        "DigitalRedirectionDto": {
+            "title": "DigitalRedirectionDto",
+            "properties": {
+                "details": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/NominationDetails"
+                        },
+                        {
+                            "description": "Additional details to be stored regarding the nomination"
+                        }
+                    ]
+                },
+                "documentId": {
+                    "description": "The documentId of a created document to save with the redirection",
+                    "type": "number"
+                },
+                "to": {
+                    "description": "The target of the redirection",
+                    "enum": [
+                        "Owner",
+                        "User"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "to"
+            ],
+            "type": "object"
+        },
+        "Document": {
+            "title": "Document",
+            "properties": {
+                "account": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "contract": {
+                    "description": "Contract",
+                    "type": "object"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "documentId": {
+                    "type": "number"
+                },
+                "fileDirectory": {
+                    "type": "string"
+                },
+                "fileName": {
+                    "type": "string"
+                },
+                "generatedDocument": {
+                    "description": "GeneratedDocument",
+                    "type": "object"
+                },
+                "infringement": {
+                    "description": "Infringement",
+                    "type": "object"
+                },
+                "leaseContract": {
+                    "description": "LeaseContract",
+                    "type": "object"
+                },
+                "manualPayment": {
+                    "description": "ManualPayment",
+                    "type": "object"
+                },
+                "nominationMerged": {
+                    "description": "Nomination[]",
+                    "type": "object"
+                },
+                "nominationRedirection": {
+                    "description": "Nomination[]",
+                    "type": "object"
+                },
+                "ocr": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/OcrDetails"
+                        },
+                        {
+                            "description": "Results from contract OCR"
+                        }
+                    ]
+                },
+                "relations": {
+                    "description": "AccountRelation",
+                    "type": "object"
+                },
+                "storageName": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "vehicleDocuments": {
+                    "description": "Vehicle Documents [Registration] (not used for much right now)",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "documentId",
+                "storageName",
+                "fileName",
+                "fileDirectory",
+                "ocr",
+                "contract",
+                "leaseContract",
+                "vehicleDocuments",
+                "infringement",
+                "manualPayment",
+                "nominationMerged",
+                "nominationRedirection",
+                "account",
+                "generatedDocument",
+                "relations"
+            ],
+            "type": "object"
+        },
+        "FailedRedirectionResult": {
+            "title": "FailedRedirectionResult",
+            "properties": {
+                "error": {
+                    "type": "object"
+                },
+                "nominationId": {
+                    "type": "number"
+                },
+                "result": {
+                    "description": "Nomination",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "error",
+                "nominationId",
+                "result"
+            ],
+            "type": "object"
+        },
+        "GetRedirectionDetailsBatchDto": {
+            "title": "GetRedirectionDetailsBatchDto",
+            "properties": {
+                "infringementIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            },
+            "required": [
+                "infringementIds"
+            ],
+            "type": "object"
+        },
+        "Infringement": {
+            "title": "Infringement",
+            "properties": {
+                "amountDue": {
+                    "type": "string"
+                },
+                "approvedDate": {
+                    "type": "string"
+                },
+                "brn": {
+                    "type": "string"
+                },
+                "caseNumber": {
+                    "type": "string"
+                },
+                "contract": {
+                    "description": "Contract",
+                    "type": "object"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "document": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "externalChangeDate": {
+                    "type": "string"
+                },
+                "infringementApproval": {
+                    "description": "InfringementApproval",
+                    "type": "object"
+                },
+                "infringementId": {
+                    "type": "number"
+                },
+                "infringementLogs": {
+                    "description": "InfringementLog[]",
+                    "type": "object"
+                },
+                "infringementRevisionHistory": {
+                    "description": "InfringementRevisionHistory[]",
+                    "type": "object"
+                },
+                "issuer": {
+                    "description": "Issuer",
+                    "type": "object"
+                },
+                "issuerStatus": {
+                    "type": "string"
+                },
+                "issuerStatusDescription": {
+                    "type": "string"
+                },
+                "lastStatusChangeDate": {
+                    "type": "string"
+                },
+                "lastSuccessfulPayment": {
+                    "description": "Payment",
+                    "type": "object"
+                },
+                "latestPaymentDate": {
+                    "type": "string"
+                },
+                "location": {
+                    "description": "PhysicalLocation",
+                    "type": "object"
+                },
+                "logs": {
+                    "description": "Log[]",
+                    "type": "object"
+                },
+                "nomination": {
+                    "description": "Nomination",
+                    "type": "object"
+                },
+                "notes": {
+                    "description": "InfringementNote[]",
+                    "type": "object"
+                },
+                "noticeNumber": {
+                    "type": "string"
+                },
+                "notifications": {
+                    "description": "Notification[]",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "offenceDate": {
+                    "type": "string"
+                },
+                "originalAmount": {
+                    "type": "string"
+                },
+                "payments": {
+                    "description": "Payment[]",
+                    "type": "object"
+                },
+                "penaltyAmount": {
+                    "type": "string"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "reasonCode": {
+                    "type": "string"
+                },
+                "status": {
+                    "default": "Due",
+                    "enum": [
+                        "Missing Contract",
+                        "Missing Vehicle",
+                        "Valid"
+                    ],
+                    "type": "string"
+                },
+                "systemStatus": {
+                    "default": "Valid",
+                    "enum": [
+                        "Missing Contract",
+                        "Missing Vehicle",
+                        "Valid"
+                    ],
+                    "type": "string"
+                },
+                "totalAmount": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "Parking",
+                        "Traffic",
+                        "Environmental",
+                        "Other"
+                    ],
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "vehicle": {
+                    "description": "Vehicle",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "infringementId",
+                "noticeNumber",
+                "offenceDate",
+                "latestPaymentDate",
+                "reason",
+                "reasonCode",
+                "amountDue",
+                "originalAmount",
+                "totalAmount",
+                "penaltyAmount",
+                "status",
+                "issuerStatus",
+                "issuerStatusDescription",
+                "systemStatus",
+                "caseNumber",
+                "brn",
+                "externalChangeDate",
+                "lastStatusChangeDate",
+                "approvedDate",
+                "type",
+                "lastSuccessfulPayment",
+                "vehicle",
+                "contract",
+                "issuer",
+                "nomination",
+                "payments",
+                "logs",
+                "notifications",
+                "document",
+                "location",
+                "infringementLogs",
+                "notes",
+                "infringementRevisionHistory",
+                "infringementApproval"
+            ],
+            "type": "object"
+        },
+        "LeaseContract": {
+            "title": "LeaseContract",
+            "properties": {
+                "contractId": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currentLeaseForVehicle": {
+                    "description": "Vehicle",
+                    "type": "object"
+                },
+                "document": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "infringements": {
+                    "description": "Infringement[]",
+                    "type": "object"
+                },
+                "ocrStatus": {
+                    "default": "Incomplete",
+                    "enum": [
+                        "Success",
+                        "Failed",
+                        "Incomplete",
+                        "Modified"
+                    ],
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "redirectionDocument": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "redirectionTargetAddress": {
+                    "description": "This is a calculated field",
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "enum": [
+                        "Upcoming",
+                        "Expired",
+                        "Expiring soon",
+                        "Valid"
+                    ],
+                    "type": "string"
+                },
+                "type": {
+                    "default": "Lease",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "user": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "vehicle": {
+                    "description": "Vehicle",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "contractId",
+                "type",
+                "startDate",
+                "endDate",
+                "status",
+                "reference",
+                "document",
+                "owner",
+                "vehicle",
+                "infringements",
+                "redirectionTargetAddress",
+                "user",
+                "ocrStatus",
+                "currentLeaseForVehicle",
+                "redirectionDocument"
+            ],
+            "type": "object"
+        },
+        "MunicipalRedirectionDetails": {
+            "title": "MunicipalRedirectionDetails",
+            "properties": {
+                "hasDriverContract": {
+                    "type": "boolean"
+                },
+                "hasLeaseDocument": {
+                    "type": "object"
+                },
+                "hasLeaseSubstituteDocument": {
+                    "type": "object"
+                },
+                "hasPowerOfAttorneyDocument": {
+                    "type": "object"
+                },
+                "hasSignatureAvailable": {
+                    "type": "object"
+                },
+                "hasValidRedirectionOwnerAddress": {
+                    "type": "object"
+                },
+                "hasValidRedirectionUserAddress": {
+                    "type": "object"
+                },
+                "hasValidStatus": {
+                    "type": "object"
+                },
+                "infringement": {
+                    "description": "Infringement",
+                    "type": "object"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "nomination": {
+                    "description": "Nomination",
+                    "type": "object"
+                },
+                "ready": {
+                    "type": "boolean"
+                },
+                "redirectionChannel": {
+                    "enum": [
+                        "crawler",
+                        "physical mail",
+                        "email"
+                    ],
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "Manual Email",
+                        "ATG Integration",
+                        "Manual Upload",
+                        "External",
+                        "Telaviv",
+                        "Jerusalem",
+                        "Police",
+                        "Mileon"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ready",
+                "type",
+                "infringement",
+                "nomination",
+                "redirectionChannel",
+                "message",
+                "hasDriverContract",
+                "hasValidStatus",
+                "hasLeaseDocument",
+                "hasLeaseSubstituteDocument",
+                "hasPowerOfAttorneyDocument",
+                "hasSignatureAvailable",
+                "hasValidRedirectionUserAddress",
+                "hasValidRedirectionOwnerAddress"
+            ],
+            "type": "object"
+        },
+        "Nomination": {
+            "title": "Nomination",
+            "properties": {
+                "account": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "details": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/NominationDetails"
+                        },
+                        {
+                            "description": "NominationDetails"
+                        }
+                    ]
+                },
+                "externalRedirectionReference": {
+                    "type": "string"
+                },
+                "infringement": {
+                    "description": "Infringement",
+                    "type": "object"
+                },
+                "invalidRedirection": {
+                    "description": "Flags invalid redirections",
+                    "type": "boolean"
+                },
+                "lastStatusChangeDate": {
+                    "type": "string"
+                },
+                "mergedDocument": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "mergedDocumentUpdatedDate": {
+                    "description": "This date is automatically updated on mergedDocument trigger",
+                    "type": "string"
+                },
+                "nominationDate": {
+                    "type": "string"
+                },
+                "nominationId": {
+                    "type": "number"
+                },
+                "paidDate": {
+                    "type": "string"
+                },
+                "rawRedirectionIdentifier": {
+                    "type": "string"
+                },
+                "redirectedDate": {
+                    "type": "string"
+                },
+                "redirectedFrom": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "redirectionDocument": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "redirectionTarget": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "redirectionType": {
+                    "enum": [
+                        "Manual Email",
+                        "ATG Integration",
+                        "Manual Upload",
+                        "External",
+                        "Telaviv",
+                        "Jerusalem",
+                        "Police",
+                        "Mileon"
+                    ],
+                    "type": "string"
+                },
+                "status": {
+                    "enum": [
+                        "Pending",
+                        "Acknowledged",
+                        "In Redirection Process",
+                        "Closed",
+                        "Redirection Completed"
+                    ],
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "Digital",
+                        "Municipal"
+                    ],
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "nominationId",
+                "type",
+                "redirectionType",
+                "infringement",
+                "account",
+                "redirectedFrom",
+                "redirectionTarget",
+                "mergedDocument",
+                "redirectionDocument",
+                "status",
+                "details",
+                "invalidRedirection",
+                "nominationDate",
+                "redirectedDate",
+                "paidDate",
+                "rawRedirectionIdentifier",
+                "lastStatusChangeDate",
+                "mergedDocumentUpdatedDate",
+                "externalRedirectionReference"
+            ],
+            "type": "object"
+        },
+        "NominationDetails": {
+            "title": "NominationDetails",
+            "properties": {
+                "acknowledgedFor": {
+                    "description": "{ [action: string]: boolean }",
+                    "type": "object"
+                },
+                "redirectionReason": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "redirectionReason",
+                "acknowledgedFor"
+            ],
+            "type": "object"
+        },
+        "OcrDetails": {
+            "title": "OcrDetails",
+            "properties": {
+                "car": {
+                    "type": "string"
+                },
+                "contract": {
+                    "type": "string"
+                },
+                "customer": {
+                    "type": "string"
+                },
+                "end": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "start": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "contract",
+                "customer",
+                "owner",
+                "car",
+                "start",
+                "end"
+            ],
+            "type": "object"
+        },
+        "OwnershipContract": {
+            "title": "OwnershipContract",
+            "properties": {
+                "contractId": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currentOwnershipForVehicle": {
+                    "description": "Vehicle",
+                    "type": "object"
+                },
+                "document": {
+                    "description": "Document",
+                    "type": "object"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "infringements": {
+                    "description": "Infringement[]",
+                    "type": "object"
+                },
+                "owner": {
+                    "description": "Account",
+                    "type": "object"
+                },
+                "redirectionTargetAddress": {
+                    "description": "This is a calculated field",
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "enum": [
+                        "Upcoming",
+                        "Expired",
+                        "Expiring soon",
+                        "Valid"
+                    ],
+                    "type": "string"
+                },
+                "type": {
+                    "default": "Ownership",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "vehicle": {
+                    "description": "Vehicle",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "contractId",
+                "type",
+                "startDate",
+                "endDate",
+                "status",
+                "reference",
+                "document",
+                "owner",
+                "vehicle",
+                "infringements",
+                "redirectionTargetAddress",
+                "currentOwnershipForVehicle"
+            ],
+            "type": "object"
+        },
+        "RawContractOcrDto": {
+            "title": "RawContractOcrDto",
+            "properties": {
+                "car": {
+                    "type": "string"
+                },
+                "contract": {
+                    "type": "string"
+                },
+                "customer": {
+                    "type": "string"
+                },
+                "end": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "start": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "contract",
+                "customer",
+                "owner",
+                "car",
+                "start",
+                "end"
+            ],
+            "type": "object"
+        },
+        "SuccessfulRedirectionResult": {
+            "title": "SuccessfulRedirectionResult",
+            "properties": {
+                "nominationId": {
+                    "type": "number"
+                },
+                "result": {
+                    "description": "Nomination",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "result",
+                "nominationId"
+            ],
+            "type": "object"
+        },
+        "UpdateAccountV1Dto": {
+            "title": "UpdateAccountV1Dto",
+            "properties": {
+                "contactFax": {
+                    "description": "The fax of the primary contact for this account",
+                    "example": "+1 323 555 1234",
+                    "type": "string"
+                },
+                "contactName": {
+                    "description": "The name of the primary contact for this account",
+                    "example": "Sarah Jones",
+                    "type": "string"
+                },
+                "contactTelephone": {
+                    "description": "The phone of the primary contact for this account",
+                    "example": "(410) 282-9236",
+                    "type": "string"
+                },
+                "documentId": {
+                    "description": "The document id for the power of attorney for this account",
+                    "example": 123,
+                    "type": "number"
+                },
+                "identifier": {
+                    "description": "The account identifier or BRN",
+                    "example": "1237471931",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the group / business / company",
+                    "example": "Road Protect",
+                    "type": "string"
+                },
+                "primaryContact": {
+                    "description": "The email address of the primary contact",
+                    "example": "person@roadprotect.co.il",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "The primary role of the account",
+                    "enum": [
+                        "Owner",
+                        "User",
+                        "Hybrid"
+                    ],
+                    "example": "Owner",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "UpdateAccountV2Dto": {
+            "title": "UpdateAccountV2Dto",
+            "properties": {
+                "documentId": {
+                    "description": "The document id for the power of attorney for this account",
+                    "example": 123,
+                    "type": "number"
+                },
+                "identifier": {
+                    "description": "The account identifier or BRN",
+                    "example": "1237471931",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the group / business / company",
+                    "example": "Road Protect",
+                    "type": "string"
+                },
+                "primaryContact": {
+                    "description": "The email address of the primary contact",
+                    "example": "person@roadprotect.co.il",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "The primary role of the account",
+                    "enum": [
+                        "Owner",
+                        "User",
+                        "Hybrid"
+                    ],
+                    "example": "Owner",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "UpdateContractEndDateDto": {
+            "title": "UpdateContractEndDateDto",
+            "properties": {
+                "endDate": {
+                    "description": "The new contract end date",
+                    "example": "2021-07-08T08:17:35.782Z",
+                    "type": "string"
+                },
+                "startDate": {
+                    "description": "The new contract start date",
+                    "example": "2021-06-08T08:17:35.781Z",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "UpdateContractReferenceDto": {
+            "title": "UpdateContractReferenceDto",
+            "properties": {
+                "reference": {
+                    "description": "The new reference for this contract",
+                    "example": "My internal reference 15192",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "reference"
+            ],
+            "type": "object"
+        },
+        "UpdateDocumentDto": {
+            "title": "UpdateDocumentDto",
+            "properties": {
+                "fileName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "fileName"
+            ],
+            "type": "object"
+        },
+        "UpdateInfringementDto": {
+            "title": "UpdateInfringementDto",
+            "properties": {
+                "amountDue": {
+                    "type": "string"
+                },
+                "approvedDate": {
+                    "type": "string"
+                },
+                "brn": {
+                    "type": "string"
+                },
+                "caseNumber": {
+                    "type": "string"
+                },
+                "dateRedirectionCompleted": {
+                    "description": "The date that the redirection completed",
+                    "type": "string"
+                },
+                "infringementStatus": {
+                    "enum": [
+                        "Due",
+                        "Outstanding",
+                        "Paid",
+                        "Closed",
+                        "Approved for Payment"
+                    ],
+                    "type": "string"
+                },
+                "isExternal": {
+                    "type": "boolean"
+                },
+                "issuer": {
+                    "type": "string"
+                },
+                "issuerStatus": {
+                    "type": "string"
+                },
+                "issuerStatusDescription": {
+                    "type": "string"
+                },
+                "latestPaymentDate": {
+                    "type": "string"
+                },
+                "nominationStatus": {
+                    "enum": [
+                        "Pending",
+                        "Acknowledged",
+                        "In Redirection Process",
+                        "Closed",
+                        "Redirection Completed"
+                    ],
+                    "type": "string"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "notes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "noticeNumber": {
+                    "type": "string"
+                },
+                "offenceDate": {
+                    "type": "string"
+                },
+                "originalAmount": {
+                    "type": "string"
+                },
+                "paymentAmount": {
+                    "type": "number"
+                },
+                "paymentDate": {
+                    "type": "string"
+                },
+                "paymentReference": {
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "The reason for the offence",
+                    "type": "string"
+                },
+                "reasonCode": {
+                    "description": "The reason code for the offence",
+                    "type": "string"
+                },
+                "redirectionIdentifier": {
+                    "description": "An identifier of the person or business that you are redirecting the infringement to",
+                    "type": "string"
+                },
+                "redirectionLetterSendDate": {
+                    "description": "The date that the redirection letter was sent to the municipality",
+                    "type": "string"
+                },
+                "redirectionReference": {
+                    "description": "A reference attached to the redirection",
+                    "type": "string"
+                },
+                "redirectionType": {
+                    "enum": [
+                        "Manual Email",
+                        "ATG Integration",
+                        "Manual Upload",
+                        "External",
+                        "Telaviv",
+                        "Jerusalem",
+                        "Police",
+                        "Mileon"
+                    ],
+                    "type": "string"
+                },
+                "setRedirectionCompletionDate": {
+                    "type": "boolean"
+                },
+                "setRedirectionIdentifier": {
+                    "type": "boolean"
+                },
+                "timezone": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "Parking",
+                        "Traffic",
+                        "Environmental",
+                        "Other"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "UpdateRedirectionStatusDto": {
+            "title": "UpdateRedirectionStatusDto",
+            "properties": {
+                "approved": {
+                    "description": "Whether the redirection is approved or not",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "approved"
+            ],
+            "type": "object"
+        },
+        "UpdateVehicleDto": {
+            "title": "UpdateVehicleDto",
+            "properties": {
+                "category": {
+                    "description": "The vehicle category class",
+                    "example": "car 1-5",
+                    "type": "string"
+                },
+                "color": {
+                    "description": "The vehicle color",
+                    "example": "gold",
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "description": "The vehicle manufacturer",
+                    "example": "Ford",
+                    "type": "string"
+                },
+                "model": {
+                    "description": "The vehicle model",
+                    "example": "F40",
+                    "type": "string"
+                },
+                "registration": {
+                    "description": "The vehicle registration number",
+                    "example": "51729193",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of vehicle in the fleet",
+                    "enum": [
+                        "Private",
+                        "Truck"
+                    ],
+                    "example": "Private",
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "The vehicle weight in tonnes",
+                    "example": "1.9",
+                    "type": "number"
+                },
+                "year": {
+                    "description": "The year the vehicle was manufactured",
+                    "example": "2012",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Vehicle": {
+            "title": "Vehicle",
+            "properties": {
+                "autoAssignTo": {
+                    "enum": [
+                        "Owner",
+                        "User"
+                    ],
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "color": {
+                    "type": "string"
+                },
+                "contracts": {
+                    "description": "Contract[]",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currentLeaseContract": {
+                    "description": "LeaseContract",
+                    "type": "object"
+                },
+                "currentOwnershipContract": {
+                    "description": "OwnershipContract",
+                    "type": "object"
+                },
+                "infringements": {
+                    "description": "Infringement",
+                    "type": "object"
+                },
+                "locationRecords": {
+                    "description": "IturanLocationRecord[]",
+                    "type": "object"
+                },
+                "logs": {
+                    "description": "Log[]",
+                    "type": "object"
+                },
+                "manufacturer": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "modelYear": {
+                    "type": "string"
+                },
+                "registration": {
+                    "type": "string"
+                },
+                "type": {
+                    "default": "Private",
+                    "enum": [
+                        "Private",
+                        "Truck"
+                    ],
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "vehicleId": {
+                    "type": "number"
+                },
+                "weight": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "createdAt",
+                "updatedAt",
+                "vehicleId",
+                "registration",
+                "manufacturer",
+                "model",
+                "modelYear",
+                "color",
+                "category",
+                "weight",
+                "type",
+                "contracts",
+                "currentLeaseContract",
+                "currentOwnershipContract",
+                "infringements",
+                "autoAssignTo",
+                "logs",
+                "locationRecords"
+            ],
+            "type": "object"
+        }
+    },
+    "securityDefinitions": {
+        "bearer": {
+            "in": "header",
+            "name": "Authorization",
+            "type": "apiKey"
+        }
+    },
+    "tags": [
+        {
+            "description": "",
+            "name": "Documents & Files"
+        },
+        {
+            "description": "",
+            "name": "Nominations"
+        },
+        {
+            "description": "",
+            "name": "Accounts"
+        },
+        {
+            "description": "",
+            "name": "Vehicles"
+        },
+        {
+            "description": "",
+            "name": "Contracts"
+        },
+        {
+            "description": "",
+            "name": "Infringements"
+        },
+        {
+            "description": "",
+            "name": "Lease Contracts"
+        },
+        {
+            "description": "",
+            "name": "Ownership Contracts"
+        }
+    ],
+    "x-components": {}
+}

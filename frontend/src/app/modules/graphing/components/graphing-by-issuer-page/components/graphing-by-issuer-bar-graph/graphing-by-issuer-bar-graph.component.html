@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="flex-chart">
+        <ngx-charts-bar-vertical-stacked
+            [scheme]="colors"
+            [results]="stackedBar"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [legendTitle]="'graphing-by-status.infringement_status' | i18next"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [animations]="animations"
+            (select)="onSelect($event)"
+            [tooltipDisabled]="tooltipDisabled"
+        >
+        </ngx-charts-bar-vertical-stacked>
+    </div>
+</div>

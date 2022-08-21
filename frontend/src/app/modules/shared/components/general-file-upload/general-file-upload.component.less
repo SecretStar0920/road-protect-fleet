@@ -1,0 +1,81 @@
+@import 'less/variables';
+
+@height: 100px;
+
+:host {
+    display: block;
+}
+
+.upload-area {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    height: @height;
+
+    .upload-button {
+        cursor: pointer;
+        flex-grow: 2;
+        border: 1px solid #f5f5f5;
+        border-radius: 2px;
+        background-color: #fafafa;
+        padding: 10px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        i {
+            color: @color1;
+            font-size: 20pt;
+        }
+
+        &:hover {
+            border: 1px solid @color1;
+        }
+    }
+
+    .upload-options {
+        padding: 10px;
+        flex-grow: 8;
+    }
+}
+
+.file-list {
+    display: flex;
+
+    .file-item {
+        display: flex;
+        position: relative;
+        flex-grow: 0;
+        min-width: @height;
+        max-width: 2 * @height;
+        height: @height;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        padding: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+
+        border: 1px solid #f5f5f5;
+        border-radius: 3px;
+        background-color: #fafafa;
+        cursor: pointer;
+
+        &:hover {
+            border: 1px solid @color1;
+        }
+
+        .remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .icon {
+            font-size: 20pt;
+        }
+    }
+}

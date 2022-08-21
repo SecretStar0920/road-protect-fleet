@@ -1,0 +1,12 @@
+<rp-general-page [icon]="'exception'" [title]="'current-account-nominations-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <nz-alert nzType="info" [nzMessage]="alertMessage"></nz-alert>
+        <ng-template #alertMessage>
+            {{ 'current-account-nominations-page.message' | i18next }}
+            <a [routerLink]="['/home', 'account', 'infringements']">{{ 'current-account-nominations-page.click_here' | i18next }}</a
+            >.
+        </ng-template>
+        <br />
+        <rp-view-nominations-advanced> </rp-view-nominations-advanced>
+    </div>
+</rp-general-page>

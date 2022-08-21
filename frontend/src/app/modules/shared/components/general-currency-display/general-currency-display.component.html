@@ -1,0 +1,7 @@
+<ng-container *ngIf="value; else noValue">
+    <span>{{ value | currency: code }}</span>
+</ng-container>
+
+<ng-template #noValue>
+    <span nz-text nzType="secondary">--</span>
+</ng-template>

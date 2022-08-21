@@ -1,0 +1,78 @@
+<rp-general-stepper [stepper]="stepper">
+    <form nz-form [formGroup]="createContractForm" nzLayout="vertical" (ngSubmit)="onCreateContract()">
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(1)" formGroupName="details">
+            <nz-col nzSpan="24">
+                <ng-container>
+                    <nz-form-item>
+                        <nz-form-label nzFor="user">{{ 'create-contract.user' | i18next }}</nz-form-label>
+                        <nz-form-control>
+                            <rp-account-dropdown formControlName="user"></rp-account-dropdown>
+                            <nz-form-explain *ngIf="createContractForm.get('user')?.dirty && createContractForm.get('user')?.errors">
+                                <rp-general-form-error-display [form]="createContractForm" key="user"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <ng-container>
+                    <nz-form-item>
+                        <nz-form-label nzFor="owner">{{ 'create-contract.owner' | i18next }}</nz-form-label>
+                        <nz-form-control>
+                            <rp-account-dropdown formControlName="owner"></rp-account-dropdown>
+                            <nz-form-explain *ngIf="createContractForm.get('owner')?.dirty && createContractForm.get('owner')?.errors">
+                                <rp-general-form-error-display [form]="createContractForm" key="owner"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="startDate">{{ 'create-contract.start_date' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker formControlName="startDate" id="startDate"></nz-date-picker>
+                        <nz-form-explain *ngIf="createContractForm.get('startDate')?.dirty && createContractForm.get('startDate')?.errors">
+                            <rp-general-form-error-display [form]="createContractForm" key="startDate"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="endDate">{{ 'create-contract.end_date' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker formControlName="endDate" id="endDate"></nz-date-picker>
+                        <nz-form-explain *ngIf="createContractForm.get('endDate')?.dirty && createContractForm.get('endDate')?.errors">
+                            <rp-general-form-error-display [form]="createContractForm" key="endDate"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+
+        <div [rpShow]="stepper.isStep(2)" formGroupName="document">
+            <rp-create-document-form-control
+                formControlName="document"
+                [mimeTypes]="[mimeTypes.pdf, mimeTypes.doc]"
+            ></rp-create-document-form-control>
+        </div>
+
+        <div [rpShow]="stepper.isStep(3)" style="text-align: center">
+            <nz-form-item>
+                <nz-form-control>
+                    <button
+                        nz-button
+                        nzType="primary"
+                        [disabled]="!createContractForm.valid"
+                        nzSize="large"
+                        [nzLoading]="createContractState.isLoading()"
+                    >
+                        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                        {{ 'create-contract.create' | i18next }}
+                    </button>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </form>
+</rp-general-stepper>

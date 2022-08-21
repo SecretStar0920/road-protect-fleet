@@ -1,0 +1,25 @@
+<ng-container *ngIf='currentStatus'>
+    <ng-container [ngSwitch]= currentStatus>
+        <ng-container *ngSwitchCase="partialInfringementStatus.Successful">
+            <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green"></i>
+            {{ 'partial-infringement.successful' | i18next }}
+        </ng-container>
+        <ng-container *ngSwitchCase="partialInfringementStatus.Failed">
+            <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red" ></i>
+            {{ 'partial-infringement.failed' | i18next }}
+        </ng-container>
+        <ng-container  *ngSwitchCase="partialInfringementStatus.Processed">
+            <i nz-icon nzType="plus-circle" nzTheme="twotone"></i>
+            {{ 'partial-infringement.processed' | i18next }}
+        </ng-container>
+        <ng-container  *ngSwitchCase="partialInfringementStatus.Queued">
+            <i nz-icon nzType="sync" [nzSpin]="true"></i>
+            {{ 'partial-infringement.queued' | i18next }}
+        </ng-container>
+        <ng-container  *ngSwitchCase="partialInfringementStatus.Pending">
+            <i nz-icon nzType="clock-circle" nzTheme="twotone" nzTwotoneColor="orange"></i>
+            {{ 'partial-infringement.pending' | i18next }}
+        </ng-container>
+    </ng-container>
+</ng-container>
+

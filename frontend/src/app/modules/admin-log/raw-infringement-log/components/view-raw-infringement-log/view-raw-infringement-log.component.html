@@ -1,0 +1,75 @@
+<ng-container *ngIf="rawInfringementLog">
+    <table class="rp-basic-data-table">
+        <tbody>
+            <tr>
+                <td>{{ 'log.log_id' | i18next }}:</td>
+                <td>{{ rawInfringementLog.rawInfringementId }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'log.timestamp' | i18next }}:</td>
+                <td>
+                    <rp-general-time-display [time]="rawInfringementLog.createdAt"></rp-general-time-display>
+                </td>
+            </tr>
+            <tr>
+                <td>{{ 'log.notice_number' | i18next }}:</td>
+                <td>{{ rawInfringementLog.noticeNumber }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'log.issuer_code' | i18next }}:</td>
+                <td>{{ rawInfringementLog.issuer }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'log.source' | i18next }}:</td>
+                <td>{{ rawInfringementLog.client?.name | lowercase | sentenceCase }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'log.status' | i18next }}</td>
+                <td>
+                    <span>
+                        {{ rawInfringementLog.status }}
+                        <i
+                            nz-icon
+                            nzType="check-circle"
+                            nzTheme="twotone"
+                            nzTwotoneColor="green"
+                            *ngIf="isCompleted(rawInfringementLog.status)"
+                        ></i>
+                        <i
+                            nz-icon
+                            nzType="close-circle"
+                            nzTheme="twotone"
+                            nzTwotoneColor="red"
+                            *ngIf="isFailed(rawInfringementLog.status)"
+                        ></i>
+                        <i
+                            nz-icon
+                            nzType="exclamation-circle"
+                            nzTheme="twotone"
+                            nzTwotoneColor="yellow"
+                            *ngIf="isPending(rawInfringementLog.status)"
+                        ></i>
+                    </span>
+                </td>
+            </tr>
+            <nz-divider></nz-divider>
+            <tr>
+                <td>{{ 'log.data' | i18next }}:</td>
+            </tr>
+            <tr>
+                <td>
+                    <rp-json [data]="rawInfringementLog.data"></rp-json>
+                </td>
+            </tr>
+            <nz-divider></nz-divider>
+            <tr>
+                <td>{{ 'log.result' | i18next }}:</td>
+            </tr>
+            <tr>
+                <td>
+                    <rp-json [data]="rawInfringementLog.result"></rp-json>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

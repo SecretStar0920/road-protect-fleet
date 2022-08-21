@@ -1,0 +1,25 @@
+<!--<rp-create-contract (complete)="onComplete($event)" [vehicleId]="vehicleId"></rp-create-contract>-->
+<ng-container [ngSwitch]="type">
+    <rp-create-lease-contract
+        [vehicleId]="vehicleId"
+        (complete)="onComplete($event)"
+        *ngSwitchCase="contractTypes.Lease"
+    ></rp-create-lease-contract>
+    <rp-create-ownership-contract
+        [vehicleId]="vehicleId"
+        (complete)="onComplete($event)"
+        *ngSwitchCase="contractTypes.Ownership"
+    ></rp-create-ownership-contract>
+    <rp-create-driver-contract
+        [vehicleId]="vehicleId"
+        (complete)="onComplete($event)"
+        *ngSwitchCase="contractTypes.Driver"
+    ></rp-create-driver-contract>
+</ng-container>
+<nz-alert
+    nzType="error"
+    *ngIf="createContractState?.hasFailed()"
+    [nzMessage]="createContractState?.failedResult().message"
+    [nzDescription]="createContractState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

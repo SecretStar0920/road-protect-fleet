@@ -1,0 +1,46 @@
+<h2 class="rp-primary-color">
+    <button nz-button nzSize="small" nzType="primary" (click)="onViewContracts()" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    {{ 'summary-indicators.managed_vehicles' | i18next }}
+</h2>
+<p>{{ 'summary-indicators.managed_vehicles_description' | i18next }}</p>
+
+<ng-container *ngIf="!isComparingDates; else yearComparison">
+    <ng-container *ngIf="pieChartData?.length > 0; else noResult">
+        <nz-row>
+            <nz-col nzSpan="12">
+                <rp-graphing
+                    class="managed-vehicles-graph"
+                    [graphingType]="graphingType"
+                    [dataPoints]="pieChartData"
+                    [customTooltipTemplate]="singleGraphTooltips"
+                ></rp-graphing>
+            </nz-col>
+        </nz-row>
+    </ng-container>
+</ng-container>
+
+<!-- Year Comparison -->
+<ng-template #yearComparison>
+    <ng-container *ngIf="graphingData?.length > 0; else noResult">
+        <nz-col>
+            <nz-col>
+                <rp-graphing [graphingType]="comparisonGraphing" [dataSeries]="graphingData"></rp-graphing>
+            </nz-col>
+        </nz-col>
+    </ng-container>
+</ng-template>
+
+<ng-template #singleGraphTooltips let-data>
+    <ng-row>
+        <strong> {{ data.name | i18next }} </strong>
+    </ng-row>
+    <nz-row>
+        {{ data.value }}
+    </nz-row>
+</ng-template>
+
+<ng-template #noResult>
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-template>

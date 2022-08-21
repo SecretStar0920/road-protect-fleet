@@ -1,0 +1,15 @@
+<!--<nz-button-group>-->
+<!--&lt;!&ndash;     NOT READY&ndash;&gt;-->
+<!--&lt;!&ndash;    <button nz-button nzType="primary" (click)="onUpload()" *ngIf="orUpload">&ndash;&gt;-->
+<!--&lt;!&ndash;        <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'create-generated-document.upload' | i18next }} {{ friendlyName || documentTemplate }}&ndash;&gt;-->
+<!--&lt;!&ndash;    </button>&ndash;&gt;-->
+
+<!--</nz-button-group>-->
+<button nz-button nzType="primary" (click)="onGenerate()">
+    <i nz-icon nzType="sliders" nzTheme="outline"></i> {{ 'create-generated-document.generate' | i18next }}
+    {{ friendlyName || documentTemplate }}
+</button>
+<span nz-text nzType="secondary" style="margin-left: 5px; margin-right: 5px">{{ 'divider.or' | i18next }}</span>
+<button nz-button nzType="primary" (click)="onUploadLinkClick()">
+    <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'create-generated-document.upload' | i18next }}
+</button>

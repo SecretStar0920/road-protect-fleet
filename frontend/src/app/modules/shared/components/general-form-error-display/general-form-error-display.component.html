@@ -1,0 +1,8 @@
+<span *ngFor="let error of (control || form.get(key)).errors | keyvalue">
+    <span nz-text nzType="secondary">{{ key | sentenceCase }}:</span>
+    <ng-container [ngSwitch]="error.key">
+        <span *ngSwitchCase="'required'">{{ 'general-form-error-display.required' | i18next }}</span>
+        <span *ngSwitchCase="'email'">{{ 'general-form-error-display.email' | i18next }}</span>
+        <span *ngSwitchDefault>{{ error.key }} - {{ error.value }}</span>
+    </ng-container>
+</span>

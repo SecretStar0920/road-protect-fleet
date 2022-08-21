@@ -1,0 +1,33 @@
+@import 'src/less/mixins';
+@import 'src/less/variables';
+:host {
+    display: inline-block;
+    //.rp-space;
+}
+
+.sort-container {
+    display: block;
+    height: 14px;
+    width: 14px;
+    position: relative;
+    cursor: pointer;
+    .caret {
+        font-size: 10px;
+        color: #c8c8c8;
+        &.on {
+            color: @color1;
+        }
+
+        &.up {
+            position: absolute;
+            top: 0;
+            left: 2px;
+        }
+
+        &.down {
+            position: absolute;
+            top: 7px;
+            left: 2px;
+        }
+    }
+}

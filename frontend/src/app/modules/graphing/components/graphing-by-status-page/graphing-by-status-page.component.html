@@ -1,0 +1,59 @@
+<rp-general-graphing-by-page (showComparison)="showComparison($event)" (viewGraph)="onViewGraph()"></rp-general-graphing-by-page>
+<nz-divider></nz-divider>
+
+<ng-container *ngIf="isComparisonLoading > 0 || isGraphLoading > 0; else notLoading">
+    <nz-row>
+        <nz-spin style="margin: 20px" [nzSize]="'large'" [nzSpinning]="true"></nz-spin>
+    </nz-row>
+</ng-container>
+<ng-template #notLoading>
+    <ng-container *ngIf="showGraphs">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="16">
+                <div class="custom-filters">
+                    <nz-radio-group [(ngModel)]="graphDisplay">
+                        <label nz-radio nzValue="bar-graph"
+                            ><i nz-icon nzType="bar-chart" nzTheme="outline"></i> {{ 'graphing-by.bar_graph' | i18next }}</label
+                        >
+                        <label nz-radio nzValue="line-graph"
+                            ><i nz-icon nzType="line-chart" nzTheme="outline"></i> {{ 'graphing-by.line_graph' | i18next }}</label
+                        >
+                    </nz-radio-group>
+                    <br />
+                </div>
+                <div *ngIf="showLineGraph()">
+                    <rp-graphing-by-status-line-graph></rp-graphing-by-status-line-graph>
+                    <br />
+                </div>
+                <div *ngIf="showBarGraph()">
+                    <rp-graphing-by-status-stacked-bar-chart></rp-graphing-by-status-stacked-bar-chart>
+                    <br />
+                </div>
+            </nz-col>
+            <nz-col nzSpan="8">
+                <rp-graphing-by-status-pie-chart></rp-graphing-by-status-pie-chart>
+            </nz-col>
+        </nz-row>
+        <nz-row>
+            <rp-graphing-by-status-table style="width: 100%"></rp-graphing-by-status-table>
+        </nz-row>
+    </ng-container>
+    <ng-container *ngIf="showInfringementsTable">
+        <nz-divider></nz-divider>
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="22">
+                <h2>{{ 'graphing-by.selected_infringements' | i18next }}</h2>
+            </nz-col>
+            <nz-col nzSpan="2">
+                <button nz-button nzType="default" (click)="toggleInfringementCollapsed()" class="rp-space">
+                    <i nz-icon [nzType]="'up'"></i>{{ 'summary-indicators.hide' | i18next }}
+                </button>
+            </nz-col>
+        </nz-row>
+        <rp-graphing-infringement-table></rp-graphing-infringement-table>
+    </ng-container>
+
+    <ng-container *ngIf="noAggregatedData">
+        <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+    </ng-container>
+</ng-template>

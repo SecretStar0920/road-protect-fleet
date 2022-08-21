@@ -1,0 +1,12 @@
+<div>
+    <nz-select nzMode="multiple"
+               [(ngModel)]="selectedTags"
+               class="standard-dropdown"
+               nzAllowClear
+               nzShowSearch="true">
+        <nz-option  *ngFor="let tag of availableTags"
+                    [nzValue]="tag"
+                   [nzLabel]="'infringement.' + tag | i18next">
+        </nz-option>
+    </nz-select>
+</div>

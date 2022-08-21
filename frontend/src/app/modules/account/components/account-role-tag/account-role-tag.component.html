@@ -1,0 +1,13 @@
+<ng-container [ngSwitch]="role">
+    <span *ngSwitchCase="accountRole.User" nz-tooltip [nzTooltipTitle]="'account-role-tag.user' | i18next"
+        ><i nz-icon nzType="tag" nzTheme="twotone" nzTwotoneColor="green"></i> {{ 'account.' + accountRole.User | i18next }}</span
+    >
+
+    <span *ngSwitchCase="accountRole.Owner" nz-tooltip [nzTooltipTitle]="'account-role-tag.owner' | i18next"
+        ><i nz-icon nzType="tag" nzTheme="twotone" nzTwotoneColor="orange"></i> {{ 'account.' + accountRole.Owner | i18next }}</span
+    >
+
+    <span *ngSwitchCase="accountRole.Hybrid" nz-tooltip [nzTooltipTitle]="'account-role-tag.hybrid' | i18next"
+        ><i nz-icon nzType="tag" nzTheme="twotone" nzTwotoneColor="purple"></i> {{ 'account.' + accountRole.Hybrid | i18next }}</span
+    >
+</ng-container>

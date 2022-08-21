@@ -1,0 +1,9 @@
+<div class="rp-round-card rp-page-section" *ngIf="noItems">
+    <h3>No reports were found</h3>
+</div>
+
+<div class="reporting-list">
+    <ng-container *ngFor="let metabaseItem of metabaseItems">
+        <rp-metabase-report-details [reportDetails]="metabaseItem" class="reporting-item"> </rp-metabase-report-details>
+    </ng-container>
+</div>

@@ -1,0 +1,81 @@
+<rp-general-graphing-by-page (showComparison)="showComparison($event)" (viewGraph)="onViewGraph()"></rp-general-graphing-by-page>
+<table class="rp-basic-data-table" *ngIf="numberOfVehiclesSliderRange.max">
+    <tbody>
+        <tr>
+            <td>{{ 'graphing-by-vehicle.number_of_vehicles' | i18next }} [{{ numberOfVehicles }}]</td>
+            <td>
+                <nz-slider
+                    [(ngModel)]="numberOfVehicles"
+                    [nzMin]="numberOfVehiclesSliderRange.min"
+                    [nzMax]="numberOfVehiclesSliderRange.max"
+                    [nzStep]="vehicleSliderStep"
+                    (ngModelChange)="onChangeVehicleNumber()"
+                >
+                </nz-slider>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<nz-divider></nz-divider>
+
+<ng-container *ngIf="isComparisonLoading > 0 || isGraphLoading > 0; else notLoading">
+    <nz-row>
+        <nz-spin style="margin: 20px" [nzSize]="'large'" [nzSpinning]="true"></nz-spin>
+    </nz-row>
+</ng-container>
+<ng-template #notLoading>
+    <ng-container *ngIf="showGraphs">
+        <nz-row>
+            <nz-col nzSpan="18">
+                <div>
+                    <rp-graphing-by-vehicle-bar-chart></rp-graphing-by-vehicle-bar-chart>
+                    <br />
+                </div>
+            </nz-col>
+            <nz-col nzSpan="6">
+                <div *ngIf="selectedParameters" class="selected-parameter-description">
+                    <p *ngIf="selectedParameters.startDate && selectedParameters.endDate">
+                        {{ 'graphing-by-vehicle.offence_date' | i18next }}:
+                        <rp-general-time-display [time]="selectedParameters.startDate" [short]="true"></rp-general-time-display> -
+                        <rp-general-time-display [time]="selectedParameters.endDate" [short]="true"></rp-general-time-display>
+                    </p>
+                    <p *ngIf="selectedParameters.infringementStatus">
+                        {{ 'graphing-by-vehicle.infringement_status' | i18next }} :
+                        <rp-infringement-status-tag [status]="selectedParameters.infringementStatus"></rp-infringement-status-tag>
+                    </p>
+                    <p *ngIf="selectedParameters.vehicleRegistration">
+                        {{ 'graphing-by-vehicle.vehicle_registration' | i18next }} : {{ selectedParameters.vehicleRegistration }}
+                    </p>
+                </div>
+                <div *ngIf="selectedParameters">
+                    <br />
+
+                    <button nz-button nzType="primary" (click)="viewInfringements()">
+                        {{ 'graphing-by.view_selected_infringements' | i18next }}
+                    </button>
+                </div>
+            </nz-col>
+        </nz-row>
+        <nz-row>
+            <rp-graphing-by-vehicle-table style="width: 100%"></rp-graphing-by-vehicle-table>
+        </nz-row>
+        <ng-container *ngIf="showInfringementsTable">
+            <nz-divider></nz-divider>
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="22">
+                    <h2>{{ 'graphing-by.selected_infringements' | i18next }}</h2>
+                </nz-col>
+                <nz-col nzSpan="2">
+                    <button nz-button nzType="default" (click)="toggleInfringementCollapsed()" class="rp-space">
+                        <i nz-icon [nzType]="'up'"></i>{{ 'summary-indicators.hide' | i18next }}
+                    </button>
+                </nz-col>
+            </nz-row>
+            <rp-graphing-infringement-table></rp-graphing-infringement-table>
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-container *ngIf="noAggregatedData">
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-container>

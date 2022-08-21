@@ -1,0 +1,43 @@
+<nz-row nzGutter="24" *ngIf="!isCompact; else compact">
+    <nz-col nzSpan="12">
+        <div>{{ 'general-date-range-input.from' | i18next }}</div>
+        <input
+            nz-input
+            [type]="inputType"
+            [(ngModel)]="value.min"
+            (ngModelChange)="writeValue(value)"
+            placeholder="{{ 'general-date-range-input.from' | i18next }}"
+        />
+    </nz-col>
+    <nz-col nzSpan="12">
+        <div>{{ 'general-date-range-input.to' | i18next }}</div>
+        <input
+            nz-input
+            [type]="inputType"
+            [(ngModel)]="value.max"
+            (ngModelChange)="writeValue(value)"
+            placeholder="{{ 'general-date-range-input.to' | i18next }}"
+        />
+    </nz-col>
+</nz-row>
+
+<ng-template #compact>
+    <nz-input-group nzCompact>
+        <input
+            nz-input
+            [type]="inputType"
+            [(ngModel)]="value.min"
+            (ngModelChange)="writeValue(value)"
+            placeholder="{{ 'general-date-range-input.from' | i18next }}"
+            style="width: 50%"
+        />
+        <input
+            nz-input
+            [type]="inputType"
+            [(ngModel)]="value.max"
+            (ngModelChange)="writeValue(value)"
+            placeholder="{{ 'general-date-range-input.to' | i18next }}"
+            style="width: 50%"
+        />
+    </nz-input-group>
+</ng-template>

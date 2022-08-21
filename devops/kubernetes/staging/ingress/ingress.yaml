@@ -1,0 +1,46 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: fleet-ingress
+    annotations:
+        kubernetes.io/ingress.class: 'nginx'
+        kubernetes.io/tls-acme: 'true'
+        nginx.ingress.kubernetes.io/proxy-body-size: '2048m'
+        nginx.ingress.kubernetes.io/proxy-connect-timeout: '30'
+        nginx.ingress.kubernetes.io/proxy-send-timeout: '1200'
+        nginx.ingress.kubernetes.io/proxy-read-timeout: '1200'
+        nginx.ingress.kubernetes.io/use-proxy-protocol: 'true'
+        nginx.ingress.kubernetes.io/real-ip-header: 'proxy_protocol'
+        nginx.ingress.kubernetes.io/set-real-ip-from: 'aaa.aaa.aaa.aaa/32,bbb.bbb.bbb.bbb/32,ccc.ccc.ccc.ccc/32,ddd.ddd.ddd.ddd/32,eee.eee.eee.eee/32,fff.fff.fff.fff/32'
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        certmanager.k8s.io/acme-challenge-type: http01
+spec:
+    rules:
+        - host: staging.roadprotect.co.il
+          http:
+              paths:
+                  - path: /
+                    backend:
+                        serviceName: frontend
+                        servicePort: entry
+                  - path: /api/v1/
+                    backend:
+                        serviceName: backend
+                        servicePort: entry
+                  - path: /socket.io
+                    backend:
+                        serviceName: backend
+                        servicePort: entry
+        - host: mail.staging.roadprotect.co.il
+          http:
+              paths:
+                  - path: /
+                    backend:
+                        serviceName: smtp
+                        servicePort: entry
+    tls:
+        - hosts:
+              - staging.roadprotect.co.il
+              - mail.staging.roadprotect.co.il
+          secretName: staging-certificate

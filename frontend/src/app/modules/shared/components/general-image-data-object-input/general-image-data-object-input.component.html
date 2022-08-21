@@ -1,0 +1,15 @@
+<nz-row>
+    <p>
+        <span nz-text nzType="secondary">{{ 'general-image-input.recommended_dimensions' | i18next }}</span>
+    </p> </nz-row
+><nz-row>
+    <input type="file" (change)="onFileChanged()" (close)="imageLoadState.onSuccess()" accept="image/*" style="display: none" #fileInput />
+    <button nz-button (click)="fileInput.click()" nzType="default" [disabled]="!!value" [nzLoading]="imageLoadState.isLoading()">
+        <i nz-icon nzType="camera" nzTheme="outline"></i> {{ 'general-image-input.select_image' | i18next }}
+    </button>
+    <button nz-button nzType="default" (click)="onClear()" [disabled]="!value">{{ 'general-image-input.clear_image' | i18next }}</button>
+</nz-row>
+<nz-row class="preview" *ngIf="!!value">
+    <rp-general-state-model-alert [state]="imageLoadState" [showSuccess]="false"></rp-general-state-model-alert>
+    <img [src]="value" alt="" />
+</nz-row>

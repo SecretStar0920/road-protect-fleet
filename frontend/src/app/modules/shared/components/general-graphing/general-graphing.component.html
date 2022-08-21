@@ -1,0 +1,125 @@
+<div class="container" *ngIf="dataPoints?.length > 0 || dataSeries?.length > 0; else noResult">
+    <div class="flex-chart">
+        <ng-container [ngSwitch]="graphingType"
+            ><!--            Grouped Vertical Bar Graph-->
+            <ng-container *ngSwitchCase="graphingTypes.GroupedVerticalBarGraph">
+                <rp-general-chart-container>
+                    <ngx-charts-bar-vertical-2d
+                        class="bar-graph"
+                        [scheme]="colors"
+                        [results]="dataSeries"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [view]="view"
+                        [barPadding]="barPadding"
+                        [groupPadding]="groupPadding"
+                        [showDataLabel]="showDataLabel"
+                        [legendTitle]="legendTitle"
+                        [xAxisTickFormatting]="translateXAxis ? translateAxis : null"
+                        [yAxisTickFormatting]="translateYAxis ? translateAxis : null"
+                    >
+                        <ng-template #tooltipTemplate let-model="model">
+                            <ng-container *ngTemplateOutlet="customTooltipTemplate; context: { $implicit: model }"> </ng-container>
+                        </ng-template>
+                    </ngx-charts-bar-vertical-2d>
+                </rp-general-chart-container>
+            </ng-container>
+            <!--                Number Cards-->
+            <ng-container *ngSwitchCase="graphingTypes.NumberCards">
+                <rp-general-chart-container>
+                    <ngx-charts-number-card
+                        [scheme]="colors"
+                        [results]="dataPoints"
+                        cardColor="#FAFAFA"
+                        [labelFormatting]="translateLabels ? translateAxis : null"
+                        (select)="onSelect($event)"
+                    >
+                    </ngx-charts-number-card>
+                </rp-general-chart-container>
+            </ng-container>
+            <!--                Horizontal Bar Graph-->
+            <ng-container *ngSwitchCase="graphingTypes.HorizontalBarGraph">
+                <ngx-charts-bar-horizontal
+                    class="bar-graph"
+                    [scheme]="colors"
+                    [results]="dataPoints"
+                    [gradient]="gradient"
+                    [animations]="animations"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [legendTitle]="legendTitle"
+                    [showGridLines]="showGridLines"
+                    [xAxisTickFormatting]="translateXAxis ? translateAxis : null"
+                    [yAxisTickFormatting]="translateYAxis ? translateAxis : null"
+                >
+                    <ng-template #tooltipTemplate let-model="model">
+                        <ng-container *ngTemplateOutlet="customTooltipTemplate; context: { $implicit: model }"> </ng-container>
+                    </ng-template>
+                </ngx-charts-bar-horizontal>
+            </ng-container>
+            <!--                Pie Chart-->
+            <ng-container *ngSwitchCase="graphingTypes.PieChart">
+                <rp-general-chart-container>
+                    <ngx-charts-pie-chart
+                        [scheme]="colors"
+                        [customColors]="colors"
+                        [results]="dataPoints"
+                        [legend]="showLegend"
+                        [trimLabels]="trimLabels"
+                        [labels]="showDataLabel"
+                        [doughnut]="isDoughnut"
+                        [legendPosition]="legendPosition"
+                        [arcWidth]="arcWidth"
+                        [legendTitle]="legendTitle"
+                        [labelFormatting]="translateLabels ? translateAxis : null"
+                    >
+                        <ng-template #tooltipTemplate let-model="model">
+                            <ng-container *ngTemplateOutlet="customTooltipTemplate; context: { $implicit: model }"> </ng-container>
+                        </ng-template>
+                    </ngx-charts-pie-chart>
+                </rp-general-chart-container>
+            </ng-container>
+            <!--               Advanced Pie Chart-->
+            <ng-container *ngSwitchCase="graphingTypes.AdvancedPieChart">
+                <rp-general-chart-container>
+                    <ngx-charts-advanced-pie-chart
+                        [scheme]="colors"
+                        [results]="dataPoints"
+                        [nameFormatting]="translateLabels ? translateAxis : null"
+                    >
+                        <ng-template #tooltipTemplate let-model="model">
+                            <ng-container *ngTemplateOutlet="customTooltipTemplate; context: { $implicit: model }"> </ng-container>
+                        </ng-template>
+                    </ngx-charts-advanced-pie-chart>
+                </rp-general-chart-container>
+            </ng-container>
+            <!--                Pie Chart Grid-->
+            <ng-container *ngSwitchCase="graphingTypes.PieChartGrid">
+                <rp-general-chart-container>
+                    <ngx-charts-pie-grid [scheme]="colors" [results]="dataPoints"> </ngx-charts-pie-grid>
+                </rp-general-chart-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #noResult>
+    <nz-empty [nzNotFoundContent]="'general-table.no_result' | i18next"></nz-empty>
+</ng-template>
+
+<ng-template #graphTooltips let-data>
+    <ng-container *ngIf="data.series">
+        <ng-row>
+            <strong> {{ data.series | i18next }} </strong>
+        </ng-row>
+    </ng-container>
+    <ng-row>
+        <i> {{ data.name }} </i>
+    </ng-row>
+    <nz-row>
+        {{ data.value }}
+    </nz-row>
+</ng-template>

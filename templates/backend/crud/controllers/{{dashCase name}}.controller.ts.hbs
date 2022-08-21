@@ -1,0 +1,72 @@
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Get{{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/get-{{dashCase name}}.service';
+import { Get{{pascalCase name}}sService } from '@modules/{{dashCase name}}/services/get-{{dashCase name}}s.service';
+import { Create{{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/create-{{dashCase name}}.service';
+import { Update{{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/update-{{dashCase name}}.service';
+import { Delete{{pascalCase name}}Service } from '@modules/{{dashCase name}}/services/delete-{{dashCase name}}.service';
+import { {{pascalCase name}}, {{pascalCase name}}Type } from '@entities';
+import { IsDefined, IsIn, IsOptional, IsString } from 'class-validator';
+import { SystemAdminGuard } from '@modules/auth/guards/system-admin.guard';
+import { ApiBearerAuth, ApiExcludeEndpoint, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
+import { asString, timezoneAdjustToUTC } from '@modules/shared/helpers/dto-transforms';
+import { UserAuthGuard } from '@modules/auth/guards/user-auth.guard';
+
+export class Update{{pascalCase name}}Dto {
+   // Fill
+}
+
+export class Create{{pascalCase name}}Dto {
+    // Fill
+}
+
+@Controller('{{dashCase name}}')
+@UseGuards(UserAuthGuard)
+@ApiBearerAuth()
+export class {{pascalCase name}}Controller {
+    constructor(
+        private get{{pascalCase name}}Service: Get{{pascalCase name}}Service,
+        private get{{pascalCase name}}sService: Get{{pascalCase name}}sService,
+        private create{{pascalCase name}}Service: Create{{pascalCase name}}Service,
+        private update{{pascalCase name}}Service: Update{{pascalCase name}}Service,
+        private delete{{pascalCase name}}Service: Delete{{pascalCase name}}Service,
+    ) {}
+
+    @Get(':{{camelCase name}}Id')
+    async get{{pascalCase name}}(@Param('{{camelCase name}}Id') {{camelCase name}}Id: number): Promise<{{pascalCase name}}> {
+        return this.get{{pascalCase name}}Service.get{{pascalCase name}}({{camelCase name}}Id);
+    }
+
+    @Get()
+    async get{{pascalCase name}}s(): Promise<{{pascalCase name}}[]> {
+        return this.get{{pascalCase name}}sService.get{{pascalCase name}}s();
+    }
+
+    @Post()
+    @UseGuards(SystemAdminGuard)
+    @ApiExcludeEndpoint()
+    async create{{pascalCase name}}(@Body() dto: Create{{pascalCase name}}Dto): Promise<{{pascalCase name}}> {
+        return this.create{{pascalCase name}}Service.create{{pascalCase name}}(dto);
+    }
+
+    @Post(':{{camelCase name}}Id')
+    @UseGuards(SystemAdminGuard)
+    @ApiExcludeEndpoint()
+    async update{{pascalCase name}}(@Param('{{camelCase name}}Id') {{camelCase name}}Id: number, @Body() dto: Update{{pascalCase name}}Dto): Promise<{{pascalCase name}}> {
+        return this.update{{pascalCase name}}Service.update{{pascalCase name}}({{camelCase name}}Id, dto);
+    }
+
+    @Delete(':{{camelCase name}}Id')
+    @UseGuards(SystemAdminGuard)
+    @ApiExcludeEndpoint()
+    async delete{{pascalCase name}}(@Param('{{camelCase name}}Id') {{camelCase name}}Id: number): Promise<{{pascalCase name}}> {
+        return this.delete{{pascalCase name}}Service.delete{{pascalCase name}}({{camelCase name}}Id);
+    }
+
+    @Delete(':{{camelCase name}}Id/soft')
+    @UseGuards(SystemAdminGuard)
+    @ApiExcludeEndpoint()
+    async softDelete{{pascalCase name}}(@Param('{{camelCase name}}Id') {{camelCase name}}Id: number): Promise<{{pascalCase name}}> {
+        return this.delete{{pascalCase name}}Service.softDelete{{pascalCase name}}({{camelCase name}}Id);
+    }
+}

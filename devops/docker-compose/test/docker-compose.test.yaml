@@ -1,0 +1,109 @@
+version: '3.6'
+services:
+    backend:
+        build:
+            context: $PWD/../../../backend
+            dockerfile: $PWD/backend/Dockerfile
+        volumes:
+            - ../../../backend/src:/app/src
+            - ../../../backend/storage:/app/storage
+            - ../../../backend/scripts:/app/scripts
+            - ../../../backend/emails:/app/emails
+            - ../../../backend/locales:/app/locales
+            - ../../../backend/test:/app/test
+            - ../../../backend/package.json:/app/package.json
+        ports:
+            - 8080
+            - '9229:9229'
+        depends_on:
+            - database
+            - redis
+        env_file:
+            - ./backend/.secrets
+            - ./backend/.env
+        environment:
+            - FORCE_COLOR=1
+
+    document-renderer:
+        build:
+            context: $PWD/../../../document-renderer
+            dockerfile: $PWD/document-renderer/Dockerfile
+        ports:
+            - '4300:4300'
+
+    document-api:
+        build:
+            context: $PWD/../../../document-api
+            dockerfile: $PWD/document-api/Dockerfile
+        ports:
+            - '8080:8080'
+        env_file:
+            - ./document-api/.env
+        environment:
+            - FORCE_COLOR=1
+
+    redis:
+        image: redis
+        ports:
+            - '6379:6379'
+        command: ['redis-server', '--appendonly', 'yes']
+        volumes:
+            - 'redis-data:/data'
+
+    smtp-auth:
+        image: beevelop/nginx-basic-auth
+        ports:
+            - 80
+        environment:
+            - FORWARD_PORT=8025
+            - FORWARD_HOST=smtp
+        env_file:
+            - ./smtp/env
+
+    smtp:
+        image: mailhog/mailhog
+        ports:
+            - 1025
+            - 8025
+
+    database:
+        image: postgres:11.5
+        ports:
+            - '6001:5432'
+        env_file:
+            - ./database/.env
+            - ./database/.secrets
+        volumes:
+            - 'test-db-data:/var/lib/postgresql/data'
+
+    crawler-api:
+        build:
+            context: $PWD/../../../crawler-api
+            dockerfile: $PWD/crawler-api/Dockerfile
+        volumes:
+            - ../../../crawler-api:/app
+        ports:
+            - '3001:3000'
+        env_file:
+            - crawler-api/.env
+        environment:
+            - FORCE_COLOR=1
+
+    ocr:
+        build:
+            context: $PWD/../../../crawler-api
+            dockerfile: $PWD/crawler-api/Dockerfile
+        volumes:
+            - ../../../crawler-api:/app
+        ports:
+            - '3002:3000'
+        env_file:
+            - crawler-api/.env
+        environment:
+            - FORCE_COLOR=1
+
+volumes:
+    test-db-data:
+    redis-data:
+    document-api-data:
+    metabase-data:

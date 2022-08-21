@@ -1,0 +1,67 @@
+<form nz-form [formGroup]="createAccountUserForm" nzLayout="vertical" (ngSubmit)="onCreateAccountUser()">
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="userEmail">{{ 'account-user.email' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="userEmail" id="userEmail" />
+                    <nz-form-explain
+                        *ngIf="createAccountUserForm.get('userEmail')?.dirty && createAccountUserForm.get('userEmail')?.errors"
+                    >
+                        <rp-general-form-error-display key="userEmail" [form]="createAccountUserForm"> </rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="userName">{{ 'account-user.name' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="userName" id="userName" />
+                    <nz-form-explain *ngIf="createAccountUserForm.get('userName')?.dirty && createAccountUserForm.get('userName')?.errors">
+                        <rp-general-form-error-display [form]="createAccountUserForm" key="userName"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="userSurname">{{ 'account-user.surname' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="userSurname" id="userSurname" />
+                    <nz-form-explain
+                        *ngIf="createAccountUserForm.get('userSurname')?.dirty && createAccountUserForm.get('userSurname')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="createAccountUserForm" key="userSurname"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="roleNames">{{ 'account-user.role' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <rp-role-dropdown formControlName="roleNames"></rp-role-dropdown>
+                    <nz-form-explain *ngIf="createAccountUserForm.get('roleNames')?.dirty && createAccountUserForm.get('roleNames')?.errors">
+                        <rp-general-form-error-display [form]="createAccountUserForm" key="roleNames"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button
+                nz-button
+                nzType="primary"
+                [disabled]="!createAccountUserForm.valid"
+                nzSize="large"
+                [nzLoading]="createAccountUserState.isLoading()"
+            >
+                <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                {{ 'account-user.create' | i18next }}
+            </button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

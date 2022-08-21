@@ -1,0 +1,72 @@
+<rp-advanced-filter-table>
+    <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreateAccount()">
+        <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'account.create' | i18next }}
+    </button>
+    <button nz-button [nzType]="'default'" [routerLink]="['/home', 'accounts', 'upload']">
+        <i nz-icon nzType="upload" nzTheme="outline"></i>
+        {{ 'view-accounts-advanced.import' | i18next }}
+    </button>
+</rp-advanced-filter-table>
+<nz-alert
+    *ngIf="getAccountsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getAccountsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+
+<ng-template #isVerified let-data>
+    <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green" *ngIf="data.isVerified; else notVerified"></i>
+    <ng-template #notVerified>
+        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+    </ng-template>
+</ng-template>
+
+<ng-template #active let-data>
+    <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green" *ngIf="data.active; else notActive"></i>
+    <ng-template #notActive>
+        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+    </ng-template>
+</ng-template>
+
+<ng-template #physicalLocation let-data>
+    <rp-view-short-location [location]="data.physicalLocation"></rp-view-short-location>
+</ng-template>
+
+<ng-template #postalLocation let-data>
+    <rp-view-short-location [location]="data.postalLocation"></rp-view-short-location>
+</ng-template>
+
+<ng-template #powerOfAttorney let-data>
+    <ng-container *ngIf="data.powerOfAttorney; else missing">
+        <rp-view-document [document]="data.powerOfAttorney"></rp-view-document>
+    </ng-container>
+    <ng-template #missing>
+        <span nz-text nzType="warning">{{ 'view-accounts-advanced.missing' | i18next }}</span>
+    </ng-template>
+</ng-template>
+
+<ng-template #accountRole let-data>
+    <rp-account-role-tag [role]="data.role"></rp-account-role-tag>
+</ng-template>
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewAccount(data.accountId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+    <button nz-button nzType="primary" nzSize="small" (click)="onEditAccount(data)" class="rp-space">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+    </button>
+    <!--    <button nz-button nzType="primary" nzSize="small" (click)="onEmailAccount(data)" class="rp-space">-->
+    <!--        <i nz-icon nzType="mail" nzTheme="outline"></i>-->
+    <!--    </button>-->
+</ng-template>
+
+<ng-template let-data #delete>
+    <rp-deactivate-account
+        class="rp-space"
+        [accountId]="data.accountId"
+        nz-tooltip
+        [nzTooltipTitle]="'view-accounts-advanced.toggle_active' | i18next"
+    ></rp-deactivate-account>
+    <rp-delete-account [accountId]="data.accountId"></rp-delete-account>
+</ng-template>

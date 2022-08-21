@@ -1,0 +1,50 @@
+<ng-container>
+    <nz-row>
+        <table style="width: 100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>{{ 'manage-presets.name' | i18next }}</th>
+                    <th>{{ 'manage-presets.default' | i18next }}</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let preset of userPresets">
+                <tr>
+                    <td>
+                        <button nz-button nzType="primary" nzSize="small" (click)="onEditPreset(preset)" class="rp-space">
+                            <i nz-icon nzType="edit" nzTheme="outline"></i>
+                        </button>
+                    </td>
+                    <td class="name-column">{{ preset.name }}</td>
+                    <td>
+                        <label
+                            nz-checkbox
+                            [nzValue]="preset.name"
+                            [ngModel]="preset.default"
+                            (ngModelChange)="changeDefault(preset, $event)"
+                        ></label>
+                    </td>
+                    <td>
+                        <button
+                            nz-button
+                            nzType="danger"
+                            nzSize="small"
+                            nz-popconfirm
+                            [nzPopconfirmTitle]="'manage-presets.delete_confirm_title' | i18next"
+                            [nzIcon]="deleteConfirm"
+                            (nzOnConfirm)="onDeletePreset(preset)"
+                        >
+                            <i nz-icon nzType="delete" nzTheme="outline"></i>
+                        </button>
+                        <ng-template #deleteConfirm>
+                            <i nz-icon nzType="question-circle-o" style="color: #f5222d"></i>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </nz-row>
+    <nz-row *ngIf="isLoading > 0">
+        <nz-spin class="loading-spinner" [nzSpinning]="true"></nz-spin>
+    </nz-row>
+</ng-container>

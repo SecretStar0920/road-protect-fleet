@@ -1,0 +1,74 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+
+<ng-template let-data #forwardAccount>
+    <rp-account-tag [account]="data.forward"></rp-account-tag>
+</ng-template>
+
+<ng-template let-data #reverseAccount>
+    <rp-account-tag [account]="data.reverse"></rp-account-tag>
+</ng-template>
+
+<ng-template let-data #action>
+    <ng-container *ngIf="data">
+        <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            *rpHasPermission="[permissions.ViewAccountRelation]"
+            (click)="onViewAccountRelation(data.accountRelationId)"
+            class="rp-space"
+        >
+            <i nz-icon nzType="eye" nzTheme="outline"></i>
+        </button>
+        <button
+            nz-button
+            nzType="primary"
+            nzSize="small"
+            (click)="onEmailAccountRelation(data)"
+            class="rp-space"
+            *rpHasPermission="[permissions.InfringementReporting]"
+        >
+            <i nz-icon nzType="mail" nzTheme="outline"></i>
+        </button>
+        <button nz-button nzType="primary" nzSize="small" (click)="onEditRelation(data)" class="rp-space">
+            <i nz-icon nzType="edit" nzTheme="outline"></i>
+        </button>
+    </ng-container>
+</ng-template>
+
+<ng-template let-data #delete>
+    <ng-container *ngIf="data">
+        <rp-delete-account-relation
+            [accountRelationId]="data.accountRelationId"
+            class="rp-space"
+            *rpHasPermission="[permissions.DeleteAccountRelation]"
+        ></rp-delete-account-relation>
+    </ng-container>
+</ng-template>
+
+<button
+    nz-button
+    [nzType]="'primary'"
+    class="rp-space"
+    (click)="onCreateAccountRelation()"
+    *rpHasPermission="[permissions.CreateAccountRelation]"
+>
+    <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'view-account-relation-advanced.create' | i18next }}
+</button>
+
+<button
+    nz-button
+    [nzType]="'primary'"
+    class="rp-space"
+    (click)="onUploadRelationsSpreadsheet()"
+    *rpHasPermission="[permissions.CreateAccountRelation, permissions.EditAccountRelation, permissions.DeleteAccountRelation]"
+>
+    <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'view-account-relation-advanced.upload' | i18next }}
+</button>
+
+<rp-generate-account-relations *rpHasPermission="[permissions.CreateAccountRelation]"></rp-generate-account-relations>
+
+<!--<button nz-button [nzType]="'default'" [routerLink]="['/home', 'account-relations', 'upload']">-->
+<!--    <i nz-icon nzType="upload" nzTheme="outline"></i>-->
+<!--    {{ 'view-account-relation-advanced.import' | i18next }}-->
+<!--</button>-->

@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: smtp
+    labels:
+        app: fleet
+        type: smtp
+        env: staging
+spec:
+    ports:
+        - port: 8025
+          name: web
+          protocol: TCP
+        - port: 1025
+          name: smtp
+          protocol: TCP
+        - port: 80
+          name: entry
+          protocol: TCP
+    selector:
+        app: fleet
+        type: smtp
+        env: staging

@@ -1,0 +1,8 @@
+<rp-create-payment (complete)="onComplete($event)"></rp-create-payment>
+<nz-alert
+    nzType="error"
+    *ngIf="createPaymentState?.hasFailed()"
+    [nzMessage]="createPaymentState?.failedResult().message"
+    [nzDescription]="createPaymentState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

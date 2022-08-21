@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: metabase
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: metabase
+            env: prod
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: metabase
+                env: prod
+        spec:
+            priorityClassName: low-priority
+            containers:
+                - image: metabase/metabase
+                  name: metabase
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 3000
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      httpGet:
+                          path: api/health
+                          port: 3000
+                      initialDelaySeconds: 30
+                      periodSeconds: 60
+                      timeoutSeconds: 45
+                  readinessProbe:
+                      httpGet:
+                          path: api/health
+                          port: 3000
+                      initialDelaySeconds: 30
+                      periodSeconds: 15
+                  envFrom:
+                      - secretRef:
+                            name: metabase
+                  volumeMounts:
+                      - name: storage
+                        mountPath: /metabase-data
+                        subPath: metabase-data
+            volumes:
+                - name: storage
+                  persistentVolumeClaim:
+                      claimName: metabase-storage-pvc

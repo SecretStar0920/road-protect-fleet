@@ -1,0 +1,413 @@
+<div class="wrapper">
+    <button nz-button nzType="primary" nzSize="small" (click)="toggleCollapsed()" class="toggle-button">
+        <i nz-icon [nzType]="isCollapsed ? 'right' : 'left'"></i>
+    </button>
+    <ul nz-menu [nzMode]="'inline'" nzTheme="light" id="menu" [nzInlineCollapsed]="isCollapsed">
+        <ng-container *ngIf="currentAccount">
+            <li nz-menu-group [nzTitle]="profileTitle">
+                <ng-template #profileTitle>
+                    <ng-container *ngIf="!isCollapsed; else collapsed" class="menu-section">
+                        <nz-row nzJustify="space-between">
+                            <nz-col
+                                ><span
+                                    ><i nz-icon nzType="team" nzTheme="outline"></i>
+                                    {{ this.currentAccount?.name | truncate: false:20 }}</span
+                                ></nz-col
+                            >
+                            <nz-col>
+                                <rp-change-current-account></rp-change-current-account>
+                            </nz-col>
+                        </nz-row>
+                    </ng-container>
+                    <ng-template #collapsed>
+                        <rp-change-current-account></rp-change-current-account>
+                    </ng-template>
+                </ng-template>
+                <ul>
+                    <li
+                        nz-menu-item
+                        routerLinkActive="ant-menu-item-selected"
+                        [routerLink]="['/home', 'account', 'infringements']"
+                        [queryParams]="{
+                            status: [infringementStatus.Due, infringementStatus.Outstanding, infringementStatus.ApprovedForPayment]
+                        }"
+                        *rpHasPermission="[permissions.ViewInfringements]"
+                    >
+                        <i nz-icon nzType="exception" nzTheme="outline"></i> {{ 'sidebar.vehicles_infringements' | i18next }}
+                        <i
+                            nz-icon
+                            nzType="question-circle"
+                            nzTheme="outline"
+                            class="hover-help"
+                            nz-popover
+                            nzPopoverPlacement="top"
+                            [nzPopoverContent]="'sidebar.nominated_to_me_desc' | i18next"
+                        ></i>
+                    </li>
+
+                    <li
+                        nz-menu-item
+                        routerLinkActive="ant-menu-item-selected"
+                        [routerLink]="['/home', 'account', 'contracts']"
+                        *rpHasPermission="[permissions.ViewVehicles]"
+                    >
+                        <i nz-icon nzType="file-protect" nzTheme="outline"></i> {{ 'sidebar.contracts' | i18next }}
+                        <i
+                            nz-icon
+                            nzType="question-circle"
+                            nzTheme="outline"
+                            class="hover-help"
+                            nz-popover
+                            nzPopoverPlacement="top"
+                            [nzPopoverContent]="'sidebar.contracts_desc' | i18next"
+                        ></i>
+                    </li>
+
+                    <li
+                        nz-menu-item
+                        routerLinkActive="ant-menu-item-selected"
+                        [routerLink]="['/home', 'account', 'vehicles']"
+                        [queryParams]="{ useDefaultPreset: false, tab: 'all' }"
+                        *rpHasPermission="[permissions.ViewVehicles]"
+                    >
+                        <i nz-icon nzType="car" nzTheme="outline"></i> {{ 'sidebar.vehicles' | i18next }}
+                        <i
+                            nz-icon
+                            nzType="question-circle"
+                            nzTheme="outline"
+                            class="hover-help"
+                            nz-popover
+                            nzPopoverPlacement="top"
+                            [nzPopoverContent]="'sidebar.vehicles_desc' | i18next"
+                        ></i>
+                    </li>
+
+                    <nz-divider></nz-divider>
+
+                    <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'account', 'profile']">
+                        <i nz-icon nzType="profile" nzTheme="outline"></i> {{ 'sidebar.my_account' | i18next }}
+                        <i
+                            nz-icon
+                            nzType="question-circle"
+                            nzTheme="outline"
+                            class="hover-help"
+                            nz-popover
+                            nzPopoverPlacement="top"
+                            [nzPopoverContent]="'sidebar.my_account_desc' | i18next"
+                        ></i>
+                    </li>
+                    <li
+                        nz-menu-item
+                        routerLinkActive="ant-menu-item-selected"
+                        [routerLink]="['/home', 'account', 'users']"
+                        *rpHasPermission="[permissions.ViewUsers]"
+                    >
+                        <i nz-icon nzType="user" nzTheme="outline"></i> {{ 'sidebar.account_users' | i18next }}
+                        <i
+                            nz-icon
+                            nzType="question-circle"
+                            nzTheme="outline"
+                            class="hover-help"
+                            nz-popover
+                            nzPopoverPlacement="top"
+                            [nzPopoverContent]="'sidebar.account_users_desc' | i18next"
+                        ></i>
+                    </li>
+                    <li
+                        nz-menu-item
+                        routerLinkActive="ant-menu-item-selected"
+                        [routerLink]="['/home', 'account', 'relations']"
+                        *rpHasPermission="[permissions.ViewAccountRelation]"
+                    >
+                        <i nz-icon nzType="apartment" nzTheme="outline"></i> {{ 'sidebar.relations' | i18next }}
+                        <i
+                            nz-icon
+                            nzType="question-circle"
+                            nzTheme="outline"
+                            class="hover-help"
+                            nz-popover
+                            nzPopoverPlacement="top"
+                            [nzPopoverContent]="'sidebar.relations_desc' | i18next"
+                        ></i>
+                    </li>
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="bar-chart" nzTheme="outline"></i> {{ 'sidebar.reporting' | i18next }}</span>
+                        <ul>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'account', 'reporting']"
+                                [queryParams]="{ tab: 'status' }"
+                                *rpHasPermission="[
+                                    permissions.FinanceReporting,
+                                    permissions.VehicleReporting,
+                                    permissions.InfringementReporting
+                                ]"
+                            >
+                                {{ 'sidebar.reporting' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'account', 'summary-indicators']"
+                                *rpHasPermission="[
+                                    permissions.FinanceReporting,
+                                    permissions.VehicleReporting,
+                                    permissions.InfringementReporting
+                                ]"
+                            >
+                                {{ 'sidebar.summary-indicators' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'account', 'infringement-projection']"
+                                *rpHasPermission="[
+                                    permissions.FinanceReporting,
+                                    permissions.VehicleReporting,
+                                    permissions.InfringementReporting
+                                ]"
+                            >
+                                {{ 'sidebar.infringement-projection' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ng-container>
+
+        <!--    Admin-->
+        <ng-container *rpIsUserType="[userTypes.Developer, userTypes.Admin]">
+            <li nz-menu-group [nzTitle]="adminTitle" class="menu-section">
+                <ng-template #adminTitle
+                    ><i nz-icon nzType="safety-certificate" nzTheme="outline"></i> {{ 'sidebar.admin' | i18next }}</ng-template
+                >
+                <ul>
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="profile" nzTheme="outline"></i> {{ 'sidebar-admin.accounts' | i18next }}</span>
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'accounts', 'view']">
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'accounts', 'create']">
+                                {{ 'sidebar-admin.create' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'accounts', 'upload']">
+                                {{ 'sidebar-admin.upload' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="team" nzTheme="outline"></i> {{ 'sidebar-admin.users' | i18next }}</span>
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'users', 'view']">
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'users', 'create']">
+                                {{ 'sidebar-admin.create' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="car" nzTheme="outline"></i> {{ 'sidebar-admin.vehicles' | i18next }}</span>
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'vehicles', 'view']">
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'vehicles', 'create']">
+                                {{ 'sidebar-admin.create' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'vehicles', 'upload']">
+                                {{ 'sidebar-admin.upload' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="database" nzTheme="outline"></i> {{ 'sidebar-admin.issuers' | i18next }}</span>
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'issuers', 'view']">
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'issuers', 'create']">
+                                {{ 'sidebar-admin.create' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'issuers', 'upload']">
+                                {{ 'sidebar-admin.upload' | i18next }}
+                            </li>
+                            <li
+                                *rpIsUserType="[userTypes.Developer, userTypes.Admin]"
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'request-information-log']"
+                            >
+                                {{ 'sidebar-admin.request_information' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-submenu>
+                        <span title
+                            ><i nz-icon nzType="exception" nzTheme="outline"></i> {{ 'sidebar-admin.infringements' | i18next }}</span
+                        >
+                        <ul>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'infringements', 'view']"
+                                [queryParams]="{
+                                    status: [infringementStatus.Due, infringementStatus.Outstanding, infringementStatus.ApprovedForPayment]
+                                }"
+                            >
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'infringements', 'create']">
+                                {{ 'sidebar-admin.create' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'infringements', 'upload']">
+                                {{ 'sidebar-admin.upload' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-submenu>
+                        <span title
+                            ><i nz-icon nzType="file-protect" nzTheme="outline"></i>
+                            {{ 'sidebar-admin.vehicles_contracts' | i18next }}</span
+                        >
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'contracts', 'view']">
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'contracts', 'lease', 'upload']"
+                            >
+                                {{ 'sidebar-admin.upload_lease_contracts' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'contracts', 'ownership', 'upload']"
+                            >
+                                {{ 'sidebar-admin.upload_ownership_contracts' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'contracts', 'driver', 'upload']"
+                            >
+                                {{ 'sidebar-admin.upload_driver_contracts' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="dollar" nzTheme="outline"></i> {{ 'sidebar-admin.payments' | i18next }}</span>
+                        <ul>
+                            <!--                        <li nz-menu-item routerLinkActive="ant-menu-item-selected"-->
+                            <!--                            [routerLink]="['/home', 'contracts', 'view']">View-->
+                            <!--                        </li>-->
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'payments', 'upload']">
+                                {{ 'sidebar-admin.upload_proof_of_payments' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-submenu>
+                        <span title
+                            ><i nz-icon nzType="file-text" nzTheme="outline"></i>
+                            {{ 'sidebar-admin.partial_infringements' | i18next }}</span
+                        >
+                        <ul>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'partial-infringement', 'view']"
+                            >
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'partial-infringement', 'create']"
+                            >
+                                {{ 'sidebar-admin.create' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'partial-infringement', 'upload']"
+                            >
+                                {{ 'sidebar-admin.upload' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'partial-infringement', 'upload-ocr']"
+                            >
+                                {{ 'sidebar-admin.partial-infringements.upload-ocr' | i18next }}
+                            </li>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'partial-infringement', 'fetch']"
+                            >
+                                {{ 'sidebar-admin.partial-infringements.fetch' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="user" nzTheme="outline"></i> {{ 'sidebar-admin.driver' | i18next }}</span>
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'driver', 'view']">
+                                {{ 'sidebar-admin.view' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'driver', 'create']">
+                                {{ 'sidebar-admin.create' | i18next }}
+                            </li>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'driver', 'upload']">
+                                {{ 'sidebar-admin.upload' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-menu-item [routerLink]="['/home', 'reporting']">
+                        <i nz-icon nzType="pie-chart" nzTheme="outline"></i> {{ 'sidebar-admin.reporting' | i18next }}
+                    </li>
+
+                    <li nz-submenu>
+                        <span title><i nz-icon nzType="bars" nzTheme="outline"></i> {{ 'sidebar-admin.logs' | i18next }}</span>
+                        <ul>
+                            <li
+                                nz-menu-item
+                                routerLinkActive="ant-menu-item-selected"
+                                [routerLink]="['/home', 'logs', 'integration-request']"
+                            >
+                                {{ 'sidebar-admin.integration-request-logs' | i18next }}
+                            </li>
+                        </ul>
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'logs', 'raw-infringement']">
+                                {{ 'sidebar-admin.raw-infringement-logs' | i18next }}
+                            </li>
+                        </ul>
+                        <ul>
+                            <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/home', 'logs', 'job']">
+                                {{ 'sidebar-admin.job-logs' | i18next }}
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li nz-menu-item [routerLink]="['/home', 'integration-test']">
+                        <i nz-icon nzType="experiment" nzTheme="outline"></i> {{ 'sidebar-admin.integration-test' | i18next }}
+                    </li>
+                </ul>
+            </li>
+            <!--        <li nz-menu-divider></li>-->
+        </ng-container>
+    </ul>
+</div>

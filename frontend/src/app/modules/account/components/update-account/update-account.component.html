@@ -1,0 +1,293 @@
+<form nz-form [formGroup]="updateAccountForm" nzLayout="vertical" (ngSubmit)="onUpdateAccount()">
+    <nz-row nzGutter="24" formGroupName="basicDetails">
+        <nz-col nzSpan="24">
+            <h3 class="rp-primary-color">{{ 'account.details' | i18next }}</h3>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="name">{{ 'account.name' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="name" id="accountName" />
+                    <nz-form-explain
+                        *ngIf="updateAccountForm.get('basicDetails.name')?.dirty && updateAccountForm.get('basicDetails.name')?.errors"
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['basicDetails']"
+                            key="name"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="identifier">{{ 'account.id' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="identifier" id="identifier" [readOnly]="true" />
+                    <nz-form-explain
+                        *ngIf="
+                            updateAccountForm.get('basicDetails.identifier')?.dirty &&
+                            updateAccountForm.get('basicDetails.identifier')?.errors
+                        "
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['basicDetails']"
+                            key="identifier"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="role">{{ 'account.primary_role' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <nz-select formControlName="role" nzPlaceHolder="Select a primary role for this account">
+                        <nz-option *ngFor="let role of accountRoles" [nzValue]="role" [nzLabel]="role"></nz-option>
+                    </nz-select>
+                    <nz-form-explain
+                        *ngIf="updateAccountForm.get('basicDetails.role')?.dirty && updateAccountForm.get('basicDetails.role')?.errors"
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['basicDetails']"
+                            key="role"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="primaryContact">{{ 'account.primary_contact' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="primaryContact" id="primaryContact" />
+                    <nz-form-explain
+                        *ngIf="
+                            updateAccountForm.get('basicDetails.primaryContact')?.dirty &&
+                            updateAccountForm.get('basicDetails.primaryContact')?.errors
+                        "
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['basicDetails']"
+                            key="primaryContact"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-divider></nz-divider>
+    <div *ngIf="!locationIsValid()">
+        <span>{{ 'account.location_requirement' | i18next }} </span>
+    </div>
+    <br />
+    <rp-street-address-autocomplete [initialAddress]="account.physicalLocation"></rp-street-address-autocomplete>
+    <nz-divider></nz-divider>
+
+    <nz-row nzGutter="24" formGroupName="postalLocation">
+        <nz-col nzSpan="24">
+            <h3 class="rp-primary-color">{{ 'account.postal_location' | i18next }}</h3>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="postOfficeBox">{{ 'account.post_office_box' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="postOfficeBox" id="postOfficeBox" />
+                    <nz-form-explain
+                        *ngIf="
+                            updateAccountForm.get('postalLocation.postOfficeBox')?.dirty &&
+                            updateAccountForm.get('postalLocation.postOfficeBox')?.errors
+                        "
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['postalLocation']"
+                            key="postOfficeBox"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="city">{{ 'account.city' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="city" id="city" />
+                    <nz-form-explain
+                        *ngIf="updateAccountForm.get('postalLocation.city')?.dirty && updateAccountForm.get('postalLocation.city')?.errors"
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['postalLocation']"
+                            key="city"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="country">{{ 'account.country' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="country" id="country" />
+                    <nz-form-explain *ngIf="updateAccountForm.get('country')?.dirty && updateAccountForm.get('country')?.errors">
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['postalLocation']"
+                            key="country"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="code">{{ 'account.postal_code' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="code" id="code" />
+                    <nz-form-explain
+                        *ngIf="updateAccountForm.get('postalLocation.code')?.dirty && updateAccountForm.get('postalLocation.code')?.errors"
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['postalLocation']"
+                            key="code"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-divider></nz-divider>
+
+    <nz-row nzGutter="24" formGroupName="details">
+        <nz-col nzSpan="24">
+            <h3 class="rp-primary-color">{{ 'account.contact_details' | i18next }}</h3>
+        </nz-col>
+
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="name">{{ 'account.contact_name' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="name" id="contactName" />
+                    <nz-form-explain *ngIf="updateAccountForm.get('details.name')?.dirty && updateAccountForm.get('details.name')?.errors">
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['details']"
+                            key="name"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="telephone">{{ 'account.contact_telephone' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="telephone" id="telephone" />
+                    <nz-form-explain
+                        *ngIf="updateAccountForm.get('details.telephone')?.dirty && updateAccountForm.get('details.telephone')?.errors"
+                    >
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['details']"
+                            key="telephone"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label nzFor="fax">{{ 'account.contact_fax' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="fax" id="fax" />
+                    <nz-form-explain *ngIf="updateAccountForm.get('fax')?.dirty && updateAccountForm.get('fax')?.errors">
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['details']"
+                            key="fax"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+           <nz-form-item>
+                <nz-form-control>
+                    <label nz-checkbox formControlName="managed" id="managed">
+                        {{ 'account.managed' | i18next }}
+                    </label>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-divider></nz-divider>
+
+    <nz-row nzGutter="24" formGroupName="requestInformationDetails" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+        <nz-col nzSpan="24">
+            <h3 class="rp-primary-color">{{ 'account.send_information_request' | i18next }}</h3>
+        </nz-col>
+
+
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-control>
+                    <label nz-checkbox formControlName="canSendRequest" id="canSendRequest">
+                        {{ 'account.can_send_information_request' | i18next }}
+                    </label>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+
+        <nz-col nzSpan="12" *ngIf="updateAccountForm.get('requestInformationDetails.canSendRequest')?.value">
+            <nz-form-item>
+                <nz-form-label nzFor="senderName" [nzRequired]="updateAccountForm.get('requestInformationDetails.canSendRequest')?.value">{{
+                    'account.sender_name' | i18next
+                }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="senderName" id="senderName" />
+                    <nz-form-explain *ngIf="updateAccountForm.get('senderName')?.dirty && updateAccountForm.get('senderName')?.errors">
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['requestInformationDetails']"
+                            key="senderName"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+
+        <nz-col nzSpan="12" *ngIf="updateAccountForm.get('requestInformationDetails.canSendRequest')?.value">
+            <nz-form-item>
+                <nz-form-label nzFor="senderRole" [nzRequired]="updateAccountForm.get('requestInformationDetails.canSendRequest')?.value"
+                    >{{ 'account.sender_role' | i18next }}
+                </nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="senderRole" id="senderRole" />
+                    <nz-form-explain *ngIf="updateAccountForm.get('senderRole')?.dirty && updateAccountForm.get('senderRole')?.errors">
+                        <rp-general-form-error-display
+                            [form]="updateAccountForm.controls['requestInformationDetails']"
+                            key="senderRole"
+                        ></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary" [disabled]="!isValid()" nzSize="large" [nzLoading]="updateAccountState.isLoading()">
+                {{ 'action.save' | i18next }}
+            </button>
+        </nz-form-control>
+
+        <rp-general-form-errors-display [form]="updateAccountForm"></rp-general-form-errors-display>
+    </nz-form-item>
+</form>
+
+<nz-alert nzType="success" *ngIf="updateAccountState?.hasSucceeded()" [nzMessage]="updateAccountState?.successResult().message" nzShowIcon>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateAccountState?.hasFailed()"
+    [nzMessage]="updateAccountState?.failedResult().message"
+    [nzDescription]="updateAccountState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

@@ -1,0 +1,40 @@
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { Logger } from '@logger';
+import { {{pascalCase name}} } from '@entities';
+
+@Injectable()
+export class Delete{{pascalCase name}}Service {
+    constructor(private logger: Logger) {}
+
+    /**
+     * Hard delete
+     */
+    async delete{{pascalCase name}}(id: number): Promise<{{pascalCase name}}> {
+        this.logger.log({ message: 'Deleting {{pascalCase name}}:', detail: id, fn: this.delete{{pascalCase name}}.name });
+        const {{camelCase name}} = await {{pascalCase name}}.findOne(id);
+        this.logger.log({ message: 'Found {{pascalCase name}}:', detail: id, fn: this.delete{{pascalCase name}}.name });
+        if (!{{camelCase name}}) {
+            this.logger.warn({ message: 'Could not find {{pascalCase name}} to delete', detail: id, fn: this.delete{{pascalCase name}}.name });
+            throw new BadRequestException({ message: `Could not find the {{pascalCase name}} to delete` });
+        }
+
+        await {{pascalCase name}}.remove({{camelCase name}});
+        this.logger.log({ message: 'Deleted {{pascalCase name}}:', detail: id, fn: this.delete{{pascalCase name}}.name });
+        return {{pascalCase name}}.create({ {{camelCase name}}Id: id });
+    }
+
+    async softDelete{{pascalCase name}}(id: number): Promise<{{pascalCase name}}> {
+        this.logger.log({ message: 'Soft Deleting {{pascalCase name}}:', detail: id, fn: this.delete{{pascalCase name}}.name });
+        const {{camelCase name}} = await {{pascalCase name}}.findOne(id);
+        this.logger.log({ message: 'Found {{pascalCase name}}:', detail: id, fn: this.delete{{pascalCase name}}.name });
+        if (!{{camelCase name}}) {
+            this.logger.warn({ message: 'Could not find {{pascalCase name}} to delete', detail: id, fn: this.delete{{pascalCase name}}.name });
+            throw new BadRequestException({ message: `Could not find the {{camelCase name}} to delete` });
+        }
+
+        {{camelCase name}}.active = false;
+        await {{camelCase name}}.save();
+        this.logger.log({ message: 'Soft Deleted {{pascalCase name}}:', detail: id, fn: this.delete{{pascalCase name}}.name });
+        return {{camelCase name}};
+    }
+}

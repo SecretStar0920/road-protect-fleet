@@ -1,0 +1,6 @@
+<rp-general-page [title]="'Create Account Relation Document'" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-account-relation-document (complete)="onComplete($event)"></rp-create-account-relation-document>
+        <rp-general-state-model-alert [state]="createAccountRelationDocumentState"></rp-general-state-model-alert>
+    </div>
+</rp-general-page>

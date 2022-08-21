@@ -1,0 +1,21 @@
+<rp-general-page [title]="'create-nomination-page.title' | i18next" [icon]="'plus-circle'">
+    <div class="rp-round-card rp-page-section">
+        <rp-create-nomination (complete)="onComplete($event)"></rp-create-nomination>
+        <nz-alert
+            nzType="success"
+            *ngIf="createNominationState?.hasSucceeded()"
+            [nzMessage]="createNominationState?.successResult().message"
+            nzShowIcon
+            style="margin-top: 10px"
+        >
+        </nz-alert>
+        <nz-alert
+            nzType="error"
+            *ngIf="createNominationState?.hasFailed()"
+            [nzMessage]="createNominationState?.failedResult().message"
+            [nzDescription]="createNominationState?.failedResult().context.message"
+            nzShowIcon
+            style="margin-top: 10px"
+        ></nz-alert>
+    </div>
+</rp-general-page>

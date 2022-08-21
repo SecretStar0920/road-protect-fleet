@@ -1,0 +1,365 @@
+<ng-container *ngIf="!isUpdating; else edit">
+    <nz-row *ngIf="infringement">
+        <rp-view-logs [infringementId]="infringement.infringementId" *rpHasPermission="[permission.ViewInfringementLogs]"></rp-view-logs>
+        <button
+            nz-button
+            nzShape="circle"
+            nzType="default"
+            nz-popover
+            class="verify-btn"
+            [nzPopoverContent]="verifyPopover"
+            (click)="onVerify()"
+            [nzLoading]="isLoading$ | async"
+        >
+            <i nz-icon nzType="redo" nzTheme="outline"></i>
+        </button>
+        <ng-template #verifyPopover>
+            <span nz-text nzType="secondary">{{ 'view-nomination.verify_text' | i18next }}</span>
+        </ng-template>
+
+        <nz-col nzMd="24" nzXl="12">
+            <nz-row nzGutter="24">
+                <nz-col nzMd="24" nzXl="24">
+                    <table class="rp-basic-data-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">{{ 'view-infringement.infringement_ownership' | i18next }}</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>{{ 'infringement.vehicle_owner' | i18next }}</td>
+                            <td>
+                                <rp-account-tag
+                                    [account]="infringement?.contract?.owner"
+                                    *ngIf="infringement?.contract?.owner"
+                                ></rp-account-tag>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'infringement.vehicle_user' | i18next }}</td>
+                            <td>
+                                <rp-account-tag
+                                    [account]="infringement?.contract?.user"
+                                    *ngIf="infringement?.contract?.user"
+                                ></rp-account-tag>
+                            </td>
+                        </tr>
+                        <tr *ngIf="infringement.brn">
+                            <td>{{ 'infringement.ownership_from_issuer' | i18next }}</td>
+                            <td>
+                                <rp-brn-account-tag [brn]="infringement.brn"></rp-brn-account-tag>
+                            </td>
+                        </tr>
+                    </table>
+                </nz-col>
+                <nz-col nzMd="24" nzXl="24" *ngIf="infringement">
+                    <table class="rp-basic-data-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">{{ 'view-infringement.title' | i18next }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ 'infringement.notice_number' | i18next }}</td>
+                                <td>{{ infringement.noticeNumber }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'infringement.amount_due' | i18next }}</td>
+                                <td>
+                                    <rp-general-currency-display [value]="infringement.amountDue"></rp-general-currency-display>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'infringement.issuer' | i18next }}</td>
+                                <td>
+                                    <rp-issuer-tag *ngIf="infringement.issuer" [issuer]="infringement.issuer"></rp-issuer-tag>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'infringement.vehicle' | i18next }}</td>
+                                <td>
+                                    <rp-vehicle-tag *ngIf="infringement.vehicle" [vehicle]="infringement.vehicle"></rp-vehicle-tag>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'infringement.status' | i18next }}</td>
+                                <td>
+                                    <rp-infringement-status-tag [status]="infringement.status"></rp-infringement-status-tag>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'infringement.approved_date' | i18next }}</td>
+
+                                <td>
+                                    <rp-general-time-display
+                                        *ngIf="infringement.approvedDate"
+                                        [time]="infringement.approvedDate"
+                                    ></rp-general-time-display>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'infringement.tags' | i18next }}</td>
+
+                                <td>
+                                    <rp-infringement-tags [tags]="infringement.tags"></rp-infringement-tags>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </nz-col>
+            </nz-row>
+        </nz-col>
+        <nz-col nzMd="24" nzXl="12" *ngIf="infringement.nomination">
+            <h2 class="rp-primary-color">{{ getNominationHeading() | i18next }}</h2>
+            <rp-view-nomination [nominationId]="infringement.nomination?.nominationId"></rp-view-nomination>
+            <br />
+        </nz-col>
+
+        <nz-collapse [nzBordered]="false" style="width: 100%">
+            <nz-row>
+                <nz-collapse-panel [nzHeader]="'view-infringement.more_details' | i18next" *ngIf="infringement">
+                    <nz-row>
+                        <nz-col nzMd="24" nzXl="12">
+                            <table class="rp-basic-data-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">{{ 'view-infringement.title' | i18next }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--                                <tr>-->
+                                    <!--                                    <td>{{ 'infringement.notice_number' | i18next }}</td>-->
+                                    <!--                                    <td>{{ infringement.noticeNumber }}</td>-->
+                                    <!--                                </tr>-->
+                                    <tr>
+                                        <td>{{ 'infringement.reason' | i18next }}</td>
+                                        <td>{{ infringement.reason }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.reason_code' | i18next }}</td>
+                                        <td>{{ infringement.reasonCode }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.type' | i18next }}</td>
+                                        <td>{{ infringement.type }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.original_amount' | i18next }}</td>
+                                        <td>
+                                            <rp-general-currency-display
+                                                [value]="infringement.originalAmount"
+                                            ></rp-general-currency-display>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.penalty_amount' | i18next }}</td>
+                                        <td>
+                                            <rp-general-currency-display [value]="infringement.penaltyAmount"></rp-general-currency-display>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.issuer' | i18next }}</td>
+                                        <td>
+                                            <rp-issuer-tag *ngIf="infringement.issuer" [issuer]="infringement.issuer"></rp-issuer-tag>
+                                        </td>
+                                    </tr>
+                                    <!--                                <tr>-->
+                                    <!--                                    <td>{{ 'infringement.vehicle' | i18next }}</td>-->
+                                    <!--                                    <td>-->
+                                    <!--                                        <rp-vehicle-tag [vehicle]="infringement.vehicle"></rp-vehicle-tag>-->
+                                    <!--                                    </td>-->
+                                    <!--                                </tr>-->
+                                    <tr>
+                                        <td>{{ 'infringement.date_of_offence' | i18next }}</td>
+                                        <td>
+                                            <rp-general-time-display [time]="infringement.offenceDate"></rp-general-time-display>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.latest_payment_date' | i18next }}</td>
+                                        <td>
+                                            <rp-general-time-display
+                                                [time]="infringement.latestPaymentDate"
+                                                [short]="true"
+                                            ></rp-general-time-display>
+                                        </td>
+                                    </tr>
+                                    <!--                                <tr>-->
+                                    <!--                                    <td>{{ 'infringement.status' | i18next }}</td>-->
+                                    <!--                                    <td>-->
+                                    <!--                                        <rp-infringement-status-tag [status]="infringement.status"></rp-infringement-status-tag>-->
+                                    <!--                                    </td>-->
+                                    <!--                                </tr>-->
+                                    <tr>
+                                        <td>{{ 'infringement.issuer_status' | i18next }}</td>
+                                        <td>
+                                            {{ infringement.issuerStatus }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.issuer_status_description' | i18next }}</td>
+                                        <td>
+                                            {{ infringement.issuerStatusDescription }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td *ngIf="infringement.caseNumber">{{ 'infringement.case_number' | i18next }}</td>
+                                        <td>
+                                            {{ infringement.caseNumber }}
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="infringement.document">
+                                        <td>
+                                            <i nz-icon nzType="file-pdf" nzTheme="outline"></i> {{ 'view-infringement.document' | i18next }}
+                                        </td>
+                                        <td>
+                                            <rp-view-document [documentId]="infringement.document.documentId"></rp-view-document>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let document of infringement.extraDocuments">
+                                        <td>
+                                            <i nz-icon nzType="file-pdf" nzTheme="outline"></i> {{ 'view-infringement.document' | i18next }}
+                                        </td>
+                                        <td>
+                                            <rp-view-document [documentId]="document.documentId"></rp-view-document>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.external_change_date' | i18next }}</td>
+                                        <td>
+                                            <rp-general-time-display [time]="infringement.externalChangeDate"></rp-general-time-display>
+                                        </td>
+                                    </tr>
+                                    <ng-container *ngIf="infringement?.payments?.length">
+                                        <h2 class="rp-primary-color">{{ 'view-infringement.payment' | i18next }}</h2>
+                                        <tr>
+                                            <td>{{ 'infringement.payment_provider' | i18next }}</td>
+                                            <td>{{ findRecentPayment().provider }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ 'infringement.total_payment_amount' | i18next }}</td>
+                                            <td>
+                                                <rp-general-currency-display
+                                                    [value]="infringement.totalPayments || getTotalPayment()"
+                                                ></rp-general-currency-display>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ 'infringement.payment_date' | i18next }}</td>
+                                            <td>
+                                                <rp-general-time-display
+                                                    [time]="findRecentPayment().paymentDate || findRecentPayment().createdAt"
+                                                ></rp-general-time-display>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ 'infringement.payment_reference' | i18next }}</td>
+                                            <td>{{ findRecentPayment().externalReference }}</td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-container *ngIf="!infringement.payments.length && infringement.nomination?.paidDate">
+                                        <tr>
+                                            <td>{{ 'infringement.payment_provider' | i18next }}</td>
+                                            <td>{{ 'infringement.external_payment' | i18next }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ 'infringement.payment_date' | i18next }}</td>
+                                            <td>
+                                                <rp-general-time-display
+                                                    [time]="infringement.nomination.paidDate"
+                                                ></rp-general-time-display>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <tr>
+                                        <td>{{ 'infringement.last_infringement_status_change_date' | i18next }}</td>
+                                        <td>
+                                            <rp-general-time-display [time]="infringement.lastStatusChangeDate"></rp-general-time-display>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'infringement.last_nomination_status_change_date' | i18next }}</td>
+                                        <td>
+                                            <rp-general-time-display
+                                                [time]="infringement.nomination?.lastStatusChangeDate"
+                                            ></rp-general-time-display>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </nz-col>
+                        <nz-col nzMd="24" nzXl="12">
+                            <nz-row nzGutter="24">
+                                <nz-col nzMd="24" nzXl="24">
+                                    <h2 class="rp-primary-color">{{ 'view-infringement.contract' | i18next }}</h2>
+                                    <ng-container *ngIf="infringement.contract; else missingLeaseContract">
+                                        <rp-view-contract
+                                            [contractId]="infringement.contract.contractId"
+                                            [isCard]="true"
+                                        ></rp-view-contract>
+                                    </ng-container>
+                                    <ng-template #missingLeaseContract>
+                                        <p>
+                                            <span nz-text nzType="warning">{{ 'view-infringement.no_contract' | i18next }}</span>
+                                        </p>
+                                    </ng-template>
+                                </nz-col>
+                                <nz-col nzMd="24" nzXl="24" *ngIf="infringement.location">
+                                    <h2 class="rp-primary-color">{{ 'view-infringement.location' | i18next }}</h2>
+                                    <rp-view-location [locationId]="infringement.location.locationId"></rp-view-location>
+                                </nz-col>
+                                <nz-col nzMd="24" nzXl="24">
+                                    <h2 class="rp-primary-color">{{ 'view-infringement.notes' | i18next }}</h2>
+                                    <rp-view-infringement-notes [infringementId]="infringementId"></rp-view-infringement-notes>
+                                </nz-col>
+                            </nz-row>
+                        </nz-col>
+                    </nz-row>
+                    <div *ngIf="infringement.infringementApproval.length !== 0">
+                        <nz-row class="row-spacing">
+                            <h2 class="rp-primary-color">{{ 'view-infringement.infringement_approval' | i18next }}</h2>
+                            <rp-view-infringement-approvals
+                                [infringementApprovals]="infringement.infringementApproval"
+                            ></rp-view-infringement-approvals>
+                        </nz-row>
+                    </div>
+                    <div *ngIf="infringement.payments?.length !== 0">
+                        <nz-row class="row-spacing">
+                            <h2 class="rp-primary-color">{{ 'view-infringement-payment.infringement_payments_received' | i18next }}</h2>
+                            <rp-view-infringement-payments [infringement]="infringement"></rp-view-infringement-payments>
+                        </nz-row>
+                    </div>
+                </nz-collapse-panel>
+            </nz-row>
+        </nz-collapse>
+    </nz-row>
+</ng-container>
+
+<ng-template #edit>
+    <rp-update-infringement
+        [infringement]="infringement"
+        (complete)="onUpdateComplete($event)"
+        *rpHasPermission="[permission.EditInfringements]"
+    ></rp-update-infringement>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<div nz-row nzAlign="middle" nzJustify="space-between" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+    <div>
+        <ng-container *rpHasPermission="[permission.ViewInfringement]">
+            <button nz-button [nzType]="!isUpdating ? 'primary' : 'default'" nz-col class="rp-space" (click)="onUpdate()">
+                {{ isUpdating ? ('view-infringement.cancel' | i18next) : ('view-infringement.edit' | i18next) }}
+            </button>
+        </ng-container>
+        <ng-container *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+            <ng-container *ngIf="!isUpdating">
+                <button nz-button nzType="primary" nz-col class="rp-space" (click)="onUpdateStatus()">
+                    {{ 'edit-status.edit_status' | i18next }}
+                </button>
+            </ng-container>
+        </ng-container>
+    </div>
+    <rp-delete-infringement [infringementId]="infringementId" (delete)="onDelete($event)" nz-col></rp-delete-infringement>
+</div>

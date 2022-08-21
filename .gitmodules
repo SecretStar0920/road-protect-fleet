@@ -1,0 +1,4 @@
+[submodule "crawler-api"]
+	path = crawler-api
+	url = git@github.com:roadprotect/road-protect-fleet-crawlers.git
+    branch = main

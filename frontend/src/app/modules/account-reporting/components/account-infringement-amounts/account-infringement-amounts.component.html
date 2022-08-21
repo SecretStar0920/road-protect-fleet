@@ -1,0 +1,34 @@
+<div id="infringement-amounts">
+    <h3 class="rp-primary-color"><i nz-icon nzType="gold" nzTheme="outline"></i> {{ 'account-infringement-amounts.title' | i18next }}</h3>
+
+    <nz-alert
+        [nzCloseable]="true"
+        nzType="info"
+        *ngIf="infringementAmountData.length > 0"
+        [nzMessage]="'account-infringement-amounts.message' | i18next"
+    ></nz-alert>
+
+    <rp-general-chart-container
+        *ngIf="infringementAmountData.length > 0; else noData"
+        [data]="infringementAmountData"
+        [title]="'infringement-amount'"
+    >
+        <ngx-charts-advanced-pie-chart
+            [results]="infringementAmountData"
+            [scheme]="colors"
+            [valueFormatting]="formatValue"
+        ></ngx-charts-advanced-pie-chart>
+    </rp-general-chart-container>
+    <ng-template #noData>
+        <span nz-text nzType="secondary">{{ 'account.no_data' | i18next }}</span>
+    </ng-template>
+</div>
+
+<nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="drawerVisible && selectedData"
+    nzPlacement="bottom"
+    nzTitle="{{ selectedData.label }}"
+    (nzOnClose)="onCloseDrawer()"
+>
+</nz-drawer>

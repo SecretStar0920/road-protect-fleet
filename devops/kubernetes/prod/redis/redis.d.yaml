@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: redis
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: redis
+            env: prod
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: redis
+                env: prod
+        spec:
+            priorityClassName: high-priority
+            containers:
+                - image: redis:6
+                  name: redis
+                  ports:
+                      - containerPort: 6379
+                        name: entry
+                        protocol: TCP
+                  livenessProbe:
+                      tcpSocket:
+                          port: 6379
+                      initialDelaySeconds: 5
+                      periodSeconds: 10
+                  readinessProbe:
+                      tcpSocket:
+                          port: 6379
+                      initialDelaySeconds: 5
+                      periodSeconds: 10
+                  volumeMounts:
+                      - name: redis-storage-pvc
+                        mountPath: /data
+                        subPath: data
+            volumes:
+                - name: redis-storage-pvc
+                  hostPath:
+                      path: /home/fleet/redis
+                      type: DirectoryOrCreate

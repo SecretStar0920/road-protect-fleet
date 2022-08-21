@@ -1,0 +1,8 @@
+<rp-create-vehicle (complete)="onComplete($event)" [accountId]="accountId" [ownerId]="ownerId"></rp-create-vehicle>
+<nz-alert
+    nzType="error"
+    *ngIf="createVehicleState?.hasFailed()"
+    [nzMessage]="createVehicleState?.failedResult().message"
+    [nzDescription]="createVehicleState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

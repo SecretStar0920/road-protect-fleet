@@ -1,0 +1,75 @@
+<rp-general-stepper [stepper]="stepper" [showControls]="false">
+    <nz-row [rpShow]="stepper.isStep(1)">
+        <nz-col nzSpan="24">
+            <nz-col nzSpan="24" style="text-align: center">
+                <rp-view-redirection-details
+                    [infringementId]="infringement.infringementId"
+                    (redirectionDetails)="onDetailsChecked($event)"
+                ></rp-view-redirection-details>
+            </nz-col>
+            <nz-divider></nz-divider>
+            <nz-col nzSpan="24" style="text-align: center" *ngIf="details?.ready">
+                <button nz-button nzType="primary" nzSize="large" (click)="onStartFlow()">
+                    {{ 'municipally-redirect-nomination.proceed' | i18next }}
+                </button>
+            </nz-col>
+        </nz-col>
+    </nz-row>
+    <nz-row [rpShow]="stepper.isStep(2)"  nzJustify="center" nzAlign="middle" nzGutter="24">
+        <nz-col nzSpan="12">
+            <div style="text-align: center">
+                <nz-spin [nzSpinning]="true"></nz-spin>
+            </div>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <ng-container>
+                <nz-timeline
+                    [nzPending]="'municipally-redirect-nomination.' + progressMessages[progressMessages.length - 1]?.message | i18next"
+                >
+                    <nz-timeline-item
+                        [nzColor]="message.type === 'error' ? 'red' : 'green'"
+                        *ngFor="let message of progressMessages.slice(0, -1)"
+                    >
+                        {{ 'municipally-redirect-nomination.' + message.message | i18next }}
+                    </nz-timeline-item>
+                </nz-timeline>
+            </ng-container>
+        </nz-col>
+    </nz-row>
+    <nz-row [rpShow]="stepper.isStep(3)" nzGutter="24" nzJustify="center" nzAlign="middle">
+        <nz-col nzSpan="12">
+            <nz-col nzSpan="24" *ngIf="redirectState.hasSucceeded()">
+                <nz-result
+                    nzStatus="success"
+                    nzTitle="{{ 'municipally-redirect-nomination.redirection_successful' | i18next }}"
+                    [nzExtra]="completionPrompt"
+                ></nz-result>
+                <ng-template #completionPrompt>
+                    <a [routerLink]="['/home', 'infringements', 'view', infringement.infringementId]">{{
+                        'municipally-redirect-nomination.return_to_infringement' | i18next
+                    }}</a>
+                </ng-template>
+            </nz-col>
+            <nz-col nzSpan="24" *ngIf="redirectState.hasFailed()">
+                <nz-result
+                    nzStatus="error"
+                    nzTitle="{{ 'municipally-redirect-nomination.redirection_failure' | i18next }}"
+                    nzSubTitle="{{ redirectState.failedResult().message }}"
+                    [nzExtra]="failurePrompt"
+                ></nz-result>
+                <ng-template #failurePrompt>
+                    <a [routerLink]="['/home', 'infringements', 'view', infringement.infringementId]">{{
+                        'municipally-redirect-nomination.return_to_infringement' | i18next
+                    }}</a>
+                </ng-template>
+            </nz-col>
+        </nz-col>
+        <nz-col nzSpan="12">
+            <nz-timeline>
+                <nz-timeline-item [nzColor]="message.type === 'error' ? 'red' : 'green'" *ngFor="let message of progressMessages">{{
+                    'municipally-redirect-nomination.' + message.message | i18next
+                }}</nz-timeline-item>
+            </nz-timeline>
+        </nz-col>
+    </nz-row>
+</rp-general-stepper>

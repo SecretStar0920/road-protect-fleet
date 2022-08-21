@@ -1,0 +1,134 @@
+@import 'mixins';
+@import 'less/variables';
+
+.content-row {
+    justify-content: center;
+}
+.vehicles-chart {
+    height: 100%;
+    ::ng-deep {
+        .container {
+            height: 100% !important;
+        }
+        .flex-chart {
+            height: 100% !important;
+        }
+        .ng-star-inserted {
+            height: 100% !important;
+        }
+        .ngx-charts-outer {
+            height: 100% !important;
+        }
+        .ngx-charts {
+            height: 100% !important;
+        }
+        .number-card {
+            height: 100% !important;
+        }
+    }
+}
+
+h2 {
+    font-weight: normal;
+    color: @color1;
+    font-size: 1.5em;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}
+.home-table {
+    text-align: justify;
+    td {
+        min-width: 100px !important;
+    }
+}
+
+.navigation-row {
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+    .navigation-item {
+        flex: 1 0 25%;
+        padding: 8px 8px 15px;
+        text-align: center;
+        &.two {
+            flex: 1 0 50%;
+        }
+        & img {
+            height: 100px;
+            margin: 0 auto;
+            margin-bottom: 15px;
+            display: block;
+        }
+        & button {
+            margin: 10px;
+        }
+    }
+}
+
+.icon-image {
+    font-size: 90px;
+    padding: 20px;
+}
+
+.rp-navigation-card {
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 100%;
+    padding: 20px 20px 30px;
+    position: relative;
+    &:hover {
+        box-shadow: 0 8px 12px rgba(154, 160, 185, 0.1), 0 18px 42px rgba(166, 173, 201, 0.25);
+    }
+
+    i[nz-icon] {
+        color: @color1;
+        margin-right: 8px;
+    }
+
+    .count-section {
+        position: absolute;
+        top: -10px;
+        right: 5px;
+        text-align: right;
+        width: 50%;
+
+        .count {
+            display: inline-block;
+            margin-left: 5px;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 8px;
+            font-size: 10px;
+            color: white;
+        }
+    }
+}
+
+.rp-page-section {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.report-item {
+    //max-height: 400px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    ::ng-deep {
+        h2 {
+            .rp-primary-color;
+            text-align: center;
+        }
+    }
+}
+
+::ng-deep {
+    .ngx-charts-outer {
+        min-height: 250px;
+    }
+    ngx-charts-number-card .cell .trimmed-label p {
+        white-space: unset;
+    }
+}

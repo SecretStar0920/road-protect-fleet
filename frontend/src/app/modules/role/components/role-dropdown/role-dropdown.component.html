@@ -1,0 +1,5 @@
+<div>
+    <nz-select [(ngModel)]="selectedRole" nzAllowClear [nzPlaceHolder]="'role-dropdown.placeholder' | i18next" nzMode="multiple">
+        <nz-option *ngFor="let role of roles" [nzValue]="role[valueKey]" [nzLabel]="'account-user-role.' + role.name | i18next"></nz-option>
+    </nz-select>
+</div>

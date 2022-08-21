@@ -1,0 +1,38 @@
+<nz-row nzGutter="24" id="infringement-counts">
+    <nz-col nzLg="12" nzMd="24" *ngFor="let singleSeries of infringementCountData">
+        <h3 class="rp-primary-color"><i nz-icon nzType="exception" nzTheme="outline"></i> {{ singleSeries.name }}</h3>
+        <rp-general-chart-container
+            *ngIf="singleSeries.series.length > 0; else noData"
+            [data]="singleSeries.series"
+            [title]="singleSeries.name"
+        >
+            <ngx-charts-bar-vertical
+                [legend]="false"
+                [legendPosition]="'right'"
+                [results]="singleSeries.series"
+                [scheme]="colors"
+                (select)="onSelect($event)"
+                [showDataLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [showXAxisLabel]="false"
+                [showYAxisLabel]="true"
+                [xAxisLabel]="'account.status' | i18next"
+                [yAxisLabel]="'account.count' | i18next"
+            ></ngx-charts-bar-vertical>
+        </rp-general-chart-container>
+        <ng-template #noData>
+            <span nz-text nzType="secondary">{{ 'account.no_data' | i18next }}</span>
+        </ng-template>
+    </nz-col>
+</nz-row>
+
+<nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="drawerVisible && selectedData"
+    nzPlacement="bottom"
+    nzTitle="{{ selectedData.label }}"
+    (nzOnClose)="onCloseDrawer()"
+>
+    <rp-infringement-tag *ngFor="let infringement of selectedData.extra" [infringement]="infringement"></rp-infringement-tag>
+</nz-drawer>

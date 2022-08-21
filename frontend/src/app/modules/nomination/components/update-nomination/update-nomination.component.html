@@ -1,0 +1,57 @@
+<form nz-form [formGroup]="updateNominationForm" nzLayout="vertical" (ngSubmit)="onUpdateNomination()">
+    <nz-row nzGutter="24">
+        <nz-col>
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="account">{{ 'update-nomination.account' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="account" id="account" />
+                    <nz-form-explain *ngIf="updateNominationForm.get('account')?.dirty && updateNominationForm.get('account')?.errors">
+                        <rp-general-form-error-display [form]="updateNominationForm" [key]="'account'"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col>
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="infringement">{{ 'update-nomination.infringement' | i18next }}</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="infringement" id="infringement" />
+                    <nz-form-explain
+                        *ngIf="updateNominationForm.get('infringement')?.dirty && updateNominationForm.get('infringement')?.errors"
+                    >
+                        <rp-general-form-error-display [form]="updateNominationForm" [key]="'infringement'"></rp-general-form-error-display>
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-control>
+                    <button
+                        nz-button
+                        nzType="primary"
+                        [disabled]="!updateNominationForm.valid"
+                        [nzLoading]="updateNominationState.isLoading()"
+                    >
+                        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                        {{ 'update-nomination.create' | i18next }}
+                    </button>
+                </nz-form-control>
+            </nz-form-item>
+        </nz-col>
+    </nz-row>
+</form>
+<nz-alert
+    nzType="success"
+    *ngIf="updateNominationState?.hasSucceeded()"
+    [nzMessage]="updateNominationState?.successResult().message"
+    nzShowIcon
+>
+</nz-alert>
+<nz-alert
+    nzType="error"
+    *ngIf="updateNominationState?.hasFailed()"
+    [nzMessage]="updateNominationState?.failedResult().message"
+    [nzDescription]="updateNominationState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

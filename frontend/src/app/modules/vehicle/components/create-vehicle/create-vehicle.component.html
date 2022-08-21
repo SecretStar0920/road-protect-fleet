@@ -1,0 +1,258 @@
+<rp-general-stepper [stepper]="stepper" [size]="'small'">
+    <form nz-form [formGroup]="form" nzLayout="vertical">
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(1)" formGroupName="details">
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="registration">{{ 'create-vehicle.registration' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="registration" />
+                        <nz-form-explain *ngIf="form.get('registration')?.dirty && form.get('registration')?.errors">
+                            <rp-general-form-error-display [form]="form" key="registration"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="manufacturer">{{ 'create-vehicle.manufacturer' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <rp-vehicle-manufacturer-autocomplete formControlName="manufacturer"></rp-vehicle-manufacturer-autocomplete>
+                        <nz-form-explain *ngIf="form.get('manufacturer')?.dirty && form.get('manufacturer')?.errors">
+                            <rp-general-form-error-display [form]="form" key="manufacturer"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="model">{{ 'create-vehicle.model' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="model" />
+                        <nz-form-explain *ngIf="form.get('model')?.dirty && form.get('model')?.errors">
+                            <rp-general-form-error-display [form]="form" key="model"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="modelYear">{{ 'create-vehicle.year' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <nz-year-picker
+                            formControlName="modelYear"
+                            [nzPlaceHolder]="'create-vehicle.year_placeholder' | i18next"
+                        ></nz-year-picker>
+                        <nz-form-explain *ngIf="form.get('modelYear')?.dirty && form.get('modelYear')?.errors">
+                            <rp-general-form-error-display [form]="form" key="modelYear"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="color">{{ 'create-vehicle.color' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input formControlName="color" />
+                        <nz-form-explain *ngIf="form.get('color')?.dirty && form.get('color')?.errors">
+                            <rp-general-form-error-display [form]="form" key="color"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="category">{{ 'create-vehicle.category' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <rp-vehicle-category-autocomplete formControlName="category"></rp-vehicle-category-autocomplete>
+                        <nz-form-explain *ngIf="form.get('category')?.dirty && form.get('category')?.errors">
+                            <rp-general-form-error-display [form]="form" key="category"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="weight">{{ 'create-vehicle.weight' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input type="number" formControlName="weight" />
+                        <nz-form-explain *ngIf="form.get('weight')?.dirty && form.get('weight')?.errors">
+                            <rp-general-form-error-display [form]="form" key="weight"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="weight">{{ 'create-vehicle.type' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <rp-vehicle-type-dropdown formControlName="type"></rp-vehicle-type-dropdown>
+                        <nz-form-explain *ngIf="form.get('type')?.dirty && form.get('type')?.errors">
+                            <rp-general-form-error-display [form]="form" key="type"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control style="text-align: center">
+                        <button
+                            nz-button
+                            nzType="primary"
+                            [disabled]="!form.controls.details.valid"
+                            [nzLoading]="createVehicleState.isLoading()"
+                            [nzSize]="'large'"
+                            (click)="onCreateVehicle()"
+                        >
+                            <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                            {{ 'create-vehicle.create' | i18next }}
+                        </button>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <rp-general-form-errors-display [form]="form.controls.details"></rp-general-form-errors-display>
+                <rp-general-state-model-alert [state]="createVehicleState"></rp-general-state-model-alert>
+            </nz-col>
+        </nz-row>
+
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(2)" formGroupName="ownershipContract">
+            <nz-col nzSpan="24">
+                <ng-container>
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="owner">{{ 'create-vehicle.owner' | i18next }}</nz-form-label>
+                        <nz-form-control>
+                            <rp-account-dropdown formControlName="owner"></rp-account-dropdown>
+                            <nz-form-explain *ngIf="form.get('owner')?.dirty && form.get('owner')?.errors">
+                                <rp-general-form-error-display [form]="form" key="owner"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="startDate">{{ 'create-vehicle.owner_start_date' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker formControlName="startDate"></nz-date-picker>
+                        <nz-form-explain *ngIf="form.get('startDate')?.dirty && form.get('startDate')?.errors">
+                            <rp-general-form-error-display [form]="form" key="startDate"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzFor="endDate">{{ 'create-vehicle.owner_end_date' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker formControlName="endDate"></nz-date-picker>
+                        <nz-form-explain *ngIf="form.get('endDate')?.dirty && form.get('endDate')?.errors">
+                            <rp-general-form-error-display [form]="form" key="endDate"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <nz-form-control style="text-align: center">
+                    <button
+                        nz-button
+                        nzType="primary"
+                        [disabled]="!form.controls.ownershipContract.valid"
+                        [nzLoading]="createOwnershipState.isLoading()"
+                        [nzSize]="'large'"
+                        (click)="onCreateOwnershipContract()"
+                    >
+                        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                        {{ 'create-vehicle.create_ownership' | i18next }}
+                    </button>
+                </nz-form-control>
+
+                <rp-general-state-model-alert [state]="createOwnershipState"></rp-general-state-model-alert>
+                <rp-general-form-errors-display [form]="form.controls.ownershipContract"></rp-general-form-errors-display>
+            </nz-col>
+            <br />
+        </nz-row>
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(3)" formGroupName="leaseContract">
+            <nz-col nzSpan="24">
+                <ng-container>
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="user">{{ 'create-vehicle.user' | i18next }}</nz-form-label>
+                        <nz-form-control>
+                            <rp-account-dropdown formControlName="user"></rp-account-dropdown>
+                            <nz-form-explain *ngIf="form.get('user')?.dirty && form.get('user')?.errors">
+                                <rp-general-form-error-display [form]="form" key="user"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <ng-container>
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="owner">{{ 'create-vehicle.owner' | i18next }}</nz-form-label>
+                        <nz-form-control>
+                            <rp-account-dropdown formControlName="owner"></rp-account-dropdown>
+                            <nz-form-explain *ngIf="form.get('owner')?.dirty && form.get('owner')?.errors">
+                                <rp-general-form-error-display [form]="form" key="owner"></rp-general-form-error-display>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </ng-container>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="startDate">{{ 'create-vehicle.lease_start_date' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker formControlName="startDate"></nz-date-picker>
+                        <nz-form-explain *ngIf="form.get('startDate')?.dirty && form.get('startDate')?.errors">
+                            <rp-general-form-error-display [form]="form" key="startDate"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired nzFor="endDate">{{ 'create-vehicle.lease_end_date' | i18next }}</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker formControlName="endDate"></nz-date-picker>
+                        <nz-form-explain *ngIf="form.get('endDate')?.dirty && form.get('endDate')?.errors">
+                            <rp-general-form-error-display [form]="form" key="endDate"></rp-general-form-error-display>
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <nz-form-control style="text-align: center">
+                    <button
+                        nz-button
+                        nzType="primary"
+                        [disabled]="!form.controls.leaseContract.valid"
+                        [nzLoading]="createLeaseState.isLoading()"
+                        [nzSize]="'large'"
+                        (click)="onCreateLeaseContract()"
+                    >
+                        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                        {{ 'create-vehicle.create_lease' | i18next }}
+                    </button>
+                </nz-form-control>
+
+                <rp-general-state-model-alert [state]="createLeaseState"></rp-general-state-model-alert>
+                <rp-general-form-errors-display [form]="form.controls.leaseContract"></rp-general-form-errors-display>
+            </nz-col>
+            <br />
+        </nz-row>
+        <nz-row nzGutter="24" [rpShow]="stepper.isStep(4)">
+            <nz-col nzSpan="24">
+                <p>{{ 'create-vehicle.done_msg' | i18next }}</p>
+                <ul>
+                    <li>{{ 'create-vehicle.done_vehicle' | i18next }}</li>
+                    <li *ngIf="createOwnershipState.hasSucceeded()">{{ 'create-vehicle.done_owner' | i18next }}</li>
+                    <li *ngIf="createLeaseState.hasSucceeded()">{{ 'create-vehicle.done_lease' | i18next }}</li>
+                </ul>
+
+                <br />
+                <button nz-button nzType="primary" (click)="onDone()">{{ 'create-vehicle.done' | i18next }}</button>
+            </nz-col>
+        </nz-row>
+    </form>
+</rp-general-stepper>

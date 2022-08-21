@@ -1,0 +1,22 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>HTTP Request</th>
+      </tr>
+    </thead>
+    <tbody>
+    [: range .Methods :]
+    <tr>
+      <td>
+        <a id="[: .ID :]" href="[:$.SpecPath:]/reference/[: $.API.ID :]/[: .ID :][: if $.Version :]?v=[: $.Version :][: end :]">[: .Name :]</a>
+      </td>
+      <td>
+        <pre>[: uc .Method :]&nbsp;[: .Path :]</pre></td>
+      </td>
+    </tr>
+    [: end :]
+    </tbody>
+  </table>
+</div>

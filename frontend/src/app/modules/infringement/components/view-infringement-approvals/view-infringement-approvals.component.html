@@ -1,0 +1,24 @@
+<nz-row nzGutter="24" nzAlign="middle">
+    <nz-col nzSpan="24">
+        <table class="rp-infringement-approvals-data-table">
+            <thead>
+                <tr>
+                    <th>{{ 'view-infringement-approval.action' | i18next }}</th>
+                    <th>{{ 'view-infringement-approval.amount_due' | i18next }}</th>
+                    <th>{{ 'view-infringement-approval.action_date' | i18next }}</th>
+                    <th>{{ 'view-infringement-approval.user' | i18next }}</th>
+                    <th>{{ 'view-infringement-approval.account' | i18next }}</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let action of infringementApprovals">
+                <td>{{ 'view-infringement-approval.' + action.action | i18next }}</td>
+                <td><rp-general-currency-display [value]="action.amountDue"></rp-general-currency-display></td>
+                <td>
+                    <rp-general-time-display *ngIf="action.actionDate" [time]="action.actionDate"></rp-general-time-display>
+                </td>
+                <td>{{ action.user?.name }}</td>
+                <td><rp-account-tag [account]="action.account"></rp-account-tag></td>
+            </tr>
+        </table>
+    </nz-col>
+</nz-row>

@@ -1,0 +1,21 @@
+<ng-container *ngIf="data">
+    <nz-row class="number-row">
+        <ng-container *ngFor="let dataPoint of data; let i = index">
+            <nz-col class="number-column" [routerLink]="dataPoint.extra?.router" [queryParams]="dataPoint.extra?.params">
+                <nz-card
+                    [nzTitle]="formatVale"
+                    [ngClass]="'card'"
+                    [style]="'--color: ' + (dataPoint.extra?.colour ? dataPoint.extra.colour : 'black')"
+                >
+                    <p>{{ dataPoint.name }}</p>
+                </nz-card>
+            </nz-col>
+            <ng-template #formatVale>
+                <ng-container *ngIf="format === cardFormat.currency">
+                    <rp-general-currency-display [value]="dataPoint.value"></rp-general-currency-display>
+                </ng-container>
+                <ng-container *ngIf="format === cardFormat.none">{{ dataPoint.value }} </ng-container>
+            </ng-template>
+        </ng-container>
+    </nz-row>
+</ng-container>

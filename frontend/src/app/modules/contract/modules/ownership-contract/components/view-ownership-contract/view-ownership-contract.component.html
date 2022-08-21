@@ -1,0 +1,30 @@
+<table class="rp-basic-data-table">
+    <tbody>
+        <tr>
+            <td>{{ 'view-ownership-contract.start_date' | i18next }}</td>
+            <td>
+                <rp-general-time-display
+                    *ngIf="ownershipContract.startDate"
+                    [time]="ownershipContract.startDate"
+                    [short]="true"
+                ></rp-general-time-display>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-ownership-contract.end_date' | i18next }}</td>
+            <td>
+                <rp-general-time-display
+                    *ngIf="ownershipContract.endDate"
+                    [time]="ownershipContract.endDate"
+                    [short]="true"
+                ></rp-general-time-display>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'view-ownership-contract.owner' | i18next }}</td>
+            <td>
+                <rp-account-tag *ngIf="ownershipContract.owner" [account]="ownershipContract.owner"></rp-account-tag>
+            </td>
+        </tr>
+    </tbody>
+</table>

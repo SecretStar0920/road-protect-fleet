@@ -1,0 +1,26 @@
+<h3 class="rp-primary-color"><i nz-icon nzType="calendar" nzTheme="outline"></i> {{ 'infringement-due-reporting.title' | i18next }}</h3>
+<nz-row>
+    <nz-col nzSpan="4">
+        <p>{{ 'infringement-due-reporting.select_end_date' | i18next }}:</p>
+    </nz-col>
+    <nz-col nzSpan="20">
+        <nz-date-picker [(ngModel)]="untilDate" (ngModelChange)="refresh()" [nzAllowClear]="false"></nz-date-picker>
+    </nz-col>
+</nz-row>
+<rp-general-chart-container *ngIf="infringementCalendarData.length > 0">
+    <ngx-charts-heat-map
+        [results]="infringementCalendarData"
+        [scheme]="colors"
+        style="display: block"
+        [yAxisTicks]="yAxisTicks"
+        [xAxisTickFormatting]="formatXAxis"
+        [xAxis]="true"
+        [yAxis]="true"
+        [xAxisLabel]="'infringement-due-reporting.chart-x' | i18next"
+        [yAxisLabel]="'infringement-due-reporting.chart-y' | i18next"
+        [legend]="true"
+        [tooltipText]="calendarTooltipText"
+        [innerPadding]="2"
+    >
+    </ngx-charts-heat-map>
+</rp-general-chart-container>

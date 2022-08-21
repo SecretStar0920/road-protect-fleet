@@ -1,0 +1,23 @@
+<rp-advanced-filter-table></rp-advanced-filter-table>
+<nz-alert
+    *ngIf="getPaymentsState.hasFailed()"
+    nzType="error"
+    [nzMessage]="getPaymentsState.failedResult().context.message"
+    nzShowIcon
+></nz-alert>
+
+<ng-template let-data #action>
+    <button nz-button nzSize="small" nzType="primary" *ngIf="data" (click)="onViewPayment(data.paymentId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+</ng-template>
+
+<ng-template let-data #delete>
+    <rp-delete-payment *ngIf="data" [paymentId]="data.paymentId"></rp-delete-payment>
+</ng-template>
+
+<nz-divider></nz-divider>
+<button nz-button [nzType]="'default'" [routerLink]="['/home', 'payments', 'upload']">
+    <i nz-icon nzType="upload" nzTheme="outline"></i>
+    Import
+</button>

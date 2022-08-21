@@ -1,0 +1,77 @@
+{
+    "name": "rp-cli",
+    "description": "Project CLI for running common cli commands on the project. Migrations, deployments and logs",
+    "version": "0.0.0",
+    "author": "Liam Brooksbank @LiamEntrostat",
+    "bin": {
+        "rp-cli": "./bin/run"
+    },
+    "bugs": "https://github.com/LiamEntrostat/rp-cli/issues",
+    "dependencies": {
+        "@oclif/command": "^1.5.19",
+        "@oclif/config": "^1.14.0",
+        "@oclif/plugin-help": "^2.2.3",
+        "@types/inquirer": "^6.5.0",
+        "@types/lodash": "^4.14.149",
+        "@types/purdy": "^3.5.0",
+        "cli-progress": "^3.6.0",
+        "cli-ux": "^5.4.5",
+        "cross-spawn": "^7.0.1",
+        "flat": "^5.0.0",
+        "fs-extra": "^8.1.0",
+        "glob": "^7.1.6",
+        "inquirer": "^7.0.4",
+        "lodash": "^4.17.15",
+        "purdy": "^3.5.1",
+        "rxjs": "^6.5.4",
+        "tslib": "^1.11.1"
+    },
+    "devDependencies": {
+        "@oclif/dev-cli": "^1.22.2",
+        "@types/cli-progress": "^3.4.2",
+        "@types/cross-spawn": "^6.0.1",
+        "@types/flat": "^5.0.0",
+        "@types/fs-extra": "^8.1.0",
+        "@types/glob": "^7.1.1",
+        "@types/node": "^10.17.16",
+        "eslint": "^5.16.0",
+        "eslint-config-oclif": "^3.1.0",
+        "eslint-config-oclif-typescript": "^0.1.0",
+        "globby": "^10.0.2",
+        "ts-node": "^8.6.2",
+        "typescript": "^3.8.2"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "files": [
+        "/bin",
+        "/lib",
+        "/npm-shrinkwrap.json",
+        "/oclif.manifest.json"
+    ],
+    "homepage": "https://github.com/LiamEntrostat/rp-cli",
+    "keywords": [
+        "oclif"
+    ],
+    "license": "MIT",
+    "main": "lib/index.js",
+    "oclif": {
+        "commands": "./lib/commands",
+        "bin": "rp-cli",
+        "plugins": [
+            "@oclif/plugin-help"
+        ]
+    },
+    "repository": "LiamEntrostat/rp-cli",
+    "scripts": {
+        "postpack": "rm -f oclif.manifest.json",
+        "posttest": "eslint . --ext .ts --config .eslintrc",
+        "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+        "test": "echo NO TESTS",
+        "version": "oclif-dev readme && git add README.md",
+        "package": "oclif-dev pack:deb",
+        "package:cleanup": "rm -rf lib && rm -rf tmp"
+    },
+    "types": "lib/index.d.ts"
+}

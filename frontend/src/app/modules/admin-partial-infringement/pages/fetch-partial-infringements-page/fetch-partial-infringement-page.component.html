@@ -1,0 +1,66 @@
+<rp-general-page [icon]="'profile'" [title]="'fetch-partial-infringement-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <nz-row nzGutter="24">
+            <nz-col nzSpan="24">
+                <table class="rp-basic-data-table">
+                    <thead>
+                        <tr>
+                            <th>{{ 'fetch-partial-infringement-page.fetch_partial_infringements' | i18next }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ 'fetch-partial-infringement-page.description' | i18next }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button nz-button [nzType]="'primary'" class="rp-space" (click)="onFetchPartialInfringements()">
+                                    <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                                    {{ 'fetch-partial-infringement-page.fetch' | i18next }}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </nz-col>
+        </nz-row>
+        <ng-container *ngIf="fetchPartialInfringementState.hasSucceeded()">
+            <nz-divider></nz-divider>
+            <nz-row nzGutter="24">
+                <nz-col nzSpan="12">
+                    <table class="rp-basic-data-table">
+                        <thead>
+                            <tr>
+                                <th>{{ 'fetch-partial-infringement-page.successful' | i18next }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <rp-json [data]="response.successful"></rp-json>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <table class="rp-basic-data-table">
+                        <thead>
+                            <tr>
+                                <th>{{ 'fetch-partial-infringement-page.failed' | i18next }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <rp-json [data]="response.failed"></rp-json>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </nz-col>
+            </nz-row>
+        </ng-container>
+        <nz-row> </nz-row>
+    </div>
+</rp-general-page>

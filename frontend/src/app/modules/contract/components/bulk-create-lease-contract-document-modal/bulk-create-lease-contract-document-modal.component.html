@@ -1,0 +1,34 @@
+<ng-container>
+    <form nz-form [formGroup]="bulkContractGenerationDetailsForm" nzLayout="vertical" (ngSubmit)="batchGenerateLeaseContractDocuments()">
+        <nz-form-item>
+            <nz-form-label nzRequired nzFor="representativeDetails">{{ 'bulk-generate-lease-contract-documents.representative_details' | i18next }}</nz-form-label>
+            <nz-form-control>
+                <input nz-input formControlName="representativeDetails" id="representativeDetails" />
+                <nz-form-explain
+                    *ngIf="bulkContractGenerationDetailsForm.get('representativeDetails')?.dirty && bulkContractGenerationDetailsForm.get('representativeDetails')?.errors"
+                >
+                    <rp-general-form-error-display [form]="bulkContractGenerationDetailsForm" key="representativeDetails"></rp-general-form-error-display>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-row class='generate-button' *ngIf='!document'>
+            <button nz-button [nzType]="'primary'" [nzLoading]="generateDocumentState.isLoading()" (click)="batchGenerateLeaseContractDocuments()" [disabled]='!bulkContractGenerationDetailsForm.valid'>
+                <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                {{ 'view-contracts-advanced.generate_lease_contract_documents' | i18next }}
+            </button>
+        </nz-row>
+    </form>
+    <nz-row class='generated-document-result'>
+        <rp-view-document
+            *ngIf='document'
+            [document]="document"
+        ></rp-view-document>
+        <nz-alert
+            nzType="error"
+            *ngIf="generateDocumentState?.hasFailed()"
+            [nzMessage]="generateDocumentState?.failedResult().message"
+            [nzDescription]="generateDocumentState?.failedResult().context.message"
+            nzShowIcon
+        ></nz-alert>
+    </nz-row>
+</ng-container>

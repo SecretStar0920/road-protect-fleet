@@ -1,0 +1,5 @@
+<div>
+    <nz-select [(ngModel)]="selected{{pascalCase name}}" nzAllowClear [nzPlaceHolder]="'{{dashCase name}}-dropdown.placeholder' | i18next" nzShowSearch="true">
+        <nz-option *ngFor="let {{camelCase name}} of {{camelCase name}}s" [nzValue]="{{camelCase name}}.code" [nzLabel]="{{camelCase name}}.name"></nz-option>
+    </nz-select>
+</div>

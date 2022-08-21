@@ -1,0 +1,7 @@
+<rp-general-page [title]="'municipally-redirect-nomination.title' | i18next" [icon]="'file'">
+    <div class="rp-round-card rp-page-section">
+        <ng-container *ngIf="nomination">
+            <rp-municipally-redirect-nomination [nomination]="nomination"></rp-municipally-redirect-nomination>
+        </ng-container>
+    </div>
+</rp-general-page>

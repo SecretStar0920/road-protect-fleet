@@ -1,0 +1,86 @@
+<nz-row  nzJustify="start" nzAlign="top" nzGutter="6">
+    <nz-col *ngFor="let note of standardNotes" nzSpan="8">
+        <rp-view-infringement-note [infringementNoteId]="note.infringementNoteId"></rp-view-infringement-note>
+    </nz-col>
+    <nz-col nzSpan="8">
+        <div class="create" (click)="onShowCreateNote()">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>
+        </div>
+    </nz-col>
+</nz-row>
+
+<nz-modal
+    [(nzVisible)]="showCreateModal"
+    [nzFooter]="null"
+    nzTitle="{{ 'infringement-note.create_title' | i18next }}"
+    [nzClosable]="true"
+    (nzOnCancel)="closeCreateNoteModal()"
+>
+    <nz-row>
+        <nz-col nzSpan="24">
+            <form nz-form [formGroup]="createNoteForm">
+                <nz-form-item>
+                    <!--                    <nz-form-label nzFor="email">Note</nz-form-label>-->
+                    <nz-form-control>
+                        <textarea
+                            nz-input
+                            formControlName="value"
+                            placeholder="{{ 'infringement-note.value_placeholder' | i18next }}"
+                        ></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </nz-col>
+        <nz-col nzSpan="24">
+            <button nz-button nzType="primary" (click)="onCreateNote()" [disabled]="!createNoteForm.valid">
+                {{ 'infringement-note.create_button' | i18next }}
+            </button>
+        </nz-col>
+    </nz-row>
+</nz-modal>
+
+<div *ngIf="adminNotesAraAvailable">
+    <br/>
+    <h2 style="color: #0f529f;">{{ 'infringement-note.admin_notes' | i18next }}</h2>
+    <nz-row  nzJustify="start" nzAlign="top" nzGutter="6">
+        <nz-col *ngFor="let note of adminNotes" nzSpan="8">
+            <rp-view-infringement-note [infringementNoteId]="note.infringementNoteId"></rp-view-infringement-note>
+        </nz-col>
+        <nz-col nzSpan="8">
+            <div class="create" (click)="onShowCreateAdminNote()">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+            </div>
+        </nz-col>
+    </nz-row>
+
+    <nz-modal
+        [(nzVisible)]="showCreateAdminModal"
+        [nzFooter]="null"
+        nzTitle="{{ 'infringement-note.create_title' | i18next }}"
+        [nzClosable]="true"
+        (nzOnCancel)="closeCreateAdminModal()"
+    >
+        <nz-row>
+            <nz-col nzSpan="24">
+                <form nz-form [formGroup]="createAdminNoteForm">
+                    <nz-form-item>
+                        <!--                    <nz-form-label nzFor="email">Note</nz-form-label>-->
+                        <nz-form-control>
+                        <textarea
+                            nz-input
+                            formControlName="value"
+                            placeholder="{{ 'infringement-note.value_placeholder' | i18next }}"
+                        ></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </nz-col>
+            <nz-col nzSpan="24">
+                <button nz-button nzType="primary" (click)="onCreateAdminNote()" [disabled]="!createAdminNoteForm.valid">
+                    {{ 'infringement-note.create_button' | i18next }}
+                </button>
+            </nz-col>
+        </nz-row>
+    </nz-modal>
+
+</div>

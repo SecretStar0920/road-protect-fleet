@@ -1,0 +1,162 @@
+<ng-container *ngIf="account">
+    <ng-container *ngIf="!isUpdating; else edit">
+        <rp-view-logs [accountId]="account.accountId" *rpHasPermission="[permissions.ViewProfileLogs]"></rp-view-logs>
+        <nz-row>
+            <nz-col nzXl="24" nzXXl="12"
+                ><table class="rp-basic-data-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">{{ account?.name }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ 'account.id' | i18next }}</td>
+                            <td>{{ account?.identifier }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.primary_contact' | i18next }}</td>
+                            <td>{{ account?.primaryContact }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.contact_name' | i18next }}</td>
+                            <td>{{ account?.details?.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.contact_telephone' | i18next }}</td>
+                            <td>{{ account?.details?.telephone }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.contact_fax' | i18next }}</td>
+                            <td>{{ account?.details?.fax }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.location' | i18next }}</td>
+                            <td>
+                                <rp-view-short-location
+                                    *ngIf="account.physicalLocation"
+                                    [location]="account.physicalLocation"
+                                ></rp-view-short-location>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.postal_location' | i18next }}</td>
+                            <td>
+                                <rp-view-short-location
+                                    *ngIf="account.postalLocation"
+                                    [location]="account.postalLocation"
+                                ></rp-view-short-location>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.verified' | i18next }}</td>
+                            <td>
+                                <i nz-icon nzType="check-circle" nzTwotoneColor="green" *ngIf="account?.isVerified; else notVerified"></i>
+                                <ng-template #notVerified>
+                                    <i nz-icon nzType="close-circle" nzTwotoneColor="red"></i>
+                                </ng-template>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.managed' | i18next }}</td>
+                            <td>
+                                <i nz-icon nzType="check-circle" nzTwotoneColor="green" *ngIf="account?.managed; else notManaged"></i>
+                                <ng-template #notManaged>
+                                    <i nz-icon nzType="close-circle" nzTwotoneColor="red"></i>
+                                </ng-template>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.primary_role' | i18next }}</td>
+                            <td>
+                                <rp-account-role-tag *ngIf="account.role" [role]="account?.role"></rp-account-role-tag>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.power_of_attorny' | i18next }}</td>
+                            <td *ngIf="account?.powerOfAttorney; else missing">
+                                <rp-view-document
+                                    [document]="account?.powerOfAttorney"
+                                    [enableDelete]="true"
+                                    (delete)="onPaDeletion()"
+                                ></rp-view-document>
+                            </td>
+                            <ng-template #missing>
+                                <td>
+                                    <p>
+                                        <span nz-text nzType="warning">{{ 'account.power_of_attorny_missing' | i18next }}</span>
+                                    </p>
+
+                                    <!--                            or-->
+                                    <div>
+                                        <!--                                <button nz-button (click)="onAddPA()" *rpHasPermission="[permissions.EditProfile]">-->
+                                        <!--                                    <i nz-icon nzType="file-add" nzTheme="outline"></i> {{ 'account.power_of_attorny_add' | i18next }}-->
+                                        <!--                                </button>-->
+                                        <!--                                {{ 'divider.or' | i18next }}-->
+                                        <rp-create-generated-document
+                                            [documentTemplate]="'Power of Attorney'"
+                                            [friendlyName]="'account.power_of_attorny' | i18next"
+                                            [target]="'account'"
+                                            [targetId]="accountId"
+                                            [orUpload]="true"
+                                        ></rp-create-generated-document>
+                                    </div>
+                                </td>
+                            </ng-template>
+                        </tr>
+                        <tr>
+                            <td>{{ 'account.created' | i18next }}</td>
+                            <td>
+                                <rp-general-time-display *ngIf="account.createdAt" [time]="account.createdAt"></rp-general-time-display>
+                            </td>
+                        </tr>
+
+                        <tr *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+                            <td>{{ 'account.can_send_information_request' | i18next }}</td>
+                            <td>
+                                <i
+                                    nz-icon
+                                    nzType="check-circle"
+                                    nzTwotoneColor="green"
+                                    *ngIf="account?.requestInformationDetails?.canSendRequest; else cantSendRequest"
+                                ></i>
+                                <ng-template #cantSendRequest>
+                                    <i nz-icon nzType="close-circle" nzTwotoneColor="red"></i>
+                                </ng-template>
+                            </td>
+                        </tr>
+                    </tbody></table
+            ></nz-col>
+            <nz-col nzMd="24" nzXl="12" *ngIf="isCurrentAccount && account">
+                <rp-view-account-payment-methods [account]="account"></rp-view-account-payment-methods>
+            </nz-col>
+        </nz-row>
+    </ng-container>
+
+    <nz-divider> </nz-divider>
+
+    <ng-template #edit>
+        <rp-update-account [account]="account" (complete)="onUpdateComplete($event)"></rp-update-account>
+    </ng-template>
+
+    <ng-container>
+        <div nz-row  nzAlign="middle" nzJustify="space-between" style="margin-top: 10px">
+            <button
+                nz-button
+                [nzType]="!isUpdating ? 'primary' : 'default'"
+                nz-col
+                class="rp-space"
+                (click)="onUpdate()"
+                *rpHasPermission="[permissions.EditProfile]"
+            >
+                {{ isUpdating ? ('account.cancel' | i18next) : ('account.edit' | i18next) }}
+            </button>
+            <ng-container *ngIf="!isCurrentAccount && accountId">
+                <rp-change-to-account [targetAccountId]="accountId" *rpIsUserType="[userTypes.Admin, userTypes.Developer]">
+                </rp-change-to-account>
+            </ng-container>
+
+            <rp-delete-account *ngIf="!isUpdating" [accountId]="accountId" (delete)="onDelete($event)" nz-col></rp-delete-account>
+        </div>
+    </ng-container>
+</ng-container>

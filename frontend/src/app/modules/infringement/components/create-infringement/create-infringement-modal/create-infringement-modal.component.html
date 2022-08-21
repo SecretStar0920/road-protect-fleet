@@ -1,0 +1,8 @@
+<rp-create-infringement (complete)="onComplete($event)" [vehicleId]="vehicleId" [issuerId]="issuerId"></rp-create-infringement>
+<nz-alert
+    nzType="error"
+    *ngIf="createInfringementState?.hasFailed()"
+    [nzMessage]="createInfringementState?.failedResult().message"
+    [nzDescription]="createInfringementState?.failedResult().context.message"
+    nzShowIcon
+></nz-alert>

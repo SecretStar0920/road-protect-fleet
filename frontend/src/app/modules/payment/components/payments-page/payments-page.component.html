@@ -1,0 +1,19 @@
+<rp-general-page [icon]="'profile'" [title]="'payments-page.title' | i18next" [enableBreadcrumb]="true">
+    <div class="rp-round-card rp-page-section">
+        <rp-view-payments class="rp-round-card" [action]="tableAction"></rp-view-payments>
+        <ng-template let-data #tableAction>
+            <button nz-button nzType="primary" nzSize="small" (click)="onViewPayment(data.paymentId)" class="rp-space">
+                <i nz-icon nzType="eye" nzTheme="outline"></i>
+            </button>
+            <rp-delete-payment [paymentId]="data.paymentId"></rp-delete-payment>
+        </ng-template>
+    </div>
+    <div class="rp-round-card rp-page-section">
+        <button nz-button [nzType]="'primary'" class="rp-space" (click)="onCreatePayment()">
+            <i nz-icon nzType="plus-circle" nzTheme="outline"></i> {{ 'payments-page.create' | i18next }}
+        </button>
+        <button nz-button [nzType]="'default'">
+            <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'payments-page.import' | i18next }}
+        </button>
+    </div>
+</rp-general-page>

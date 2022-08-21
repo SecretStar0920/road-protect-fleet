@@ -1,0 +1,5 @@
+<!--<nz-tag nzColor="orange" *ngIf="issuer">-->
+<a [routerLink]="['/home', 'issuers', 'view', issuer?.issuerId]" *ngIf="issuer?.issuerId">
+    <span><i nz-icon nzType="database" nzTheme="outline"></i> {{ issuer.name | truncate: false:15 }}</span>
+</a>
+<!--</nz-tag>-->

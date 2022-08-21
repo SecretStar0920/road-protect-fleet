@@ -1,0 +1,26 @@
+
+<div>
+    <rp-general-file-upload
+        [limit]="1"
+        [mimeTypes]="[mimeTypes.xls, mimeTypes.xlsx]"
+        (files)="onFilesChanged($event)"
+        [spreadSheet]="false"
+    >
+    </rp-general-file-upload>
+
+    <br/>
+    <br/>
+
+    <button
+        nz-button
+        [nzType]="'primary'"
+        (click)="onUpload()"
+        [disabled]="files.length <= 0"
+        [nzLoading]="loading"
+    >
+        <i nz-icon nzType="upload" nzTheme="outline"></i> {{ 'view-account-relation-advanced.upload' | i18next }}
+    </button>
+
+</div>
+
+

@@ -1,0 +1,5 @@
+<!--<nz-tag nzColor="green" *ngIf="vehicle">-->
+<a [routerLink]="['/home', 'vehicles', 'view', vehicle.vehicleId]">
+    <span><i nz-icon nzType="car" nzTheme="outline"></i> {{ vehicle.registration | truncate: false:15 }}</span>
+</a>
+<!--</nz-tag>-->

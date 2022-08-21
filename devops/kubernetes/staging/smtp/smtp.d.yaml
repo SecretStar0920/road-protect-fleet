@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: smtp
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fleet
+            type: smtp
+            env: staging
+    template:
+        metadata:
+            labels:
+                app: fleet
+                type: smtp
+                env: staging
+        spec:
+            containers:
+                - image: beevelop/nginx-basic-auth
+                  name: smtp
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          cpu: 10m
+                  ports:
+                      - containerPort: 80
+                        name: entry
+                        protocol: TCP
+                  env:
+                      - name: FORWARD_PORT
+                        value: '8025'
+                      - name: FORWARD_HOST
+                        value: 'localhost'
+                      - name: HTPASSWD
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp
+                                key: HTPASSWD
+                - image: mailhog/mailhog
+                  name: mailhog
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 1025
+                        name: smtp
+                        protocol: TCP
+                      - containerPort: 8025
+                        name: web
+                        protocol: TCP

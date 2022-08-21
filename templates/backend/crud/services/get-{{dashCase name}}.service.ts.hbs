@@ -1,0 +1,18 @@
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { Logger } from '@logger';
+import { {{pascalCase name}} } from '@entities';
+
+@Injectable()
+export class Get{{pascalCase name}}Service {
+    constructor(private logger: Logger) {}
+
+    async get{{pascalCase name}}({{camelCase name}}Id: number): Promise<{{pascalCase name}}> {
+        this.logger.log({ message: `Getting {{pascalCase name}} with id: `, detail: {{camelCase name}}Id, fn: this.get{{pascalCase name}}.name });
+        const {{camelCase name}} = await {{pascalCase name}}.findOne({{camelCase name}}Id);
+        if (!{{camelCase name}}) {
+            throw new BadRequestException({ message: `Could not find {{pascalCase name}} with id: ${{{camelCase name}}Id}` });
+        }
+        this.logger.log({ message: `Found {{pascalCase name}} with id: `, detail: {{camelCase name}}.{{camelCase name}}Id, fn: this.get{{pascalCase name}}.name });
+        return {{camelCase name}};
+    }
+}

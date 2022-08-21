@@ -1,0 +1,28 @@
+<rp-advanced-filter-table> </rp-advanced-filter-table>
+<ng-template #timestamp let-data>
+    <rp-general-time-display [time]="data.createdAt"></rp-general-time-display>
+</ng-template>
+<ng-template #source let-data>
+    {{ data.type | lowercase | sentenceCase }}
+</ng-template>
+
+<ng-template #isSuccessful let-data>
+    <i nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="green" *ngIf="data.success; else notSuccessful"></i>
+    <ng-template #notSuccessful>
+        <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="red"></i>
+    </ng-template>
+</ng-template>
+
+<ng-template #formattedRequest let-data>
+    <rp-json [data]="data.request" maxHeight="100px"></rp-json>
+</ng-template>
+
+<ng-template #formattedResponse let-data>
+    <rp-json [data]="data.response" maxHeight="100px"></rp-json>
+</ng-template>
+
+<ng-template let-data #action>
+    <button nz-button nzType="primary" nzSize="small" (click)="onViewIntegrationRequestLog(data.integrationRequestLogId)" class="rp-space">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+    </button>
+</ng-template>
